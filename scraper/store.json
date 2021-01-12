@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Roland SH-101",
+    "specs": {
+      "Polyphony": "Monophonic",
+      "Oscillators": "1 VCO (independent levels for saw, square/pulse/pwm and sub-oscillator)",
+      "LFO": "triangle, square, random and noise waveforms",
+      "Filter": "resonant, self-oscillating LPF, mod by EG, lfo and kybd tracking",
+      "VCA": "ADSR, mod by EG or gate",
+      "Arpeg/Seq": "Digital sequencer up to 100 steps record/playback; Arpeggiator patterns: up, down, up/down",
+      "Keyboard": "32 keys",
+      "Control": "CV / Gate",
+      "Date Produced": "1983"
+    },
+    "image": "/sites/default/files/2017-05/roland_sh101.jpg"
+  },
+  {
+    "title": "Roland CR-78",
+    "specs": {
+      "Polyphony": "4 voices",
+      "Sounds": "14 tones: Kick, Snare, Rim, Cow Bell, HiHats, Cymbals, Congas, Bongos, Tambourine, Guiros",
+      "Controls": "Tempo, accent, fade in/out",
+      "Patterns": "34 preset rhythms",
+      "Memory": "30 programmable presets",
+      "Arpeg/Seq": "Sequencer : Rock, Disco, Latin",
+      "Keyboard": "None",
+      "Control": "Trigger out, 24ppq (0-5V) V-Trig clock pulse",
+      "Date Produced": "1978-81"
+    },
+    "image": "/sites/default/files/2017-05/roland_cr78.jpg"
+  }
+]

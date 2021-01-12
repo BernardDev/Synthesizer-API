@@ -14,41 +14,86 @@ async function director(dom) {
     specs,
     image,
   };
-  // const writing = writeToFile(title, specs, image);
 }
 
 async function fetchSynths(urls) {
+  // 2. fetches all indiviual synth pages according to
+  // content of the url array
   const promises = urls.map((url) => {
+    // 3. look at fetch
     return fetch(url);
   });
+  // 5. resolves all caught promises
   const data = await Promise.all(promises);
+  // 6. writes all to json
   writeToFile(data);
-  // console.log(data, 'is data');
 }
 
 async function fetch(url) {
   const res = await axios.get(url);
-  // console.log(Object.keys(res));
   const dom = new JSDOM(res.data);
   const synthData = director(dom);
+  // 4. contains all data from indiviual synth page
   return synthData;
 }
 
-async function fetch2() {
-  console.log('executed');
-  let page = 7;
-  // 7, 8, 9
-  const synths = await axios.get(
-    `'http://www.vintagesynth.com/synthfinder?field_year_value%5Bmin%5D=&field_year_value%5Bmax%5D=&page=${page}`
-  );
-  return new JSDOM(synths.data);
-}
+// we need to make fetchSynth take in a parameter
+// from which the variables created by another function\
+// this function should scrape all url's that are found on page 7
+// write a function that scrapes all synth page url found on
+// synthfinder page 7
+
+// http://www.vintagesynth.com/synthfinder?field_year_value%5Bmin%5D=&field_year_value%5Bmax%5D=&page=7
+// http://www.vintagesynth.com/synthfinder?field_year_value%5Bmin%5D=&field_year_value%5Bmax%5D=&page=8
 
 function getTitle(dom) {
   const title = dom.window.document.querySelector('.vs-synth-title')
     .textContent;
   return title;
 }
+
+// --------
+function createPageUrl() {
+  let page = 7;
+  // 7, 8, 9
+  let url = `http://www.vintagesynth.com/synthfinder?field_year_value%5Bmin%5D=&field_year_value%5Bmax%5D=&page=${page}`;
+  return url;
+  // here we create an url for a indiviual roland synth
+}
+
+async function fetchUrlOnPage7() {
+  const pageUrl = createPageUrl();
+  // console.log(pageUrl);
+  const res = await axios.get(pageUrl);
+  const dom = new JSDOM(res.data);
+  // console.log(dom);
+  const elements = Array.from(
+    dom.window.document.querySelectorAll('.views-field-title')
+  );
+
+  const links = elements.map((element) => {
+    return element.querySelector('a').href;
+  });
+  // console.log(links);
+
+  const rolandLinks = links.filter((link) => {
+    // console.log(link.includes('roland') || link.includes('Roland'), link);
+    return link.includes('roland') || link.includes('Roland');
+  });
+
+  console.log(rolandLinks);
+  // const url = temp.querySelector('a').href;
+  // console.log(url);
+}
+
+fetchUrlOnPage7();
+
+// function getPageUrls() {
+
+//   // here we select a indiviual link of a roland synth on the page
+// }
+
+// --------
 
 function getImage(dom) {
   const image = dom.window.document.querySelector(
@@ -94,9 +139,8 @@ function writeToFile(data) {
   );
 }
 
-// fetch('http://www.vintagesynth.com/roland/sh101.php');
-// fetch('http://www.vintagesynth.com/roland/cr78.php');
-fetchSynths([
-  'http://www.vintagesynth.com/roland/sh101.php',
-  'http://www.vintagesynth.com/roland/cr78.php',
-]);
+// 1. executes fetching indiviual synth pages
+// fetchSynths([
+//   'http://www.vintagesynth.com/roland/sh101.php',
+//   'http://www.vintagesynth.com/roland/cr78.php',
+// ]);

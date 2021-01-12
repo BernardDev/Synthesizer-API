@@ -12,7 +12,7 @@
       "Control": "MIDI",
       "Date Produced": "1983"
     },
-    "image": "/sites/default/files/2017-05/roland_mks30.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_mks30.jpg"
   },
   {
     "title": "Roland MKS-50",
@@ -28,7 +28,7 @@
       "Control": "MIDI (w/ velocity and aftertouch mappable to VCF or ENV)",
       "Date Produced": "1987"
     },
-    "image": "/sites/default/files/2017-05/roland_mks50.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_mks50.jpg"
   },
   {
     "title": "Roland MKS-7",
@@ -43,7 +43,7 @@
       "Control": "MIDI",
       "Date Produced": "1986"
     },
-    "image": "/sites/default/files/2017-05/new_roland_mks7.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/new_roland_mks7.jpg"
   },
   {
     "title": "Roland MKS-70",
@@ -59,7 +59,7 @@
       "Control": "MIDI",
       "Date Produced": "1986"
     },
-    "image": "/sites/default/files/2017-05/roland_mks70.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_mks70.jpg"
   },
   {
     "title": "Roland MKS-80",
@@ -74,7 +74,7 @@
       "Control": "MIDI",
       "Date Produced": "1984"
     },
-    "image": "/sites/default/files/2017-05/roland_mks-80.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_mks-80.jpg"
   },
   {
     "title": "Roland MT-32",
@@ -89,7 +89,7 @@
       "Control": "MIDI",
       "Date Produced": "1987"
     },
-    "image": "/sites/default/files/2017-05/roland_mt32_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_mt32_angle.jpg"
   },
   {
     "title": "Roland R-70",
@@ -102,7 +102,7 @@
       "Control": "MIDI",
       "Date Produced": "1992"
     },
-    "image": "/sites/default/files/2017-05/r70.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/r70.jpg"
   },
   {
     "title": "Roland R-8",
@@ -117,7 +117,7 @@
       "Control": "MIDI",
       "Date Produced": "1989R-8 mkII - 1992"
     },
-    "image": "/sites/default/files/2017-05/roland_r8.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_r8.jpg"
   },
   {
     "title": "Roland RS-09",
@@ -130,7 +130,7 @@
       "Control": "Gate Out only",
       "Date Produced": "1979 - 1980"
     },
-    "image": "/sites/default/files/2017-05/roland_rs09.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_rs09.jpg"
   },
   {
     "title": "Roland RS-101",
@@ -145,7 +145,7 @@
       "Effects": "Ensemble (no user control)",
       "Keyboard": "61 keys, no sensitivity"
     },
-    "image": "/sites/default/files/2017-06/RS101.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-06/RS101.jpg"
   },
   {
     "title": "Roland RS-202 Strings",
@@ -158,7 +158,7 @@
       "Control": "Gate Out",
       "Date Produced": "1976"
     },
-    "image": "/sites/default/files/2017-05/rs202.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/rs202.jpg"
   },
   {
     "title": "Roland RS-50",
@@ -177,7 +177,7 @@
       "Keyboard": "61 keys with velocity and aftertouch",
       "Memory": "128 user patches"
     },
-    "image": "/sites/default/files/2019-10/RolandRS50.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-10/RolandRS50.jpg"
   },
   {
     "title": "Roland RS-505 Paraphonic",
@@ -192,7 +192,7 @@
       "Control": "VCF CV In, Trigger, Gate",
       "Date Produced": "1978"
     },
-    "image": "/sites/default/files/2017-05/rs505.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/rs505.jpg"
   },
   {
     "title": "Roland S-10",
@@ -207,7 +207,7 @@
       "Control": "MIDI",
       "Date Produced": "1986"
     },
-    "image": "/sites/default/files/2017-05/s10.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/s10.jpg"
   },
   {
     "title": "Roland S-220",
@@ -222,7 +222,7 @@
       "Control": "MIDI",
       "Date Produced": "1987"
     },
-    "image": "/sites/default/files/2017-05/s220.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/s220.jpg"
   },
   {
     "title": "Roland S-330",
@@ -237,7 +237,7 @@
       "Control": "MIDI",
       "Date Produced": "1987 - 1988"
     },
-    "image": "/sites/default/files/2017-05/roland_s330.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_s330.jpg"
   },
   {
     "title": "Roland S-50",
@@ -252,7 +252,7 @@
       "Control": "MIDI",
       "Date Produced": "1986 - 1987"
     },
-    "image": "/sites/default/files/2017-05/roland_s50_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_s50_angle.jpg"
   },
   {
     "title": "Roland S-770",
@@ -272,7 +272,7 @@
       "Control": "MIDI, external monitor, mouse, optional RC-100",
       "Date Produced": "1989 - 1993"
     },
-    "image": "/sites/default/files/2017-05/roland_s770.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_s770.jpg"
   },
   {
     "title": "Roland SC-88",
@@ -285,7 +285,7 @@
       "Effects": "Reverb, Chorus, Delay, 2-Band Equalizer",
       "Memory": "654 preset sounds, 24 drum sounds, 256 user sounds, 2 user drum sounds,"
     },
-    "image": "/sites/default/files/2019-10/RolandSC-88.png"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-10/RolandSC-88.png"
   },
   {
     "title": "Roland SH-201",
@@ -302,7 +302,7 @@
       "Control": "MIDI (IN, OUT), USB Connector (AUDIO/MIDI)",
       "Date Produced": "2006 "
     },
-    "image": "/sites/default/files/2017-05/sh201_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/sh201_angle.jpg"
   },
   {
     "title": "Roland SH-32",
@@ -320,7 +320,7 @@
       "Control": "MIDI In, Out",
       "Date Produced": "2001"
     },
-    "image": "/sites/default/files/2017-05/sh32.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/sh32.jpg"
   },
   {
     "title": "Roland SH-7",
@@ -335,7 +335,7 @@
       "Control": "CV/Gate",
       "Date Produced": "1978 - 1981"
     },
-    "image": "/sites/default/files/2017-05/rolsh701.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/rolsh701.jpg"
   },
   {
     "title": "Roland SonicCell",
@@ -351,7 +351,7 @@
       "Songs": "4 Demo Songs",
       "Effects": "Multi-Effects, Chorus, Reverb, Input, Effects, Master Effects,"
     },
-    "image": "/sites/default/files/2019-10/SonicCell.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-10/SonicCell.jpg"
   },
   {
     "title": "Roland SP-808",
@@ -366,7 +366,7 @@
       "Control": "MIDI IN/OUT, MMC, MTC, MIDI Clock",
       "Date Produced": "1998 - GrooveSampler; 2000 - e-Studio"
     },
-    "image": "/sites/default/files/2017-05/sp808.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/sp808.jpg"
   },
   {
     "title": "Roland SVC-350 Vocoder",
@@ -381,7 +381,7 @@
       "Control": "CV/Gate",
       "Date Produced": "1979"
     },
-    "image": "/sites/default/files/2017-05/vp330.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/vp330.jpg"
   },
   {
     "title": "Roland TR-505",
@@ -396,7 +396,7 @@
       "Control": "MIDI",
       "Date Produced": "1986"
     },
-    "image": "/sites/default/files/2017-05/roland_tr505.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_tr505.jpg"
   },
   {
     "title": "Roland TR-606",
@@ -411,7 +411,7 @@
       "Control": "DIN Sync in/out",
       "Date Produced": "1982"
     },
-    "image": "/sites/default/files/2017-05/roland_tr606.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_tr606.jpg"
   },
   {
     "title": "Roland TR-626",
@@ -426,7 +426,7 @@
       "Control": "MIDI",
       "Date Produced": "1987"
     },
-    "image": "/sites/default/files/2017-05/roland_tr626.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_tr626.jpg"
   },
   {
     "title": "Roland TR-66",
@@ -440,7 +440,7 @@
       "Weight": "8.8 pounds (4 Kg)",
       "Date Produced": "1973"
     },
-    "image": "/sites/default/files/2017-05/tr66.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/tr66.jpg"
   },
   {
     "title": "Roland TR-707",
@@ -455,7 +455,7 @@
       "Control": "MIDI IN/OUT & DIN SYNC IN/OUT & TRIG OUT (outputs Rimshot sound as trigger)",
       "Date Produced": "1985"
     },
-    "image": "/sites/default/files/2017-05/roland_tr707.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_tr707.jpg"
   },
   {
     "title": "Roland TR-727",
@@ -470,7 +470,7 @@
       "Control": "Midi in/out & DIN sync in/out",
       "Date Produced": "1985"
     },
-    "image": "/sites/default/files/2017-05/roland_tr727.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_tr727.jpg"
   },
   {
     "title": "Roland TR-808",
@@ -485,7 +485,7 @@
       "Control": "DIN SYNC IN/OUT",
       "Date Produced": "1981-84"
     },
-    "image": "/sites/default/files/2017-05/roland_tr808.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_tr808.jpg"
   },
   {
     "title": "Roland TR-909",
@@ -500,7 +500,7 @@
       "Control": "Midi In/Out & DIN Sync In",
       "Date Produced": "1984-85"
     },
-    "image": "/sites/default/files/2017-05/roland_tr909.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_tr909.jpg"
   },
   {
     "title": "Roland U-110",
@@ -516,7 +516,7 @@
       "Control": "MIDI",
       "Date Produced": "1988"
     },
-    "image": "/sites/default/files/2017-05/roland_u110.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_u110.jpg"
   },
   {
     "title": "Roland U-20",
@@ -531,7 +531,7 @@
       "Control": "MIDI",
       "Date Produced": "1989"
     },
-    "image": "/sites/default/files/2017-05/roland_u20.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_u20.jpg"
   },
   {
     "title": "Roland V-Synth",
@@ -545,7 +545,7 @@
       "Control": "MIDI In/Out/Thru; USB",
       "Date Produced": "V-Synth: 2003V-Synth XT: 2005V-Synth GT: 2007"
     },
-    "image": "/sites/default/files/2017-05/vsynth.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/vsynth.jpg"
   },
   {
     "title": "Roland VP-550",
@@ -559,7 +559,7 @@
       "Control": "MIDI IN/OUT",
       "Date Produced": "2006 "
     },
-    "image": "/sites/default/files/2017-05/vp550.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/vp550.jpg"
   },
   {
     "title": "Roland VP-770",
@@ -578,7 +578,7 @@
       "Control": "MIDI In/Out",
       "Date Produced": "2009"
     },
-    "image": "/sites/default/files/2017-05/vp770_bild1.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/vp770_bild1.jpg"
   },
   {
     "title": "Roland VP-9000",
@@ -593,7 +593,7 @@
       "Control": "MIDI (6-parts); SCSI 25-PIN, SCSI 50-PIN",
       "Date Produced": "2000"
     },
-    "image": "/sites/default/files/2017-05/roland_vp9000.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_vp9000.jpg"
   },
   {
     "title": "Roland W-30",
@@ -609,7 +609,7 @@
       "Memory": "512kW memory for recording up to 32 samples, 32 preset samples",
       "Sampler": "16bit sample depth, 15kHZ/30kHz sample rate, 512kW Sample ROM"
     },
-    "image": "/sites/default/files/2019-02/reverb.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-02/reverb.jpg"
   },
   {
     "title": "Roland XP-10",
@@ -624,7 +624,7 @@
       "Control": "MIDI (16-parts; can send on 2 simultaneous channels); PC/Mac port",
       "Date Produced": "1994"
     },
-    "image": "/sites/default/files/2017-05/xp10.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/xp10.jpg"
   },
   {
     "title": "Roland XP-30",
@@ -640,7 +640,7 @@
       "Control": "MIDI In/Out/Thru (16-parts)",
       "Date Produced": "1999-2002"
     },
-    "image": "/sites/default/files/2017-05/xp30.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/xp30.jpg"
   },
   {
     "title": "Roland XP-50",
@@ -655,7 +655,7 @@
       "Control": "MIDI (16-parts)",
       "Date Produced": "1995"
     },
-    "image": "/sites/default/files/2017-05/roland_xp50.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_xp50.jpg"
   },
   {
     "title": "Roland XP-60",
@@ -670,7 +670,7 @@
       "Control": "MIDI (16-parts)",
       "Date Produced": "1996"
     },
-    "image": "/sites/default/files/2017-05/roland_xp60_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_xp60_angle.jpg"
   },
   {
     "title": "Roland XP-80",
@@ -685,7 +685,7 @@
       "Control": "MIDI (16-parts)",
       "Date Produced": "1996"
     },
-    "image": "/sites/default/files/2017-05/roland_xp80.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_xp80.jpg"
   },
   {
     "title": "Roland XV-3080",
@@ -700,7 +700,7 @@
       "Control": "MIDI",
       "Date Produced": "2000"
     },
-    "image": "/sites/default/files/2017-05/roland_xv3080.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_xv3080.jpg"
   },
   {
     "title": "Roland XV-5050",
@@ -714,7 +714,7 @@
       "Control": "MINI (In/Out/Thru), USB",
       "Date Produced": "2001"
     },
-    "image": "/sites/default/files/2017-05/roland_xv5050.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_xv5050.jpg"
   },
   {
     "title": "Roland XV-5080",
@@ -729,6 +729,6 @@
       "Control": "MIDI",
       "Date Produced": "2000"
     },
-    "image": "/sites/default/files/2017-05/roland_xv5080.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_xv5080.jpg"
   }
 ]

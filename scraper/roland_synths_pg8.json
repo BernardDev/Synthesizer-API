@@ -15,7 +15,7 @@
       "Control": "MIDI",
       "Date Produced": "1987-89"
     },
-    "image": "/sites/default/files/2017-05/roland_d50.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_d50.jpg"
   },
   {
     "title": "Roland D-70",
@@ -33,7 +33,7 @@
       "Control": "MIDI",
       "Date Produced": "1990-91"
     },
-    "image": "/sites/default/files/2017-05/roland_d70.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_d70.jpg"
   },
   {
     "title": "Roland D2",
@@ -48,7 +48,7 @@
       "Control": "MIDI (IN/OUT)",
       "Date Produced": "2001"
     },
-    "image": "/sites/default/files/2017-05/d2.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/d2.jpg"
   },
   {
     "title": "Roland DJ-70",
@@ -62,7 +62,7 @@
       "Sequencer": "8-track Sequencer",
       "Keyboard": "37 keys with velocity and aftertouch"
     },
-    "image": "/sites/default/files/2019-11/DJ-70.png"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-11/DJ-70.png"
   },
   {
     "title": "Roland EG-101",
@@ -77,12 +77,12 @@
       "Control": "MIDI In/Out",
       "Date Produced": "1999"
     },
-    "image": "/sites/default/files/2017-05/eg101.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/eg101.jpg"
   },
   {
     "title": "Roland EM-101",
     "specs": {},
-    "image": "/sites/default/files/2017-05/EM-101-A.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/EM-101-A.jpg"
   },
   {
     "title": "Roland Fantom-S",
@@ -102,7 +102,7 @@
       "Memory": "64MB wave memory",
       "Sampler": "44.1kHZ sampler with 32MB internal memory"
     },
-    "image": "/sites/default/files/2019-07/RolandFantomS.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-07/RolandFantomS.jpg"
   },
   {
     "title": "Roland Fantom-X",
@@ -121,7 +121,7 @@
       "Memory": "32 Mb + DIMM slot expandable up to 512MB",
       "Sampler": "Stereo sampler"
     },
-    "image": "/sites/default/files/2019-06/1280px-Roland_Fantom_X6_TopView.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-06/1280px-Roland_Fantom_X6_TopView.jpg"
   },
   {
     "title": "Roland Gaia SH-01",
@@ -145,7 +145,7 @@
       "Weight": "4.2 kg (9 lbs. 5 oz.)",
       "Date Produced": "2010"
     },
-    "image": "/sites/default/files/2017-05/roland_gaia_sh01.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_gaia_sh01.jpg"
   },
   {
     "title": "Roland GR-300",
@@ -154,7 +154,7 @@
       "Oscillators": "2 oscillators per voice",
       "Modulation": "-24 dB per octave, with envelope modulation"
     },
-    "image": "/sites/default/files/2019-10/GR-300.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-10/GR-300.jpg"
   },
   {
     "title": "Roland GR-700",
@@ -169,7 +169,7 @@
       "Control": "MIDI (out only), G-707 guitar controller",
       "Date Produced": "1984-1986"
     },
-    "image": "/sites/default/files/2017-05/gr700.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/gr700.jpg"
   },
   {
     "title": "Roland HS-60",
@@ -184,7 +184,7 @@
       "Control": "MIDI",
       "Date Produced": "1985"
     },
-    "image": "/sites/default/files/2017-05/roland_hs60.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_hs60.jpg"
   },
   {
     "title": "Roland JD-800",
@@ -197,7 +197,7 @@
       "Control": "MIDI",
       "Date Produced": "1991-93"
     },
-    "image": "/sites/default/files/2017-05/roland_jd800.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jd800.jpg"
   },
   {
     "title": "Roland JD-990",
@@ -214,7 +214,7 @@
       "Control": "MIDI (6-part + rhythm part multitimbral)",
       "Date Produced": "1993"
     },
-    "image": "/sites/default/files/2017-05/roland_jd990.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jd990.jpg"
   },
   {
     "title": "Roland JP-8000",
@@ -229,7 +229,7 @@
       "Control": "MIDI (2 parts)",
       "Date Produced": "1996"
     },
-    "image": "/sites/default/files/2017-05/roland_jp8000.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jp8000.jpg"
   },
   {
     "title": "Roland JP-8080",
@@ -244,7 +244,7 @@
       "Control": "MIDI (2 parts)",
       "Date Produced": "1998"
     },
-    "image": "/sites/default/files/2017-05/roland_jp8080.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jp8080.jpg"
   },
   {
     "title": "Roland Juno-106",
@@ -260,7 +260,7 @@
       "Control": "MIDI (In/Out/Thru)",
       "Date Produced": "1984"
     },
-    "image": "/sites/default/files/2017-05/roland_juno106_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_juno106_angle.jpg"
   },
   {
     "title": "Roland Juno-6",
@@ -277,7 +277,7 @@
       "Control": "Filter Control In, Ext Clock In",
       "Date Produced": "1982"
     },
-    "image": "/sites/default/files/2017-05/roland_juno6_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_juno6_angle.jpg"
   },
   {
     "title": "Roland Juno-60",
@@ -292,7 +292,7 @@
       "Control": "DCB Roland to Roland sync/interface (Roland MD-8 converts DCB to MIDI for MIDI control)",
       "Date Produced": "1982"
     },
-    "image": "/sites/default/files/2017-05/roland_juno60_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_juno60_angle.jpg"
   },
   {
     "title": "Roland Juno-D",
@@ -307,7 +307,7 @@
       "Control": "MIDI IN/OUT",
       "Date Produced": "2005 "
     },
-    "image": "/sites/default/files/2017-05/roland_junod_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_junod_angle.jpg"
   },
   {
     "title": "Roland Juno-Di",
@@ -327,7 +327,7 @@
       "Controls": "D-Beam Controller, Pitch Bend/Modulation Lever, Sound Modify Knob x 5",
       "Date Produced": "2009"
     },
-    "image": "/sites/default/files/2017-05/roland_juno_di.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_juno_di.jpg"
   },
   {
     "title": "Roland Juno-DS61",
@@ -344,7 +344,7 @@
       "Keyboard": "61-note Ivory Feel-G keyboard with weighted-action feel,",
       "Memory": "Internal, USB"
     },
-    "image": "/sites/default/files/2019-09/JunoDS61.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-09/JunoDS61.jpg"
   },
   {
     "title": "Roland Juno-G",
@@ -359,7 +359,7 @@
       "Control": "MIDI (In/Out), USB (supports file transfer and MIDI)",
       "Date Produced": "2007 "
     },
-    "image": "/sites/default/files/2017-05/junog.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/junog.jpg"
   },
   {
     "title": "Roland Juno-Stage",
@@ -374,7 +374,7 @@
       "Control": "MIDI In/Out, USB",
       "Date Produced": "2008 "
     },
-    "image": "/sites/default/files/2017-05/roland_juno_stage_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_juno_stage_angle.jpg"
   },
   {
     "title": "Roland Jupiter-4",
@@ -391,7 +391,7 @@
       "Control": "TRIG IN to control the arpeggiator",
       "Date Produced": "1978/79"
     },
-    "image": "/sites/default/files/2017-05/jup4.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/jup4.jpg"
   },
   {
     "title": "Roland Jupiter-6",
@@ -408,7 +408,7 @@
       "Control": "MIDI",
       "Date Produced": "1983"
     },
-    "image": "/sites/default/files/2017-05/roland_jupiter6.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jupiter6.jpg"
   },
   {
     "title": "Roland Jupiter-8",
@@ -423,7 +423,7 @@
       "Control": "DCB Roland to Roland sync/interface on some models",
       "Date Produced": "1981 - 1984"
     },
-    "image": "/sites/default/files/2017-05/roland_jup8.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jup8.jpg"
   },
   {
     "title": "Roland Jupiter-80",
@@ -435,7 +435,7 @@
       "Effects": "8 multi-FX ( 4 Upper, 4 Lower), 3 reverbs (Upper, Lower, Solo/ Percussion), 2 compressor-EQ-delay chains (Solo and Percussion), global 4-band semiparametric EQ.",
       "Keyboard": "76 keys (with velocity and channel aftertouch)"
     },
-    "image": "/sites/default/files/2019-08/jupiter80.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-08/jupiter80.jpg"
   },
   {
     "title": "Roland Jupiter-XM",
@@ -446,7 +446,7 @@
       "Effects": "Multi-Effects: 4 systems, 90 types",
       "Keyboard": "37 keys (compact type with velocity)"
     },
-    "image": "/sites/default/files/2019-12/JupiterXM.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-12/JupiterXM.jpg"
   },
   {
     "title": "Roland JV-1000",
@@ -465,7 +465,7 @@
       "Waveforms": "152, expandable with V-EXP board",
       "Modulation": "2 digital envelopes"
     },
-    "image": "/sites/default/files/2017-05/roland_jv-1000jpg.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jv-1000jpg.jpg"
   },
   {
     "title": "Roland JV-1010",
@@ -478,7 +478,7 @@
       "Control": "MIDI IN/OUT/THRU (16-parts); Serial Computer Host port",
       "Date Produced": "1999"
     },
-    "image": "/sites/default/files/2017-05/jv1010.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/jv1010.jpg"
   },
   {
     "title": "Roland JV-1080",
@@ -493,7 +493,7 @@
       "Control": "MIDI",
       "Date Produced": "1994 - 2001"
     },
-    "image": "/sites/default/files/2017-05/roland_jv1080.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jv1080.jpg"
   },
   {
     "title": "Roland JV-30",
@@ -510,7 +510,7 @@
       "Keyboard": "61 keys w/ velocity and aftertouch",
       "Memory": "128 slots"
     },
-    "image": "/sites/default/files/2019-08/JV-30.png"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-08/JV-30.png"
   },
   {
     "title": "Roland JV-80",
@@ -526,7 +526,7 @@
       "Control": "MIDI IN/OUT/THRU (8-parts)",
       "Date Produced": "1992 - 1994"
     },
-    "image": "/sites/default/files/2017-05/roland_jv80.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jv80.jpg"
   },
   {
     "title": "Roland JV-880",
@@ -542,7 +542,7 @@
       "Control": "MIDI IN/OUT/THRU (8-parts)",
       "Date Produced": "1992"
     },
-    "image": "/sites/default/files/2017-05/roland_jv880.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jv880.jpg"
   },
   {
     "title": "Roland JV-90",
@@ -557,7 +557,7 @@
       "Control": "MIDI (8- to 16-parts)",
       "Date Produced": "1993"
     },
-    "image": "/sites/default/files/2017-05/roland_jv90_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jv90_angle.jpg"
   },
   {
     "title": "Roland JW-50",
@@ -576,7 +576,7 @@
       "Control": "MIDI I/O",
       "Date Produced": "1992"
     },
-    "image": "/sites/default/files/2017-05/jw50.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/jw50.jpg"
   },
   {
     "title": "Roland JX-1",
@@ -593,7 +593,7 @@
       "Keyboard": "61 keys with aftertouch",
       "Memory": "32 RAM Patches, 64 ROM Patches"
     },
-    "image": "/sites/default/files/2019-10/RolandJX1_0.png"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-10/RolandJX1_0.png"
   },
   {
     "title": "Roland JX-10",
@@ -609,7 +609,7 @@
       "Control": "MIDI",
       "Date Produced": "1986"
     },
-    "image": "/sites/default/files/2017-05/roland_super_jx10.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_super_jx10.jpg"
   },
   {
     "title": "Roland JX-305",
@@ -624,7 +624,7 @@
       "Control": "MIDI",
       "Date Produced": "1998"
     },
-    "image": "/sites/default/files/2017-05/jx305.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/jx305.jpg"
   },
   {
     "title": "Roland JX-3P",
@@ -639,7 +639,7 @@
       "Control": "MIDI (no velocity except with a special ROM upgrade)",
       "Date Produced": "1983"
     },
-    "image": "/sites/default/files/2017-05/jx3p.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/jx3p.jpg"
   },
   {
     "title": "Roland JX-8P",
@@ -655,7 +655,7 @@
       "Control": "MIDI In/Out/thru",
       "Date Produced": "1985"
     },
-    "image": "/sites/default/files/2017-05/roland_jx8p.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jx8p.jpg"
   },
   {
     "title": "Roland MC-09",
@@ -672,7 +672,7 @@
       "Control": "MIDI In/Out",
       "Date Produced": "2002"
     },
-    "image": "/sites/default/files/2017-05/mc09.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/mc09.jpg"
   },
   {
     "title": "Roland MC-303",
@@ -687,7 +687,7 @@
       "Control": "MIDI",
       "Date Produced": "1996"
     },
-    "image": "/sites/default/files/2017-05/roland_mc303.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_mc303.jpg"
   },
   {
     "title": "Roland MC-307",
@@ -702,7 +702,7 @@
       "Control": "MIDI",
       "Date Produced": "2000"
     },
-    "image": "/sites/default/files/2017-05/roland_mc307_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_mc307_angle.jpg"
   },
   {
     "title": "Roland MC-505",
@@ -717,7 +717,7 @@
       "Control": "MIDI",
       "Date Produced": "1998"
     },
-    "image": "/sites/default/files/2017-05/mc505.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/mc505.jpg"
   },
   {
     "title": "Roland MC-808",
@@ -734,7 +734,7 @@
       "Memory": "16 MB of user memory, 4MB of sample memory",
       "Sampler": "4 MB of internal RAM for up to 47 seconds of monaural sampling, can be expanded with DIMM modules for up to 102 minutes of sampling"
     },
-    "image": "/sites/default/files/2019-07/RolandMC808.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2019-07/RolandMC808.jpg"
   },
   {
     "title": "Roland MC-909",
@@ -753,7 +753,7 @@
       "Control": "MIDI In/Out, USB",
       "Date Produced": "2003"
     },
-    "image": "/sites/default/files/2017-05/mc909_top.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/mc909_top.jpg"
   },
   {
     "title": "Roland MKS-10",
@@ -771,6 +771,6 @@
       "Control": "MIDI In/Out",
       "Date Produced": "1984"
     },
-    "image": "/sites/default/files/2017-05/mks10.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/mks10.jpg"
   }
 ]

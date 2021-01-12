@@ -13,7 +13,7 @@
       "Control": "MIDI",
       "Date Produced": "1986"
     },
-    "image": "/sites/default/files/2017-05/roland_alpha_juno2_angle.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_alpha_juno2_angle.jpg"
   },
   {
     "title": "Roland Alpha Juno-1",
@@ -29,7 +29,7 @@
       "Control": "MIDI",
       "Date Produced": "1986"
     },
-    "image": "/sites/default/files/2017-05/roland_alpha_juno1.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_alpha_juno1.jpg"
   },
   {
     "title": "Roland CMU-800",
@@ -44,7 +44,7 @@
       "Control": "Apple II and CV/Gate",
       "Date Produced": "1983/84"
     },
-    "image": "/sites/default/files/2017-05/cmu800.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/cmu800.jpg"
   },
   {
     "title": "Roland CR-68",
@@ -59,7 +59,7 @@
       "Control": "Trigger out",
       "Date Produced": "1978"
     },
-    "image": "/sites/default/files/2017-05/roland_cr68.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_cr68.jpg"
   },
   {
     "title": "Roland CR-78",
@@ -74,7 +74,7 @@
       "Control": "Trigger out, 24ppq (0-5V) V-Trig clock pulse",
       "Date Produced": "1978-81"
     },
-    "image": "/sites/default/files/2017-05/roland_cr78.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_cr78.jpg"
   },
   {
     "title": "Roland CR-8000",
@@ -89,7 +89,7 @@
       "Control": "Roland DIN Sync",
       "Date Produced": "1980/81"
     },
-    "image": "/sites/default/files/2017-05/roland_cr8000.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_cr8000.jpg"
   },
   {
     "title": "Roland D-110",
@@ -104,7 +104,7 @@
       "Control": "MIDI",
       "Date Produced": "1988"
     },
-    "image": "/sites/default/files/2017-05/d10.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/d10.jpg"
   },
   {
     "title": "Roland D-20",
@@ -119,6 +119,6 @@
       "Control": "MIDI",
       "Date Produced": "1988"
     },
-    "image": "/sites/default/files/2017-05/roland_d20.jpg"
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_d20.jpg"
   }
 ]

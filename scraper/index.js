@@ -11,13 +11,11 @@ function createPageUrl() {
 }
 
 async function fetchSynths(rolandUrls) {
-  console.log(rolandUrls);
   const promises = rolandUrls.map((rolandUrl) => {
     return fetchSynth(rolandUrl);
   });
-  console.log(promises);
   const data = await Promise.all(promises);
-  console.log(data);
+  console.log(data, 'output');
   writeToFile(data);
 }
 
@@ -49,7 +47,6 @@ async function fetchUrlOnPage() {
   const rolandUrlsFull = rolandUrls.map((rolandUrl) => {
     return (rolandUrl = `http://www.vintagesynth.com${rolandUrl}`);
   });
-  console.log(rolandUrlsFull, 'all rolands on page 7');
   fetchSynths(rolandUrlsFull); // array of all synth page urls
 }
 
@@ -107,7 +104,7 @@ function getImageSynth(dom) {
     '.field--name-field-image-er'
   );
   const url = image.querySelector('img').src;
-  return url;
+  return `http://www.vintagesynth.com${url}`;
 }
 
 function getSpecValSynth(dom) {

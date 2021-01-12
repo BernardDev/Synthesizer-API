@@ -2,6 +2,39 @@ const fs = require('fs');
 const jsdom = require('jsdom');
 const axios = require('axios');
 const {JSDOM} = jsdom;
+const download = require('image-downloader');
+const objects = require('./roland_synths.json');
+
+// ----------------------------------------------------------------------------------
+
+function startDownloadingFromUrl() {
+  const imgUrls = objects.map((object) => {
+    return object.image;
+  });
+  downloadImgFromJson(download, imgUrls);
+}
+
+function downloadImgFromJson(download, imgUrls) {
+  imgUrls.forEach((url) => {
+    const options = {
+      url: url,
+      dest:
+        '/Users/Bernard/Desktop/coaching/program/sprint 3 - api/roland-api/scraper/img',
+    };
+    download
+      .image(options)
+      .then(({filename}) => {
+        console.log('Saved to', filename);
+      })
+      .catch((err) => console.error(err));
+  });
+}
+
+// ----------------------------
+// --- MAIN EXECUTION
+// fetchUrlOnPage();
+startDownloadingFromUrl();
+// ----------------------------
 
 function createPageUrl() {
   let page = 9;
@@ -15,7 +48,7 @@ async function fetchSynths(rolandUrls) {
     return fetchSynth(rolandUrl);
   });
   const data = await Promise.all(promises);
-  console.log(data, 'output');
+  // console.log(data, 'output');
   writeToFile(data);
 }
 
@@ -50,8 +83,6 @@ async function fetchUrlOnPage() {
   fetchSynths(rolandUrlsFull); // array of all synth page urls
 }
 
-fetchUrlOnPage();
-
 function writeToFile(data) {
   const date = new Date();
   fs.writeFileSync(
@@ -60,7 +91,7 @@ function writeToFile(data) {
   );
 }
 
-// --------
+// ----------------------------------------------------------------------------------
 
 function getRolandSynthUrls(dom) {
   const elements = Array.from(

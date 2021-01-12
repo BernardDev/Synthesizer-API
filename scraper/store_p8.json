@@ -1,0 +1,776 @@
+[
+  {
+    "title": "Roland D-50",
+    "specs": {
+      "Polyphony": "16 voices (32 partials with 2 per voice); 8 voices (using 4 partials per voice in Dual or Split Mode)",
+      "Oscillators": "Digital LAS (Linear Arithmetic Synthesis) & PCM, 32 osc.",
+      "LFO": "YES (3 x 2tones = 6 LFOs)",
+      "Filter": "low-pass-resonant",
+      "Envelopes": "ADSR envelopes",
+      "Effects": "YES",
+      "#Instruments": "Monotimbral (can be upgraded for multitimbrality)",
+      "Keyboard": "61 note keyboard with velocity and aftertouch",
+      "Arpeg/Seq": "None",
+      "Memory": "64 patches",
+      "Control": "MIDI",
+      "Date Produced": "1987-89"
+    },
+    "image": "/sites/default/files/2017-05/roland_d50.jpg"
+  },
+  {
+    "title": "Roland D-70",
+    "specs": {
+      "Polyphony": "30 voices",
+      "Oscillators": "Digital ROM samples and DLM (\"Differential Loop Modulation\")",
+      "LFO": "YES",
+      "Filter": "TVF FILTER: low-pass-resonant (like D50).",
+      "VCA": "TVA (like D50).",
+      "Effects": "Reverb, Chorus, Flanger (like D50)",
+      "#Instruments": "5-parts + 1-percussion",
+      "Keyboard": "76 note keyboard with velocity and aftertouch",
+      "Arpeg/Seq": "None",
+      "Memory": "10 user sets, 64 performances, 128 patches, 128 tones.",
+      "Control": "MIDI",
+      "Date Produced": "1990-91"
+    },
+    "image": "/sites/default/files/2017-05/roland_d70.jpg"
+  },
+  {
+    "title": "Roland D2",
+    "specs": {
+      "Polyphony": "64 voices (8-part multitimbral) ",
+      "Oscillators": "Sample-Driven",
+      "Sequencer": "150 patterns, 8 tracks, 96 ppq resolution, 40,000 note capacity, tempo: 20-240",
+      "Arpeggiator": "43 presets, 10 user",
+      "Effects": "Reverb: 6  Delay: 2  Multi-Effects (MFX): 25",
+      "Memory": "Sounds: 600 presets, 256 userRhythm Sets: 30 presets, 20 users",
+      "Keyboard": "None, 8 Trigger pads",
+      "Control": "MIDI (IN/OUT)",
+      "Date Produced": "2001"
+    },
+    "image": "/sites/default/files/2017-05/d2.jpg"
+  },
+  {
+    "title": "Roland DJ-70",
+    "specs": {
+      "Polyphony": "24 Voices",
+      "Multitimbral": "31 Parts",
+      "VCF": "LPF / HPF / BPF",
+      "LFO": "1 LFO with Sine, Triangle, Saw-up, Saw-down, Square, Random, peak-hold",
+      "Envelope": "2 EGs",
+      "Controls": "MIDI In/Out/Thru",
+      "Sequencer": "8-track Sequencer",
+      "Keyboard": "37 keys with velocity and aftertouch"
+    },
+    "image": "/sites/default/files/2019-11/DJ-70.png"
+  },
+  {
+    "title": "Roland EG-101",
+    "specs": {
+      "Polyphony": "24 voices",
+      "Multitimbral": "11 parts",
+      "Drums": "12 Drum Kits",
+      "RPS phrases": "64",
+      "Real-Time Effects": "Reverb, Ring Mod, Filter, Resonance, Cutoff",
+      "Memory": "448 presets, ",
+      "Keyboard": "49 keys (velocity sensitive)",
+      "Control": "MIDI In/Out",
+      "Date Produced": "1999"
+    },
+    "image": "/sites/default/files/2017-05/eg101.jpg"
+  },
+  {
+    "title": "Roland EM-101",
+    "specs": {},
+    "image": "/sites/default/files/2017-05/EM-101-A.jpg"
+  },
+  {
+    "title": "Roland Fantom-S",
+    "specs": {
+      "Polyphony": "64 voices",
+      "Multitimbral": "16 parts",
+      "Oscillators": "4",
+      "Waveforms": "ROM",
+      "Filter Modes": "12dB slope, 24dB slope, High Pass, Low Pass, Band Pass, Comb, Resonance,",
+      "LFO": "2 LFO with Sample & hold, Saw up, Saw Down, Sine, Square, and Triangle,",
+      "VCA/Envelopes": "2 envelopes with release, attack, decay, and sustain,",
+      "Controls": "MIDI In/Out/Thru",
+      "Sequencer": "16-track sequencer",
+      "Arpeggiator": "128 user and 128 Rhythm pattern presets, Chord memory,",
+      "Effects": "Multi-effects",
+      "Keyboard": "61 keys, with velocity and channel aftertouch",
+      "Memory": "64MB wave memory",
+      "Sampler": "44.1kHZ sampler with 32MB internal memory"
+    },
+    "image": "/sites/default/files/2019-07/RolandFantomS.jpg"
+  },
+  {
+    "title": "Roland Fantom-X",
+    "specs": {
+      "Polyphony": "128 Voices",
+      "Multitimbral": "16 parts",
+      "Waveforms": "1,480 different waveforms",
+      "LFO": "2 LFOs",
+      "Control": "MIDI In/Out/Thru, USB",
+      "Sequencer": "16-track MRC-Pro sequencer",
+      "Arpeggiator": "Yes, with chord memory",
+      "Patterns": "256 preset patterns",
+      "Songs": "Up to 256 songs can be saved to a card and user memory",
+      "Effects": "78 multi-effects, three choruses, five reverbs, six input effects",
+      "Keyboard": "61-, 76-key versions with aftertouch, 88-key fully weighted piano keyboard version",
+      "Memory": "32 Mb + DIMM slot expandable up to 512MB",
+      "Sampler": "Stereo sampler"
+    },
+    "image": "/sites/default/files/2019-06/1280px-Roland_Fantom_X6_TopView.jpg"
+  },
+  {
+    "title": "Roland Gaia SH-01",
+    "specs": {
+      "Polyphony": "64 voices",
+      "Multitimbral": "16 parts (1 VA, 15 PCM)",
+      "Oscillators": "Virtual analog synthesizer sound generator, PCM sound generator",
+      "Waveforms": "Saw, Square, Pulse/PWM, Triangle, Sine, Noise, Super Saw",
+      "LFO": "Waves: Triangle, Sine, Saw, Square, Sample-Hold. Controls: Rate, Fade Time, Pitch Depth, Filter Depth, Amp Depth.",
+      "Modulation": "Oscillator Sync, Ring Modulation",
+      "Filter": "LPF, HPF, BPF, PKG (-12 dB/-24 dB), Cutoff, Resonance, Key Follow, Attack, Decay, Sustain, Release, Envelope Depth",
+      "Envelope": "Amp: Attack, Decay, Sustain, Release",
+      "Effects": "Distortion, Fuzz, Bit Crash, Flanger, Phaser, Pitch Shifter, Delay, Panning Delay, Reverb, Low Boost",
+      "Vocoder": "None",
+      "Sequencer": "Phrase Recorder: 8 patches, 1 track",
+      "Arpeggiator": "64 patterns",
+      "Keyboard": "37 keys (velocity sensitive)",
+      "Memory": "64 Preset, 64 User",
+      "Control": "MIDI In/Out, USB 2.0",
+      "Controls": "Pitch Bend/Modulation lever, D Beam Controller",
+      "Weight": "4.2 kg (9 lbs. 5 oz.)",
+      "Date Produced": "2010"
+    },
+    "image": "/sites/default/files/2017-05/roland_gaia_sh01.jpg"
+  },
+  {
+    "title": "Roland GR-300",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "2 oscillators per voice",
+      "Modulation": "-24 dB per octave, with envelope modulation"
+    },
+    "image": "/sites/default/files/2019-10/GR-300.jpg"
+  },
+  {
+    "title": "Roland GR-700",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "2 DCO's per voice",
+      "Memory": "32 preset, 32 user, 64 on memory card",
+      "Filter": "Resonant Low pass",
+      "Effects": "Chorus",
+      "Arpeg/Seq": "None",
+      "Keyboard": "11 foot pedals",
+      "Control": "MIDI (out only), G-707 guitar controller",
+      "Date Produced": "1984-1986"
+    },
+    "image": "/sites/default/files/2017-05/gr700.jpg"
+  },
+  {
+    "title": "Roland HS-60",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "DCO: pulse, saw, and square",
+      "LFO": "rate and delay",
+      "Filter": "non-resonant high pass and resonant low pass",
+      "VCA": "ADSR, level and gate",
+      "Arpeg/Seq": "None",
+      "Keyboard": "61 keys",
+      "Control": "MIDI",
+      "Date Produced": "1985"
+    },
+    "image": "/sites/default/files/2017-05/roland_hs60.jpg"
+  },
+  {
+    "title": "Roland JD-800",
+    "specs": {
+      "Polyphony": "24 voices",
+      "Oscillators": "ROM based digital synthesizer",
+      "#Instruments": "6 part multitimbral",
+      "Keyboard": "61 key keyboard with velocity and aftertouch",
+      "Arpeg/Seq": "NO",
+      "Control": "MIDI",
+      "Date Produced": "1991-93"
+    },
+    "image": "/sites/default/files/2017-05/roland_jd800.jpg"
+  },
+  {
+    "title": "Roland JD-990",
+    "specs": {
+      "Polyphony": "24 voices",
+      "Oscillators": "6MB of ROM waveform data (expandable to 16MB), 4 osc. per patch",
+      "Memory": "3 banks x 64 patches (expandable),  3 drum kits with 61 sounds",
+      "LFO": "2 per patch",
+      "Filter": "TVF: Lowpass/bandpass/highpass-filters with resonance and envelopes",
+      "VCA": "TVA envelopes and pitch envelopes",
+      "Effects": "Delay, Reverb, Phaser, Distortion, Chorus, EQ",
+      "Keyboard": "None",
+      "Arpeg/Seq": "None",
+      "Control": "MIDI (6-part + rhythm part multitimbral)",
+      "Date Produced": "1993"
+    },
+    "image": "/sites/default/files/2017-05/roland_jd990.jpg"
+  },
+  {
+    "title": "Roland JP-8000",
+    "specs": {
+      "Polyphony": "8 voices",
+      "Oscillators": "2 Roland Analog Modeling DSP oscillators: Saw, Square (PWM), Triangle (PWM), Super Saw (7 de-tuned Saws), Triangle Mod, Feedback OSC, noise",
+      "Filter": "Resonant 12/24dB/oct low pass / band pass / hi pass; ring modulator",
+      "Effects": "Onboard digital delay and chorus",
+      "Memory": "128 preset patches, 128 user patches, 64 performances, 64 user performances",
+      "Arpeg/Seq": "Powerful vintage-style arpeggiator with beat patterns; Programmable real-time Phrase Sequencing (RPS) functions",
+      "Keyboard": "49 keys (with velocity)",
+      "Control": "MIDI (2 parts)",
+      "Date Produced": "1996"
+    },
+    "image": "/sites/default/files/2017-05/roland_jp8000.jpg"
+  },
+  {
+    "title": "Roland JP-8080",
+    "specs": {
+      "Polyphony": "10 voices",
+      "Oscillators": "2 Roland Analog Modeling DSP oscillators: Saw, Square (PWM), Triangle (PWM), Super Saw (7 de-tuned Saws), Triangle Mod, Feedback OSC",
+      "Filter": "Resonant 12/24dB/oct low/band/hi pass, 12-band formant filter bank",
+      "Effects": "3 onboard effects: Delay; Multi-FX including Chorus, Flanger, Distortion and Tone control",
+      "Memory": "384 preset and 128 user patches; 192 preset and 64 user performance",
+      "Arpeg/Seq": "Onboard Arpeggiator and real-time Phrase Sequencing (RPS) capability",
+      "Keyboard": "None",
+      "Control": "MIDI (2 parts)",
+      "Date Produced": "1998"
+    },
+    "image": "/sites/default/files/2017-05/roland_jp8080.jpg"
+  },
+  {
+    "title": "Roland Juno-106",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "1 DCO per voice: pulse, saw, and square",
+      "LFO": "1 with Rate and Delay",
+      "Filter": "non-resonant high pass and resonant low pass (24 dB/oct)",
+      "VCA": "ADSR, level and gate",
+      "Keyboard": "61 keys",
+      "Arpeg/Seq": "None",
+      "Memory": "128 patches",
+      "Control": "MIDI (In/Out/Thru)",
+      "Date Produced": "1984"
+    },
+    "image": "/sites/default/files/2017-05/roland_juno106_angle.jpg"
+  },
+  {
+    "title": "Roland Juno-6",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "DCO: pulse, saw, and square",
+      "LFO": "rate and delay",
+      "Filter": "non-resonant high pass and resonant low pass",
+      "VCA": "level, ADSR and gate",
+      "Keyboard": "61 note keyboard (no velocity or aftertouch)",
+      "Arpeg/Seq": "External JSQ-60 Sequencer",
+      "Effects": "Chorus (2 types)",
+      "Memory": "None",
+      "Control": "Filter Control In, Ext Clock In",
+      "Date Produced": "1982"
+    },
+    "image": "/sites/default/files/2017-05/roland_juno6_angle.jpg"
+  },
+  {
+    "title": "Roland Juno-60",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "DCO: pulse, saw, and square",
+      "LFO": "rate and delay",
+      "Filter": "non-resonant high pass and resonant low pass",
+      "VCA": "level, ADSR and gate",
+      "Arpeg/Seq": "External JSQ-60 Sequencer",
+      "Keyboard": "61 note keyboard (no velocity or aftertouch)",
+      "Control": "DCB Roland to Roland sync/interface (Roland MD-8 converts DCB to MIDI for MIDI control)",
+      "Date Produced": "1982"
+    },
+    "image": "/sites/default/files/2017-05/roland_juno60_angle.jpg"
+  },
+  {
+    "title": "Roland Juno-D",
+    "specs": {
+      "Polyphony": "64 voices (16-part multitimbral)",
+      "Oscillators": "32 MB (64 MB Limited Edition Model) Waveform Memory, 686 Original Tones",
+      "Sequencer": "Rhythm Guide: 32 Preset Patterns",
+      "Arpeggiator": "Phrase/Arpeggio Templates: 342; User Templates: 8; Styles (Variations): 473Multi-Chord Memory: 16 Presets, 8 user",
+      "Effects": "Multi-Effects: 47 types; Reverb: 8 types; Chorus: 8 types",
+      "Memory": "640 Patches (706 Limited Edition Model), 20 drum kits, 32 Performances, 128 User Patches",
+      "Keyboard": "61 keys (with velocity)",
+      "Control": "MIDI IN/OUT",
+      "Date Produced": "2005 "
+    },
+    "image": "/sites/default/files/2017-05/roland_junod_angle.jpg"
+  },
+  {
+    "title": "Roland Juno-Di",
+    "specs": {
+      "Polyphony": "128 voices",
+      "Multitimbral": "16 parts",
+      "Oscillators": "64 MB Waveform Memory (839 tones)",
+      "LFO": "2 LFOs per tone",
+      "Filter": "4 TVF filters",
+      "Envelope": "4 TVA amps, ADSR envelopes",
+      "Effects": "79 Multi-effects plus 3 Chorus types and 5 Reverb types",
+      "Sequencer": "None",
+      "Arpeggiator": "128 patterns, 24 rhythm patterns, 17 Chord Memory patterns.",
+      "Keyboard": "61 keys w/ velocity",
+      "Memory": "1082 Preset + 256 (GM2) + 128 User Patches, 20 Preset + 9 (GM2) + 8 User Rhythm Sets, 64 Preset + 64 User Performances. USB Memory Stick storage capability.",
+      "Control": "MIDI In/Out, USB, Microphone input, External mini-jack input",
+      "Controls": "D-Beam Controller, Pitch Bend/Modulation Lever, Sound Modify Knob x 5",
+      "Date Produced": "2009"
+    },
+    "image": "/sites/default/files/2017-05/roland_juno_di.jpg"
+  },
+  {
+    "title": "Roland Juno-DS61",
+    "specs": {
+      "Polyphony": "128",
+      "Multitimbral": "16 parts",
+      "Oscillators": "2",
+      "Waveforms": "ROM",
+      "Controls": "MIDI In/Out",
+      "Sequencer": "8-Track sequencer",
+      "Arpeggiator": "128 Arpeggio Preset",
+      "Patterns": "32 preset patterns, 128 user patterns",
+      "Effects": "Chorus, Reverb, Mic input reverb, multi-effects, ",
+      "Keyboard": "61-note Ivory Feel-G keyboard with weighted-action feel,",
+      "Memory": "Internal, USB"
+    },
+    "image": "/sites/default/files/2019-09/JunoDS61.jpg"
+  },
+  {
+    "title": "Roland Juno-G",
+    "specs": {
+      "Polyphony": "128 voices (16-part multitimbral)",
+      "Oscillators": "64 MB Waveform memory",
+      "Sequencer": "MIDI: 16 tracks, 400,000 note capacity, 9,998 measures, Realtime recording, Step recording.Audio: 4 stereo tracks, 16-bit linear, Sample Rate: 44.1 kHz, Recording Time: memory not expanded (4 M bytes): approx. stereo 23.5 seconds, memory fully expanded (516 M bytes): approx. stereo 51 minutes",
+      "Arpeggiator": "Arpeggio - Preset: 128, User: 128Rhythms Pattern - Preset: 256 (32 groups), User: 256 (32 groups)Chord Memory - Preset: 64, User: 64",
+      "Effects": "Multi-Effects: 3 systems, 78 types, Reverb: 5 types, Chorus: 3 types, Mastering Effects: 3-band compressor, Input Effects: 6 types",
+      "Memory": "Preset Patches: 768 + 256 (GM2), Rhythm Sets: 36 + 9 (GM2), Performances: 64.User Patches: 256, Rhythm Sets: 36, Performances: 64.",
+      "Keyboard": "61 keys (velocity sensitive)",
+      "Control": "MIDI (In/Out), USB (supports file transfer and MIDI)",
+      "Date Produced": "2007 "
+    },
+    "image": "/sites/default/files/2017-05/junog.jpg"
+  },
+  {
+    "title": "Roland Juno-Stage",
+    "specs": {
+      "Polyphony": "128 voices (16-part multitimbral)",
+      "Oscillators": "128MB Wave Memory (16-bit linear equivalent)",
+      "Arpeggiator": "128 Preset, 128 UserChord Memory: 64 Preset, 64 UserRhythm Patterns: 256 Preset, 256 User",
+      "Sequencer": "Song Player: SMF File Format-0/1, Audio File: WAV/AIFF/MP3",
+      "Effects": "Multi FX: 3 systems, 79 types, Chorus: 3 types, Reverb: 5 types, Mic Input, Reverb: 8 types",
+      "Memory": "Preset Patches: 1027 + 256 (GM2), Rhythm Sets: 32 + 9 (GM2), Performances: 64User Patches: 256, Rhythm Sets: 32, Performances: 64",
+      "Keyboard": "76 keys (with velocity)",
+      "Control": "MIDI In/Out, USB",
+      "Date Produced": "2008 "
+    },
+    "image": "/sites/default/files/2017-05/roland_juno_stage_angle.jpg"
+  },
+  {
+    "title": "Roland Jupiter-4",
+    "specs": {
+      "Polyphony": "4 voices",
+      "Oscillators": "1 VCO per voice (triangle, square, square with PWM) and a switchable on\\off sub osc",
+      "LFO": "1 LFO (sine, square, ramp up and ramp down)",
+      "Filter": "HP filter, LP rez filter",
+      "VCA": "2 env (ADSR) one for the filter which you can invert, one for the VCA",
+      "Effects": "Ensemble/Chorus",
+      "Arpeg/Seq": "Arpeggiator",
+      "Keyboard": "49 keys",
+      "Memory": "None",
+      "Control": "TRIG IN to control the arpeggiator",
+      "Date Produced": "1978/79"
+    },
+    "image": "/sites/default/files/2017-05/jup4.jpg"
+  },
+  {
+    "title": "Roland Jupiter-6",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "2 VCO's per voice (12 oscillators total!)",
+      "LFO": "2 LFO's with 4-waveforms (sine, tri, ramp, random) ",
+      "Filter": "24 dB/oct 4-pole lowpass/high pass or 12 dB/oct 2-pole bandpass with their own ADSR envelope",
+      "VCA": "2 Standard ADSR's with keyboard track and mixer to balance oscillator levels",
+      "Effects": "None",
+      "Arpeg/Seq": "1 Arpeggiator",
+      "Memory": "48 tones / 32 patches",
+      "Keyboard": "61 keys",
+      "Control": "MIDI",
+      "Date Produced": "1983"
+    },
+    "image": "/sites/default/files/2017-05/roland_jupiter6.jpg"
+  },
+  {
+    "title": "Roland Jupiter-8",
+    "specs": {
+      "Polyphony": "8 voices",
+      "Oscillators": "2 VCO's per voice (16 oscillators's!) switchable between triangle, sawtooth, pulse, and square waves plus noise on OSC 2",
+      "LFO": "4-waveform (sine, tri, ramp, random) LFO",
+      "Filter": "Low pass filter with 2-pole (12 dB/oct) and 4-pole (24 dB/oct) modes, Env Mod, LFO MOd, Key Follow. Separate 6 dB/oct high pass filter.",
+      "VCA": "Standard ADSR and mixer to balance oscillator levels",
+      "Memory": "64 patches and 8 patch presets",
+      "Keyboard": "61 note keyboard ",
+      "Control": "DCB Roland to Roland sync/interface on some models",
+      "Date Produced": "1981 - 1984"
+    },
+    "image": "/sites/default/files/2017-05/roland_jup8.jpg"
+  },
+  {
+    "title": "Roland Jupiter-80",
+    "specs": {
+      "Polyphony": "256 voices (varies according to the sound generator load)",
+      "Multitimbral": "Internally: 10 / Playable from external sequencer: 4",
+      "Control": "MIDI In/Out/Thru, USB",
+      "Arpeggiator": "Preset: 128 styles / User: 128 styles",
+      "Effects": "8 multi-FX ( 4 Upper, 4 Lower), 3 reverbs (Upper, Lower, Solo/ Percussion), 2 compressor-EQ-delay chains (Solo and Percussion), global 4-band semiparametric EQ.",
+      "Keyboard": "76 keys (with velocity and channel aftertouch)"
+    },
+    "image": "/sites/default/files/2019-08/jupiter80.jpg"
+  },
+  {
+    "title": "Roland Jupiter-XM",
+    "specs": {
+      "Oscillators": "4 Oscillators per voice",
+      "Controls": "MIDI In/Out, USB",
+      "Arpeggiator": "I-ARPEGGIO (Multi parts arpeggiator with playing detection)",
+      "Effects": "Multi-Effects: 4 systems, 90 types",
+      "Keyboard": "37 keys (compact type with velocity)"
+    },
+    "image": "/sites/default/files/2019-12/JupiterXM.jpg"
+  },
+  {
+    "title": "Roland JV-1000",
+    "specs": {
+      "Polyphony": "28 – expandable to 56 via V-EXP board",
+      "Oscillators": "FXM Syntesis",
+      "Multitimbral": "4 Oscillators per Patch, 8 Patch per Performance",
+      "Filter": "TVF",
+      "Effects": "3 chorus and 8 reverbs",
+      "Keyboard": "76 semi-weighted keys, with aftertouch",
+      "Memory": "320 patches,40 performances, 7 rhythm kits",
+      "Control": "8 slider edit palette, 1 assignable MIDI slider, bender, modulation and 2 pedals",
+      "Sequencer": "8 tracks + Rhythm + Tempo with Floppy Reader",
+      "LFO": "2 Digital LFOs",
+      "VCF": "Digital",
+      "Waveforms": "152, expandable with V-EXP board",
+      "Modulation": "2 digital envelopes"
+    },
+    "image": "/sites/default/files/2017-05/roland_jv-1000jpg.jpg"
+  },
+  {
+    "title": "Roland JV-1010",
+    "specs": {
+      "Polyphony": "64 Voices",
+      "Oscillators": "Digital, LAS, 8MB Samples, 255 sounds ",
+      "Effects": "Eight Reverbs, One Chorus, 40 EFX Multi-Effects",
+      "Memory": "895 preset, 128 user Patches, 32 performances, 18 rhythm kits",
+      "Keyboard": "None",
+      "Control": "MIDI IN/OUT/THRU (16-parts); Serial Computer Host port",
+      "Date Produced": "1999"
+    },
+    "image": "/sites/default/files/2017-05/jv1010.jpg"
+  },
+  {
+    "title": "Roland JV-1080",
+    "specs": {
+      "Polyphony": "64 Voices",
+      "Oscillators": "Digital, LAS, 8MB Samples expandable to 42",
+      "LFO": "2 LFO's (sine, saw, square, triangle, trapezoid, sample&hold, random and chaos) w/ key or external sync. Can modulate the pitch, filter, pan, or level",
+      "Filter": "TVF (lowpass, bandpass, high pass, peak) with cutoff, resonance, key follow and velocity sensitivity",
+      "VCA": "TVA ADSR (tone level, pan, key follow)",
+      "Memory": "640 Patches, 128 performances",
+      "Keyboard": "None",
+      "Control": "MIDI",
+      "Date Produced": "1994 - 2001"
+    },
+    "image": "/sites/default/files/2017-05/roland_jv1080.jpg"
+  },
+  {
+    "title": "Roland JV-30",
+    "specs": {
+      "Polyphony": "24 voices",
+      "Multitimbral": "16 parts",
+      "Oscillators": "4",
+      "Waveforms": "ROM",
+      "VCF": "24dB Slope (4-pole), High Pass, Low Pass",
+      "LFO": "1 LFO with Saw Up, Saw Down, Square, Triangle",
+      "VCA/Envelopes": "1 ADR ",
+      "Control": "MIDI In/Out/Thru",
+      "Effects": "8 effect categories",
+      "Keyboard": "61 keys w/ velocity and aftertouch",
+      "Memory": "128 slots"
+    },
+    "image": "/sites/default/files/2019-08/JV-30.png"
+  },
+  {
+    "title": "Roland JV-80",
+    "specs": {
+      "Polyphony": "28 voices",
+      "Oscillators": "4 per voice; Digital 4 MB of ROM sampled sounds",
+      "Arpeg/Seq": "None",
+      "Filter": "Digital TVF filters",
+      "LFO": "2 LFOs routable to pitch, TVA amps, or TVF filters",
+      "Effects": "2 Effects units",
+      "Memory": "192 Patches (64 user), 48 Performances (16 user) - expandable via 8mb expansion boards",
+      "Keyboard": "61 keys (responds to velocity and aftertouch)",
+      "Control": "MIDI IN/OUT/THRU (8-parts)",
+      "Date Produced": "1992 - 1994"
+    },
+    "image": "/sites/default/files/2017-05/roland_jv80.jpg"
+  },
+  {
+    "title": "Roland JV-880",
+    "specs": {
+      "Polyphony": "28 voices",
+      "Oscillators": "4 per voice; Digital 4 MB of ROM sampled sounds",
+      "Arpeg/Seq": "None",
+      "Filter": "Digital TVF filters with cutoff & resonance",
+      "LFO": "2 LFOs routable to pitch, TVA amps, or TVF filters",
+      "Effects": "Reverb, chorus, delay",
+      "Memory": "192 Patches (64 user), 48 Performances (16 user) - expandable via 8mb expansion boards",
+      "Keyboard": "None",
+      "Control": "MIDI IN/OUT/THRU (8-parts)",
+      "Date Produced": "1992"
+    },
+    "image": "/sites/default/files/2017-05/roland_jv880.jpg"
+  },
+  {
+    "title": "Roland JV-90",
+    "specs": {
+      "Polyphony": "28 voices (expandable to 56)",
+      "Oscillators": "Digital Acoustic simulation via 4MB (expandable to 14MB) of ROM",
+      "Arpeg/Seq": "None",
+      "Filter": "Digital filters",
+      "Effects": "2 effects units with chorus, reverb and delay",
+      "Memory": "256 Patches (can expand to about 600); 64 Performances",
+      "Keyboard": "76 semi-weighted keys (responds to velocity and aftertouch)",
+      "Control": "MIDI (8- to 16-parts)",
+      "Date Produced": "1993"
+    },
+    "image": "/sites/default/files/2017-05/roland_jv90_angle.jpg"
+  },
+  {
+    "title": "Roland JW-50",
+    "specs": {
+      "Polyphony": "24 voices",
+      "Multitimbral": "16 parts",
+      "Oscillators": "fixed 1 or 2, depending on the instrument",
+      "Waveforms": "General MIDI",
+      "Filter": "GM Cut off and resonance",
+      "LFO": "GM Vibrato",
+      "Envelope": "GM attack, decay, release",
+      "Effects": "reverb/delay and chorus/flanger",
+      "Sequencer": "16-track",
+      "Keyboard": "61 keys w/ velocity and aftertouch",
+      "Memory": "128 preset, 128 user",
+      "Control": "MIDI I/O",
+      "Date Produced": "1992"
+    },
+    "image": "/sites/default/files/2017-05/jw50.jpg"
+  },
+  {
+    "title": "Roland JX-1",
+    "specs": {
+      "Polyphony": "24 voices",
+      "Multitimbral": "16 parts",
+      "Oscillators": "2",
+      "Waveforms": "ROM",
+      "Filters": "24dB Slope (4-pole), High Pass, Low Pass",
+      "LFO": "2 LFOs with Saw Up, Saw Down, Square, and Triangle ",
+      "Envelopes": "2 Envelopes with Attack, Decay, Decay 2, Sustain, Release,",
+      "Controls": "MIDI In/Out/Thru",
+      "Effects": "Reverb",
+      "Keyboard": "61 keys with aftertouch",
+      "Memory": "32 RAM Patches, 64 ROM Patches"
+    },
+    "image": "/sites/default/files/2019-10/RolandJX1_0.png"
+  },
+  {
+    "title": "Roland JX-10",
+    "specs": {
+      "Polyphony": "12 voices",
+      "Oscillators": "2 DCO's per voice (24 oscillators)",
+      "Effects": "Portamento, chorus, chase-play",
+      "Memory": "50 preset, 50 user patches, 64 Program Patches, External memory cartridges",
+      "VCF": "One resonant low pass and one non-resonant hi pass filter (which can be used simultaneously)",
+      "VCA": "2 ADSR envelope generators per voice",
+      "Arpeg/Seq": "1-track real-time sequencer, 400 note memory (M-32 card), 800 note memory (M-64 card)",
+      "Keyboard": "76 key keyboard with velocity and aftertouch",
+      "Control": "MIDI",
+      "Date Produced": "1986"
+    },
+    "image": "/sites/default/files/2017-05/roland_super_jx10.jpg"
+  },
+  {
+    "title": "Roland JX-305",
+    "specs": {
+      "Polyphony": "64 Voices",
+      "Effects": "24 effects including reverb, delay, chorus, etc...",
+      "Memory": "640 patches, 28 rhythm kits",
+      "Patterns": "768 Dance patterns, 256 User",
+      "Filter": "Digital real-time & midi controllable resonant low/band pass filter",
+      "Arpeg/Seq": "8-Track sequencer, Arpeggiator and real-time Phrase Sequencer",
+      "Keyboard": "61 notes (w/ velocity)",
+      "Control": "MIDI",
+      "Date Produced": "1998"
+    },
+    "image": "/sites/default/files/2017-05/jx305.jpg"
+  },
+  {
+    "title": "Roland JX-3P",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "2 DCO's per voice",
+      "Memory": "32 preset, 32 user",
+      "Filter": "Resonant Low pass and High pass filters",
+      "Effects": "Chorus",
+      "Arpeg/Seq": "128-step Sequencer",
+      "Keyboard": "61 keys",
+      "Control": "MIDI (no velocity except with a special ROM upgrade)",
+      "Date Produced": "1983"
+    },
+    "image": "/sites/default/files/2017-05/jx3p.jpg"
+  },
+  {
+    "title": "Roland JX-8P",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "2 DCO's per voice (12 oscillators)",
+      "Memory": "64 patches + External memory cartridges",
+      "Effects": "Portamento",
+      "VCF": "standard VCF",
+      "VCA": "ADSR envelope",
+      "Arpeg/Seq": "None",
+      "Keyboard": "61 note keyboard with velocity and aftertouch",
+      "Control": "MIDI In/Out/thru",
+      "Date Produced": "1985"
+    },
+    "image": "/sites/default/files/2017-05/roland_jx8p.jpg"
+  },
+  {
+    "title": "Roland MC-09",
+    "specs": {
+      "Polyphony": "Lead: 1, Bass: 1, Rhythm: 3",
+      "Oscillators": "Preset Tones: 128 Lead, 128 Bass, 10 Rhythm",
+      "Sequencer": "32 Steps, Sixteenth note ResolutionPreset Patterns: 40 Lead, 60 Bass, 100 Rhythm, 30 Effect;User Patterns: 20",
+      "Memory": "SmartMedia Storage",
+      "Effects": "30: Filter, Isolator, Phaser, Slicer, Lead Sound Group: Overdrive, Distortion, Phaser, Slicer + Ring Modulator",
+      "LFO": "Triangle, Square, Sawtooth, Sample and Hold",
+      "Filter": "Low pass, Band pass, high pass",
+      "VCA": "ADSR",
+      "Keyboard": "None",
+      "Control": "MIDI In/Out",
+      "Date Produced": "2002"
+    },
+    "image": "/sites/default/files/2017-05/mc09.jpg"
+  },
+  {
+    "title": "Roland MC-303",
+    "specs": {
+      "Polyphony": "28 voices",
+      "# of Tones": "448",
+      "# of Drum Sets": "12 (inc. 808, 909)",
+      "# of Instruments": "16 part multitimbral",
+      "Effects": "Reverb, delay, chorus and flange",
+      "Arpeg/Seq": "Sequencer : 8 tracks, 10 songs, 120 preset & 50 user patterns.Arpeg: 200 RPS phrases",
+      "Keyboard": "12 buttons",
+      "Control": "MIDI",
+      "Date Produced": "1996"
+    },
+    "image": "/sites/default/files/2017-05/roland_mc303.jpg"
+  },
+  {
+    "title": "Roland MC-307",
+    "specs": {
+      "Polyphony": "64 voices",
+      "Oscillators": "16MB sounds comprising 800 dance-oriented synth and drum instruments",
+      "Sequencer": "Sequencer:8-parts; 240 preset patterns, 470 RPS, 200 user; 50 songs; 40,000 notes memoryArpeggiator:43 preset, 10 user patterns",
+      "Drums": "40 Rhythm sets plus 20 user",
+      "Effects": "33 types; 3 independent, synchronizable effects processors",
+      "Memory": "800 presets plus 256 user",
+      "Keyboard": "16 pads",
+      "Control": "MIDI",
+      "Date Produced": "2000"
+    },
+    "image": "/sites/default/files/2017-05/roland_mc307_angle.jpg"
+  },
+  {
+    "title": "Roland MC-505",
+    "specs": {
+      "Polyphony": "64 Voices",
+      "Oscillators": "Acoustic Simulation and ROM Samples",
+      "Filter": "real-time resonant filter",
+      "Drums": "26 kits",
+      "Effects": "24 effects",
+      "Arpeg/Seq": "Has Arpeggiator and Sequencer (up to 95,000 notes)",
+      "Keyboard": "16 small keys/buttons",
+      "Control": "MIDI",
+      "Date Produced": "1998"
+    },
+    "image": "/sites/default/files/2017-05/mc505.jpg"
+  },
+  {
+    "title": "Roland MC-808",
+    "specs": {
+      "Polyphony": "128 voices",
+      "Waveforms": "622 Waveforms, two waveforms can be assigned to a tone",
+      "LFO": "LFO with SIN, TRI, SAWU, SAWD, SQR, RND, BD-U, BD-D, TRP and more",
+      "Control": "MIDI In/Out",
+      "Sequencer": "16-track Sequencer",
+      "Arpeggiator": "UP, Down, UP&Down, Random, plus chord memory",
+      "Patterns": "683 preset patterns",
+      "Effects": "47 effects types such as equalizer, overdrive, and delay",
+      "Keyboard": "16 keys non-piano style mini key set",
+      "Memory": "16 MB of user memory, 4MB of sample memory",
+      "Sampler": "4 MB of internal RAM for up to 47 seconds of monaural sampling, can be expanded with DIMM modules for up to 102 minutes of sampling"
+    },
+    "image": "/sites/default/files/2019-07/RolandMC808.jpg"
+  },
+  {
+    "title": "Roland MC-909",
+    "specs": {
+      "Polyphony": "64 voices (16-part multitimbral)",
+      "Oscillators": "32MB - 693 Waves",
+      "Sampler": "16-bit linear, 44.1 kHz (File Type: WAV/AIFF);Internal memory (16MB) only = mono: 180 sec. (stereo 90 sec. approx.), with DIMM (256MB) = mono: 51 min. (stereo 25.5 min. approx.)Samples: User/2,000, Card/7,000 (128MB SmartMedia)",
+      "Sequencer": "16-Tracks;Patterns: Preset 333, RPS 440, User 200, Card 999Songs: 50Rec. Modes: Realtime, TR-REC, Step",
+      "Arpeggiator": "Patterns: 128 Preset / 128 User; Chord Memory: 64 Preset, 128 User ; RPS Set: 50; Pattern set: 50",
+      "Memory": "Patches: Preset/917, User/256, Card/256Rhythm Set: Preset/89, User/128, SmartMedia Card/1281 Expansion Slot for Wave Expansion Board SRX Series",
+      "Effects": "MultiFX: MFX1: 38 Types, MFX2: 47 Types; 4 Reverb Types, 1 Compressor, 3-band Mastering Compressor",
+      "Filter": "1 per tone, max: 4 per patch. Cutoff, Resonance, ADSR, 12/24/36 dB/oct.",
+      "LFO": "2 per part, 8 waveforms, Rate & Depth controls",
+      "VCA": "1 ADSR Envelope per tone",
+      "Keyboard": "16 velocity sensitive pads",
+      "Control": "MIDI In/Out, USB",
+      "Date Produced": "2003"
+    },
+    "image": "/sites/default/files/2017-05/mc909_top.jpg"
+  },
+  {
+    "title": "Roland MKS-10",
+    "specs": {
+      "Polyphony": "16 voices",
+      "Multitimbral": "Monotimbral",
+      "Oscillators": "DCO",
+      "Modulation": "Square or Sine Tremolo with rate & depth controls",
+      "Filter": "Brilliance",
+      "Envelope": "Long or Short release times",
+      "Effects": "Chorus, Flanger",
+      "Arpeg/Seq": "None",
+      "Keyboard": "None",
+      "Memory": "128 patches",
+      "Control": "MIDI In/Out",
+      "Date Produced": "1984"
+    },
+    "image": "/sites/default/files/2017-05/mks10.jpg"
+  }
+]

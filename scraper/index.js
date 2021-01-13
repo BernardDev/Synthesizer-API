@@ -3,53 +3,33 @@ const jsdom = require('jsdom');
 const axios = require('axios');
 const {JSDOM} = jsdom;
 const download = require('image-downloader');
-
-const fill = './data/store.json';
-const synths = require(`./${fill}`);
+const synths = require('./data/store.json');
 const manufacturers = require('./data/manufacturers.json');
 
 // ----------------------------------------------------------------------------------
-// --- QUERY EXECUTION
+// --- ADDING MANUFACTURER TO JSON STORE
 
-// // console.log(manufacturers.includes('Multivox'));
-// // console.log(objects[0]);
-// const title = objects[0].title;
-// // console.log(title);
-// // const includes = title.includes('Access Virus');
-// const match = manufacturers.find((m) => {
-//   // console.log(m, title);
-//   return title.includes(m);
-// });
-// console.log(match, 'is match');
-
-function findManufacturer(synth) {
+function matchManufacturer(synth) {
   const title = synth.title;
-  // console.log(title);
-  // const includes = title.includes('Access Virus');
   const match = manufacturers.find((m) => {
-    // console.log(m, title);
     return title.includes(m);
   });
-  console.log(match, title, 'is match?');
+  return {...synth, manufacturer: match};
 }
 
-synths.forEach((synth) => {
-  findManufacturer(synth);
-});
+function insertSynth(synths) {
+  const matchesAndSynths = synths.map((synth) => {
+    const matchSynth = matchManufacturer(synth);
+    return matchSynth;
+  });
+  return matchesAndSynths;
+}
 
-// findManufacturer(synths[0]);
-
-// objects.map((object) => {
-//   if (object.contains(manufacturers[key])) {
-//     return ...object, object.manufacturer = [key]
-//   }else {
-//     return object;
-//   }
-// });
+const result = insertSynth(synths);
+writeToFile(result);
 
 // ----------------------------------------------------------------------------------
 // --- DOWNLOAD EXECUTION
-// startDownloadingFromUrl();
 
 function startDownloadingFromUrl() {
   const imgUrls = objects.map((object) => {
@@ -74,10 +54,10 @@ function downloadImgFromJson(download, imgUrls) {
   });
 }
 
+// startDownloadingFromUrl();
+
 // ----------------------------
 // --- MAIN EXECUTION
-// fetchUrlOnPage();
-// ----------------------------
 
 function createPageUrl() {
   let page = 15;
@@ -91,7 +71,6 @@ async function fetchSynths(rolandUrls) {
     return fetchSynth(rolandUrl);
   });
   const data = await Promise.all(promises);
-  // console.log(data, 'output');
   writeToFile(data);
 }
 
@@ -134,6 +113,8 @@ function writeToFile(data) {
   );
 }
 
+// fetchUrlOnPage();
+
 // ----------------------------------------------------------------------------------
 
 function getRolandSynthUrls(dom) {
@@ -143,13 +124,6 @@ function getRolandSynthUrls(dom) {
   const links = elements.map((element) => {
     return element.querySelector('a').href;
   });
-  // ---
-  // const filteredLinks = links.filter((link) => {
-  //   return !link.includes('index.php');
-  // });
-
-  // return filteredLinks;
-  // ----
   return links;
 }
 

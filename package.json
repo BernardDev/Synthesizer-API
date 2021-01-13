@@ -13,5 +13,8 @@
     "axios": "^0.21.1",
     "fs": "0.0.1-security",
     "jsdom": "^16.4.0"
+  },
+  "devDependencies": {
+    "image-downloader": "^4.0.2"
   }
 }

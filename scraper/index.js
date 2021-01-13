@@ -3,9 +3,33 @@ const jsdom = require('jsdom');
 const axios = require('axios');
 const {JSDOM} = jsdom;
 const download = require('image-downloader');
-const objects = require('./roland_synths.json');
+const synths = require('./data/store.json');
+const manufacturers = require('./data/manufacturers.json');
 
 // ----------------------------------------------------------------------------------
+// --- ADDING MANUFACTURER TO JSON STORE
+
+function matchManufacturer(synth) {
+  const title = synth.title;
+  const match = manufacturers.find((m) => {
+    return title.includes(m);
+  });
+  return {...synth, manufacturer: match};
+}
+
+function insertSynth(synths) {
+  const matchesAndSynths = synths.map((synth) => {
+    const matchSynth = matchManufacturer(synth);
+    return matchSynth;
+  });
+  return matchesAndSynths;
+}
+
+const result = insertSynth(synths);
+writeToFile(result);
+
+// ----------------------------------------------------------------------------------
+// --- DOWNLOAD EXECUTION
 
 function startDownloadingFromUrl() {
   const imgUrls = objects.map((object) => {
@@ -19,7 +43,7 @@ function downloadImgFromJson(download, imgUrls) {
     const options = {
       url: url,
       dest:
-        '/Users/Bernard/Desktop/coaching/program/sprint 3 - api/roland-api/scraper/img',
+        '/Users/Bernard/Desktop/coaching/program/sprint 3 - api/roland-api/scraper/data/img',
     };
     download
       .image(options)
@@ -30,14 +54,13 @@ function downloadImgFromJson(download, imgUrls) {
   });
 }
 
+// startDownloadingFromUrl();
+
 // ----------------------------
 // --- MAIN EXECUTION
-// fetchUrlOnPage();
-startDownloadingFromUrl();
-// ----------------------------
 
 function createPageUrl() {
-  let page = 9;
+  let page = 15;
   let url = `http://www.vintagesynth.com/synthfinder?field_year_value%5Bmin%5D=&field_year_value%5Bmax%5D=&page=${page}`;
   return url;
   // 7, 8, 9
@@ -48,7 +71,6 @@ async function fetchSynths(rolandUrls) {
     return fetchSynth(rolandUrl);
   });
   const data = await Promise.all(promises);
-  // console.log(data, 'output');
   writeToFile(data);
 }
 
@@ -91,6 +113,8 @@ function writeToFile(data) {
   );
 }
 
+// fetchUrlOnPage();
+
 // ----------------------------------------------------------------------------------
 
 function getRolandSynthUrls(dom) {
@@ -100,13 +124,7 @@ function getRolandSynthUrls(dom) {
   const links = elements.map((element) => {
     return element.querySelector('a').href;
   });
-  const rolandLinks = links.filter((link) => {
-    return (
-      (link.includes('roland') || link.includes('Roland')) &&
-      !link.includes('index')
-    );
-  });
-  return rolandLinks;
+  return links;
 }
 
 // --------

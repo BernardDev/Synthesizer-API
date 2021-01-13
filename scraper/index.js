@@ -3,9 +3,53 @@ const jsdom = require('jsdom');
 const axios = require('axios');
 const {JSDOM} = jsdom;
 const download = require('image-downloader');
-const objects = require('./roland_synths.json');
+
+const fill = './data/store.json';
+const synths = require(`./${fill}`);
+const manufacturers = require('./data/manufacturers.json');
 
 // ----------------------------------------------------------------------------------
+// --- QUERY EXECUTION
+
+// // console.log(manufacturers.includes('Multivox'));
+// // console.log(objects[0]);
+// const title = objects[0].title;
+// // console.log(title);
+// // const includes = title.includes('Access Virus');
+// const match = manufacturers.find((m) => {
+//   // console.log(m, title);
+//   return title.includes(m);
+// });
+// console.log(match, 'is match');
+
+function findManufacturer(synth) {
+  const title = synth.title;
+  // console.log(title);
+  // const includes = title.includes('Access Virus');
+  const match = manufacturers.find((m) => {
+    // console.log(m, title);
+    return title.includes(m);
+  });
+  console.log(match, title, 'is match?');
+}
+
+synths.forEach((synth) => {
+  findManufacturer(synth);
+});
+
+// findManufacturer(synths[0]);
+
+// objects.map((object) => {
+//   if (object.contains(manufacturers[key])) {
+//     return ...object, object.manufacturer = [key]
+//   }else {
+//     return object;
+//   }
+// });
+
+// ----------------------------------------------------------------------------------
+// --- DOWNLOAD EXECUTION
+// startDownloadingFromUrl();
 
 function startDownloadingFromUrl() {
   const imgUrls = objects.map((object) => {
@@ -19,7 +63,7 @@ function downloadImgFromJson(download, imgUrls) {
     const options = {
       url: url,
       dest:
-        '/Users/Bernard/Desktop/coaching/program/sprint 3 - api/roland-api/scraper/img',
+        '/Users/Bernard/Desktop/coaching/program/sprint 3 - api/roland-api/scraper/data/img',
     };
     download
       .image(options)
@@ -33,11 +77,10 @@ function downloadImgFromJson(download, imgUrls) {
 // ----------------------------
 // --- MAIN EXECUTION
 // fetchUrlOnPage();
-startDownloadingFromUrl();
 // ----------------------------
 
 function createPageUrl() {
-  let page = 9;
+  let page = 15;
   let url = `http://www.vintagesynth.com/synthfinder?field_year_value%5Bmin%5D=&field_year_value%5Bmax%5D=&page=${page}`;
   return url;
   // 7, 8, 9
@@ -100,13 +143,14 @@ function getRolandSynthUrls(dom) {
   const links = elements.map((element) => {
     return element.querySelector('a').href;
   });
-  const rolandLinks = links.filter((link) => {
-    return (
-      (link.includes('roland') || link.includes('Roland')) &&
-      !link.includes('index')
-    );
-  });
-  return rolandLinks;
+  // ---
+  // const filteredLinks = links.filter((link) => {
+  //   return !link.includes('index.php');
+  // });
+
+  // return filteredLinks;
+  // ----
+  return links;
 }
 
 // --------

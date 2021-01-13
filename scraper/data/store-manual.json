@@ -1,0 +1,437 @@
+[
+  {
+    "title": "Crumar Bit 99",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/bit99.jpg",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "2 DCOs per voice",
+      "LFO": "2 LFOs assignable to VCA, VCF, DCO1, DCO2",
+      "Filter": "VCF: cutoff, resonance, tracking, invert (inverts VCF values), ADSR",
+      "VCA": "ADSR",
+      "Keyboard": "61 full size keys, slightly weighted",
+      "Memory": "99 patches (75 single programs and from 76 to 99 for 'split' or 'double' modes)",
+      "Control": "MIDI",
+      "Date Produced": "1985 - 86"
+    }
+  },
+  {
+    "title": "Crumar Bit One",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/bitone.jpg",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "2 DCOs per voice (triangle, sawtooth, pulse waveforms, noise)",
+      "LFO": "2 LFO's (triangle, ramp and square waveforms)",
+      "Filter": "1 VCF Resonant filter with ADSR per voice",
+      "VCA": "1 VCA ADSR envelope per voice",
+      "Keyboard": "61 keys (with velocity)",
+      "Memory": "63 user patches",
+      "Control": "MIDI",
+      "Date Produced": "1984 - 86"
+    }
+  },
+  {
+    "title": "E-mu Emulator",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/emulator.jpg",
+    "specs": {
+      "Polyphony": "8 voices (4 voice models rare)",
+      "Sampler": "27 KHz, 8-Bit",
+      "LFO": "Vibrato",
+      "Filter": "simple VCF via JL Cooper retrofit kit",
+      "Sequencer": "Real-time digital sequencer added to later models from 1982 on.",
+      "Keyboard": "49 Keys",
+      "Memory": "128 Kbyte (about 2 seconds)",
+      "Control": "MIDI (on some ,models via retrofits)",
+      "Date Produced": "1981-83"
+    }
+  },
+  {
+    "title:": "Roland JV-2080",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/roland_jv2080.jpg",
+    "specs": {
+      "Polyphony": "64 voices",
+      "Oscillators": "8MB of sample ROM and acoustic simulation. Expandable with SR-JV80 expansion boards",
+      "LFO": "2 LFO's (sine, saw, square, triangle, trapezoid, sample&hold, random and chaos) w/ key or external sync. Can modulate the pitch, filter, pan, or level",
+      "Filter": "TVF (lowpass, bandpass, highpass, peak) with cutoff, resonance, key follow and velocity sensitivity",
+      "VCA": "TVA ADSR (tone level, pan, key follow)",
+      "Memory": "128 user, 640 presets, 2 user rhythm kits, 10 preset rhythm kits, 32 user performances, 64 preset performances and 8 expansion board slots",
+      "Keyboard": "None",
+      "Control": "MIDI (16 channels)",
+      "Date Produced": "1997"
+    }
+  },
+
+  {
+    "title:": "Roland RS-202 Strings",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/rs202.jpg",
+    "specs": {
+      "Polyphony": "Full",
+      "Oscillators": "simple organ 'divide down' sawtooth oscillator",
+      "Effects": "Ensemble/Chorus and Vibrato",
+      "Memory": "3 Preset Sounds (Strings I, Strings II, Brass)",
+      "Keyboard": "61 keys",
+      "Control": "Gate Out",
+      "Date Produced": "1976"
+    }
+  },
+  {
+    "title": "Sequential Circuits DrumTraks",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/sci_drumtraks.jpg",
+    "specs": {
+      "Polyphony": "12 voices",
+      "Sounds": "13 tones: kick, snare, toms, hi-hats and cymbals",
+      "Patterns": "100",
+      "Songs": "100 (3300 note capacity)",
+      "Keyboard": "13 Trigger Buttons",
+      "Effects": "None",
+      "Control": "MIDI IN/OUT, Run/Stop and Next/Repeat Foot switches, Click IN/OUT",
+      "Date Produced": "1984"
+    }
+  },
+  {
+    "title": "Sequential Circuits Max",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/sci_max.jpg",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "6 VCO's (saw, triangle, pulse waveforms)",
+      "Memory": "20 User patches, 80 presets",
+      "Filter": "6 24dB/oct lowpass VCF's (one per voice)",
+      "LFO": "1 LFO with Triangle & square waveforms. Controls VCO pitch, VCF, or VCA envelope",
+      "Keyboard": "49 Keys",
+      "Arpeg/Seq": "Two 6-track real-time sequencers (records up to 500 notes total and 2 songs)",
+      "Control": "MIDI",
+      "Date Produced": "1984"
+    }
+  },
+  {
+    "title": "Sequential Circuits MultiTrak",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/multitrack.jpg",
+    "specs": {
+      "Polyphony": "6 voices",
+      "Oscillators": "One VCO per voice. Saw / tri / pwm / noise with Tuning and glide",
+      "LFO": "One LFO with square / triangle / depth / rate",
+      "Filter": "cutoff, resonance and key follow + ADSR.",
+      "VCA": "Three ADSRs per voice",
+      "Memory": "99 patches",
+      "Effects": "Stereo chorus",
+      "Keyboard": "61 note, velocity sensitive with split/stack settings",
+      "Arpeg/Seq": "Arpeggiator (up/down) / 1600 note sequencer with quantize and overdub.",
+      "Control": "MIDI IN/OUT, Sync pulse IN/OUT",
+      "Date Produced": "1985"
+    }
+  },
+  {
+    "title": "Sequential Circuits Prophet 2000",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/sci_prophet2000.jpg",
+    "specs": {
+      "Polyphony": "8 voices",
+      "Sampler": "12-bit at 16khz, 32khz or 42khz",
+      "Effects": "Arpeggiator",
+      "Filter": "8 analog VCF's: 1 per voice",
+      "VCA": "8 analog ADSR's: 1 per voice",
+      "Keyboard": "61 keys with Velocity",
+      "Memory": "256 to 512K (up to 30 seconds) + 3.5 disk storage",
+      "Control": "MIDI",
+      "Date Produced": "1985"
+    }
+  },
+  {
+    "title": "Sequential Circuits Prophet 3000",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/p3000.jpg",
+    "specs": {
+      "Polyphony": "8 voices",
+      "Sampler": "48 KHz, 16 Bit",
+      "LFO": "YES",
+      "Filter": "Resonant low pass analog filter",
+      "VCA": "YES",
+      "Keyboard": "None",
+      "Memory": "2MB internal",
+      "Control": "MIDI / SCSI",
+      "Date Produced": "1987"
+    }
+  },
+  {
+    "title": "Sequential Circuits Prophet T8",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/sci_t8_angle.jpg",
+    "specs": {
+      "Polyphony": "8 Voices",
+      "Oscillators": "2 VCO's per voice (16 oscillators)",
+      "Sequencer": "YES (670 notes)",
+      "Filter": "24dB/oct low-pass with cutoff, resonance, env amount, key tracking",
+      "LFO": "Waveforms: square, triangle and sawtooth.",
+      "Destinations": "osc a, osc b, pulse width, filter",
+      "VCA": "2 ADSR envelopes per voice",
+      "Keyboard": "76 weighted keys (w/ velocity & aftertouch)",
+      "Memory": "128 patches",
+      "Control": "MIDI",
+      "Date Produced": "1983"
+    }
+  },
+  {
+    "title": "Sequential Circuits Prophet VS",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/sci_prophet_vs_angle.jpg",
+    "specs": {
+      "Polyphony": "8 Voices; 2-part multitimbral",
+      "Oscillators": "96 preset waveforms + 32 user waveforms",
+      "LFO": "Two, each with own envelope generator",
+      "Filter": "Curtis analog (digitally controlled) 4-pole lowpass with its own envelope generators",
+      "Envelopes": "5 stage amp, filter and mix envelopes",
+      "Keyboard": "61 keys (velocity / aftertouch)",
+      "Memory": "100 patches",
+      "Effects": "twin chorus, stereo effects panning of individual oscillators/individual voices",
+      "Arpeggiator": "very nice versatile arpeggiator, user can define note order by playing etc.",
+      "Control": "MIDI",
+      "Date Produced": "1986-87"
+    }
+  },
+  {
+    "title": "Sequential Circuits TOM",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/sci_tom.jpg",
+    "specs": {
+      "Polyphony": "4 sounds",
+      "Sounds": "8 - kick, snare, toms 1&2, open / closed hat, clap, crash",
+      "Sequencer": "99 patterns, 2,300 notes (expandable to 5,000 or 10,000 via factory updates).",
+      "Keyboard": "8 Buttons",
+      "Effects": "Individual instrument tuning, panning, volume",
+      "Control": "MIDI, Clock in/out",
+      "Date Produced": "1985"
+    }
+  },
+  {
+    "title": "Sherman Electronics FilterBank",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/sherman.jpg",
+    "specs": {
+      "Polyphony": "n/a",
+      "Multitimbral": "Dual-filters",
+      "LFO": "YES, modulates filter or envelope",
+      "Filter": "24dB/oct 4-pole low-pass / band-pass / hi pass / notch filter with resonance and ADR envelope",
+      "VCA": "ADSR",
+      "Keyboard": "None",
+      "Memory": "None",
+      "Control": "MIDI",
+      "Date Produced": "1997"
+    }
+  },
+  {
+    "title": "Solton K160",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/soltonk160.jpg",
+    "specs": {
+      "Polyphony": "8 voices",
+      "Multitimbral": "8 parts",
+      "Oscillators": "16 digital oscillators",
+      "LFO": "Yes",
+      "Filter": "8 VCF's (CEM 3389)",
+      "Envelope": "VCA with envelope (not editable)",
+      "Effects": "None",
+      "Arpeg/Seq": "None",
+      "Keyboard": "61 keys with velocity",
+      "Memory": "128 Presets, 32 Programs",
+      "Control": "MIDI In/Out/Thru",
+      "Date Produced": "1990"
+    }
+  },
+  {
+    "title": "SoundMaster Memory Rhythm SR-88",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/sm-sr88.jpg",
+    "specs": {
+      "Polyphony": "4 voices",
+      "Waveforms": "4 sounds: Kick, Snare, Closed Hi-Hat, Cymbal",
+      "Effects": "None",
+      "Patterns": "Six 16-step patterns, two 12-step patterns",
+      "Songs": "None",
+      "Keyboard": "None",
+      "Control": "Clock & Trigger outputs (Grey models only)",
+      "Date Produced": "1981"
+    }
+  },
+  {
+    "title": "Steinberg HALion",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/halion1.jpg",
+    "specs": {
+      "Polyphony": "Up to 256 voices (100 voices for each group, depending upon processor speed and RAM available). 16 Midi channels (full VST integration, sample accurate timing),",
+      "Sample Formats": "32-bit (AIFF, WAV, Akai, E-mu, SF2, LM-4/9, ReCycle REX)",
+      "LFO": "2 LFOs with 10 waveforms each (sine, tri, pulse, sawtooth, saw pulse, pulse 15, pulse 30, sine complex, long, positive, long negative), syncable to sequence tempo, up to 3 seconds Delay",
+      "Filter": "Notch / HiPass /Lowpass / BandPass / 12dB / 24dB Filter with fatness function",
+      "Envelopes": "2 envelopes with up to 8 edit points",
+      "Effects": "No built-in multi-effects",
+      "Memory": "128 programs",
+      "Macintosh": "PPC 603e/266 MHz, 128MB RAM, OS 9.1, VST-Host app.",
+      "Windows/PC": "Pentium II/266 MHz, 128MB RAM, Windows 95/98/NT, MME- or ASIO-compliant sound card, VST host app.",
+      "Date Produced": "2001"
+    }
+  },
+  {
+    "title": "Steinberg LM-4",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/lm4a.jpg",
+    "specs": {
+      "Polyphony": "Up to 128 velocity zones per pad, e.g. 128 sounds per pad; Up to 8 units can work at the same time (depending on CPU and RAM resources)",
+      "Drums": "LM-4: 20 Drum sets included; featuring ten 24-bit (:wizoo:) high-class sets!",
+      "LM-4mkII": "50 drum kits, 1GB samples, 16-, 24-, and 32-bit.",
+      "Effects": "Velocity, pitch and panning for each instrument; even automated",
+      "Sequencer": "Yes",
+      "Keyboard": "18 pads per set",
+      "Memory": "20 (LM-4) to 50 (Mark II) to 120 (Mark II XXL) Drum sets included; Ability to create your own sets",
+      "Macintosh": "Power Macintosh G3/300 MHz, 64 MB of free RAM (96 or more when used with the wizoo sets), Mac OS 8.0 or higher, Cubase VST 4.1 (or higher), Nuendo or other VST 2.0 compatible host application",
+      "Windows/PC": "Pentium II 300 MHz processor, Windows 98/ME/2000/XP, 64 MB of free RAM (96 or more when used with the wizoo sets), Cubase VST 3.7 or higher or other VST 2.0 compatible host application",
+      "Date Produced": "2000 - 2002"
+    }
+  },
+  {
+    "title": "Steinberg Model E",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/modele.jpg",
+    "specs": {
+      "Polyphony": "64 voices; 6 Waveforms per Oscillator",
+      "Oscillators": "3 Oscillators © Noise Generator",
+      "LFO": "None",
+      "Filter": "2-Pole and 4-Pole Low pass filter with Modulation and Key Tracking",
+      "Envelopes": "2 Envelope Generators",
+      "Memory": "128 memories per VST instrument",
+      "Macintosh": "Mac 604e, 250MHz, OS 8, 64Mb RAM, VST 2.0-compatible application",
+      "Windows/PC": "Pentium II 266, Windows 95/98, 64Mb RAM, VST 2.0-compatible application",
+      "Date Produced": "2000"
+    }
+  },
+  {
+    "title": "Steinberg The Grand",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/theps_grand.jpg",
+    "specs": {
+      "Polyphony": "Up to 16 voices per Instance (CPU Dependent)",
+      "Oscillators": "Four master timbres: Natural, Soft, Bright, Hard",
+      "LFO": "None",
+      "Filter": "None",
+      "VCA": "None",
+      "Keyboard": "88 keys with adjustable Non/Light/Heavy weighted simulation and adjustable Velocity Curve",
+      "Macintosh": "Power Macintosh, G3/500 MHz/100 MHz bus, 256 MB RAM (512 MB recommended), 1.3 GB free hard disk space, Mac OS 9.x, Cubase VST 5.0 or higher, Nuendo or other VST 2.0 compatible host application",
+      "Windows/PC": "Pentium II, 400 MHz, 256 MB RAM (512 MB recommended), 1.3 GB free hard disk space, Windows 98/ME/2000/XP, Cubase VST 5.0 or higher, Nuendo or other VST 2.0 compatible host application, PC configured according to the specifications of the host application",
+      "Date Produced": "2002"
+    }
+  },
+  {
+    "title": "Syntauri alphaSyntauri",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/alphasyntauri.jpg",
+    "specs": {
+      "Polyphony": "16 voices (8 stereo)",
+      "Multitimbral": "8-part",
+      "Sampler": "None, although sampled waveforms can be used in synthesis",
+      "Oscillators": "16 digital",
+      "LFO": "None",
+      "Filter": "None",
+      "Envelope": "ADSR",
+      "Effects": "None",
+      "Sequencer": "MetaTrak software provides 16 tracks and 2 timbres and stores up to 7000 notes",
+      "Arpeggiator": "None",
+      "Keyboard": "49 keys (non-velocity sensing) or 61 keys (velocity sensing)",
+      "Memory": "Based on host system (64 kb)",
+      "Control": "None",
+      "Controls": "Apple II paddle controllers, Light pen",
+      "Date Produced": "1980 - 1986"
+    }
+  },
+  {
+    "title": "Synthesizers. com Rack Mount Systems",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/qsr24.jpg",
+    "specs": {
+      "Polyphony": "Monophonic / Polyphonic",
+      "Oscillators": "Q106 - Analog Oscillator with Sine, Triangle, Saw, Ramp and Pulse waveforms. QSR8 has one, QSR24 has three.",
+      "Q110": "Noise Source makes White, Pink and Low Freq. Noise",
+      "LFO": "Q106 - Analog Oscillator with Sine, Triangle, Saw, Ramp and Pulse waveforms",
+      "Q117": "Sample and Hold",
+      "Filter": "Q107 State Variable Filter - 12dB/oct Low/Band/High Pass and 6dB/oct Notch modes. Q116 Ring Modulator - combine two input signals",
+      "VCA": "Q108 Amplifier - Gain controls with multiple input options",
+      "Q109": "Envelope Generator - Attack/Decay/Sustain/Release",
+      "Keyboard": "5-Octave Studio Keyboard (optional). Monophonic and Duophonic operation. Outputs pitch control voltage, gate, velocity control voltage, and a trigger pulse.",
+      "Memory": "None",
+      "Control": "Q104 - MIDI Interface (MIDI IN, Gate Out, Trigger Out, Pitch Out, Velocity Out)",
+      "Date Produced": "Since 2000"
+    }
+  },
+  {
+    "title": "Teisco Synthesizer 110F",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/110f_0.jpg",
+    "specs": {
+      "Polyphony": "Monophonic / Duophonic",
+      "Oscillators": "2 VCO's: (2', 4', 8', 16', 32', 64' and 'low' pitches); VCO 1: triangle, saw, square; VCO 2: saw, square, external audio in; white & pink noise",
+      "LFO": "Ramp and square waveforms with adjustable Rate",
+      "Filter": "Low Pass resonant filter with ADSR and High Pass non-resonant filter; 8-band filterbank",
+      "VCA": "Simple ADSR envelope controls",
+      "Keyboard": "37 notes",
+      "Memory": "None",
+      "Control": "CV/Gate",
+      "Date Produced": "1980"
+    }
+  },
+  {
+    "title": "VAZ Synths VAZ Modular",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/vazmod.jpg",
+    "specs": {
+      "Polyphony": "16 voices per synth, 16-part multitimbral (up to 256 voices, depending on CPU speed)",
+      "Oscillators": "Granular osc; Simple osc (sawtooth/square); Multi-osc (saw plus 4 pulse waves); Noise; Wavetable waves samples; Samples from WAV files",
+      "LFO": "1 LFO module; 1 multi-phase LFO; 1 SINE LFO; 1 TRIANGLE LFO; Sample and Hold",
+      "Filter": "Comb filter; Decimator; Equalizer; Multimode filter; One-pole filter; Vowel filter; State-variable filter",
+      "Effects": "Chorus, Delay, Flanger, Phaser, Reverb, Overdrive, Ring Modulator",
+      "Control": "MIDI, CV/GATE, QWERTY Keyboard",
+      "Macintosh": "Not Supported",
+      "Windows/PC": "Pentium 200MHz, Windows 95/98, 16Mb RAM, accepts DirectX or VST plug-ins",
+      "Date Produced": "1998-2000"
+    }
+  },
+  {
+    "title": "Vermona Action Filter (AF-1)",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/af1.jpg",
+    "specs": {
+      "Polyphony": "4 filters: Stereo with 2 filters per channel",
+      "Oscillators": "n/a",
+      "LFO": "None",
+      "Filter": "2 highpass/lowpass filters per channel with 24dB/oct slope each.",
+      "VCA": "n/a",
+      "Keyboard": "n/a",
+      "Memory": "None",
+      "Control": "TRIGGER/BYPASS BUTTON",
+      "Date Produced": "2002"
+    }
+  },
+  {
+    "title": "Vermona DRM-1 mkII",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/vermona_drm1_mkiii.jpg",
+    "specs": {
+      "Polyphony": "8 Drum Tones",
+      "Oscillators": "8 (One per channel)",
+      "LFO": "None",
+      "Filter": "Available on some sounds/channels",
+      "VCA": "Available on some sounds/channels",
+      "Keyboard": "None",
+      "Memory": "None",
+      "Control": "MIDI IN/THRU (Optional 10 Standard Trigger Inputs for use with other analog gear)",
+      "Date Produced": "2001"
+    }
+  },
+  {
+    "title": "Vermona Dual Analog Filter (DAF-1)",
+    "image": "http://www.vintagesynth.com/sites/default/files/2017-05/daf1.jpg",
+    "specs": {
+      "Polyphony": "4 filters: Stereo with 2 per channel",
+      "Oscillators": "n/a",
+      "LFO": "One, can modulate the cutoff frequencies",
+      "Filter": "4 lowpass/highpass 24dB/oct filters, Freq. Cutoff, Resonance,",
+      "VCA": "None",
+      "Keyboard": "n/a",
+      "Memory": "None",
+      "Control": "CV /Footswitch Input",
+      "Date Produced": "2002"
+    }
+  },
+  {
+    "title": "Vermona M.A.R.S. Monophonic Analog Rack Synthesizer",
+    "image": "http://www.vintagesynth.com/sites/default/files/2020-05/VermonaMars.jpg",
+    "specs": {
+      "Polyphony": "1 Voice",
+      "Multitimbral": "1 Part",
+      "Oscillators": "2",
+      "Waveforms": "Saw Down, Square, Sub Oscillator",
+      "Filter Slopes": "24dB Slope (4-pole), Low Pass, Resonance",
+      "LFO": "2 LFO with sample & hold, sine, square, Triangle",
+      "VCA/Envelopes": "2 VCA with ADSR",
+      "Controls": "MIDI In/Out/Thru",
+      "Memory": "128 patches"
+    }
+  }
+]

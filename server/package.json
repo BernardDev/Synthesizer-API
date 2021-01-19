@@ -11,7 +11,8 @@
     "undo-seed": "npx sequelize-cli db:seed:undo:all",
     "reseed": "npm run undo-migrate && npm run migrate && npm run seed",
     "start": "node index.js",
-    "dev": "npx nodemon index.js"
+    "dev": "npx nodemon index.js",
+    "heroku-postbuild": "npm run migrate && npm run seed:all"
   },
   "author": "",
   "license": "ISC",

@@ -1,7 +1,7 @@
 // require('dotenv').config({path: './../.env'});
 require('dotenv').config();
 
-console.log('process.env', process.env);
+// console.log('process.env', process.env);
 
 module.exports = {
   development: {

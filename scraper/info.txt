@@ -1,0 +1,111 @@
+Polyphony: 95.2%
+Keyboard: 87.8%
+Control: 84.1%
+Date Produced: 82.3%
+Memory: 80.7%
+Oscillators: 78.3%
+Filter: 65.5%
+LFO: 60.8%
+Effects: 58.1%
+VCA: 38.9%
+Arpeg/Seq: 27.5%
+Multitimbral: 22.5%
+Sequencer: 22.0%
+Waveforms: 18.0%
+Sampler: 13.2%
+Arpeggiator: 12.0%
+Patterns: 10.0%
+Controls: 9.9%
+Envelope: 8.8%
+Songs: 7.6%
+VCA/Envelopes: 6.0%
+VCF: 5.1%
+Envelopes: 4.8%
+Macintosh: 4.5%
+Windows/PC: 4.5%
+Modulation: 3.7%
+Filter Slopes: 3.3%
+Sounds: 3.1%
+#Instruments: 2.0%
+Weight: 2.0%
+Interfaces: 1.8%
+Filters: 1.6%
+Vocoder: 1.3%
+Drums: 1.2%
+Samples: 0.7%
+Synthesis: 0.7%
+Storage: 0.6%
+Tones: 0.6%
+ModMatrix: 0.5%
+Drum Sounds: 0.5%
+Misc.: 0.5%
+Tone Generator: 0.5%
+Macintosh Requirements: 0.5%
+Windows Requirements: 0.5%
+Sample Rate: 0.4%
+Options: 0.4%
+Outputs: 0.4%
+Layers: 0.4%
+Real-Time Controllers: 0.2%
+DCW: 0.2%
+DCA: 0.2%
+Synthesizer: 0.2%
+Amp: 0.2%
+Sample rates: 0.2%
+External Storage: 0.2%
+Sound Source: 0.2%
+New & Cool Functions: 0.2%
+Drums/Samples: 0.2%
+Sample Formats: 0.2%
+Real-Time Controls: 0.2%
+Filter Modes: 0.2%
+Drum Tones: 0.2%
+Tracks: 0.2%
+Modules: 0.2%
+303: 0.1%
+808: 0.1%
+909: 0.1%
+Requirements: 0.1%
+Sections: 0.1%
+General: 0.1%
+Recommended: 0.1%
+Mixer: 0.1%
+Preset Sounds: 0.1%
+MSRP: 0.1%
+Speaker: 0.1%
+Effects per cell: 0.1%
+Sampler Engine: 0.1%
+Sampler Time: 0.1%
+Recording: 0.1%
+Modeled Sounds: 0.1%
+Sampled Sounds: 0.1%
+Internal Storage: 0.1%
+Features: 0.1%
+Output: 0.1%
+Rhythms: 0.1%
+RPS phrases: 0.1%
+Real-Time Effects: 0.1%
+# of Tones: 0.1%
+# of Drum Sets: 0.1%
+# of Instruments: 0.1%
+Extra Fun: 0.1%
+Phrases/Styles: 0.1%
+Chord Memory: 0.1%
+Sample Memory: 0.1%
+Sample Time: 0.1%
+Realtime Controllers: 0.1%
+Delay Time: 0.1%
+Loops: 0.1%
+Amplifier: 0.1%
+Computer Req.: 0.1%
+VCA/LFO: 0.1%
+Destinations: 0.1%
+LM-4mkII: 0.1%
+Q110: 0.1%
+Q117: 0.1%
+Q109: 0.1%
+
+---------------------------
+
+Connection error:
+If you seed related data

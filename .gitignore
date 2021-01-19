@@ -1,3 +1,5 @@
-/node_modules
-/synth_explorer_api.md
-/ignoble-api
+node_modules
+scraper/node_modules
+server/node_modules
+.env
+info.txt

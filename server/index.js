@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = process.env.PORT || 4000;
-const {Synth} = require('./models');
+const {Synth, Manufacturer, Specification} = require('./models');
 
 app.use(cors());
 
@@ -14,13 +14,13 @@ app.get('/synths', async (req, res) => {
 
 app.get('/synths/:synthId', async (req, res) => {
   const synthId = parseInt(req.params.synthId);
-  const synth = await Synth.findByPk(userId);
+  const synth = await Synth.findByPk(synthId);
   res.json(synth);
 });
 
 // MANUFACTURERS
 app.get('/manufacturers', async (req, res) => {
-  const manufacturers = await Manufacturers.findAll();
+  const manufacturers = await Manufacturer.findAll();
   res.json(manufacturers);
 });
 

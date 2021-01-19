@@ -1,6 +1,7 @@
 'use strict';
 
-const synths = require('../../scraper/data/store.json');
+// const synths = require('../../scraper/data/store.json');
+const synths = require('../data/store.json');
 const {Specification, Synth, Manufacturer} = require('../models');
 
 module.exports = {

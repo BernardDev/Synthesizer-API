@@ -1,10 +1,12 @@
 'use strict';
 
-const Synths = require('../../scraper/data/store.json');
+// const Synths = require('../../scraper/data/store.json');
+const synths = require('../data/store.json');
+// const {Synth} = require('../models');
 
-const results = Synths.map((Synth) => {
+const results = synths.map((synth) => {
   return {
-    name: Synth.manufacturer,
+    name: synth.manufacturer,
   };
 });
 

@@ -9,12 +9,16 @@
     "undo-migrate": "npx sequelize-cli db:migrate:undo:all",
     "seed": "npx sequelize-cli db:seed:all",
     "undo-seed": "npx sequelize-cli db:seed:undo:all",
-    "reseed": "npm run undo-migrate && npm run migrate && npm run seed"
+    "reseed": "npm run undo-migrate && npm run migrate && npm run seed",
+    "start": "node index.js",
+    "dev": "npx nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
     "pg": "^8.5.1",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0"

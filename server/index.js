@@ -6,9 +6,22 @@ const {Synth} = require('./models');
 
 app.use(cors());
 
+// SYNTHS
 app.get('/synths', async (req, res) => {
   const synths = await Synth.findAll();
   res.json(synths);
+});
+
+app.get('/synths/:synthId', async (req, res) => {
+  const synthId = parseInt(req.params.synthId);
+  const synth = await Synth.findByPk(userId);
+  res.json(synth);
+});
+
+// MANUFACTURERS
+app.get('/manufacturers', async (req, res) => {
+  const manufacturers = await Manufacturers.findAll();
+  res.json(manufacturers);
 });
 
 app.listen(port, () => {

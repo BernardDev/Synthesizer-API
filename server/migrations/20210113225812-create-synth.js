@@ -16,11 +16,29 @@ module.exports = {
 
       img: {type: Sequelize.STRING, allowNull: true},
 
-      manufacturer_id: {type: Sequelize.INTEGER, allowNull: true},
+      ManufacturerId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Manufacturers',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      },
 
-      specification_id: {type: Sequelize.INTEGER, allowNull: true},
+      SpecificationId: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'Specifications',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL',
+      },
 
-      SynthType: {
+      synthType: {
         type: Sequelize.ENUM(
           'Analog',
           'Digital',
@@ -31,7 +49,7 @@ module.exports = {
         allowNull: true,
       },
 
-      Format: {
+      format: {
         type: Sequelize.ENUM(
           'Computer software',
           'Desktop / Tabletop',
@@ -41,7 +59,7 @@ module.exports = {
         allowNull: true,
       },
 
-      InterfaceFeature: {
+      interfaceFeature: {
         type: Sequelize.ENUM('Hybrid', 'Modern', 'Vintage'),
         allowNull: true,
       },

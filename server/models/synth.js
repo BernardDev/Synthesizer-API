@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Synth.belongsTo(models.Manufacturer);
+      Synth.belongsTo(models.Specification);
     }
   }
   Synth.init(
@@ -20,11 +21,11 @@ module.exports = (sequelize, DataTypes) => {
 
       img: {type: DataTypes.STRING, allowNull: true},
 
-      manufacturer_id: {type: DataTypes.INTEGER, allowNull: true},
+      ManufacturerId: {type: DataTypes.INTEGER, allowNull: true},
 
-      specification_id: {type: DataTypes.INTEGER, allowNull: true},
+      SpecificationId: {type: DataTypes.INTEGER, allowNull: true},
 
-      SynthType: {
+      synthType: {
         type: DataTypes.ENUM(
           'Analog',
           'Digital',
@@ -34,11 +35,11 @@ module.exports = (sequelize, DataTypes) => {
         ),
       },
 
-      InterfaceFeature: {
+      interfaceFeature: {
         type: DataTypes.ENUM('Hybrid', 'Modern', 'Vintage'),
       },
 
-      Format: {
+      format: {
         type: DataTypes.ENUM(
           'Computer software',
           'Desktop / Tabletop',

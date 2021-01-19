@@ -20,8 +20,8 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: true,
       },
-      dateProduced: {
-        type: Sequelize.TEXT,
+      yearProduced: {
+        type: Sequelize.INTEGER,
         allowNull: true,
       },
       memory: {

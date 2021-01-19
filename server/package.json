@@ -8,7 +8,8 @@
     "migrate": "npx sequelize-cli db:migrate",
     "undo-migrate": "npx sequelize-cli db:migrate:undo:all",
     "seed": "npx sequelize-cli db:seed:all",
-    "undo-seed": "npx sequelize-cli db:seed:undo:all"
+    "undo-seed": "npx sequelize-cli db:seed:undo:all",
+    "reseed": "npm run undo-migrate && npm run migrate && npm run seed"
   },
   "author": "",
   "license": "ISC",

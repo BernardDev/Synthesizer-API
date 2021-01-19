@@ -104,3 +104,8 @@ LM-4mkII: 0.1%
 Q110: 0.1%
 Q117: 0.1%
 Q109: 0.1%
+
+---------------------------
+
+Connection error:
+If you seed related data

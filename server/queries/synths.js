@@ -1,92 +1,113 @@
-// import model
-// async function\
-// sequelize finders
-// raw / plain
+const {Synth, Manufacturer, Specification} = require('../models');
+const {Op} = require('sequelize');
 
-// ----------------
-// As a user i want to get all synths from one specific manufacturer
-// GET /synthesizer/:manufacturer
-// ----------------
-
-import { Synth, Specification, Manufacturer } require("../models")
-
-// ----------------
+// -----------------------------------------------------------------------
 // FIND ALL SYNTHS
 
-async function findAllSynths() {
-    const allSynths = await Synth.findAll({raw=true});
-    return allSynths
-}
-
-const allSynths = findAllSynths();
-console.log(allSynths, 'all synths')
-
-// ----------------
-// FIND ALL SYNTHS FROM SPECIFIC MANUFACTURER
-
 async function synthsWithManufacturers(manufacturerName) {
-    const synths = await Synth.findAll({
-        include: { model: manufacturer, attributes: manufacturerName },
-    });
-    return synths.map((synth) => synth.get({ plain: true }));
+  const synths = await Synth.findAll();
+  return synths.map((synth) => synth.get({plain: true}));
 }
 
-synthsWithManufacturers('Roland').then((synth) => console.log(synth));
+// synthsWithManufacturers('Roland').then((synth) => console.log(synth));
 
-// ----------------
-// GET ALL SYNTHS FROM ROLAND
+// -----------------------------------------------------------------------
+// FIND ALL SYNTHS WITH SPECIFICATIONS
 
-async function synthsFromhManufacturers(synthManufacturer) {
-    const synths = await Synth.findAll({
-        where: { manufacturer: synthManufacturer },
-    });
-    return synths.map((synth) => synth.get({ plain: true }));
-}
-
-synthsWithManufacturers('Roland').then((synth) => console.log(synth));
-
-// ----------------
-// FIND ALL MANUFACTURER FROM SPECIFIC SYNTH
-
-async function getUsers() {
-  const allSynths = await Synth.findAll({
-    include: { model: specification, attributes: {where:  }  },
+async function synthsWithSpecifications() {
+  const synths = await Synth.findAll({
+    include: {
+      model: Specification,
+      attributes: [
+        'polyphony',
+        'keyboard',
+        'control',
+        'yearProduced',
+        'memory',
+        'oscillators',
+        'lfo',
+        'effects',
+      ],
+    },
   });
-  return allUsers.map((user) => user.get({ plain: true }));
+
+  return synths.map((synth) => synth.get({plain: true}));
 }
 
-// getUsers().then((users) => console.log(users));
+// synthsWithSpecifications().then((synths) => console.log(synths));
 
-// ----------------
+// -----------------------------------------------------------------------
+// FIND ALL SYNTHS WITH MANUFACTURER
 
-async function setSynthWithSpecifications(id) {
-  const result = await user.findByPk(id, { include: [Specifications] });
-  return result.get({ plain: true });
-}
-
-// getUserWithList(1).then((user) => console.log('user by id with lists', user));
-
-async function imporantTodos() {
-  const todos = await todoItem.findAll({
-    where: { important: true },
-    include: { model: todoList, attributes: ['name'] },
+async function synthsWithManufacturer() {
+  const synths = await Synth.findAll({
+    include: {model: Manufacturer, attributes: ['name']},
   });
-  return todos.map((item) => item.get({ plain: true }));
+
+  return synths.map((synth) => synth.get({plain: true}));
 }
 
-// imporantTodos().then((items) => console.log('important todoItems', items));
+// synthsWithManufacturer().then((synths) => console.log(synths));
 
-async function fullUserById(id) {
-  const result = await user.findByPk(id, {
-    include: [
-      {
-        model: todoList,
-        attributes: ['name'],
-        include: { model: todoItem, attributes: ['task'] },
+// -----------------------------------------------------------------------
+// FIND ALL MANUFACTURERS WITH THE SYNTHS THEY MADE
+
+async function manufacturerWithSynths() {
+  const manufacturers = await Manufacturer.findAll({
+    include: {model: Synth, attributes: ['name']},
+  });
+  return manufacturers.map((manufacturer) => manufacturer.get({plain: true}));
+}
+
+// manufacturerWithSynths().then((manufacturer) => console.log(manufacturer));
+
+// -----------------------------------------------------------------------
+// FIND ALL SYNTHS WITH SPECIFICATION WHERE YEARPRODUCED
+
+async function synthsWithSpecYearProduced() {
+  const synths = await Synth.findAll({
+    include: {model: Specification, where: {yearProduced: 1980}},
+  });
+
+  return synths.map((synth) => synth.get({plain: true}));
+}
+
+// synthsWithSpecYearProduced().then((synths) => console.log(synths));
+
+// -----------------------------------------------------------------------
+// FIND ALL SYNTHS BY PK
+
+async function synthByPk(id) {
+  const synth = await Synth.findByPk(id, {include: [Specification]});
+  return synth.get({plain: true});
+}
+
+// synthByPk(200).then((synth) => console.log('synth', synth));
+
+// -----------------------------------------------------------------------
+// FIND ALL SYNTHS WITH SPECIFICATIONS AND POLYPHONY STARTSWITH
+
+async function synthsWithPolyphony() {
+  const synths = await Synth.findAll({
+    include: {
+      model: Specification,
+      where: {
+        polyphony: {
+          [Op.regexp]: '^[0-1]',
+        },
       },
-    ],
+    },
   });
-  return result.get({ plain: true });
+  return synths.map((synth) => synth.get({plain: true}));
 }
 
-// fullUserById(1).then((user) => console.log('User with tasks', user));
+synthsWithPolyphony().then((synths) => console.log(synths));
+
+// match(/^\d/)
+
+// if (s.match(/^\d/)) {
+//   // Return true
+// }
+// if (f.match(/^\d/)) {
+//   // Return false
+// }

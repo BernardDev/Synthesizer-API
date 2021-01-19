@@ -1,36 +1,17 @@
 'use strict';
 
-const synths = require('../../scraper/data/store_dateInt.json');
+const synths = require('../../scraper/data/store.json');
 const {Specification, Synth, Manufacturer} = require('../models');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    // -----------------
     const manufacturers = await Manufacturer.findAll({raw: true});
-    // console.log(manufacturers, 'dit nodig'); // werkt!
     const idMapManufacturers = {};
 
     manufacturers.forEach((manufacturer) => {
       idMapManufacturers[manufacturer.name] = manufacturer.id;
     });
-
-    // console.log(idMapManufacturers, 'idMapManufacturers');
-
-    // const refactor = Synth.map((Synth) => {
-    //   return {
-    //     ManufacturerId: idMapManufacturers[Synth.manufacturer],
-    //   };
-    // });
-    // // console.log(refactor, 'helloww');
-
-    // await queryInterface.bulkInsert('Synths', refactor, {});
-    // -----------------
     for (const synth of synths) {
-      // console.log(synth, 'all');
-      // console.log(idMapManufacturers[Synth.manufacturer], 'idMapManufacturers');
-      // console.log(Synth.manufacturer, 'Synth.manufacturer');
-      // console.log(synth.manufacturer, 'synth.manufacturer');
-
       const result = await Synth.create(
         {
           name: synth.title,
@@ -51,13 +32,8 @@ module.exports = {
         },
         {include: [Specification]}
       );
-      console.log('result.dataValues', result.dataValues);
     }
   },
-  //   try {
-  // }catch(e) {
-  //   console.log(e)
-  // }
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('Synths', null, {});

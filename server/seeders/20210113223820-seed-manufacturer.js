@@ -1,6 +1,6 @@
 'use strict';
 
-const Synths = require('../../scraper/data/store_dateInt.json');
+const Synths = require('../../scraper/data/store.json');
 
 const results = Synths.map((Synth) => {
   return {

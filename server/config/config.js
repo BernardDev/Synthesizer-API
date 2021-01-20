@@ -12,11 +12,11 @@ module.exports = {
     },
   },
   test: {
-    username: 'root',
-    password: null,
-    database: 'database_test',
-    host: '127.0.0.1',
-    dialect: 'mysql',
+    use_env_variable: 'TEST_DATABASE_URL',
+    dialect: 'postgres',
+    pool: {
+      max: 4,
+    },
   },
   production: {
     use_env_variable: 'DATABASE_URL',

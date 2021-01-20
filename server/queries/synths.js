@@ -102,12 +102,3 @@ async function synthsWithPolyphony() {
 }
 
 synthsWithPolyphony().then((synths) => console.log(synths));
-
-// match(/^\d/)
-
-// if (s.match(/^\d/)) {
-//   // Return true
-// }
-// if (f.match(/^\d/)) {
-//   // Return false
-// }

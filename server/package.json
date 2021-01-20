@@ -12,7 +12,7 @@
     "reseed": "npm run undo-migrate && npm run migrate && npm run seed",
     "start": "node index.js",
     "dev": "npx nodemon index.js",
-    "heroku-postbuild": "npm run migrate && npm run seed:all"
+    "heroku-postbuild": "npm run migrate && npm run seed"
   },
   "author": "",
   "license": "ISC",

@@ -7,7 +7,7 @@ const {Synth, Manufacturer, Specification} = require('./models');
 app.use(cors());
 
 // SYNTHS
-app.get('/booms', async (req, res) => {
+app.get('/synths', async (req, res) => {
   const synths = await Synth.findAll();
   res.json(synths);
 });

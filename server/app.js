@@ -25,22 +25,6 @@ app.use(cors());
 // MIDDLEWARES
 // ------------------------------------------------------------
 
-// function validateQuery(query, permittedProperties) {
-//   const keys = Object.keys(query);
-//   const valid = keys.every((key) => permittedProperties.includes(key));
-
-//   if (valid) {
-//     return [query, null];
-//   } else {
-//     return [
-//       null,
-//       `Invalid parameter, acceptable parameters are: ${permittedProperties.join(
-//         ', '
-//       )}`,
-//     ];
-//   }
-// }
-
 // ------------------------------------------------------------
 // ENDPOINTS
 // ------------------------------------------------------------
@@ -67,7 +51,6 @@ app.get('/manufacturer/:idOrName', async (req, res) => {
 });
 
 // ------------------------------------------------------------
-// SAME ENDPOINT !!!
 // Lookup one manufacturer with all synths
 // GET /manufacturers/:name/synths
 app.get('/manufacturer/:idOrName/synths', async (req, res) => {
@@ -103,12 +86,9 @@ app.get('/manufacturer/:idOrName/synths/detailed', async (req, res) => {
 app.get('/synths', async (req, res) => {
   const result = await synthsWithManufacturer();
   res.json(result);
-  // console.log('result', result);
 });
 
 // ------------------------------------------------------------
-// LARGE QUERY !!!
-// SAME ENDPOINT !!!
 // Lookup all synths with specs and manufacturer
 // GET /synths
 app.get('/synths/detailed', async (req, res) => {
@@ -140,102 +120,3 @@ app.get('/synths/specification/:year', async (req, res) => {
   const result = await synthsWithSpecYearProduced(year);
   res.json(result);
 });
-
-// ------------------------------------------------------------
-
-// ------------------------------------------------------------
-// EXAMPLE ENDPOINTS
-// ------------------------------------------------------------
-
-// VALIDATE QUERY STRING
-// app.get('/synths', async (req, res) => {
-//   const [validatedQuery, error] = validateQuery(req.query, [
-//     'manufacturer',
-//     'img',
-//   ]);
-
-//   if (error) {
-//     return res.status(400).json({message: error});
-//   }
-
-//   const synths = await Synth.findAll({
-//     where: {
-//       ...validatedQuery,
-//     },
-//   });
-//   res.json(synths);
-// });
-
-// app.get('/synths', async (req, res) => {
-//   const synths = await Synth.findAll();
-//   res.json(synths);
-// });
-
-// ------------------------------------------------------------
-
-// LOOKPUP ONE SYNTH BY ID
-// app.get('/synth/:synthId', async (req, res) => {
-//   try {
-//     const synthId = parseInt(req.params.synthId);
-//     const synth = await Synth.findByPk(synthId, {include: [Specification]});
-//     if (synthId) {
-//       res.json(synth);
-//     } else {
-//       res.status(404).send('Synth not found');
-//     }
-//   } catch (e) {
-//     next(e);
-//   }
-// });
-
-// ------------------------------------------------------------
-
-// LOOKUP ALL MANUFACTURERS
-// app.get('/manufacturers', async (req, res) => {
-//   const manufacturers = await Manufacturer.findAll();
-//   res.json(manufacturers);
-// });
-
-// -----------------------------
-// -----------------------------
-// -----------------------------
-// -----------------------------
-
-module.exports = app;
-
-// -----------------------------
-// 400 client error
-// 404 not found
-
-// EXAMPLES
-// exports.findAll = (req, res) => {
-//   const title = req.query.title;
-//   var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
-
-//   Tutorial.findAll({ where: condition })
-//     .then(data => {
-//       res.send(data);
-//     })
-//     .catch(err => {
-//       res.status(500).send({
-//         message:
-//           err.message || "Some error occurred while retrieving tutorials."
-//       });
-//     });
-// };
-
-// app.get("/users/:userId/lists", async (req, res, next) => {
-//   try {
-//     const userId = parseInt(req.params.userId);
-//     const user = await User.findByPk(userId, {
-//       include: [TodoList],
-//     });
-//     if (user) {
-//       res.send(user.todoLists);
-//     } else {
-//       res.status(404).send("User not found");
-//     }
-//   } catch (e) {
-//     next(e);
-//   }
-// });

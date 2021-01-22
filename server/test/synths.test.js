@@ -1,10 +1,5 @@
 const app = require('../app');
 const db = require('../models');
-// link the database
-// const {expect} = require('@jest/globals');
-// only use this
-
-// expect(typeof {value: 'value'}).toBe('object');
 
 const request = require('supertest');
 
@@ -100,7 +95,6 @@ describe('GET /', () => {
       const res = await server.get(`/manufacturer/${manufacturer.id}`);
       expect(res.status).toBe(200);
       expect(res.body.name).toBe(manufacturer.name);
-      // not using the model anymore, is that bad?
       done();
     });
 
@@ -110,7 +104,6 @@ describe('GET /', () => {
       const res = await server.get('/manufacturer/Korg');
       expect(res.status).toBe(200);
       expect(res.body.name).toBe('Korg');
-      // not using the model anymore, is that bad?
       done();
     });
 
@@ -122,6 +115,8 @@ describe('GET /', () => {
       expect(response.body.Synths.length).toBe(2);
       done();
     });
+
+    // or...
 
     test('should give one manufacturer by name and all synths', async (done) => {
       const response = await server.get('/manufacturer/Korg/synths');
@@ -139,6 +134,8 @@ describe('GET /', () => {
       done();
     });
 
+    // or...
+
     test('should give one manufacturer by name and all synths they made with the specs', async (done) => {
       const response = await server.get('/manufacturer/Korg/synths/detailed');
       expect(response.status).toBe(200);
@@ -154,6 +151,8 @@ describe('GET /', () => {
       done();
     });
 
+    // or...
+
     test('should give all synths with specs and manufacturer', async (done) => {
       const res = await server.get('/synths/detailed');
       expect(res.status).toBe(200);
@@ -162,16 +161,6 @@ describe('GET /', () => {
     });
 
     // ----------------------------------------------------------------------
-    // IMPLEMENT THE WEIRD ID/NAME THING?
-
-    // test('should give one manufacturer by id', async (done) => {
-    //   const manufacturer = await db.Manufacturer.findOne();
-    //   const res = await server.get(`/manufacturer/${manufacturer.id}`);
-    //   expect(res.status).toBe(200);
-    //   expect(res.body.name).toBe(manufacturer.name);
-    //   // not using the model anymore, is that bad?
-    //   done();
-    // });
 
     test('should give one synth by id with specs and manufacturer', async (done) => {
       const synth = await db.Synth.findOne();
@@ -196,7 +185,5 @@ describe('GET /', () => {
       expect(res.body.length).toBe(1);
       done();
     });
-
-    // ----------------------------------------------------------------------
   });
 });

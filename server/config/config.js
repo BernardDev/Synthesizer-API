@@ -1,9 +1,7 @@
-// I have to switch these
+// have to be switched depending the execution context:
 
 // require('dotenv').config({path: './../.env'});
 require('dotenv').config();
-
-// console.log('process.env', process.env);
 
 module.exports = {
   development: {

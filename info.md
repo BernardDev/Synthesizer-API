@@ -1,3 +1,60 @@
+### ROUTES
+
+give and limit pagination options
+include or not include specifications
+always include manufacturer
+use name OR id
+Example of Search
+GET /synths/search?name=Roland
+
+- GET /synths/specification?year=2000
+  GET /synths/specification?polyphony=8
+
+  ---SYNTHS---
+
+Lookup all synths
+GET /synths
+
+Lookup one synth (with specs and manufacturer!)
+
+- [ ] GET /synth/:id
+- [ ] GET /synth/:name
+
+Lookup one random synth ()
+
+- [ ] GET /synth/getRandom
+
+Lookup all synths by year (or any other spec value) \*
+
+- [ ] GET /synths/specification/:name
+
+Lookup all synth with synth type
+
+- [ ] GET /synths/synthType/:name
+
+Lookup all synth with interface feature
+
+- [ ] GET /synths/interfaceFeature/:name
+
+Lookup all synth with format
+
+- [ ] GET /synths/format/:name
+
+---
+
+Lookup all manufactures
+
+- [ ] GET /manufacturers
+      Lookup one manufacturer
+- [ ] GET /manufacturer/:id
+- [ ] GET /manufacturer/:name
+      Lookup one manufacturer with all synths
+- [ ] GET /manufacturers/:name/synths
+      Lookup one manufacturer with all synths and specs
+- [ ] GET /manufacturers/:name/synths
+      Lookup one manufacturer and one synth ?
+- [ ] GET /manufacturers/:name/synth/:id
+
 ### MORE IMPORTANTLY: SYNTH TYPE
 
 synthType:

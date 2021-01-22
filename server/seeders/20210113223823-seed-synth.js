@@ -17,7 +17,6 @@ module.exports = {
         {
           name: synth.title,
           img: synth.image,
-          manufacturer: synth.manufacturer,
           ManufacturerId: idMapManufacturers[synth.manufacturer],
           Specification: {
             polyphony: synth.specs.Polyphony,

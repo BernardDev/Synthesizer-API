@@ -1,3 +1,5 @@
+// I have to switch these
+
 // require('dotenv').config({path: './../.env'});
 require('dotenv').config();
 

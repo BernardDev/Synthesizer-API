@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run test-setup-db && npx jest --detectOpenHandles --runInBand",
+    "test-watch": "npm run test-setup-db && npx jest --detectOpenHandles --runInBand --watch",
+    "test-setup-db": "NODE_ENV=test npm run undo-migrate && NODE_ENV=test npm run migrate",
     "migrate": "npx sequelize-cli db:migrate",
     "undo-migrate": "npx sequelize-cli db:migrate:undo:all",
     "seed": "npx sequelize-cli db:seed:all",
@@ -12,7 +14,7 @@
     "reseed": "npm run undo-migrate && npm run migrate && npm run seed",
     "start": "node index.js",
     "dev": "npx nodemon index.js",
-    "heroku-postbuild": "npm run migrate && npm run seed"
+    "heroku-postbuild": "npm run migrate"
   },
   "author": "",
   "license": "ISC",

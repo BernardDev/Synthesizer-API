@@ -41,8 +41,6 @@ describe('GET /', () => {
       done();
     });
 
-    // ----------------------------------------------------------------------
-
     test('should give one manufacturer by id', async (done) => {
       const manufacturer = await db.Manufacturer.findOne();
       const res = await server.get(`/manufacturers/${manufacturer.id}`);
@@ -59,8 +57,6 @@ describe('GET /', () => {
       expect(res.body.name).toBe('Roland');
       done();
     });
-
-    // ----------------------------------------------------------------------
 
     test('should give one manufacturer by id and all synths', async (done) => {
       const manufacturer = await db.Manufacturer.findOne();
@@ -80,16 +76,6 @@ describe('GET /', () => {
       expect(response.body.Synths.length).toBe(2);
       done();
     });
-
-    // ----------------------------------------------------------------------
-
-    // test('should give one manufacturer by id', async (done) => {
-    //   const manufacturer = await db.Manufacturer.findOne();
-    //   const res = await server.get(`/manufacturer/${manufacturer.id}`);
-    //   expect(res.status).toBe(200);
-    //   expect(res.body.name).toBe(manufacturer.name);
-    //   done();
-    // });
 
     test('should give one manufacturer by id and all synths they made with the specs', async (done) => {
       const manufacturer = await db.Manufacturer.findOne();
@@ -112,7 +98,6 @@ describe('GET /', () => {
       done();
     });
 
-    // ----------------------------------------------------------------------
     test('should give all synths with manufacturer', async (done) => {
       const res = await server.get('/synths');
       expect(res.status).toBe(200);
@@ -129,15 +114,12 @@ describe('GET /', () => {
       done();
     });
 
-    // ----------------------------------------------------------------------
     test('should give all synths with spec value yearProduced n', async (done) => {
       const res = await server.get('/synths/specification/2001');
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(1);
       done();
     });
-
-    // ----------------------------------------------------------------------
 
     test('should give one synth by id with specs and manufacturer', async (done) => {
       const synth = await db.Synth.findOne();
@@ -155,7 +137,5 @@ describe('GET /', () => {
       expect(res.body.name).toBe('Sequential Circuits Prophet 3000');
       done();
     });
-
-    // ----------------------------------------------------------------------
   });
 });

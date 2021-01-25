@@ -9,10 +9,33 @@ const {Op} = require('sequelize');
 // -----------------------------------------------------------------------
 // Lookup all manufactures
 // GET /manufacturers
-async function manufacturersAll() {
-  const manufacturers = await Manufacturer.findAll();
-  return manufacturers.map((manufacturer) => manufacturer.get({plain: true}));
+async function manufacturersAll(limit, offset) {
+  // console.log('limit, offset', limit, offset);
+  const manufacturers = await Manufacturer.findAndCountAll({limit, offset});
+  // console.log('manufacturers', manufacturers);
+  return manufacturers;
 }
+
+//
+// const {limit, offset, validatedQuery} = req;
+// try {
+//   const {count, rows} = await Prize.findAndCountAll({
+//     limit: limit,
+//     offset: offset,
+//     where: {
+//       ...validatedQuery,
+//     },
+//   });
+
+//   if (count === 0) {
+//     return res.status(404).json({count, prizes: []});
+//   }
+
+//   res.json({count, prizes: rows});
+// } catch (error) {
+//   res.status(400).json({message: 'Bad request', errors: error.errors});
+// }
+//
 
 // manufacturersAll().then((manufacturers) => console.log(manufacturers));
 
@@ -280,7 +303,7 @@ async function synthsWithSpecYearProduced(year) {
 //   const manufacturers = await Manufacturer.findAll({
 //     include: {model: Synth, attributes: ['name']},
 //   });
-//   return manufacturers.map((manufacturer) => manufacturer.get({plain: true}));
+//   return manufacturers;
 // }
 
 // manufacturerWithSynths().then((manufacturer) => console.log(manufacturer));

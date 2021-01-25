@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const {Synth, Manufacturer, Specification} = require('./models');
+const {validateManufacturersQuery} = require('./validators');
+const yup = require('yup');
 
 const {
   manufacturersAll,
@@ -21,6 +23,10 @@ const app = express();
 
 app.use(cors());
 
+// - try catch
+// - validation: query / params | id / name
+// - pagination
+// - route naming: 'detailed'
 // ------------------------------------------------------------
 // MIDDLEWARES
 // ------------------------------------------------------------
@@ -30,19 +36,22 @@ app.use(cors());
 // ------------------------------------------------------------
 // Lookup all manufactures
 // GET /manufacturers
-app.get('/manufacturers', async (req, res) => {
-  const result = await manufacturersAll();
-  res.json(result);
+// PAGINATION
+app.get('/manufacturers', validateManufacturersQuery, async (req, res) => {
+  let limit = req.query.limit || 20;
+  let offset = req.query.offset || 0;
+  const result = await manufacturersAll(limit, offset);
+  res.json({count: result.count, manufacturers: result.rows});
 });
 
 // ------------------------------------------------------------
 // Lookup one manufacturer by id or name
 // GET /manufacturer/:idOrName
-app.get('/manufacturer/:idOrName', async (req, res) => {
+app.get('/manufacturers/:idOrName', async (req, res) => {
   const idOrName = req.params.idOrName;
   let result;
-  const regex = new RegExp('^[0-9]$');
-  if (idOrName.match(regex)) {
+  let isNumber = !isNaN(parseInt(idOrName));
+  if (isNumber) {
     result = await manufacturerByPk(idOrName);
   } else {
     result = await manufacturerByName(idOrName);
@@ -53,11 +62,11 @@ app.get('/manufacturer/:idOrName', async (req, res) => {
 // ------------------------------------------------------------
 // Lookup one manufacturer with all synths
 // GET /manufacturers/:name/synths
-app.get('/manufacturer/:idOrName/synths', async (req, res) => {
+app.get('/manufacturers/:idOrName/synths', async (req, res) => {
   const idOrName = req.params.idOrName;
   let result;
-  const regex = new RegExp('^[0-9]$');
-  if (idOrName.match(regex)) {
+  let isNumber = !isNaN(parseInt(idOrName));
+  if (isNumber) {
     result = await manufacturerByIdWithSynth(idOrName);
   } else {
     result = await manufacturerByNameWithSynth(idOrName);
@@ -68,11 +77,11 @@ app.get('/manufacturer/:idOrName/synths', async (req, res) => {
 // ------------------------------------------------------------
 // Lookup one manufacturer with all synths and specs
 // GET /manufacturer/:name/synths/detailed
-app.get('/manufacturer/:idOrName/synths/detailed', async (req, res) => {
+app.get('/manufacturers/:idOrName/synths/detailed', async (req, res) => {
   const idOrName = req.params.idOrName;
   let result;
-  const regex = new RegExp('^[0-9]$');
-  if (idOrName.match(regex)) {
+  let isNumber = !isNaN(parseInt(idOrName));
+  if (isNumber) {
     result = await manufacturerByIdWithSynthAndSpecs(idOrName);
   } else {
     result = await manufacturerByNamedWithSynthAndSpecs(idOrName);
@@ -83,6 +92,7 @@ app.get('/manufacturer/:idOrName/synths/detailed', async (req, res) => {
 // ------------------------------------------------------------
 // Lookup all synths with manufacturer
 // GET /synths
+// PAGINATION
 app.get('/synths', async (req, res) => {
   const result = await synthsWithManufacturer();
   res.json(result);
@@ -91,6 +101,7 @@ app.get('/synths', async (req, res) => {
 // ------------------------------------------------------------
 // Lookup all synths with specs and manufacturer
 // GET /synths
+// PAGINATION
 app.get('/synths/detailed', async (req, res) => {
   const result = await synthsWithSpecsAndManufacturer();
   res.json(result);
@@ -99,12 +110,11 @@ app.get('/synths/detailed', async (req, res) => {
 // ------------------------------------------------------------
 // Lookup one synth (with specs and manufacturer!)
 // GET /synth/:id
-app.get('/synth/:idOrName', async (req, res) => {
+app.get('/synths/:idOrName', async (req, res) => {
   const idOrName = req.params.idOrName;
-  console.log('idOrName', idOrName);
   let result;
-  const regex = new RegExp('^[0-9]$');
-  if (idOrName.match(regex)) {
+  let isNumber = !isNaN(parseInt(idOrName));
+  if (isNumber) {
     result = await synthByPkWithSpecsAndManufacturer(idOrName);
   } else {
     result = await synthByNameWithSpecsAndManufacturer(idOrName);
@@ -120,3 +130,5 @@ app.get('/synths/specification/:year', async (req, res) => {
   const result = await synthsWithSpecYearProduced(year);
   res.json(result);
 });
+
+module.exports = app;

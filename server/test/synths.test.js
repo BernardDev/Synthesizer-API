@@ -1,5 +1,6 @@
 const app = require('../app');
 const db = require('../models');
+const seedDummyData = require('./seed');
 
 const request = require('supertest');
 
@@ -18,64 +19,7 @@ describe('GET /', () => {
     beforeAll(async () => {
       await db.Manufacturer.destroy({truncate: true, cascade: true});
       await db.Synth.destroy({truncate: true, cascade: true});
-      const testManufacturers = [
-        {
-          name: 'Korg',
-        },
-        {
-          name: 'Novation',
-        },
-        {
-          name: 'Roland',
-        },
-      ];
-      const [korg, novation, roland] = await db.Manufacturer.bulkCreate(
-        testManufacturers
-      );
-
-      const testSynths = [
-        {
-          name: 'Korg synth 1',
-          img: 'img1',
-          ManufacturerId: korg.id,
-          Specification: {
-            polyphony: '12 voices',
-            oscillators:
-              '2 Osc per voice plus 1 Sub-Osc: Sine, tri, saw, variable width pulse, oscillator sync. 1 FM Mode: 64 digital FM spectral waveforms.',
-            lfo:
-              '2 per voice with tri, saw down, square, sample/hold, sample/glide and more',
-            filter:
-              '2 independent resonant filters; lowpass, hipass, bandpass, band reject, parallel, split & 2 serial modes with up to 36dB/voice (6-poles), overdrive/saturation.',
-            control: 'MIDI (16 multitimbral parts)',
-            effects:
-              'Up to 22 simultaneous effects: 4 Chorus effects, Global Reverb/Delay, Vocoder',
-            memory: '256 ROM patches, 256 RAM patches, 128 multi RAM patches',
-            keyboard: 'None',
-            yearProduced: 1997,
-          },
-        },
-        {
-          name: 'Korg synth 2',
-          img: 'img1',
-          ManufacturerId: korg.id,
-          Specification: {
-            polyphony: '12 voices',
-            oscillators:
-              '2 Osc per voice plus 1 Sub-Osc: Sine, tri, saw, variable width pulse, oscillator sync. 1 FM Mode: 64 digital FM spectral waveforms.',
-            lfo:
-              '2 per voice with tri, saw down, square, sample/hold, sample/glide and more',
-            filter:
-              '2 independent resonant filters; lowpass, hipass, bandpass, band reject, parallel, split & 2 serial modes with up to 36dB/voice (6-poles), overdrive/saturation.',
-            control: 'MIDI (16 multitimbral parts)',
-            effects:
-              'Up to 22 simultaneous effects: 4 Chorus effects, Global Reverb/Delay, Vocoder',
-            memory: '256 ROM patches, 256 RAM patches, 128 multi RAM patches',
-            keyboard: 'None',
-            yearProduced: 2000,
-          },
-        },
-      ];
-      await db.Synth.bulkCreate(testSynths, {include: [db.Specification]});
+      await seedDummyData();
     });
 
     // ----------------------------------------------------------------------------------
@@ -84,7 +28,16 @@ describe('GET /', () => {
     test('should give all manufacturers', async (done) => {
       const res = await server.get('/manufacturers');
       expect(res.status).toBe(200);
-      expect(res.body.length).toBe(3);
+      expect(res.body.manufacturers.length).toBe(4);
+      expect(res.body.count).toBe(4);
+      done();
+    });
+
+    test('should give all manufacturers with respect for limit param', async (done) => {
+      const res = await server.get('/manufacturers?limit=1&offset=0');
+      expect(res.status).toBe(200);
+      expect(res.body.manufacturers.length).toBe(1);
+      expect(res.body.count).toBe(4);
       done();
     });
 
@@ -92,7 +45,7 @@ describe('GET /', () => {
 
     test('should give one manufacturer by id', async (done) => {
       const manufacturer = await db.Manufacturer.findOne();
-      const res = await server.get(`/manufacturer/${manufacturer.id}`);
+      const res = await server.get(`/manufacturers/${manufacturer.id}`);
       expect(res.status).toBe(200);
       expect(res.body.name).toBe(manufacturer.name);
       done();
@@ -101,25 +54,28 @@ describe('GET /', () => {
     // or...
 
     test('should give one manufacturer by name', async (done) => {
-      const res = await server.get('/manufacturer/Korg');
+      const res = await server.get('/manufacturers/Roland');
       expect(res.status).toBe(200);
-      expect(res.body.name).toBe('Korg');
+      expect(res.body.name).toBe('Roland');
       done();
     });
 
     // ----------------------------------------------------------------------
 
     test('should give one manufacturer by id and all synths', async (done) => {
-      const response = await server.get('/manufacturer/1/synths');
+      const manufacturer = await db.Manufacturer.findOne();
+      const response = await server.get(
+        `/manufacturers/${manufacturer.id}/synths`
+      );
       expect(response.status).toBe(200);
-      expect(response.body.Synths.length).toBe(2);
+      expect(response.body.name).toBe(manufacturer.name);
       done();
     });
 
     // or...
 
     test('should give one manufacturer by name and all synths', async (done) => {
-      const response = await server.get('/manufacturer/Korg/synths');
+      const response = await server.get('/manufacturers/Vermona/synths');
       expect(response.status).toBe(200);
       expect(response.body.Synths.length).toBe(2);
       done();
@@ -127,17 +83,30 @@ describe('GET /', () => {
 
     // ----------------------------------------------------------------------
 
+    // test('should give one manufacturer by id', async (done) => {
+    //   const manufacturer = await db.Manufacturer.findOne();
+    //   const res = await server.get(`/manufacturer/${manufacturer.id}`);
+    //   expect(res.status).toBe(200);
+    //   expect(res.body.name).toBe(manufacturer.name);
+    //   done();
+    // });
+
     test('should give one manufacturer by id and all synths they made with the specs', async (done) => {
-      const response = await server.get('/manufacturer/1/synths/detailed');
+      const manufacturer = await db.Manufacturer.findOne();
+      const response = await server.get(
+        `/manufacturers/${manufacturer.id}/synths/detailed`
+      );
       expect(response.status).toBe(200);
-      expect(response.body.Synths.length).toBe(2);
+      expect(response.body.name).toBe(manufacturer.name);
       done();
     });
 
     // or...
 
     test('should give one manufacturer by name and all synths they made with the specs', async (done) => {
-      const response = await server.get('/manufacturer/Korg/synths/detailed');
+      const response = await server.get(
+        '/manufacturers/Vermona/synths/detailed'
+      );
       expect(response.status).toBe(200);
       expect(response.body.Synths.length).toBe(2);
       done();
@@ -147,7 +116,7 @@ describe('GET /', () => {
     test('should give all synths with manufacturer', async (done) => {
       const res = await server.get('/synths');
       expect(res.status).toBe(200);
-      expect(res.body.length).toBe(2);
+      expect(res.body.length).toBe(5);
       done();
     });
 
@@ -156,7 +125,15 @@ describe('GET /', () => {
     test('should give all synths with specs and manufacturer', async (done) => {
       const res = await server.get('/synths/detailed');
       expect(res.status).toBe(200);
-      expect(res.body.length).toBe(2);
+      expect(res.body.length).toBe(5);
+      done();
+    });
+
+    // ----------------------------------------------------------------------
+    test('should give all synths with spec value yearProduced n', async (done) => {
+      const res = await server.get('/synths/specification/2001');
+      expect(res.status).toBe(200);
+      expect(res.body.length).toBe(1);
       done();
     });
 
@@ -164,26 +141,21 @@ describe('GET /', () => {
 
     test('should give one synth by id with specs and manufacturer', async (done) => {
       const synth = await db.Synth.findOne();
-      const res = await server.get(`/synth/${synth.id}`);
+      const res = await server.get(`/synths/${synth.id}`);
       expect(res.status).toBe(200);
       expect(res.body.name).toBe(synth.name);
       done();
     });
 
-    // NOT PASSING
-    // test('should give one synth by name with specs and manufacturer', async (done) => {
-    //   const res = await server.get('/synth/Korg');
-    //   expect(res.status).toBe(200);
-    //   expect(res.body).toBe(null);
-    //   done();
-    // });
-
-    // ----------------------------------------------------------------------
-    test('should get all synths with spec value yearProduced n', async (done) => {
-      const res = await server.get('/synths/specification/2000');
+    test.only('should give one synth by name with specs and manufacturer', async (done) => {
+      const res = await server.get(
+        '/synths/Sequential%20Circuits%20Prophet%203000'
+      );
       expect(res.status).toBe(200);
-      expect(res.body.length).toBe(1);
+      expect(res.body.name).toBe('Sequential Circuits Prophet 3000');
       done();
     });
+
+    // ----------------------------------------------------------------------
   });
 });

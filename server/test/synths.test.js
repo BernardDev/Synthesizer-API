@@ -25,6 +25,19 @@ describe('GET /', () => {
     // ----------------------------------------------------------------------------------
     // tests start
     // ----------------------------------------------------------------------------------
+    test('should give all synth with queries', async (done) => {
+      // const res = await server.get('/synths?manufacturer=Roland');
+      // const res = await server.get(
+      //   '/synths?manufacturer=Vermona&yearProduced=1999'
+      // );
+      // const res = await server.get('/synths?offset=0&limit=3');
+      // const res = await server.get('/synths?yearProduced=1999');
+      expect(res.status).toBe(200);
+      expect(res.body.rows.length).toBe(3);
+      // expect(res.body.manufacturers.length).toBe(4);
+      done();
+    });
+
     test('should give all manufacturers', async (done) => {
       const res = await server.get('/manufacturers');
       expect(res.status).toBe(200);
@@ -33,11 +46,19 @@ describe('GET /', () => {
       done();
     });
 
-    test('should give all manufacturers with respect for limit param', async (done) => {
-      const res = await server.get('/manufacturers?limit=1&offset=0');
-      expect(res.status).toBe(200);
-      expect(res.body.manufacturers.length).toBe(1);
-      expect(res.body.count).toBe(4);
+    // test('should give all manufacturers with respect for limit param', async (done) => {
+    //   const res = await server.get('/manufacturers?limit=2&offset=0');
+    //   expect(res.status).toBe(200);
+    //   expect(res.body.manufacturers.length).toBe();
+    //   expect(res.body.count).toBe(4);
+    //   done();
+    // });
+
+    test('should give error NaN for offset', async (done) => {
+      const res = await server.get('/manufacturers?limit=2&offset=cheese');
+      expect(res.body.errors).toEqual([
+        'offset must be a `number` type, but the final value was: `NaN` (cast from the value `"cheese"`).',
+      ]);
       done();
     });
 
@@ -98,19 +119,33 @@ describe('GET /', () => {
       done();
     });
 
-    test('should give all synths with manufacturer', async (done) => {
+    test('should not give synths with respect for limit param', async (done) => {
       const res = await server.get('/synths');
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(5);
       done();
     });
 
+    test('should give all synths with respect for limit param', async (done) => {
+      const res = await server.get('/synths?limit=2&offset=0');
+      expect(res.status).toBe(200);
+      expect(res.body.rows.length).toBe(2);
+      done();
+    });
+
     // or...
 
-    test('should give all synths with specs and manufacturer', async (done) => {
+    test('should not give synths with specs and manufacturer', async (done) => {
       const res = await server.get('/synths/detailed');
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(5);
+      done();
+    });
+
+    test('should give all synths with specs and manufacturer with respect for limit param', async (done) => {
+      const res = await server.get('/synths/detailed?limit=2&offset=0');
+      expect(res.status).toBe(200);
+      expect(res.body.rows.length).toBe(2);
       done();
     });
 
@@ -129,12 +164,15 @@ describe('GET /', () => {
       done();
     });
 
-    test.only('should give one synth by name with specs and manufacturer', async (done) => {
+    test('should give one synth by name with specs and manufacturer', async (done) => {
       const res = await server.get(
         '/synths/Sequential%20Circuits%20Prophet%203000'
       );
+      // Sequential Circuits Prophet 3000"
       expect(res.status).toBe(200);
       expect(res.body.name).toBe('Sequential Circuits Prophet 3000');
+      expect(res.body.Specification).toBeTruthy();
+      expect(res.body.Manufacturer).toBeTruthy();
       done();
     });
   });

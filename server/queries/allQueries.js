@@ -1,6 +1,7 @@
 const {Synth, Manufacturer, Specification} = require('../models');
 const {Op} = require('sequelize');
 
+// YES
 async function manufacturersAll(limit, offset) {
   const manufacturers = await Manufacturer.findAndCountAll({limit, offset});
   return manufacturers;
@@ -8,13 +9,13 @@ async function manufacturersAll(limit, offset) {
 
 async function manufacturerByPk(id) {
   const manufacturer = await Manufacturer.findByPk(id);
-  return manufacturer.get({plain: true});
+  return manufacturer;
 }
 // manufacturerByPk(200).then((manufacturer) => console.log(manufacturer));
 
 async function manufacturerByName(name) {
   const manufacturer = await Manufacturer.findOne({where: {name: name}});
-  return manufacturer.get({plain: true});
+  return manufacturer;
 }
 
 // manufacturerByName('Roland').then((manufacturer) => console.log(manufacturer));
@@ -25,7 +26,7 @@ async function manufacturerByIdWithSynth(id) {
       model: Synth,
     },
   });
-  return manufacturer.get({plain: true});
+  return manufacturer;
 }
 
 async function manufacturerByNameWithSynth(name) {
@@ -35,7 +36,7 @@ async function manufacturerByNameWithSynth(name) {
       model: Synth,
     },
   });
-  return manufacturer.get({plain: true});
+  return manufacturer;
 }
 
 // manufacturerWithSynth('Teisco').then((manufacturer) => console.log(manufacturer));
@@ -49,7 +50,7 @@ async function manufacturerByIdWithSynthAndSpecs(id) {
       },
     },
   });
-  return manufacturer.get({plain: true});
+  return manufacturer;
 }
 
 async function manufacturerByNamedWithSynthAndSpecs(name) {
@@ -62,7 +63,7 @@ async function manufacturerByNamedWithSynthAndSpecs(name) {
       },
     },
   });
-  return manufacturer.get({plain: true});
+  return manufacturer;
 }
 
 // manufacturerWithSynthAndSpecs('Teisco').then((manufacturer) => console.log(manufacturer));
@@ -72,27 +73,39 @@ async function manufacturerByNamedWithSynthAndSpecs(name) {
 
 // ...
 
-async function synthsWithManufacturer() {
-  const synths = await Synth.findAll({
+// YES
+async function synthsWithManufacturer(limit, offset) {
+  // console.log('this is the params', limit, offset);
+  const synths = await Synth.findAndCountAll({
+    limit,
+    offset,
     include: {model: Manufacturer},
   });
-  return synths.map((synth) => synth.get({plain: true}));
+  return synths;
 }
 
 // synthsWithManufacturer().then((synths) => console.log(synths, 'hellow'));
 
-async function synthsWithSpecsAndManufacturer() {
-  const synths = await Synth.findAll({
+// YES
+async function synthsWithSpecsAndManufacturer(
+  specificationQuery,
+  manufacturerQuery,
+  pagination = {limit: 20, offset: 0}
+) {
+  const synths = await Synth.findAndCountAll({
+    ...pagination,
     include: [
       {
         model: Specification,
+        where: {...specificationQuery},
       },
       {
         model: Manufacturer,
+        where: {...manufacturerQuery},
       },
     ],
   });
-  return synths.map((synth) => synth.get({plain: true}));
+  return synths;
 }
 
 // synthsWithSpecsAndManufacturer().then((synths) => console.log(synths));
@@ -108,7 +121,7 @@ async function synthByPkWithSpecsAndManufacturer(id) {
       },
     ],
   });
-  return synth.get({plain: true});
+  return synth;
 }
 // synthByPkWithSpecsAndManufacturer(20).then((synth) => console.log(synth));
 
@@ -125,7 +138,8 @@ async function synthByNameWithSpecsAndManufacturer(synthName) {
         },
       ],
     });
-    return synth.get({plain: true});
+
+    return synth;
   } catch (error) {
     console.log('error', error);
   }
@@ -140,6 +154,7 @@ async function synthByNameWithSpecsAndManufacturer(synthName) {
 
 // ...
 
+// YEP
 async function synthsWithSpecYearProduced(year) {
   const synths = await Synth.findAll({
     include: [
@@ -153,7 +168,7 @@ async function synthsWithSpecYearProduced(year) {
     ],
   });
 
-  return synths.map((synth) => synth.get({plain: true}));
+  return synths;
 }
 
 // synthsWithSpecYearProduced('1980').then((synths) => console.log(synths));

@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Manufacturer.init(
     {
-      name: {
+      manufacturer: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,

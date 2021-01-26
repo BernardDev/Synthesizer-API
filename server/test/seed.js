@@ -1,19 +1,18 @@
 const db = require('../models');
 
 async function seedDummyData() {
-  console.log('appelsap');
   const testManufacturers = [
     {
-      name: 'Vermona',
+      manufacturer: 'Vermona',
     },
     {
-      name: 'Roland',
+      manufacturer: 'Roland',
     },
     {
-      name: 'Sequential Circuits',
+      manufacturer: 'Sequential Circuits',
     },
     {
-      name: 'TC|Works',
+      manufacturer: 'TC|Works',
     },
   ];
   const [
@@ -73,7 +72,7 @@ async function seedDummyData() {
       },
     },
     {
-      name: 'Sequential Circuits Prophet 3000"',
+      name: 'Sequential Circuits Prophet 3000',
       img: 'http://www.vintagesynth.com/sites/default/files/2017-05/p3000.jpg',
       ManufacturerId: sequentialCircuits.id,
       Specification: {
@@ -84,7 +83,7 @@ async function seedDummyData() {
         effects:
           'Up to 22 simultaneous effects: 4 Chorus effects, Global Reverb/Delay, Vocoder',
         memory: '128 patches',
-        yearProduced: 1999,
+        yearProduced: 1997,
       },
     },
     {
@@ -104,7 +103,7 @@ async function seedDummyData() {
           '128 user, 640 presets, 2 user rhythm kits, 10 preset rhythm kits, 32 user performances, 64 preset performances and 8 expansion board slots',
         keyboard: 'None',
         control: 'MIDI (16 channels)',
-        yearProduced: 1997,
+        yearProduced: 1996,
       },
       manufacturer: 'Roland',
     },

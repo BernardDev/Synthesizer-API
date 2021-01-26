@@ -28,9 +28,6 @@ app.use(cors());
 // ------------------------------------------------------------
 // ENDPOINTS
 // ------------------------------------------------------------
-// validateQuery ipv req.query
-// error handler 404
-// implement querying by name
 app.get(
   '/manufacturers',
   validate(
@@ -57,30 +54,40 @@ app.get(
     }
   }
 );
-// number/string yup hack
-// use validatedParams to choose sequelize request method
-// error handling 404
+
+const schema = yup
+  .object()
+  .shape({
+    nameOrId: yup.string().required(),
+    id: yup.number().when('nameOrId', function (nameOrId, schema) {
+      if (!isNaN(parseInt(nameOrId))) {
+        return schema.default(parseInt(nameOrId));
+      }
+    }),
+    manufacturer: yup.string().when('nameOrId', function (nameOrId, schema) {
+      if (typeof nameOr !== 'number' && isNaN(parseInt(nameOrId))) {
+        return schema.default(nameOrId);
+      }
+    }),
+  })
+  .noUnknown();
+
 app.get(
-  '/manufacturers/:idOrName',
-  validate(
-    yup
-      .object()
-      .shape({
-        name: yup.string().length(100).required(),
-        // it can be a string or an integer
-      })
-      .noUnknown(),
-    'param'
-  ),
+  '/manufacturers/:nameOrId',
+  validate(schema, 'params'),
   async (req, res) => {
     try {
-      const idOrName = req.params.idOrName;
+      const {manufacturer, id} = req.validatedParams;
+      console.log('manufacturer destruct', manufacturer);
+      console.log('id destruct', id);
       let result;
-      let isNumber = !isNaN(parseInt(idOrName));
-      if (isNumber) {
-        result = await manufacturerByPk(idOrName);
+      if (id) {
+        result = await manufacturerByPk(id);
       } else {
-        result = await manufacturerByName(idOrName);
+        result = await manufacturerByName(manufacturer);
+      }
+      if (result.length === 0) {
+        res.status(404);
       }
       res.json(result);
     } catch (error) {
@@ -154,7 +161,7 @@ app.get('/manufacturers/:idOrName/synths/detailed', async (req, res) => {
 
 // move to different file, queryValidator?
 function formatSynthQuery(query) {
-  console.log('query', query);
+  // console.log('query', query);
   let pagination = {};
   let manufacturerQuery = {};
   let specificationQuery = {};
@@ -173,20 +180,20 @@ function formatSynthQuery(query) {
   ];
   for (const option of specificationOptions) {
     if (query.hasOwnProperty(option)) {
-      console.log('option', option);
+      // console.log('option', option);
       specificationQuery[option] = query[option];
     }
   }
   for (const option of manufacturerOptions) {
     if (query.hasOwnProperty(option)) {
-      console.log('option', option);
+      // console.log('option', option);
       manufacturerQuery[option] = query[option];
     }
   }
   for (const option of paginationOptions) {
     if (query.hasOwnProperty(option)) {
-      console.log('option', option);
-      console.log(query[option]);
+      // console.log('option', option);
+      // console.log(query[option]);
       pagination[option] = query[option];
     }
   }
@@ -213,7 +220,7 @@ app.get('/synths', async (req, res) => {
       pagination
     );
     res.json(result);
-    console.log('result of thing', result);
+    // console.log('result of thing', result);
   } catch (error) {
     console.log('ERROR: /synths/detailed', error);
     res.status(400).json({message: 'Bad request', errors: error.errors});

@@ -14,7 +14,9 @@ async function manufacturerByPk(id) {
 // manufacturerByPk(200).then((manufacturer) => console.log(manufacturer));
 
 async function manufacturerByName(name) {
-  const manufacturer = await Manufacturer.findOne({where: {name: name}});
+  const manufacturer = await Manufacturer.findOne({
+    where: {manufacturer: name},
+  });
   return manufacturer;
 }
 
@@ -31,7 +33,7 @@ async function manufacturerByIdWithSynth(id) {
 
 async function manufacturerByNameWithSynth(name) {
   const manufacturer = await Manufacturer.findOne({
-    where: {name: name},
+    where: {manufacturer: name},
     include: {
       model: Synth,
     },
@@ -55,7 +57,7 @@ async function manufacturerByIdWithSynthAndSpecs(id) {
 
 async function manufacturerByNamedWithSynthAndSpecs(name) {
   const manufacturer = await Manufacturer.findOne({
-    where: {name: name},
+    where: {manufacturer: name},
     include: {
       model: Synth,
       include: {

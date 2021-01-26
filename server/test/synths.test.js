@@ -46,13 +46,13 @@ describe('GET /', () => {
       done();
     });
 
-    // test('should give all manufacturers with respect for limit param', async (done) => {
-    //   const res = await server.get('/manufacturers?limit=2&offset=0');
-    //   expect(res.status).toBe(200);
-    //   expect(res.body.manufacturers.length).toBe();
-    //   expect(res.body.count).toBe(4);
-    //   done();
-    // });
+    test('should give all manufacturers with respect for limit param', async (done) => {
+      const res = await server.get('/manufacturers?limit=2&offset=0');
+      expect(res.status).toBe(200);
+      expect(res.body.manufacturers.length).toBe();
+      expect(res.body.count).toBe(4);
+      done();
+    });
 
     test('should give error NaN for offset', async (done) => {
       const res = await server.get('/manufacturers?limit=2&offset=cheese');
@@ -62,11 +62,21 @@ describe('GET /', () => {
       done();
     });
 
+    test.only('should give one manufacturer by either id or name', async (done) => {
+      const res = await server.get('/manufacturers/Roland');
+      expect(res.status).toBe(200);
+      expect(res.body.manufacturer).toBe('Roland');
+      // const res = await server.get('/manufacturers/1');
+      // expect(res.status).toBe(200);
+      // expect(res.body.manufacturer).toBe('Vermona');
+      done();
+    });
+
     test('should give one manufacturer by id', async (done) => {
       const manufacturer = await db.Manufacturer.findOne();
       const res = await server.get(`/manufacturers/${manufacturer.id}`);
       expect(res.status).toBe(200);
-      expect(res.body.name).toBe(manufacturer.name);
+      expect(res.body.manufacturer).toBe('Vermona');
       done();
     });
 
@@ -75,7 +85,7 @@ describe('GET /', () => {
     test('should give one manufacturer by name', async (done) => {
       const res = await server.get('/manufacturers/Roland');
       expect(res.status).toBe(200);
-      expect(res.body.name).toBe('Roland');
+      expect(res.body).toBe(null);
       done();
     });
 

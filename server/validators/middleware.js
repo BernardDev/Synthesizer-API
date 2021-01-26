@@ -59,6 +59,7 @@ function validate(schema, path = 'query') {
       ] = validatedObject; // validatedQuery validatedParams
       next();
     } catch (error) {
+      console.log('error dingetje', error);
       res.status(400).json({message: 'Bad request', errors: error.errors});
     }
   };

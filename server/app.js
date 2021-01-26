@@ -37,7 +37,6 @@ app.get(
     yup
       .object()
       .shape({
-        manufacturer: yup.string().length(100).required(),
         limit: yup.number().integer().min(1).default(20),
         offset: yup.number().integer().min(0).default(0),
       })
@@ -46,9 +45,11 @@ app.get(
   ),
   async (req, res) => {
     try {
-      let limit = req.query.limit || 20;
-      let offset = req.query.offset || 0;
+      const {limit, offset} = req.validatedQuery;
       const result = await manufacturersAll(limit, offset);
+      if (result.rows.length === 0) {
+        res.status(404);
+      }
       res.json({count: result.count, manufacturers: result.rows});
     } catch (error) {
       console.error('ERROR: /manufacturers', error);

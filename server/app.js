@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-const {Synth, Manufacturer, Specification} = require('./models');
+// const {Synth, Manufacturer, Specification} = require('./models');
 const validate = require('./validators/middleware');
+const formatSynthQuery = require('./validators/queryValidators');
 const yup = require('yup');
 
 const {
@@ -55,6 +56,8 @@ app.get(
   }
 );
 
+// --------------------------------------------------------------------------------
+
 const schema = yup
   .object()
   .shape({
@@ -97,7 +100,10 @@ app.get(
   }
 );
 
+// --------------------------------------------------------------------------------
+
 // replace route with GET /synths?
+// /synths?manufacturer=Roland&yearProduced=2000
 // rewrite test for new endpoint
 app.get(
   '/manufacturers/:idOrName/synths',
@@ -160,50 +166,7 @@ app.get('/manufacturers/:idOrName/synths/detailed', async (req, res) => {
 });
 
 // move to different file, queryValidator?
-function formatSynthQuery(query) {
-  // console.log('query', query);
-  let pagination = {};
-  let manufacturerQuery = {};
-  let specificationQuery = {};
-  let manufacturerOptions = ['manufacturer'];
-  let paginationOptions = ['limit', 'offset'];
-  let specificationOptions = [
-    'polyphony',
-    'keyboard',
-    'control',
-    'yearProduced',
-    'memory',
-    'oscillators',
-    'filter',
-    'lfo',
-    'effects',
-  ];
-  for (const option of specificationOptions) {
-    if (query.hasOwnProperty(option)) {
-      // console.log('option', option);
-      specificationQuery[option] = query[option];
-    }
-  }
-  for (const option of manufacturerOptions) {
-    if (query.hasOwnProperty(option)) {
-      // console.log('option', option);
-      manufacturerQuery[option] = query[option];
-    }
-  }
-  for (const option of paginationOptions) {
-    if (query.hasOwnProperty(option)) {
-      // console.log('option', option);
-      // console.log(query[option]);
-      pagination[option] = query[option];
-    }
-  }
-  console.log('pagination', pagination);
-  return {
-    specificationQuery: specificationQuery,
-    manufacturerQuery: manufacturerQuery,
-    pagination: pagination,
-  };
-}
+
 // add yup validation
 // add error handling 404
 // use validatedQuery from yup

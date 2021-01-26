@@ -25,15 +25,15 @@ describe('GET /', () => {
     // ----------------------------------------------------------------------------------
     // tests start
     // ----------------------------------------------------------------------------------
-    test('should give all synth with queries', async (done) => {
+    test.only('should give all synth with queries', async (done) => {
       // const res = await server.get('/synths?manufacturer=Roland');
-      // const res = await server.get(
-      //   '/synths?manufacturer=Vermona&yearProduced=1999'
-      // );
+      const res = await server.get(
+        '/synths?manufacturer=Vermona&yearProduced=1999'
+      );
       // const res = await server.get('/synths?offset=0&limit=3');
       // const res = await server.get('/synths?yearProduced=1999');
       expect(res.status).toBe(200);
-      expect(res.body.rows.length).toBe(3);
+      expect(res.body.rows.length).toBe(1);
       // expect(res.body.manufacturers.length).toBe(4);
       done();
     });

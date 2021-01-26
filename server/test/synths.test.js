@@ -62,7 +62,7 @@ describe('GET /', () => {
       done();
     });
 
-    test.only('should give one manufacturer by either id or name', async (done) => {
+    test('should give one manufacturer by either id or name', async (done) => {
       const res = await server.get('/manufacturers/Roland');
       expect(res.status).toBe(200);
       expect(res.body.manufacturer).toBe('Roland');

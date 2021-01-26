@@ -58,7 +58,7 @@ app.get(
 
 // --------------------------------------------------------------------------------
 
-const schema = yup
+const idOrManufacturerSchema = yup
   .object()
   .shape({
     nameOrId: yup.string().required(),
@@ -77,7 +77,7 @@ const schema = yup
 
 app.get(
   '/manufacturers/:nameOrId',
-  validate(schema, 'params'),
+  validate(idOrManufacturerSchema, 'params'),
   async (req, res) => {
     try {
       const {manufacturer, id} = req.validatedParams;
@@ -99,6 +99,72 @@ app.get(
     }
   }
 );
+
+// --------------------------------------------------------------------------------
+app.get(
+  '/synths',
+  validate(
+    yup
+      .object()
+      .shape({
+        limit: yup.number().integer().min(1).default(20),
+        offset: yup.number().integer().min(0).default(0),
+        polyphony: yup.string(),
+        keyboard: yup.string(),
+        control: yup.string(),
+        yearProduced: yup.number().integer(),
+        memory: yup.string(),
+        oscillators: yup.string(),
+        filter: yup.string(),
+        lfo: yup.string(),
+        effects: yup.string(),
+        manufacturer: yup.string(),
+      })
+      .noUnknown(),
+    'query'
+  ),
+  async (req, res) => {
+    try {
+      const {
+        specificationQuery,
+        manufacturerQuery,
+        pagination,
+      } = formatSynthQuery(req.validatedQuery);
+      const result = await synthsWithSpecsAndManufacturer(
+        specificationQuery,
+        manufacturerQuery,
+        pagination
+      );
+      if (result.rows.length === 0) {
+        res.status(404);
+      }
+      res.json(result);
+      console.log('result of thing', result);
+    } catch (error) {
+      console.log('ERROR: /synths/detailed', error);
+      res.status(400).json({message: 'Bad request', errors: error.errors});
+    }
+  }
+);
+
+// add yup validation
+// use validatedParams from yup
+app.get('/synths/:idOrName', async (req, res) => {
+  try {
+    const idOrName = req.params.idOrName;
+    let result;
+    let isNumber = !isNaN(parseInt(idOrName));
+    if (isNumber) {
+      result = await synthByPkWithSpecsAndManufacturer(idOrName);
+    } else {
+      result = await synthByNameWithSpecsAndManufacturer(idOrName);
+    }
+    res.json(result);
+  } catch (error) {
+    console.log('ERROR: /synths/:idOrName', error);
+    res.status(400).json({message: 'Bad request', errors: error.errors});
+  }
+});
 
 // --------------------------------------------------------------------------------
 
@@ -166,47 +232,5 @@ app.get('/manufacturers/:idOrName/synths/detailed', async (req, res) => {
 });
 
 // move to different file, queryValidator?
-
-// add yup validation
-// add error handling 404
-// use validatedQuery from yup
-app.get('/synths', async (req, res) => {
-  try {
-    const {
-      specificationQuery,
-      manufacturerQuery,
-      pagination,
-    } = formatSynthQuery(req.query);
-    const result = await synthsWithSpecsAndManufacturer(
-      specificationQuery,
-      manufacturerQuery,
-      pagination
-    );
-    res.json(result);
-    // console.log('result of thing', result);
-  } catch (error) {
-    console.log('ERROR: /synths/detailed', error);
-    res.status(400).json({message: 'Bad request', errors: error.errors});
-  }
-});
-
-// add yup validation
-// use validatedParams from yup
-app.get('/synths/:idOrName', async (req, res) => {
-  try {
-    const idOrName = req.params.idOrName;
-    let result;
-    let isNumber = !isNaN(parseInt(idOrName));
-    if (isNumber) {
-      result = await synthByPkWithSpecsAndManufacturer(idOrName);
-    } else {
-      result = await synthByNameWithSpecsAndManufacturer(idOrName);
-    }
-    res.json(result);
-  } catch (error) {
-    console.log('ERROR: /synths/:idOrName', error);
-    res.status(400).json({message: 'Bad request', errors: error.errors});
-  }
-});
 
 module.exports = app;

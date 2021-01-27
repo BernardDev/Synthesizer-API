@@ -1,122 +1,189 @@
 const express = require('express');
 const cors = require('cors');
-const {Synth, Manufacturer, Specification} = require('./models');
+const validate = require('./validators/middleware');
+const formatSynthQuery = require('./validators/queryValidators');
+const yup = require('yup');
 
 const {
   manufacturersAll,
   manufacturerByPk,
   manufacturerByName,
-  manufacturerByIdWithSynth,
-  manufacturerByNameWithSynth,
-  manufacturerByIdWithSynthAndSpecs,
-  manufacturerByNamedWithSynthAndSpecs,
-  synthsWithManufacturer,
-  synthsWithSpecsAndManufacturer,
-  synthByPkWithSpecsAndManufacturer,
-  synthByNameWithSpecsAndManufacturer,
-  synthsWithSpecYearProduced,
+  synthsAll,
+  synthByPk,
+  synthByName,
 } = require('./queries/allQueries');
-
-const app = express();
-
-app.use(cors());
 
 // ------------------------------------------------------------
 // MIDDLEWARES
 // ------------------------------------------------------------
-
+const app = express();
+app.use(cors());
 // ------------------------------------------------------------
 // ENDPOINTS
 // ------------------------------------------------------------
-// Lookup all manufactures
-// GET /manufacturers
-app.get('/manufacturers', async (req, res) => {
-  const result = await manufacturersAll();
-  res.json(result);
-});
+// schema's yup = name var
+// yup general schema
+// querying on pk and or findOne
+//
 
-// ------------------------------------------------------------
-// Lookup one manufacturer by id or name
-// GET /manufacturer/:idOrName
-app.get('/manufacturer/:idOrName', async (req, res) => {
-  const idOrName = req.params.idOrName;
-  let result;
-  const regex = new RegExp('^[0-9]$');
-  if (idOrName.match(regex)) {
-    result = await manufacturerByPk(idOrName);
-  } else {
-    result = await manufacturerByName(idOrName);
+app.get(
+  '/manufacturers',
+  validate(
+    yup
+      .object()
+      .shape({
+        limit: yup.number().integer().min(1).default(20),
+        offset: yup.number().integer().min(0).default(0),
+      })
+      .noUnknown(),
+    'query'
+  ),
+  async (req, res) => {
+    try {
+      const {limit, offset} = req.validatedQuery;
+      const result = await manufacturersAll(limit, offset);
+      if (result.rows.length === 0) {
+        res.status(404);
+      }
+      res.json({count: result.count, manufacturers: result.rows});
+    } catch (error) {
+      console.error('ERROR: /manufacturers', error);
+      res.status(400).json({message: 'Bad request', errors: error.errors});
+    }
   }
-  res.json(result);
-});
+);
 
-// ------------------------------------------------------------
-// Lookup one manufacturer with all synths
-// GET /manufacturers/:name/synths
-app.get('/manufacturer/:idOrName/synths', async (req, res) => {
-  const idOrName = req.params.idOrName;
-  let result;
-  const regex = new RegExp('^[0-9]$');
-  if (idOrName.match(regex)) {
-    result = await manufacturerByIdWithSynth(idOrName);
-  } else {
-    result = await manufacturerByNameWithSynth(idOrName);
+// --------------------------------------------------------------------------------
+
+const idOrManufacturerSchema = yup
+  .object()
+  .shape({
+    nameOrId: yup.string().required(),
+    id: yup.number().when('nameOrId', function (nameOrId, schema) {
+      if (!isNaN(parseInt(nameOrId))) {
+        return schema.default(parseInt(nameOrId));
+      }
+    }),
+    manufacturer: yup.string().when('nameOrId', function (nameOrId, schema) {
+      if (typeof nameOr !== 'number' && isNaN(parseInt(nameOrId))) {
+        return schema.default(nameOrId);
+      }
+    }),
+  })
+  .noUnknown();
+
+app.get(
+  '/manufacturers/:nameOrId',
+  validate(idOrManufacturerSchema, 'params'),
+  async (req, res) => {
+    try {
+      const {manufacturer, id} = req.validatedParams;
+      console.log('manufacturer destruct', manufacturer);
+      console.log('id destruct', id);
+      let result;
+      if (id) {
+        result = await manufacturerByPk(id);
+      } else {
+        result = await manufacturerByName(manufacturer);
+      }
+      if (result.length === 0) {
+        res.status(404);
+      }
+      res.json(result);
+    } catch (error) {
+      console.log('ERROR: /manufacturers/:nameOrId', error);
+      res.status(400).json({message: 'Bad request', errors: error.errors});
+    }
   }
-  res.json(result);
-});
+);
 
-// ------------------------------------------------------------
-// Lookup one manufacturer with all synths and specs
-// GET /manufacturer/:name/synths/detailed
-app.get('/manufacturer/:idOrName/synths/detailed', async (req, res) => {
-  const idOrName = req.params.idOrName;
-  let result;
-  const regex = new RegExp('^[0-9]$');
-  if (idOrName.match(regex)) {
-    result = await manufacturerByIdWithSynthAndSpecs(idOrName);
-  } else {
-    result = await manufacturerByNamedWithSynthAndSpecs(idOrName);
+// --------------------------------------------------------------------------------
+// replaces GET /manufacturers/:idOrName/synths/detailed'
+app.get(
+  '/synths',
+  validate(
+    yup
+      .object()
+      .shape({
+        limit: yup.number().integer().min(1).default(20),
+        offset: yup.number().integer().min(0).default(0),
+        polyphony: yup.string(),
+        keyboard: yup.string(),
+        control: yup.string(),
+        yearProduced: yup.number().integer(),
+        memory: yup.string(),
+        oscillators: yup.string(),
+        filter: yup.string(),
+        lfo: yup.string(),
+        effects: yup.string(),
+        manufacturer: yup.string(),
+      })
+      .noUnknown(),
+    'query'
+  ),
+  async (req, res) => {
+    try {
+      const {
+        specificationQuery,
+        manufacturerQuery,
+        pagination,
+      } = formatSynthQuery(req.validatedQuery);
+      const result = await synthsAll(
+        specificationQuery,
+        manufacturerQuery,
+        pagination
+      );
+      if (result.rows.length === 0) {
+        res.status(404);
+      }
+      res.json(result);
+      console.log('result of thing', result);
+    } catch (error) {
+      console.log('ERROR: /synths/detailed', error);
+      res.status(400).json({message: 'Bad request', errors: error.errors});
+    }
   }
-  res.json(result);
-});
-
+);
 // ------------------------------------------------------------
-// Lookup all synths with manufacturer
-// GET /synths
-app.get('/synths', async (req, res) => {
-  const result = await synthsWithManufacturer();
-  res.json(result);
-});
 
-// ------------------------------------------------------------
-// Lookup all synths with specs and manufacturer
-// GET /synths
-app.get('/synths/detailed', async (req, res) => {
-  const result = await synthsWithSpecsAndManufacturer();
-  res.json(result);
-});
+// add yup validation
+// use validatedParams from yup
+const idOrNameSchema = yup
+  .object()
+  .shape({
+    nameOrId: yup.string().required(),
+    id: yup.number().when('nameOrId', function (nameOrId, schema) {
+      if (!isNaN(parseInt(nameOrId))) {
+        return schema.default(parseInt(nameOrId));
+      }
+    }),
+    name: yup.string().when('nameOrId', function (nameOrId, schema) {
+      if (typeof nameOr !== 'number' && isNaN(parseInt(nameOrId))) {
+        return schema.default(nameOrId);
+      }
+    }),
+  })
+  .noUnknown();
 
-// ------------------------------------------------------------
-// Lookup one synth (with specs and manufacturer!)
-// GET /synth/:id
-app.get('/synth/:idOrName', async (req, res) => {
-  const idOrName = req.params.idOrName;
-  console.log('idOrName', idOrName);
-  let result;
-  const regex = new RegExp('^[0-9]$');
-  if (idOrName.match(regex)) {
-    result = await synthByPkWithSpecsAndManufacturer(idOrName);
-  } else {
-    result = await synthByNameWithSpecsAndManufacturer(idOrName);
+app.get(
+  '/synths/:nameOrId',
+  validate(idOrNameSchema, 'params'),
+  async (req, res) => {
+    try {
+      // const idOrName = req.params.idOrName;
+      const {name, id} = req.validatedParams;
+      let result;
+      if (id) {
+        result = await synthByPk(id);
+      } else {
+        result = await synthByName(name);
+      }
+      res.json(result);
+    } catch (error) {
+      console.log('ERROR: /synths/:nameOrId', error);
+      res.status(400).json({message: 'Bad request', errors: error.errors});
+    }
   }
-  res.json(result);
-});
+);
 
-// ------------------------------------------------------------
-// Lookup all synths by year (or any other spec value) *
-// GET /synths/specification/:name
-app.get('/synths/specification/:year', async (req, res) => {
-  const year = req.params.year;
-  const result = await synthsWithSpecYearProduced(year);
-  res.json(result);
-});
+module.exports = app;

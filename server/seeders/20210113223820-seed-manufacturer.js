@@ -6,14 +6,14 @@ const synths = require('../data/store.json');
 
 const results = synths.map((synth) => {
   return {
-    name: synth.manufacturer,
+    manufacturer: synth.manufacturer,
   };
 });
 
-const uniques = [...new Set(results.map((item) => item.name))];
+const uniques = [...new Set(results.map((item) => item.manufacturer))];
 
 let container = uniques.map((thing) => {
-  return {name: thing};
+  return {manufacturer: thing};
 });
 
 module.exports = {

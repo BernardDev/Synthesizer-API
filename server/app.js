@@ -18,10 +18,14 @@ const {
 // ------------------------------------------------------------
 const app = express();
 app.use(cors());
-
 // ------------------------------------------------------------
 // ENDPOINTS
 // ------------------------------------------------------------
+// schema's yup = name var
+// yup general schema
+// querying on pk and or findOne
+//
+
 app.get(
   '/manufacturers',
   validate(

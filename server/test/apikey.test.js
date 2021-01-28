@@ -22,7 +22,7 @@ describe.only('apikeys', () => {
   });
 
   test('should refuse requests without apikey in querystring', async (done) => {
-    const res = await server.get('/manufacturers');
+    const res = await server.get('/api/manufacturers');
     expect(res.status).toBe(400);
     // expect(res.status).toBe(403);
     expect(res.body.errors).toEqual(['key is a required field']);
@@ -30,7 +30,7 @@ describe.only('apikeys', () => {
   });
 
   test('should refuse request if key is not in db', async (done) => {
-    const res = await server.get('/manufacturers?key=bla');
+    const res = await server.get('/api/manufacturers?key=bla');
     expect(res.status).toBe(403);
     expect(res.body.errors).toEqual(['This key does not exist']);
     done();
@@ -38,7 +38,7 @@ describe.only('apikeys', () => {
 
   test('should accept request if key is in db', async (done) => {
     const res = await server.get(
-      '/manufacturers?key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DE'
+      '/api/manufacturers?key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DE'
     );
     expect(res.status).toBe(200);
     // expect(res.body.errors).toEqual(['This key does not exist']);

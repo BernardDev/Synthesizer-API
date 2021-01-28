@@ -18,8 +18,14 @@ const {
 } = require('./queries/allQueries');
 
 const app = express();
+const apiRoutes = new express.Router();
 
 app.use(express.json());
+
+apiRoutes.use(
+  validate(yup.object().shape({key: yup.string().required()}), 'query')
+);
+apiRoutes.use(apiKeyMiddleware);
 
 // how to still send the email?
 // how to get rid of the 400 bad request?
@@ -57,12 +63,8 @@ app.use(cors());
 // ------------------------------------------------------------
 // ENDPOINTS
 // ------------------------------------------------------------
-// schema's yup = name var
-// yup general schema
-// querying on pk and or findOne
 
 async function apiKeyMiddleware(req, res, next) {
-  // console.log('req.validatedQuery', req.validatedQuery);
   const key = req.validatedQuery.key;
   console.log('key', key);
   delete req.query.key;
@@ -71,20 +73,10 @@ async function apiKeyMiddleware(req, res, next) {
     return res.status(403).json({errors: ['This key does not exist']});
   }
   next();
-  //- [x] is the key there?
-  //- [x] get key out of req.
-  //- [x] remove apikey from req.query
-  // check if key matches key in db
-  // it is not in:
-  // 403
-  // it is in:
-  // next()w
 }
 
-app.get(
+apiRoutes.get(
   '/manufacturers',
-  validate(yup.object().shape({key: yup.string().required()}), 'query'),
-  apiKeyMiddleware,
   validate(
     yup
       .object()
@@ -97,7 +89,6 @@ app.get(
   ),
   async (req, res) => {
     try {
-      // 80-84, 72
       const {limit, offset, key} = req.validatedQuery;
 
       const result = await manufacturersAll(limit, offset);
@@ -131,7 +122,7 @@ const idOrManufacturerSchema = yup
   })
   .noUnknown();
 
-app.get(
+apiRoutes.get(
   '/manufacturers/:nameOrId',
   validate(idOrManufacturerSchema, 'params'),
   async (req, res) => {
@@ -158,7 +149,7 @@ app.get(
 
 // --------------------------------------------------------------------------------
 // replaces GET /manufacturers/:idOrName/synths/detailed'
-app.get(
+apiRoutes.get(
   '/synths',
   validate(
     yup
@@ -224,7 +215,7 @@ const idOrNameSchema = yup
   })
   .noUnknown();
 
-app.get(
+apiRoutes.get(
   '/synths/:nameOrId',
   validate(idOrNameSchema, 'params'),
   async (req, res) => {
@@ -244,5 +235,7 @@ app.get(
     }
   }
 );
+
+app.use('/api', apiRoutes);
 
 module.exports = app;

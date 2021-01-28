@@ -61,26 +61,45 @@ app.use(cors());
 // yup general schema
 // querying on pk and or findOne
 
+async function apiKeyMiddleware(req, res, next) {
+  // console.log('req.validatedQuery', req.validatedQuery);
+  const key = req.validatedQuery.key;
+  console.log('key', key);
+  delete req.query.key;
+  const isValid = await checkApiKey(key);
+  if (!isValid) {
+    return res.status(403).json({errors: ['This key does not exist']});
+  }
+  next();
+  //- [x] is the key there?
+  //- [x] get key out of req.
+  //- [x] remove apikey from req.query
+  // check if key matches key in db
+  // it is not in:
+  // 403
+  // it is in:
+  // next()w
+}
+
 app.get(
   '/manufacturers',
+  validate(yup.object().shape({key: yup.string().required()}), 'query'),
+  apiKeyMiddleware,
   validate(
     yup
       .object()
       .shape({
         limit: yup.number().integer().min(1).default(20),
         offset: yup.number().integer().min(0).default(0),
-        key: yup.string().required(),
       })
       .noUnknown(),
     'query'
   ),
   async (req, res) => {
     try {
+      // 80-84, 72
       const {limit, offset, key} = req.validatedQuery;
-      const isValid = await checkApiKey(key);
-      if (!isValid) {
-        return res.status(403).json({errors: ['This key does not exist']});
-      }
+
       const result = await manufacturersAll(limit, offset);
       if (result.rows.length === 0) {
         return res.status(404).json({count: result.count, manufacturers: []});

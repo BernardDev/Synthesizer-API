@@ -1,4 +1,21 @@
-const {Synth, Manufacturer, Specification} = require('../models');
+const {Synth, Manufacturer, Specification, User} = require('../models');
+
+async function postUser(user) {
+  const [dbUser, created] = await User.findOrCreate({
+    where: {email: user.email},
+    defaults: {
+      key: user.key,
+    },
+  });
+  return created;
+}
+
+// const [user, created] = await User.findOrCreate({
+//   where: { username: 'sdepold' },
+//   defaults: {
+//     job: 'Technical Lead JavaScript'
+//   }
+// });
 
 async function manufacturersAll(limit, offset) {
   const manufacturers = await Manufacturer.findAndCountAll({limit, offset});
@@ -94,6 +111,7 @@ async function synthByName(synthName) {
 // ...
 
 module.exports = {
+  postUser,
   manufacturersAll,
   manufacturerByPk,
   manufacturerByName,

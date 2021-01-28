@@ -2,9 +2,12 @@ const express = require('express');
 const cors = require('cors');
 const validate = require('./validators/middleware');
 const formatSynthQuery = require('./validators/queryValidators');
+const uuidAPIKey = require('uuid-apikey');
+const sendEmailWithAPIkey = require('./auth/send');
 const yup = require('yup');
 
 const {
+  postUser,
   manufacturersAll,
   manufacturerByPk,
   manufacturerByName,
@@ -13,10 +16,44 @@ const {
   synthByName,
 } = require('./queries/allQueries');
 
-// ------------------------------------------------------------
-// MIDDLEWARES
-// ------------------------------------------------------------
 const app = express();
+
+app.use(express.json());
+
+// how to still send the email?
+// how to get rid of the 400 bad request?
+
+app.post(
+  '/apikey',
+  validate(
+    yup.object().shape({
+      email: yup.string().email().required(),
+    }),
+    'body'
+  ),
+  async (req, res) => {
+    try {
+      const {email} = req.validatedBody;
+      const APIkey = uuidAPIKey.create().apiKey;
+      const isNewUser = await postUser({email: email, key: APIkey});
+      if (isNewUser) {
+        const response = sendEmailWithAPIkey(APIkey, email);
+        res.status(201).send(response);
+      } else {
+        res.send({errors: ['You already have a key!'], message: 'nope!'});
+      }
+    } catch (error) {
+      res
+        .status(500)
+        .send({
+          errors: ['Oopsy, server error!'],
+          message: 'Oopsy, server error!',
+        });
+      console.log('error', error);
+    }
+  }
+);
+
 app.use(cors());
 // ------------------------------------------------------------
 // ENDPOINTS
@@ -24,7 +61,6 @@ app.use(cors());
 // schema's yup = name var
 // yup general schema
 // querying on pk and or findOne
-//
 
 app.get(
   '/manufacturers',

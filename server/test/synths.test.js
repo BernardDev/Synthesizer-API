@@ -25,7 +25,7 @@ describe('GET /', () => {
     // ----------------------------------------------------------------------------------
     // tests start
     // ----------------------------------------------------------------------------------
-    test.only('should give all synth with queries', async (done) => {
+    test('should give all synth with queries', async (done) => {
       // const res = await server.get('/synths?manufacturer=Roland');
       const res = await server.get(
         '/synths?manufacturer=Vermona&yearProduced=1999'
@@ -49,7 +49,7 @@ describe('GET /', () => {
     test('should give all manufacturers with respect for limit param', async (done) => {
       const res = await server.get('/manufacturers?limit=2&offset=0');
       expect(res.status).toBe(200);
-      expect(res.body.manufacturers.length).toBe();
+      expect(res.body.manufacturers.length).toBe(2);
       expect(res.body.count).toBe(4);
       done();
     });
@@ -85,54 +85,25 @@ describe('GET /', () => {
     test('should give one manufacturer by name', async (done) => {
       const res = await server.get('/manufacturers/Roland');
       expect(res.status).toBe(200);
-      expect(res.body).toBe(null);
+      expect(res.body.manufacturer).toBe('Roland');
       done();
     });
-
-    test('should give one manufacturer by id and all synths', async (done) => {
-      const manufacturer = await db.Manufacturer.findOne();
-      const response = await server.get(
-        `/manufacturers/${manufacturer.id}/synths`
-      );
-      expect(response.status).toBe(200);
-      expect(response.body.name).toBe(manufacturer.name);
-      done();
-    });
-
-    // or...
 
     test('should give one manufacturer by name and all synths', async (done) => {
-      const response = await server.get('/manufacturers/Vermona/synths');
+      const response = await server.get('/synths?manufacturer=Vermona');
       expect(response.status).toBe(200);
-      expect(response.body.Synths.length).toBe(2);
+      expect(response.body.rows.length).toBe(2);
       done();
     });
 
-    test('should give one manufacturer by id and all synths they made with the specs', async (done) => {
-      const manufacturer = await db.Manufacturer.findOne();
-      const response = await server.get(
-        `/manufacturers/${manufacturer.id}/synths/detailed`
-      );
-      expect(response.status).toBe(200);
-      expect(response.body.name).toBe(manufacturer.name);
-      done();
-    });
+    test.todo('consider changing body.rows to body.synths');
 
     // or...
 
-    test('should give one manufacturer by name and all synths they made with the specs', async (done) => {
-      const response = await server.get(
-        '/manufacturers/Vermona/synths/detailed'
-      );
-      expect(response.status).toBe(200);
-      expect(response.body.Synths.length).toBe(2);
-      done();
-    });
-
-    test('should not give synths with respect for limit param', async (done) => {
+    test('should give synths, limit param is optional', async (done) => {
       const res = await server.get('/synths');
       expect(res.status).toBe(200);
-      expect(res.body.length).toBe(5);
+      expect(res.body.rows.length).toBe(5);
       done();
     });
 
@@ -145,24 +116,10 @@ describe('GET /', () => {
 
     // or...
 
-    test('should not give synths with specs and manufacturer', async (done) => {
-      const res = await server.get('/synths/detailed');
-      expect(res.status).toBe(200);
-      expect(res.body.length).toBe(5);
-      done();
-    });
-
-    test('should give all synths with specs and manufacturer with respect for limit param', async (done) => {
-      const res = await server.get('/synths/detailed?limit=2&offset=0');
-      expect(res.status).toBe(200);
-      expect(res.body.rows.length).toBe(2);
-      done();
-    });
-
     test('should give all synths with spec value yearProduced n', async (done) => {
-      const res = await server.get('/synths/specification/2001');
+      const res = await server.get('/synths?yearProduced=2001');
       expect(res.status).toBe(200);
-      expect(res.body.length).toBe(1);
+      expect(res.body.rows.length).toBe(1);
       done();
     });
 

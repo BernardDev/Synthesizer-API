@@ -7,6 +7,7 @@ const sendEmailWithAPIkey = require('./auth/send');
 const yup = require('yup');
 
 const {
+  checkApiKey,
   postUser,
   manufacturersAll,
   manufacturerByPk,
@@ -43,12 +44,10 @@ app.post(
         res.send({errors: ['You already have a key!'], message: 'nope!'});
       }
     } catch (error) {
-      res
-        .status(500)
-        .send({
-          errors: ['Oopsy, server error!'],
-          message: 'Oopsy, server error!',
-        });
+      res.status(500).send({
+        errors: ['Oopsy, server error!'],
+        message: 'Oopsy, server error!',
+      });
       console.log('error', error);
     }
   }
@@ -70,13 +69,25 @@ app.get(
       .shape({
         limit: yup.number().integer().min(1).default(20),
         offset: yup.number().integer().min(0).default(0),
+        key: yup.string().required(),
       })
       .noUnknown(),
     'query'
   ),
   async (req, res) => {
+    // if req.query(key) ===
+
     try {
-      const {limit, offset} = req.validatedQuery;
+      const {limit, offset, key} = req.validatedQuery;
+      console.log('key it is', key);
+      const validate = await checkApiKey(key);
+      console.log('validate', validate);
+      if (validate) {
+        res.status(200);
+      } else {
+        res.status(403).json({errors: ['This key does not exist']});
+        return;
+      }
       const result = await manufacturersAll(limit, offset);
       if (result.rows.length === 0) {
         res.status(404);

@@ -1,5 +1,14 @@
 const {Synth, Manufacturer, Specification, User} = require('../models');
 
+async function checkApiKey(key) {
+  console.log('keyyy', key);
+  const match = await User.findOne({where: {key}});
+  // console.log('match', match);
+  return match;
+}
+
+// checkApiKey('GVMVW12-1XK4W8E-HEND0CT-DVDB4DE');
+
 async function postUser(user) {
   const [dbUser, created] = await User.findOrCreate({
     where: {email: user.email},
@@ -111,6 +120,7 @@ async function synthByName(synthName) {
 // ...
 
 module.exports = {
+  checkApiKey,
   postUser,
   manufacturersAll,
   manufacturerByPk,

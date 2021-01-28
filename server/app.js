@@ -75,22 +75,15 @@ app.get(
     'query'
   ),
   async (req, res) => {
-    // if req.query(key) ===
-
     try {
       const {limit, offset, key} = req.validatedQuery;
-      console.log('key it is', key);
-      const validate = await checkApiKey(key);
-      console.log('validate', validate);
-      if (validate) {
-        res.status(200);
-      } else {
-        res.status(403).json({errors: ['This key does not exist']});
-        return;
+      const isValid = await checkApiKey(key);
+      if (!isValid) {
+        return res.status(403).json({errors: ['This key does not exist']});
       }
       const result = await manufacturersAll(limit, offset);
       if (result.rows.length === 0) {
-        res.status(404);
+        return res.status(404).json({count: result.count, manufacturers: []});
       }
       res.json({count: result.count, manufacturers: result.rows});
     } catch (error) {

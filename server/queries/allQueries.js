@@ -2,9 +2,17 @@ const {Synth, Manufacturer, Specification, User} = require('../models');
 
 async function checkApiKey(key) {
   console.log('keyyy', key);
-  const match = await User.findOne({where: {key}});
-  // console.log('match', match);
-  return match;
+  try {
+    const match = await User.findOne({where: {key}});
+    if (match === null) {
+      return false;
+    } else {
+      return true;
+    }
+  } catch (error) {
+    console.error('error', error);
+    return false;
+  }
 }
 
 // checkApiKey('GVMVW12-1XK4W8E-HEND0CT-DVDB4DE');

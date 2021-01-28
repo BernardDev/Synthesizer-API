@@ -13,13 +13,14 @@
 
 Middelware
 
+- [x] change test/new test on GET /manufacturers to not allow request without apikey
+- [x] implement logic for GET /manufacturers
+- [x] apikey present in querystring?
+- [x] apikey present in db?
+- [ ]
 - [ ] Validate on each api request: did the user send us a key at all?
-- [ ] Valid request: apikey is present in querystring && apikey is in db && under max of request
-- [ ] change test/new test on GET /manufacturers to not allow request without apikey
-- [ ] implement logic for GET /manufacturers
-- [ ] apikey present in querystring?
-- [ ] apikey present in db?
 - [ ] Implement an api key middleware that checks if the key is valid
+- [ ]Valid request: apikey is present in querystring && apikey is in db && under max of request
 - [ ]
 - [ ]
 - [ ]

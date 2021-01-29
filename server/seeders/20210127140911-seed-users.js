@@ -8,6 +8,7 @@ module.exports = {
         {
           email: 'example@example.com',
           key: 'thisiskey',
+          count: 1,
         },
       ],
       {}

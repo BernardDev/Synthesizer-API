@@ -35,9 +35,8 @@ apiRoutes.get(
     'query'
   ),
   async (req, res) => {
-    console.log('req.validatedQuery', req.validatedQuery);
     try {
-      const {limit, offset, key} = req.validatedQuery;
+      const {limit, offset} = req.validatedQuery;
       const result = await manufacturersAll(limit, offset);
       if (result.rows.length === 0) {
         return res.status(404).json({count: result.count, manufacturers: []});
@@ -75,8 +74,6 @@ apiRoutes.get(
   async (req, res) => {
     try {
       const {manufacturer, id} = req.validatedParams;
-      console.log('manufacturer destruct', manufacturer);
-      console.log('id destruct', id);
       let result;
       if (id) {
         result = await manufacturerByPk(id);

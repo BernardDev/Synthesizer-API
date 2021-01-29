@@ -3,6 +3,7 @@ const {Synth, Manufacturer, Specification, User} = require('../models');
 async function checkApiKey(key) {
   try {
     const match = await User.findOne({where: {key}});
+    console.log('match', match);
     if (match === null) {
       return false;
     } else {

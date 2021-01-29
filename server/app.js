@@ -21,7 +21,6 @@ app.post(
     'body'
   ),
   async (req, res) => {
-    console.log('req.body', req.body);
     try {
       const {email} = req.validatedBody;
       const APIkey = uuidAPIKey.create().apiKey;

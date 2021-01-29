@@ -5,7 +5,9 @@ function validate(schema, path = 'query') {
         abortEarly: false,
       });
 
-      req[`validated${path.charAt(0).toUpperCase() + path.slice(1)}`]; // validatedQuery validatedParams
+      req[
+        `validated${path.charAt(0).toUpperCase() + path.slice(1)}`
+      ] = validatedObject; // validatedQuery validatedParams
       next();
     } catch (error) {
       res.status(400).json({message: 'Bad request', errors: error.errors});

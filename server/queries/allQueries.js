@@ -1,7 +1,6 @@
 const {Synth, Manufacturer, Specification, User} = require('../models');
 
 async function checkApiKey(key) {
-  console.log('keyyy', key);
   try {
     const match = await User.findOne({where: {key}});
     if (match === null) {
@@ -15,8 +14,6 @@ async function checkApiKey(key) {
   }
 }
 
-// checkApiKey('GVMVW12-1XK4W8E-HEND0CT-DVDB4DE');
-
 async function postUser(user) {
   const [dbUser, created] = await User.findOrCreate({
     where: {email: user.email},
@@ -26,13 +23,6 @@ async function postUser(user) {
   });
   return created;
 }
-
-// const [user, created] = await User.findOrCreate({
-//   where: { username: 'sdepold' },
-//   defaults: {
-//     job: 'Technical Lead JavaScript'
-//   }
-// });
 
 async function manufacturersAll(limit, offset) {
   const manufacturers = await Manufacturer.findAndCountAll({limit, offset});
@@ -87,10 +77,10 @@ async function synthByPk(id) {
   });
   return synth;
 }
-async function synthByName(synthName) {
+async function synthByName(name) {
   try {
     const synth = await Synth.findOne({
-      where: {name: synthName},
+      where: {name},
       include: [
         {
           model: Specification,

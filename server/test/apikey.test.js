@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const server = request(app);
 
-describe.only('apikeys', () => {
+describe('apikeys', () => {
   afterAll(async () => {
     await db.Manufacturer.destroy({truncate: true, cascade: true});
     await db.Synth.destroy({truncate: true, cascade: true});
@@ -36,7 +36,7 @@ describe.only('apikeys', () => {
     done();
   });
 
-  test('should accept request if key is in db', async (done) => {
+  test.only('should accept request if key is in db', async (done) => {
     const res = await server.get(
       '/api/manufacturers?key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DE'
     );

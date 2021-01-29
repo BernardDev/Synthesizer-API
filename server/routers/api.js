@@ -1,11 +1,11 @@
 const express = require('express');
-const validate = require('../validators/middleware');
+const validate = require('../validators/requestValidationMiddleware');
 const formatSynthQuery = require('../validators/queryValidators');
+const apiKeyMiddleware = require('../validators/validateApiKeyMiddleware');
 
 const yup = require('yup');
 
 const {
-  checkApiKey,
   manufacturersAll,
   manufacturerByPk,
   manufacturerByName,
@@ -15,17 +15,6 @@ const {
 } = require('../queries/allQueries');
 
 const apiRoutes = new express.Router();
-
-async function apiKeyMiddleware(req, res, next) {
-  const key = req.validatedQuery.key;
-  console.log('key', key);
-  delete req.query.key;
-  const isValid = await checkApiKey(key);
-  if (!isValid) {
-    return res.status(403).json({errors: ['This key does not exist']});
-  }
-  next();
-}
 
 apiRoutes.use(
   validate(yup.object().shape({key: yup.string().required()}), 'query')
@@ -46,9 +35,9 @@ apiRoutes.get(
     'query'
   ),
   async (req, res) => {
+    console.log('req.validatedQuery', req.validatedQuery);
     try {
       const {limit, offset, key} = req.validatedQuery;
-
       const result = await manufacturersAll(limit, offset);
       if (result.rows.length === 0) {
         return res.status(404).json({count: result.count, manufacturers: []});

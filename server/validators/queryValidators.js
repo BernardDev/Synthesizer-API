@@ -1,7 +1,8 @@
 function formatSynthQuery(query) {
-  let pagination = {};
   let manufacturerQuery = {};
+  let paginationQuery = {};
   let specificationQuery = {};
+
   let manufacturerOptions = ['manufacturer'];
   let paginationOptions = ['limit', 'offset'];
   let specificationOptions = [
@@ -15,6 +16,21 @@ function formatSynthQuery(query) {
     'lfo',
     'effects',
   ];
+
+  // let optionsArray = [
+  //   paginationOptions,
+  //   manufacturerOptions,
+  //   specificationOptions,
+  // ];
+
+  // let queryArray = [paginationQuery, manufacturerQuery, specificationQuery];
+
+  // for (const option of routeOptions) {
+  //   if (query.hasOwnProperty(option)) {
+  //     routeQuery[option] = query[option];
+  //   }
+  // }
+
   for (const option of specificationOptions) {
     if (query.hasOwnProperty(option)) {
       specificationQuery[option] = query[option];
@@ -27,10 +43,10 @@ function formatSynthQuery(query) {
   }
   for (const option of paginationOptions) {
     if (query.hasOwnProperty(option)) {
-      pagination[option] = query[option];
+      paginationQuery[option] = query[option];
     }
   }
-  console.log('pagination', pagination);
+
   return {
     specificationQuery: specificationQuery,
     manufacturerQuery: manufacturerQuery,

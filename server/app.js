@@ -1,9 +1,8 @@
 const express = require('express');
 const cors = require('cors');
-const validate = require('./validators/middleware');
-const formatSynthQuery = require('./validators/queryValidators');
+const validate = require('./validators/requestValidationMiddleware');
 const uuidAPIKey = require('uuid-apikey');
-const sendEmailWithAPIkey = require('./auth/send');
+const sendEmailWithAPIkey = require('./sendEmail');
 const yup = require('yup');
 const apiRoutes = require('./routers/api');
 
@@ -22,6 +21,7 @@ app.post(
     'body'
   ),
   async (req, res) => {
+    console.log('req.body', req.body);
     try {
       const {email} = req.validatedBody;
       const APIkey = uuidAPIKey.create().apiKey;
@@ -43,9 +43,6 @@ app.post(
 );
 
 app.use(cors());
-// ------------------------------------------------------------
-// ENDPOINTS
-// ------------------------------------------------------------
 
 app.use('/api', apiRoutes);
 

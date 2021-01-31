@@ -10,14 +10,13 @@ module.exports = {
     const idMapManufacturers = {};
 
     manufacturers.forEach((manufacturer) => {
-      idMapManufacturers[manufacturer.name] = manufacturer.id;
+      idMapManufacturers[manufacturer.manufacturer] = manufacturer.id;
     });
     for (const synth of synths) {
       const result = await Synth.create(
         {
           name: synth.title,
           img: synth.image,
-          manufacturer: synth.manufacturer,
           ManufacturerId: idMapManufacturers[synth.manufacturer],
           Specification: {
             polyphony: synth.specs.Polyphony,

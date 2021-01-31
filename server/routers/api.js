@@ -120,18 +120,17 @@ apiRoutes.get(
       const {
         specificationQuery,
         manufacturerQuery,
-        pagination,
+        paginationQuery,
       } = formatSynthQuery(req.validatedQuery);
       const result = await synthsAll(
         specificationQuery,
         manufacturerQuery,
-        pagination
+        paginationQuery
       );
       if (result.rows.length === 0) {
         res.status(404);
       }
-      res.json(result);
-      console.log('result of thing', result);
+      res.json({count: result.count, synths: result.rows});
     } catch (error) {
       console.log('ERROR: /synths/detailed', error);
       res.status(400).json({message: 'Bad request', errors: error.errors});
@@ -164,7 +163,6 @@ apiRoutes.get(
   validate(idOrNameSchema, 'params'),
   async (req, res) => {
     try {
-      // const idOrName = req.params.idOrName;
       const {name, id} = req.validatedParams;
       let result;
       if (id) {

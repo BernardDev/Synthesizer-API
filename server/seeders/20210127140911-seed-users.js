@@ -10,6 +10,11 @@ module.exports = {
           key: 'thisiskey',
           count: 1,
         },
+        {
+          email: 'bernardwittgen@hotmail.com',
+          key: 'GVMVW12-1XK4W8E-HEND0CT-DVDB4DE',
+          count: 1,
+        },
       ],
       {}
     );

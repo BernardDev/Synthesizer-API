@@ -1,13 +1,14 @@
 const {Synth, Manufacturer, Specification, User} = require('../models');
 
+// test
+
 async function checkApiKey(key) {
   try {
-    const match = await User.findOne({where: {key}});
-    console.log('match', match);
-    if (match === null) {
-      return false;
+    const foundUser = await User.findOne({where: {key}});
+    if (foundUser) {
+      return foundUser.update({count: foundUser.count + 1});
     } else {
-      return true;
+      return null;
     }
   } catch (error) {
     console.error('error', error);

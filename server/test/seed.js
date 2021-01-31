@@ -110,10 +110,16 @@ async function seedDummyData() {
   ];
   await db.Synth.bulkCreate(testSynths, {include: [db.Specification]});
 
-  await db.User.create({
-    email: 'bernardwittgen@hotmail.com',
-    key: 'GVMVW12-1XK4W8E-HEND0CT-DVDB4DE',
-  });
+  await db.User.create(
+    {
+      email: 'bernardwittgen@hotmail.com',
+      key: 'GVMVW12-1XK4W8E-HEND0CT-DVDB4DE',
+    },
+    {
+      email: 'example@example.com',
+      key: '12345',
+    }
+  );
 }
 
 module.exports = seedDummyData;

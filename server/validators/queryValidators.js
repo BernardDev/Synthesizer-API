@@ -50,7 +50,7 @@ function formatSynthQuery(query) {
   return {
     specificationQuery: specificationQuery,
     manufacturerQuery: manufacturerQuery,
-    pagination: pagination,
+    paginationQuery: paginationQuery,
   };
 }
 

@@ -21,7 +21,7 @@ describe('apikeys', () => {
     await seedDummyData();
   });
 
-  test('should refuse requests without apikey in querystring', async (done) => {
+  test('should refuse API request without a API key in query string', async (done) => {
     const res = await server.get('/api/manufacturers');
     expect(res.status).toBe(400);
     // expect(res.status).toBe(403);
@@ -29,14 +29,14 @@ describe('apikeys', () => {
     done();
   });
 
-  test('should refuse request if key is not in db', async (done) => {
+  test('should refuse API request with an invalid API key in query string', async (done) => {
     const res = await server.get('/api/manufacturers?key=bla');
     expect(res.status).toBe(403);
     expect(res.body.errors).toEqual(['This key does not exist']);
     done();
   });
 
-  test.only('should accept request if key is in db', async (done) => {
+  test('should accept API request with an valid API key in query string', async (done) => {
     const res = await server.get(
       '/api/manufacturers?key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DE'
     );

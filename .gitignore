@@ -2,5 +2,5 @@ node_modules
 scraper/node_modules
 server/node_modules
 .env
-info.txt
 info.md
+info.txt

@@ -10,6 +10,7 @@ module.exports = {
     pool: {
       max: 4,
     },
+    logging: false,
   },
   test: {
     use_env_variable: 'TEST_DATABASE_URL',
@@ -17,6 +18,7 @@ module.exports = {
     pool: {
       max: 4,
     },
+    logging: false,
   },
   production: {
     use_env_variable: 'DATABASE_URL',

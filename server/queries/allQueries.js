@@ -1,4 +1,30 @@
-const {Synth, Manufacturer, Specification} = require('../models');
+const {Synth, Manufacturer, Specification, User} = require('../models');
+
+// test
+
+async function checkApiKey(key) {
+  try {
+    const foundUser = await User.findOne({where: {key}});
+    if (foundUser) {
+      return foundUser.update({count: foundUser.count + 1});
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error('error', error);
+    return false;
+  }
+}
+
+async function postUser(user) {
+  const [dbUser, created] = await User.findOrCreate({
+    where: {email: user.email},
+    defaults: {
+      key: user.key,
+    },
+  });
+  return created;
+}
 
 async function manufacturersAll(limit, offset) {
   const manufacturers = await Manufacturer.findAndCountAll({limit, offset});
@@ -53,10 +79,10 @@ async function synthByPk(id) {
   });
   return synth;
 }
-async function synthByName(synthName) {
+async function synthByName(name) {
   try {
     const synth = await Synth.findOne({
-      where: {name: synthName},
+      where: {name},
       include: [
         {
           model: Specification,
@@ -94,6 +120,8 @@ async function synthByName(synthName) {
 // ...
 
 module.exports = {
+  checkApiKey,
+  postUser,
   manufacturersAll,
   manufacturerByPk,
   manufacturerByName,

@@ -1,3 +1,64 @@
+### Todo
+
+#### As a developer I want my api users to send an api key with each request, so I can identify who is using my api
+
+- [x] Make a route to request a key
+- [x] Validate the request for a key: valid email
+- [x] Generate a key (not safe yet, not conversion)
+- [x] Setup sendgrid
+- [x] Store api key in .env
+- [x] Send an email with the key
+- [x] Create a user table
+- [ ] When a user request a key: create user with the generated key
+
+Middelware
+
+- [x] change test/new test on GET /manufacturers to not allow request without apikey
+- [x] implement logic for GET /manufacturers
+- [x] apikey present in querystring?
+- [x] apikey present in db?
+- [ ]
+- [ ] Validate on each api request: did the user send us a key at all?
+- [ ] Implement an api key middleware that checks if the key is valid
+- [ ]Valid request: apikey is present in querystring && apikey is in db && under max of request
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+
+Daily limit
+
+- [ ] Count the requests
+- [ ] Reset the
+- [ ] Configure cors for api / request key route
+
+### TO DO'S
+
+// - try catch
+// - validation: query / params | id / name
+// - pagination
+// - route naming: 'detailed'
+
+- [ ] Generalize the validation middleware
+
+- [-] Try catch handle 400 and 500 status codes
+- [x] id or name in all that need it
+- [x] migrate all pagination to plural synths/manufactures
+- [x] move back all validation stuff to route level
+  - [x] put schema on the route
+  - [x] remove some files
+  - [x] think of querying and params with ['option']
+- [x] handle 404 error (uses validate())
+- [] validate each query/param
+
+- [ ] Validate params / queries
+- [ ] Cleanup comments, unless they explain why
+
+Future Expand query options:
+
+- [ ] Perhaps include specs when querystring contains: ?includeSpecifications=true
+- [ ] Generalise a query for synths where you pass options (together)
+
 ### ROUTES
 
 give and limit pagination options

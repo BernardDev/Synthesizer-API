@@ -22,11 +22,11 @@ jobs:
 
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       
     # Runs a single command using the runners shell
-    - name: Run e2e test
-    - run: cd server && npm install && npm run test
-    - env: 
+      - name: Run e2e test
+        run: cd server && npm install && npm run test
+        env: 
           TEST_DATABASE_URL:  ${{ secrets.TEST_DATABASE_URL }}
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}

@@ -1,3 +1,4 @@
+ALREADY THERE
 Polyphony: 95.2%
 Keyboard: 87.8%
 Control: 84.1%
@@ -7,6 +8,8 @@ Oscillators: 78.3%
 Filter: 65.5%
 LFO: 60.8%
 Effects: 58.1%
+
+MUST IMPLEMENTS
 VCA: 38.9%
 Arpeg/Seq: 27.5%
 Multitimbral: 22.5%
@@ -14,13 +17,15 @@ Sequencer: 22.0%
 Waveforms: 18.0%
 Sampler: 13.2%
 Arpeggiator: 12.0%
+Controls: 9.9% X
+VCA/Envelopes: 6.0% X
+VCF: 5.1% X
+Envelopes: 4.8% X
+
+LEAVE IT OUT
 Patterns: 10.0%
-Controls: 9.9%
 Envelope: 8.8%
 Songs: 7.6%
-VCA/Envelopes: 6.0%
-VCF: 5.1%
-Envelopes: 4.8%
 Macintosh: 4.5%
 Windows/PC: 4.5%
 Modulation: 3.7%

@@ -18,9 +18,12 @@ let jsonParsed = JSON.stringify(exampleJson, null, 4);
 //     );
 //   },
 
-const URL = process.env.REACT_APP_API_URL;
+const baseUrl = process.env.REACT_APP_API_URL;
+console.log('process.env', process.env);
 
-// synths?key=BV0B0QX-X8Y4JEK-GYZRXSZ-7NKSKP6
+// synths?key=
+
+const key = 'BV0B0QX-X8Y4JEK-GYZRXSZ-7NKSKP6';
 
 function UrlExplorer() {
   const [data, setData] = useState({hits: []});
@@ -32,18 +35,17 @@ function UrlExplorer() {
 
   // change it to read from the input field instead of hardcoded path
   // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `https://synthesizer-api.herokuapp.com/${url}`
-  //       );
-  //       console.log('RESPONSE:', response);
-  //     } catch (error) {
-  //       console.log('ERROR', error);
-  //     }
-  //     setData(response.data);
-  //   };
-  //   fetchData();
+  const fetchData = async () => {
+    console.log('ÚRL', url);
+    try {
+      const response = await axios.get(`${baseUrl}/api/${url}?key=${key}`);
+      console.log('RESPONSE:', response);
+      setData(response.data);
+    } catch (error) {
+      console.log('ERROR', error);
+    }
+  };
+  // fetchData();
   // }, [url]);
   return (
     <>
@@ -72,11 +74,7 @@ function UrlExplorer() {
             </InputGroup>
           </Col>
           <Col xs='auto column2'>
-            <Button
-              type='submit'
-              className='submitUrl'
-              // onChange={}
-            >
+            <Button className='submitUrl' onClick={fetchData}>
               Submit
             </Button>
           </Col>

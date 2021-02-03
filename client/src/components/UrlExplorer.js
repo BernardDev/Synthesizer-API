@@ -1,7 +1,8 @@
 import './UrlExplorer.scss';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Form, Col, InputGroup, Button, FormControl} from 'react-bootstrap';
 import exampleJson from '../exampleJson.json';
+import axios from 'axios';
 
 let jsonParsed = JSON.stringify(exampleJson, null, 4);
 
@@ -17,7 +18,33 @@ let jsonParsed = JSON.stringify(exampleJson, null, 4);
 //     );
 //   },
 
+const URL = process.env.REACT_APP_API_URL;
+
+// synths?key=BV0B0QX-X8Y4JEK-GYZRXSZ-7NKSKP6
+
 function UrlExplorer() {
+  const [data, setData] = useState({hits: []});
+  const [url, setUrl] = useState('bla');
+
+  console.log('url', url);
+
+  // console.log('data', data);
+
+  // change it to read from the input field instead of hardcoded path
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         `https://synthesizer-api.herokuapp.com/${url}`
+  //       );
+  //       console.log('RESPONSE:', response);
+  //     } catch (error) {
+  //       console.log('ERROR', error);
+  //     }
+  //     setData(response.data);
+  //   };
+  //   fetchData();
+  // }, [url]);
   return (
     <>
       <p>
@@ -36,11 +63,20 @@ function UrlExplorer() {
                   https://synthesizer-api.herokuapp.com/api/
                 </InputGroup.Text>
               </InputGroup.Prepend>
-              <FormControl id='inputURLexample' placeholder='synths' />
+              <FormControl
+                id='inputURLexample'
+                placeholder='synths'
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+              />
             </InputGroup>
           </Col>
           <Col xs='auto column2'>
-            <Button type='submit' className='submitUrl'>
+            <Button
+              type='submit'
+              className='submitUrl'
+              // onChange={}
+            >
               Submit
             </Button>
           </Col>

@@ -8,9 +8,9 @@ const apiRoutes = require('./routers/api');
 
 const {postUser} = require('./queries/allQueries');
 
-app.use(cors());
-
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 

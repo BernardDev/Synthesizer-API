@@ -8,6 +8,8 @@ const apiRoutes = require('./routers/api');
 
 const {postUser} = require('./queries/allQueries');
 
+app.use(cors());
+
 const app = express();
 
 app.use(express.json());
@@ -40,8 +42,6 @@ app.post(
     }
   }
 );
-
-app.use(cors());
 
 app.use('/api', apiRoutes);
 

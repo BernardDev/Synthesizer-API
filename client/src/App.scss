@@ -1,0 +1,44 @@
+* {
+  // background-color: pink;
+}
+.app {
+  position: relative;
+}
+// .resJSON {
+//   resize: none;
+// }
+
+textarea {
+  resize: none;
+}
+
+$theme-colors: (
+  'primary': hotpink,
+  'danger': teal,
+  'dark': #3c404a,
+);
+
+// donkergrijs
+// #3c404a
+// lichtgrijs
+// #dbd6d5
+// oranje
+// #ff864e
+// blauw
+// #35435a
+// grijs
+// #827d7a
+
+// $enable-rounded: true;
+
+// $body-bg: black;
+// $body-color: white;
+
+// $link-decoration: none;
+// $border-radius: 1rem;
+// $link-color: teal;
+
+@import '~bootstrap/scss/bootstrap';
+
+// this kind of thing: below?? 😂
+// $link-color: theme-colors("primary");

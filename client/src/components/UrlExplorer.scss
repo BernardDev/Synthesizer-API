@@ -1,0 +1,46 @@
+.column1,
+.column2 {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.staticURLexample {
+}
+
+.input-group {
+  flex-wrap: nowrap;
+}
+
+.textareaExample {
+  width: 100% !important;
+}
+
+// .groupURLexample {
+//   flex: 40% auto;
+// }
+
+// .col-auto {
+//   flex: 0 0 auto !important;
+//   width: 20%;
+//   max-width: 100% !important;
+// }
+
+.groupURLexample {
+  height: 100%;
+}
+
+.column1 {
+  width: 80%;
+}
+
+.column2 {
+  display: flex;
+  align-self: center;
+  text-align: center;
+  width: 20%;
+}
+
+.submitUrl {
+  height: 100%;
+  width: 100%;
+}

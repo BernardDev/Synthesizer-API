@@ -14,14 +14,11 @@ function App() {
   return (
     <Router>
       <div className='App'>
-        <Navigation />
         <Container fluid>
+          <Navigation />
           <Switch>
             <Route path='/' exact>
-              <Col md={{span: 8, offset: 2}}>
-                <LayerJumbotron />
-                <Home />
-              </Col>
+              <Home />
             </Route>
             <Route path='/About' component={About} />
             <Route path='/Documentation' component={Documentation} />

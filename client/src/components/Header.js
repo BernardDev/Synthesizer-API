@@ -5,7 +5,7 @@ import {Jumbotron} from 'react-bootstrap';
 function Header() {
   return (
     <Jumbotron>
-      <div>
+      <div className='header-img'>
         <h1 className='title'>Hello, world!</h1>
         <p className='slogan'>
           This is a simple hero unit, a simple jumbotron-style component for

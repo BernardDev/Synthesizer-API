@@ -1,4 +1,5 @@
 import './Authorization.scss';
+import './utility.scss';
 import React, {useState, useEffect} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {useForm} from 'react-hook-form';
@@ -39,6 +40,7 @@ function Authorization() {
   });
 
   async function onSubmit(data) {
+    console.log('data.email', data.email);
     if (data) {
       try {
         const post = await axios.post(`${baseUrl}/apikey?email=${data.email}`);
@@ -75,25 +77,27 @@ function Authorization() {
 
   console.log('FROM ERRORS', errors);
   return (
-    <>
-      <Form
-        noValidate
-        validated={false}
-        // class="was-validated"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <InputWithFeedback
-          humanReadbleName='Email'
-          name='email'
-          type='email'
-          errors={errors}
-          register={register}
-        />
-        <Button variant='primary' type='submit'>
-          Submit
-        </Button>
-      </Form>
-    </>
+    <div className='authorization-bg'>
+      <div className='container'>
+        <Form
+          noValidate
+          validated={false}
+          // class="was-validated"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <InputWithFeedback
+            humanReadbleName='Email'
+            name='email'
+            type='email'
+            errors={errors}
+            register={register}
+          />
+          <Button variant='primary' type='submit'>
+            Submit
+          </Button>
+        </Form>
+      </div>
+    </div>
   );
 }
 

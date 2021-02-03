@@ -1,14 +1,16 @@
 import './Authorization.scss';
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import {useForm} from 'react-hook-form';
 import {ErrorMessage} from '@hookform/error-message';
 import {yupResolver} from '@hookform/resolvers/yup';
+import axios from 'axios';
 import * as yup from 'yup';
 
+// controlled component hebben we
+// post request
+
 const schema = yup.object().shape({
-  firstName: yup.string().min(3).required(),
-  lastName: yup.string(),
   email: yup.string().email().required(),
 });
 
@@ -29,11 +31,47 @@ function InputWithFeedback({name, type, register, errors, humanReadbleName}) {
   );
 }
 
+const baseUrl = process.env.REACT_APP_API_URL;
+
 function Authorization() {
   const {register, handleSubmit, errors} = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => console.log('VALUES:', data);
+
+  async function onSubmit(data) {
+    if (data) {
+      try {
+        const post = await axios.post(`${baseUrl}/apikey?email=${data.email}`);
+        console.log('post', post.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
+  // const onSubmit = (data) => console.log('VALUES:', data.email);
+
+  // function handleSendEmail() {
+  //   if (data) {
+  //   }
+  // }
+
+  // onSubmit:
+  // post with axios:
+
+  // const postData = async () => {console.log('DATA', data)}
+  // try {}catch(error){console.error(error)}
+  // await axios.post(`${baseUrl}/apikey?email=${data.email}`)
+
+  // const fetchData = async () => {
+  //   console.log('ÚRL', url);
+  //   try {
+  //     const response = await axios.get(`${baseUrl}/api/${url}?key=${key}`);
+  //     console.log('RESPONSE:', response);
+  //     setData(response.data);
+  //   } catch (error) {
+  //     console.log('ERROR', error);
+  //   }
+  // };
 
   console.log('FROM ERRORS', errors);
   return (
@@ -45,9 +83,9 @@ function Authorization() {
         onSubmit={handleSubmit(onSubmit)}
       >
         <InputWithFeedback
-          humanReadbleName='First Name'
-          name='firstName'
-          type='text'
+          humanReadbleName='Email'
+          name='email'
+          type='email'
           errors={errors}
           register={register}
         />

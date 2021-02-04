@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Documentation from './pages/Documentation';
 import Authorization from './pages/Authorization';
-import LayerJumbotron from './pages/backgroundLayers/LayerJumbotron';
 import Col from 'react-bootstrap/Col';
 
 import Navigation from './components/Navigation';

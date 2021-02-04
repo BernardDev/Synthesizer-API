@@ -1,5 +1,26 @@
 ### Todo
 
+<!-- validation and testing -->
+
+- [x] send succes message
+- [ ] send succes message from server
+- [ ] display feedback: request succeeds, request fails (get out of server)
+- [x] hide/disable button and inputfield (no double requests)
+
+- [ ] inputfield for api key explorer, save the key in local storage
+- [ ] make explorer url read only
+
+- [ ] when app starts check local storage for key and load it if there
+- [ ] make a request and display json
+
+- [ ] input field: route
+- [ ] input field: query
+- [ ] when user edits route or query update the url
+- [ ] auto add key to explorer url
+- [ ] display json
+
+- [ ] copy url to clipboard
+
 #### As a developer I want my api users to send an api key with each request, so I can identify who is using my api
 
 - [x] Make a route to request a key

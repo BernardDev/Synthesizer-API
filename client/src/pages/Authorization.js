@@ -35,6 +35,8 @@ function InputWithFeedback({name, type, register, errors, humanReadbleName}) {
 const baseUrl = process.env.REACT_APP_API_URL;
 
 function Authorization() {
+  const [status, setStatus] = useState({});
+
   const {register, handleSubmit, errors} = useForm({
     resolver: yupResolver(schema),
   });
@@ -43,59 +45,37 @@ function Authorization() {
     console.log('data.email', data.email);
     if (data) {
       try {
-        const post = await axios.post(`${baseUrl}/apikey?email=${data.email}`);
-        console.log('post', post.data);
+        const response = await axios.post(`${baseUrl}/apikey`, {
+          email: data.email,
+        });
+        setStatus({
+          code: response.status,
+          text: response.statusText,
+        });
       } catch (error) {
         console.error(error);
       }
     }
   }
-  // const onSubmit = (data) => console.log('VALUES:', data.email);
-
-  // function handleSendEmail() {
-  //   if (data) {
-  //   }
-  // }
-
-  // onSubmit:
-  // post with axios:
-
-  // const postData = async () => {console.log('DATA', data)}
-  // try {}catch(error){console.error(error)}
-  // await axios.post(`${baseUrl}/apikey?email=${data.email}`)
-
-  // const fetchData = async () => {
-  //   console.log('ÚRL', url);
-  //   try {
-  //     const response = await axios.get(`${baseUrl}/api/${url}?key=${key}`);
-  //     console.log('RESPONSE:', response);
-  //     setData(response.data);
-  //   } catch (error) {
-  //     console.log('ERROR', error);
-  //   }
-  // };
-
-  console.log('FROM ERRORS', errors);
   return (
     <div className='authorization-bg'>
       <div className='container'>
-        <Form
-          noValidate
-          validated={false}
-          // class="was-validated"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <InputWithFeedback
-            humanReadbleName='Email'
-            name='email'
-            type='email'
-            errors={errors}
-            register={register}
-          />
-          <Button variant='primary' type='submit'>
-            Submit
-          </Button>
-        </Form>
+        {status.code === 201 ? (
+          'An email has been sent to you with your API key'
+        ) : (
+          <Form noValidate validated={false} onSubmit={handleSubmit(onSubmit)}>
+            <InputWithFeedback
+              humanReadbleName='Email'
+              name='email'
+              type='email'
+              errors={errors}
+              register={register}
+            />
+            <Button variant='primary' type='submit'>
+              Submit
+            </Button>
+          </Form>
+        )}
       </div>
     </div>
   );

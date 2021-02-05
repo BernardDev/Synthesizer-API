@@ -1,5 +1,5 @@
 import './UrlExplorer.scss';
-import React, {useState, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -7,11 +7,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Alert from 'react-bootstrap/Alert';
 import axios from 'axios';
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 function UrlExplorer() {
+  // const [stateAlert, setStateAlert] = useState('visible');
+  const [stateAlert, setStateAlert] = useState(false);
   const [copySuccess, setCopySuccess] = useState('');
   const textAreaRef = useRef(null);
   const [data, setData] = useState();
@@ -70,11 +73,22 @@ function UrlExplorer() {
   function copyToClipboard(e) {
     textAreaRef.current.select();
     document.execCommand('copy');
-    // This is just personal preference.
-    // I prefer to not show the the whole text area selected.
     e.target.focus();
-    setCopySuccess('Copied!');
+    setCopySuccess(`${urlParams.url} copied to clipboard`);
+    setStateAlert(true);
   }
+
+  useEffect(() => {
+    if (stateAlert === true) {
+      window.setTimeout(() => {
+        setStateAlert(false);
+      }, 2000);
+    }
+  }, [stateAlert]);
+
+  console.log('stateAlert', stateAlert);
+
+  function onShowAlert() {}
 
   return (
     <>
@@ -132,10 +146,23 @@ function UrlExplorer() {
               <Button className='' onClick={fetchData}>
                 Search
               </Button>
-              <Button className='' onClick={copyToClipboard}>
+
+              {/* <button type="button" className="btn btn-primary" onClick={()=>{this.onShowAlert()}} >show Alert</button> */}
+              {/* <Alert color='info' isOpen={this.state.visible}>
+                I am an alert and I will disappear in 2sec.!
+              </Alert> */}
+              <Button className='btn btn-primary' onClick={copyToClipboard}>
                 Clipboard
               </Button>
-              {copySuccess}
+            </Row>
+            <Row className='row-alert'>
+              <Alert
+                show={stateAlert}
+                className='alert-success'
+                variant='success'
+              >
+                {copySuccess}
+              </Alert>
             </Row>
             <Row>
               <Col className='col-3'>
@@ -188,6 +215,9 @@ function UrlExplorer() {
           </Form.Group>
           <Form.Group>
             <Form.Label>JSON</Form.Label>
+            <Form.Text className='text-inputs-urlExplorer'>
+              Conside exploring the JSON LINK in browser LINK to.
+            </Form.Text>
             <Form.Control
               as='textarea'
               className='textareaExample'
@@ -195,9 +225,6 @@ function UrlExplorer() {
               value={data}
               readOnly
             />
-            <Form.Text className='text-inputs-urlExplorer'>
-              We'll never share your email with anyone else.
-            </Form.Text>
           </Form.Group>
         </Form>
       </Container>

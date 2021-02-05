@@ -1,11 +1,26 @@
 ### Todo before presentation
 
 - [x] display data in json viewer
-- [ ] copy url to clipboard
+
+- [x] copy url to clipboard
+- [x] notify the user about copy
+- [ ] notification disappears after a few seconds
+
+- [x] display content op link in field
+- [ ] anchor tags that update the state of route and query field aswell as the url state
+- [ ] in case of /synth manufacturer it is a toggle
+- [ ] in case of &queries it is a addition on top of current state
+
 - [ ] if storedKey/something in key input close toast
-- [ ] auth: you already have a key sent to you
-- [ ] add home route
-- [ ] design: color scheme,
+
+- [ ] alert message when user f#cked up the url
+
+- [ ] alert message from server when email is already in db
+
+<!-- extra -->
+
+- [ ] add a home route to enhance navigation
+- [ ] design: color scheme
 - [ ] refactor: urlExplorer, authorization
 
 ### Todo

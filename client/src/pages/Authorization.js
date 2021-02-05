@@ -9,9 +9,6 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import axios from 'axios';
 import * as yup from 'yup';
 
-// controlled component hebben we
-// post request
-
 const schema = yup.object().shape({
   email: yup.string().email().required(),
 });
@@ -51,6 +48,7 @@ function Authorization() {
           email: data.email,
         });
         setStatus({
+          errors: response.errors,
           code: response.status,
           text: response.statusText,
         });
@@ -59,6 +57,12 @@ function Authorization() {
       }
     }
   }
+
+  console.log('status', status);
+
+  // if resopnse.status === 201: An email has been sent to you with your API key
+  // if resopnse.status === anything other than that: ...
+
   return (
     <div className='authorization-bg'>
       <div className='wrapper'>

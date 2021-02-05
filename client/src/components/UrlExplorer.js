@@ -12,29 +12,23 @@ let jsonParsed = JSON.stringify(exampleJson, null, 4);
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 function UrlExplorer() {
-  const [storedKey, setStoredKey] = useState(
-    localStorage.getItem('apiKey') ?? ''
-  );
-  const [route, setRoute] = useState('');
-  const [query, setQuery] = useState('');
-  const [url, setUrl] = useState(`${BASE_URL}/api`);
   const [data, setData] = useState({});
+  const [urlParams, setUrlParams] = useState({
+    storedKey: localStorage.getItem('apiKey') ?? '',
+    route: '',
+    query: '',
+    url: `${BASE_URL}/api`,
+  });
+  const {storedKey, route, query, url} = urlParams;
 
-  function handleStoreKey(e) {
-    handleInput(setStoredKey, e.target.value, route, e.target.value, query);
+  function buildUrl(urlParams) {
+    const {route, storedKey, query} = urlParams;
+    return `${BASE_URL}/api${route}?key=${storedKey}${query}`;
   }
 
-  function handleRoute(e) {
-    handleInput(setRoute, e.target.value, e.target.value, storedKey, query);
-  }
-
-  function handleQuery(e) {
-    handleInput(setQuery, e.target.value, route, storedKey, e.target.value);
-  }
-
-  function handleInput(setter, valueToUpdate, route, storedKey, query) {
-    setter(valueToUpdate);
-    setUrl(`${BASE_URL}/api${route}?key=${storedKey}${query}`);
+  function handleInput(e) {
+    const newParams = {...urlParams, [e.target.name]: e.target.value};
+    setUrlParams({...newParams, url: buildUrl(newParams)});
   }
 
   console.log('url', url);
@@ -43,12 +37,6 @@ function UrlExplorer() {
     e.preventDefault();
     localStorage.setItem('apiKey', storedKey);
   }
-
-  // ${BASE_URL}/api${route}?${query}key=${storedKey}
-
-  // api key x
-  // route
-  // query
 
   const fetchData = async () => {
     try {
@@ -68,7 +56,8 @@ function UrlExplorer() {
           <Form.Control
             type='text'
             placeholder='Paste your API key...'
-            onChange={handleStoreKey}
+            name='storedKey'
+            onChange={handleInput}
             value={storedKey}
           />
           <Button
@@ -83,12 +72,7 @@ function UrlExplorer() {
           <Form.Label htmlFor='inlineFormInputGroup' srOnly>
             API Url
           </Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Paste your API key...'
-            value={url}
-            readOnly
-          ></Form.Control>
+          <Form.Control type='text' value={url} readOnly></Form.Control>
           <Button className='submitUrl btn-block' onClick={fetchData}>
             Submit
           </Button>
@@ -100,8 +84,9 @@ function UrlExplorer() {
           <Col>
             <Form.Control
               type='text'
+              name='route'
               placeholder='/synths...'
-              onChange={handleRoute}
+              onChange={handleInput}
               value={route}
             />
           </Col>
@@ -113,8 +98,9 @@ function UrlExplorer() {
           <Col>
             <Form.Control
               type='text'
+              name='query'
               placeholder='yearProduced=1980...'
-              onChange={handleQuery}
+              onChange={handleInput}
               value={query}
             />
           </Col>

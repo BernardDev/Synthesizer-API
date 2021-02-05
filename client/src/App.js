@@ -1,13 +1,10 @@
 import './App.scss';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {Container} from 'react-bootstrap';
 import Home from './pages/Home';
 import About from './pages/About';
 import Documentation from './pages/Documentation';
 import Authorization from './pages/Authorization';
 import Footer from './components/Footer';
-import Col from 'react-bootstrap/Col';
-
 import Navigation from './components/Navigation';
 
 function App() {

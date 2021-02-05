@@ -1,14 +1,9 @@
 import './UrlExplorer.scss';
-import React, {useState, useEffect} from 'react';
-import {
-  Form,
-  Col,
-  Row,
-  InputGroup,
-  Button,
-  FormControl,
-  Container,
-} from 'react-bootstrap';
+import React, {useState} from 'react';
+
+import Form from 'react-bootstrap/Form';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import exampleJson from '../exampleJson.json';
 import axios from 'axios';
 
@@ -20,7 +15,9 @@ const BASE_URL = process.env.REACT_APP_API_URL;
 // 'BV0B0QX-X8Y4JEK-GYZRXSZ-7NKSKP6'
 
 function UrlExplorer() {
-  const [storedKey, setStoredKey] = useState(localStorage.getItem('apiKey'));
+  const [storedKey, setStoredKey] = useState(
+    localStorage.getItem('apiKey') ?? ''
+  );
   const [route, setRoute] = useState('');
   const [query, setQuery] = useState('');
   const [url, setUrl] = useState(`${BASE_URL}/api`);
@@ -62,7 +59,7 @@ function UrlExplorer() {
       console.log('RESPONSE:', response);
       setData(response.data);
     } catch (error) {
-      console.log('ERROR', error);
+      console.log('ERROR', error.response);
     }
   };
 

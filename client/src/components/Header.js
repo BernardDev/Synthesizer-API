@@ -1,6 +1,6 @@
 import './Header.scss';
 import React from 'react';
-import {Jumbotron} from 'react-bootstrap';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 function Header() {
   return (

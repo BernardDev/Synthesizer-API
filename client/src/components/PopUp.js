@@ -1,6 +1,6 @@
 import './PopUp.scss';
 import React, {useState} from 'react';
-import {Toast} from 'react-bootstrap';
+import Toast from 'react-bootstrap/Toast';
 import {NavLink} from 'react-router-dom';
 
 function PopUp() {

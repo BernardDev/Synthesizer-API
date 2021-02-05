@@ -1,7 +1,8 @@
 import './Authorization.scss';
 import './utility.scss';
-import React, {useState, useEffect} from 'react';
-import {Form, Button} from 'react-bootstrap';
+import React, {useState} from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import {useForm} from 'react-hook-form';
 import {ErrorMessage} from '@hookform/error-message';
 import {yupResolver} from '@hookform/resolvers/yup';

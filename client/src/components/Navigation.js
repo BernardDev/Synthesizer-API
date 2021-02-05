@@ -1,9 +1,9 @@
 import './Navigation.scss';
 import '../pages/utility.scss';
 import React from 'react';
-import {Navbar, Nav} from 'react-bootstrap';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import {NavLink} from 'react-router-dom';
-import axios from 'axios';
 import logo from '../images/909.png';
 
 function Navigation() {

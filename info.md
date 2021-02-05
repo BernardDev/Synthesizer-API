@@ -1,3 +1,13 @@
+### Todo before presentation
+
+- [x] display data in json viewer
+- [ ] copy url to clipboard
+- [ ] if storedKey/something in key input close toast
+- [ ] auth: you already have a key sent to you
+- [ ] add home route
+- [ ] design: color scheme,
+- [ ] refactor: urlExplorer, authorization
+
 ### Todo
 
 <!-- validation and testing -->
@@ -17,12 +27,7 @@
 - [x] input field: route
 - [x] input field: query
 - [x] when user edits route or query update the url
-- [ ] auto add key to explorer url
-- [ ] display json
-
-- [ ] copy url to clipboard
-
-- [ ] if storedKey close toast
+- [x] auto add key to explorer url
 
 #### As a developer I want my api users to send an api key with each request, so I can identify who is using my api
 

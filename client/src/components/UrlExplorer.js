@@ -1,24 +1,27 @@
 import './UrlExplorer.scss';
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 
 import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import exampleJson from '../exampleJson.json';
+import InputGroup from 'react-bootstrap/InputGroup';
 import axios from 'axios';
-
-let jsonParsed = JSON.stringify(exampleJson, null, 4);
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 function UrlExplorer() {
-  const [data, setData] = useState({});
+  const [copySuccess, setCopySuccess] = useState('');
+  const textAreaRef = useRef(null);
+  const [data, setData] = useState();
   const [urlParams, setUrlParams] = useState({
     storedKey: localStorage.getItem('apiKey') ?? '',
     route: '',
     query: '',
     url: `${BASE_URL}/api`,
   });
+
   const {storedKey, route, query, url} = urlParams;
 
   function buildUrl(urlParams) {
@@ -42,80 +45,162 @@ function UrlExplorer() {
     try {
       const response = await axios.get(`${url}`);
       console.log('RESPONSE:', response);
-      setData(response.data);
+      let jsonParsed = JSON.stringify(response.data, null, 4);
+      setData(jsonParsed);
     } catch (error) {
       console.log('ERROR', error.response);
     }
   };
 
+  // event handlers on link
+  // setRoute toggle /synths /manufacturers
+  // setQuery toggle add/(remove)
+  // setQuery = query + linkQuery
+
+  function handleLinkQuery() {
+    const oldQuery = query;
+    setUrlParams({
+      ...urlParams,
+      query: query + '&yearProduced=1980',
+    });
+
+    // handleInput(e.target.value);
+  }
+
+  function copyToClipboard(e) {
+    textAreaRef.current.select();
+    document.execCommand('copy');
+    // This is just personal preference.
+    // I prefer to not show the the whole text area selected.
+    e.target.focus();
+    setCopySuccess('Copied!');
+  }
+
   return (
     <>
-      <Form>
-        <Form.Group>
-          <Form.Label>Your API key:</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Paste your API key...'
-            name='storedKey'
-            onChange={handleInput}
-            value={storedKey}
-          />
-          <Button
-            className='btn-block'
-            variant='primary'
-            onClick={handleStoreKeySave}
-          >
-            Save
-          </Button>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label htmlFor='inlineFormInputGroup' srOnly>
-            API Url
-          </Form.Label>
-          <Form.Control type='text' value={url} readOnly></Form.Control>
-          <Button className='submitUrl btn-block' onClick={fetchData}>
-            Submit
-          </Button>
-        </Form.Group>
-        <Form.Group>
-          <Col>
-            <Form.Label>Route</Form.Label>
-          </Col>
-          <Col>
+      <Container>
+        <Form>
+          <Form.Group>
+            <Row>
+              <Form.Label>API key</Form.Label>
+            </Row>
+            <Row>
+              <Form.Text className='text-inputs-urlExplorer'>
+                Paste your API key in here. We will add this to your URL to
+                search our database. It is also possible to save your key!
+              </Form.Text>
+            </Row>
+            <Row>
+              <InputGroup>
+                <Form.Control
+                  type='text'
+                  placeholder='Paste your API key...'
+                  name='storedKey'
+                  onChange={handleInput}
+                  value={storedKey}
+                />
+                <Button
+                  className=''
+                  variant='primary'
+                  onClick={handleStoreKeySave}
+                >
+                  Save
+                </Button>
+              </InputGroup>
+            </Row>
+          </Form.Group>
+          <Form.Group>
+            <Row>
+              <Form.Label htmlFor='inlineFormInputGroup'>API Url</Form.Label>
+            </Row>
+            <Row>
+              <Form.Text className='text-inputs-urlExplorer'>
+                Build the URL you want to explore with the dedicated fields seen
+                below and hit search to explore it. Want to explore the routes
+                in browser? Just copy the URL to clipboard and do that instead.
+              </Form.Text>
+            </Row>
+            <Row>
+              <Form.Control
+                ref={textAreaRef}
+                type='text'
+                value={url}
+                readOnly
+              ></Form.Control>
+            </Row>
+            <Row>
+              <Button className='' onClick={fetchData}>
+                Search
+              </Button>
+              <Button className='' onClick={copyToClipboard}>
+                Clipboard
+              </Button>
+              {copySuccess}
+            </Row>
+            <Row>
+              <Col className='col-3'>
+                <Form.Label>Route</Form.Label>
+              </Col>
+              <Col>
+                <Form.Label>Query</Form.Label>
+              </Col>
+            </Row>
+            <Row>
+              <Col className='col-3'>
+                <Form.Control
+                  type='text'
+                  name='route'
+                  placeholder='/synths...'
+                  onChange={handleInput}
+                  value={route}
+                />
+              </Col>
+              <Col className=''>
+                <Form.Control
+                  type='text'
+                  name='query'
+                  placeholder='&yearProduced=1980...'
+                  onChange={handleInput}
+                  value={query}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col className='col-3'>
+                <Form.Text className='text-inputs-urlExplorer'>
+                  Try /synth or /manufacturers.
+                </Form.Text>
+              </Col>
+              <Col>
+                <Form.Text className='text-inputs-urlExplorer'>
+                  You could use{' '}
+                  {
+                    <a value='&yearProduced=1980' onClick={handleLinkQuery}>
+                      &yearProduced=1980
+                    </a>
+                  }
+                  , &manufacturer=Roland, &limit=20, &offset=0 . Chain the
+                  queries with '&'. For more exploration read the doc's!
+                  'polyphony',
+                </Form.Text>
+              </Col>
+            </Row>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>JSON</Form.Label>
             <Form.Control
-              type='text'
-              name='route'
-              placeholder='/synths...'
-              onChange={handleInput}
-              value={route}
+              as='textarea'
+              className='textareaExample'
+              rows={8}
+              value={data}
+              readOnly
             />
-          </Col>
-        </Form.Group>
-        <Form.Group>
-          <Col>
-            <Form.Label>Query</Form.Label>
-          </Col>
-          <Col>
-            <Form.Control
-              type='text'
-              name='query'
-              placeholder='yearProduced=1980...'
-              onChange={handleInput}
-              value={query}
-            />
-          </Col>
-        </Form.Group>
-        <Form.Group>
-          <Form.Label>JSON</Form.Label>
-          <Form.Control
-            as='textarea'
-            className='textareaExample'
-            rows={8}
-            value={jsonParsed}
-            readOnly
-          />
-        </Form.Group>
-      </Form>
+            <Form.Text className='text-inputs-urlExplorer'>
+              We'll never share your email with anyone else.
+            </Form.Text>
+          </Form.Group>
+        </Form>
+      </Container>
     </>
   );
 }

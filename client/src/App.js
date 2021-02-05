@@ -29,7 +29,3 @@ function App() {
 }
 
 export default App;
-
-// Nalink active variant bootstrap?
-// Nesting create components inside bootstrap components and vise versa?
-// overwriting using bootstrap classes not working? full with for pop-up, justify content for nav link items...

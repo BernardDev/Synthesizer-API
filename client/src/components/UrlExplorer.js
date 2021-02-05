@@ -60,11 +60,11 @@ function UrlExplorer() {
   // setQuery toggle add/(remove)
   // setQuery = query + linkQuery
 
-  function handleLinkQuery() {
-    const oldQuery = query;
+  function handleSuggestion(suggestionParams) {
+    const newParams = {...urlParams, ...suggestionParams};
     setUrlParams({
-      ...urlParams,
-      query: query + '&yearProduced=1980',
+      ...newParams,
+      url: buildUrl(newParams),
     });
 
     // handleInput(e.target.value);
@@ -202,13 +202,26 @@ function UrlExplorer() {
                 <Form.Text className='text-inputs-urlExplorer'>
                   You could use{' '}
                   {
-                    <a value='&yearProduced=1980' onClick={handleLinkQuery}>
+                    <span
+                      className='suggestion'
+                      onClick={() =>
+                        handleSuggestion({query: '&yearProduced=1980'})
+                      }
+                    >
                       &yearProduced=1980
-                    </a>
+                    </span>
                   }
-                  , &manufacturer=Roland, &limit=20, &offset=0 . Chain the
-                  queries with '&'. For more exploration read the doc's!
-                  'polyphony',
+                  ,
+                  <span
+                    className='suggestion'
+                    onClick={() =>
+                      handleSuggestion({query: '&manufacturer=Roland'})
+                    }
+                  >
+                    &manufacturer=Roland
+                  </span>
+                  , &limit=20, &offset=0 . Chain the queries with '&'. For more
+                  exploration read the doc's! 'polyphony',
                 </Form.Text>
               </Col>
             </Row>

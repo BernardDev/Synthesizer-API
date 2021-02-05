@@ -4,7 +4,7 @@
 
 - [x] copy url to clipboard
 - [x] notify the user about copy
-- [ ] notification disappears after a few seconds
+- [x] notification disappears after a few seconds
 
 - [x] display content op link in field
 - [ ] anchor tags that update the state of route and query field aswell as the url state

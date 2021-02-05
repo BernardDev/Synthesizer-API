@@ -143,17 +143,22 @@ function UrlExplorer() {
               ></Form.Control>
             </Row>
             <Row>
-              <Button className='' onClick={fetchData}>
-                Search
-              </Button>
-
-              {/* <button type="button" className="btn btn-primary" onClick={()=>{this.onShowAlert()}} >show Alert</button> */}
-              {/* <Alert color='info' isOpen={this.state.visible}>
+              <Col md={{offset: 3, span: 3}}>
+                <Button className='btn-block' onClick={fetchData}>
+                  Search
+                </Button>
+                {/* <button type="button" className="btn btn-primary" onClick={()=>{this.onShowAlert()}} >show Alert</button> */}
+                {/* <Alert color='info' isOpen={this.state.visible}>
                 I am an alert and I will disappear in 2sec.!
               </Alert> */}
-              <Button className='btn btn-primary' onClick={copyToClipboard}>
-                Clipboard
-              </Button>
+              </Col>
+              {/* <Col md={{offset: 2, span: 2}}> */}
+              <Col md={{offset: 0, span: 3}}>
+                <Button className='btn-block' onClick={copyToClipboard}>
+                  Clipboard
+                </Button>
+                {/* </Col> */}
+              </Col>
             </Row>
             <Row className='row-alert'>
               <Alert
@@ -196,6 +201,16 @@ function UrlExplorer() {
               <Col className='col-3'>
                 <Form.Text className='text-inputs-urlExplorer'>
                   Try /synth or /manufacturers.
+                  {
+                    <span
+                      className='suggestion'
+                      onClick={() =>
+                        handleSuggestion({query: '', route: '/synths/1'})
+                      }
+                    >
+                      /synths/1
+                    </span>
+                  }
                 </Form.Text>
               </Col>
               <Col>

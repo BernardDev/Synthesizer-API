@@ -6,6 +6,7 @@
 
 .form-control {
   display: inline;
+  margin-bottom: 10px;
 }
 
 .form-group {
@@ -36,6 +37,10 @@
   cursor: pointer;
   text-decoration: underline;
   color: aqua;
+}
+
+.btn {
+  margin: 0 10px !important;
 }
 
 // .row-alert {

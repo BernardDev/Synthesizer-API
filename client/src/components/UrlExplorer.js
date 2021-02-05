@@ -10,9 +10,6 @@ import axios from 'axios';
 let jsonParsed = JSON.stringify(exampleJson, null, 4);
 
 const BASE_URL = process.env.REACT_APP_API_URL;
-// console.log('process.env', process.env);
-
-// 'BV0B0QX-X8Y4JEK-GYZRXSZ-7NKSKP6'
 
 function UrlExplorer() {
   const [storedKey, setStoredKey] = useState(
@@ -23,23 +20,23 @@ function UrlExplorer() {
   const [url, setUrl] = useState(`${BASE_URL}/api`);
   const [data, setData] = useState({});
 
-  // console.log('storedKey', storedKey);
-
   function handleStoreKey(e) {
-    e.preventDefault();
-    setStoredKey(e.target.value);
-    setUrl(`${BASE_URL}/api${route}?key=${e.target.value}${query}`);
+    handleInput(setStoredKey, e.target.value, route, e.target.value, query);
   }
 
   function handleRoute(e) {
-    setRoute(e.target.value);
-    setUrl(`${BASE_URL}/api${e.target.value}?key=${storedKey}${query}`);
+    handleInput(setRoute, e.target.value, e.target.value, storedKey, query);
   }
 
   function handleQuery(e) {
-    setQuery(e.target.value);
-    setUrl(`${BASE_URL}/api${route}?key=${storedKey}${e.target.value}`);
+    handleInput(setQuery, e.target.value, route, storedKey, e.target.value);
   }
+
+  function handleInput(setter, valueToUpdate, route, storedKey, query) {
+    setter(valueToUpdate);
+    setUrl(`${BASE_URL}/api${route}?key=${storedKey}${query}`);
+  }
+
   console.log('url', url);
 
   function handleStoreKeySave(e) {

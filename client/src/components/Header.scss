@@ -4,20 +4,20 @@
 //   background-color: red;
 // }
 
-.header-img {
-  background: url('../images/synthesizer3.jpg');
-}
-
 .jumbotron {
   background-color: transparent;
-  background-color: rgba($color: #fff, $alpha: 0.5);
-  margin-bottom: 0;
+  background-color: rgba($color: #fff, $alpha: 0);
+  color: #fff;
+}
+
+p > span {
+  font-size: 2rem;
 }
 
 .title {
-  color: #ff864e;
+  color: #fff;
 }
 
 .slogan {
-  color: #ff864e;
+  color: #fff;
 }

@@ -1,4 +1,24 @@
+.header-bg {
+  background: url('../images/synthesizer4.jpg');
+  padding: 2rem 0;
+  // margin: 4rem 0;
+}
+
 .home-bg {
   width: 100%;
-  background-color: purple;
+  background-color: white;
+}
+
+.popup-bg {
+  background-color: #3d4d66;
+  display: flex;
+}
+
+.popup-bg > .wrapper {
+  justify-content: center;
+  max-width: 60%;
+}
+
+.UrlExplorer-bg {
+  background-color: #8e8e8e;
 }

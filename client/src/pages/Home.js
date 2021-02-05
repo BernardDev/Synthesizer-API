@@ -8,10 +8,20 @@ import Header from '../components/Header';
 function Home() {
   return (
     <div className='home-bg'>
-      <div className='container'>
-        <Header />
-        <PopUp />
-        <UrlExplorer />
+      <div className='header-bg'>
+        <div className='wrapper'>
+          <Header />
+        </div>
+      </div>
+      <div className='popup-bg p-4'>
+        <div className='wrapper'>
+          <PopUp />
+        </div>
+      </div>
+      <div className='UrlExplorer-bg'>
+        <div className='wrapper'>
+          <UrlExplorer />
+        </div>
       </div>
     </div>
   );

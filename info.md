@@ -3,23 +3,26 @@
 <!-- validation and testing -->
 
 - [x] send succes message
-- [ ] send succes message from server
-- [ ] display feedback: request succeeds, request fails (get out of server)
+- [x] send succes message from server
+- [x] display feedback: request succeeds, request fails (get out of server)
 - [x] hide/disable button and inputfield (no double requests)
 
-- [ ] inputfield for api key explorer, save the key in local storage
-- [ ] make explorer url read only
+- [x] inputfield for api key explorer, save the key in local storage
+- [x] make explorer url read only
 
-- [ ] when app starts check local storage for key and load it if there
+- [x] when app starts check local storage for key and load it if there
+- [x] if there load it into url
 - [ ] make a request and display json
 
-- [ ] input field: route
-- [ ] input field: query
-- [ ] when user edits route or query update the url
+- [x] input field: route
+- [x] input field: query
+- [x] when user edits route or query update the url
 - [ ] auto add key to explorer url
 - [ ] display json
 
 - [ ] copy url to clipboard
+
+- [ ] if storedKey close toast
 
 #### As a developer I want my api users to send an api key with each request, so I can identify who is using my api
 

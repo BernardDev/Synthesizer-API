@@ -13,32 +13,51 @@ textarea {
 }
 
 $theme-colors: (
-  'primary': hotpink,
-  'danger': teal,
+  'primary': #4c617f,
+  'danger': #f89250,
   'dark': #3c404a,
 );
 
 // donkergrijs
-// #3c404a
+// #2e3138
 // lichtgrijs
-// #dbd6d5
+// #eaeaea
 // oranje
-// #ff864e
+// #f89250
 // blauw
-// #35435a
+// #3d4d66
 // grijs
-// #827d7a
+// #8e8e8e
+
+$bg-dark: #2e3138;
 
 // $enable-rounded: true;
-
 // $body-bg: black;
 // $body-color: white;
-
 // $link-decoration: none;
 // $border-radius: 1rem;
 // $link-color: teal;
-
 @import '~bootstrap/scss/bootstrap';
+
+@import url('https://fonts.googleapis.com/css2?family=Sintony&family=Source+Sans+Pro:wght@900&display=swap');
+
+h1 {
+  font-size: 4rem;
+}
+
+body,
+a {
+  font-family: 'Sintony', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Source Sans Pro', sans-serif;
+}
 
 // this kind of thing: below?? 😂
 // $link-color: theme-colors("primary");

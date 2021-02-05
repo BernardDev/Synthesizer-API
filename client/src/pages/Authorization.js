@@ -33,6 +33,7 @@ function InputWithFeedback({name, type, register, errors, humanReadbleName}) {
 }
 
 const baseUrl = process.env.REACT_APP_API_URL;
+console.log('baseUrl', baseUrl);
 
 function Authorization() {
   const [status, setStatus] = useState({});
@@ -59,7 +60,7 @@ function Authorization() {
   }
   return (
     <div className='authorization-bg'>
-      <div className='container'>
+      <div className='wrapper'>
         {status.code === 201 ? (
           'An email has been sent to you with your API key'
         ) : (

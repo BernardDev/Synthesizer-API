@@ -4,14 +4,21 @@ import React from 'react';
 import {Navbar, Nav} from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 import axios from 'axios';
+import logo from '../images/909.png';
 
 function Navigation() {
   return (
     <div className='navigation-bg'>
-      <div className='container'>
+      <div className='wrapper'>
         <Navbar bg='dark' variant='dark' expand='lg' sticky='top'>
           <Navbar.Brand as={NavLink} to='/' exact>
-            Synthesizer API logo
+            <img
+              alt=''
+              src={logo}
+              width='40'
+              height='40'
+              className='d-inline-block align-center'
+            />{' '}
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>

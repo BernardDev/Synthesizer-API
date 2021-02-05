@@ -1,15 +1,23 @@
-.column1,
-.column2 {
-  margin: 0 !important;
-  padding: 0 !important;
+// .column1,
+// .column2 {
+//   margin: 0 !important;
+//   padding: 0 !important;
+// }
+
+.form-control {
+  display: inline;
+}
+
+.form-group {
+  margin-bottom: 0rem;
 }
 
 .staticURLexample {
 }
 
-.input-group {
-  flex-wrap: nowrap;
-}
+// .input-group {
+//   flex-wrap: nowrap;
+// }
 
 .textareaExample {
   width: 100% !important;
@@ -25,22 +33,22 @@
 //   max-width: 100% !important;
 // }
 
-.groupURLexample {
-  height: 100%;
-}
+// .groupURLexample {
+//   height: 100%;
+// }
 
-.column1 {
-  width: 80%;
-}
+// .column1 {
+//   width: 80%;
+// }
 
-.column2 {
-  display: flex;
-  align-self: center;
-  text-align: center;
-  width: 20%;
-}
+// .column2 {
+//   display: flex;
+//   align-self: center;
+//   text-align: center;
+//   width: 20%;
+// }
 
-.submitUrl {
-  height: 100%;
-  width: 100%;
-}
+// .submitUrl {
+//   height: 100%;
+//   width: 100%;
+// }

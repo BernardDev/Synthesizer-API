@@ -5,7 +5,7 @@ import React from 'react';
 function About() {
   return (
     <div className='about-bg'>
-      <div className='container'>about</div>
+      <div className='wrapper'>about</div>
     </div>
   );
 }

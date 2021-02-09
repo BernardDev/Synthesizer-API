@@ -1,27 +1,64 @@
+### useContext way
+
+- [ ] display
+
 ### Todo before presentation
 
 - [x] display data in json viewer
+- [x] remove draggsizing
+- [x] rescale textarea
+- [x] not visible only after succesful retrieval
+- [x] edit scrollbar to always show
+- [ ] edit scrollbar to not have a border
 
 - [x] copy url to clipboard
 - [x] notify the user about copy
 - [x] notification disappears after a few seconds
+- [x] notification disappears after 4 seconds
 
 - [x] display content op link in field
-- [ ] anchor tags that update the state of route and query field aswell as the url state
-- [ ] in case of /synth manufacturer it is a toggle
+- [x] anchor tags that update the state of route or query field, and also url
 - [ ] in case of &queries it is a addition on top of current state
+
+- [ ] user notification messages
+
+<!-- what is the current situation of backend error handling -->
+
+- [ ] you do not seed bad request on mount of page
+- [ ] should give a general error in notification
+- [ ] should give more detailed error inside the json viewer
+
+---
+
+- [ ] &manufacturer=Pietje should give message: no records found, error: no records found
+- [ ] &yearProduced=4000 should give message: no record found, error: no records found
+- [ ] &yearProduced=chesse should give a message: bad request, error: yearProduced must be... type
+- [ ] &offset=0&limit=cheese should give message: bad request , errors: offset must be... type
+
+---
+
+- [ ] /snits should give a message: this route does not exist
+- [ ] /
+- [ ]
+
+- [ ] validation when no record has been found (404)
+- [ ] validation when bad request has been made (400)
+- [ ] validation when error on server side (500)
+- [ ] validation anything else
+- [ ] get all messages from server instead of client
+
+- [ ] validate when email is already in the db (?)
+- [ ] validation when error on server side (500)
 
 - [ ] if storedKey/something in key input close toast
 
-- [ ] alert message when user f#cked up the url
-
-- [ ] alert message from server when email is already in db
-
 <!-- extra -->
 
-- [ ] add a home route to enhance navigation
-- [ ] design: color scheme
+- [ ] add a home route in the navigation
+- [ ] design: color scheme, change
 - [ ] refactor: urlExplorer, authorization
+- [ ] add documentation page
+- [ ] add about page
 
 ### Todo
 

@@ -1,7 +1,5 @@
 const {Synth, Manufacturer, Specification, User} = require('../models');
 
-// test
-
 async function checkApiKey(key) {
   try {
     const foundUser = await User.findOne({where: {key}});

@@ -5,7 +5,8 @@ import PopUp from '../components/PopUp';
 import UrlExplorer from '../components/UrlExplorer';
 import Header from '../components/Header';
 
-function Home() {
+function Home(props) {
+  const {setApiKey} = props;
   return (
     <div className='home-bg'>
       <div className='header-bg'>
@@ -20,7 +21,7 @@ function Home() {
       </div>
       <div className='UrlExplorer-bg'>
         <div className='wrapper'>
-          <UrlExplorer />
+          <UrlExplorer setApiKey={setApiKey} />
         </div>
       </div>
     </div>

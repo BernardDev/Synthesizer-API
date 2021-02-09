@@ -1,6 +1,32 @@
-### useContext way
+### useContext (superb way)
 
-- [ ] display
+### useContext (nice way)
+
+### useContext (simple way)
+
+- [x] createContext
+- [x] consider where you get data you want to have inside the context?
+  - [x] UrlExplorer
+- [x] consider where you want to use the context
+  - [x] Toast, Autorization
+- [x] wrap everything from App inside AuthContext.Provider (work with React children)
+- [x] in App (parent), import and create a useState for the data you want to be in the context
+- [x] in App (parent), pass the component that is responsible for updating the state a callback prop (pass it through even deeper if needed)
+- [x] use the callback prop to change state in App
+- [x] pass the state ass value
+- [x] in App, pass -> NameContext.Provider value={state} <-
+- [x] test it out in different components with useContext
+- [x] get what you want out of the state useContext name.apiKey
+
+---
+
+if (authInfo) {
+not display toast
+}
+
+---
+
+- [ ] it did not work onChange !!!
 
 ### Todo before presentation
 

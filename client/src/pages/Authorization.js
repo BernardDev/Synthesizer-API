@@ -34,7 +34,7 @@ const baseUrl = process.env.REACT_APP_API_URL;
 console.log('baseUrl', baseUrl);
 
 function Authorization() {
-  const [status, setStatus] = useState({});
+  const [response, setResponse] = useState({});
 
   const {register, handleSubmit, errors} = useForm({
     resolver: yupResolver(schema),
@@ -47,7 +47,8 @@ function Authorization() {
         const response = await axios.post(`${baseUrl}/apikey`, {
           email: data.email,
         });
-        setStatus({
+        setResponse({
+          message: response.message,
           errors: response.errors,
           code: response.status,
           text: response.statusText,
@@ -58,7 +59,7 @@ function Authorization() {
     }
   }
 
-  console.log('status', status);
+  console.log('response', response);
 
   // if resopnse.status === 201: An email has been sent to you with your API key
   // if resopnse.status === anything other than that: ...
@@ -66,8 +67,8 @@ function Authorization() {
   return (
     <div className='authorization-bg'>
       <div className='wrapper'>
-        {status.code === 201 ? (
-          'An email has been sent to you with your API key'
+        {response.code === 201 ? (
+          response.message
         ) : (
           <Form noValidate validated={false} onSubmit={handleSubmit(onSubmit)}>
             <InputWithFeedback

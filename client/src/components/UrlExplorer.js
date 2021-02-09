@@ -1,5 +1,6 @@
 import './UrlExplorer.scss';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
+import AuthContext from '../context/AuthContext';
 
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
@@ -8,16 +9,21 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Alert from 'react-bootstrap/Alert';
-import axios from 'axios';
+import Loading from '../components/Loading';
+import Error from '../components/Error';
+import Success from './Success';
+import useRequest from '../hooks/useRequest';
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
-function UrlExplorer() {
+function UrlExplorer(props) {
+  console.log('props from urlExp', props);
+  const {setApiKey} = props;
+  const keyStore = useContext(AuthContext);
   // const [stateAlert, setStateAlert] = useState('visible');
   const [stateAlert, setStateAlert] = useState(false);
   const [copySuccess, setCopySuccess] = useState('');
   const textAreaRef = useRef(null);
-  const [data, setData] = useState();
   const [urlParams, setUrlParams] = useState({
     storedKey: localStorage.getItem('apiKey') ?? '',
     route: '',
@@ -25,7 +31,23 @@ function UrlExplorer() {
     url: `${BASE_URL}/api`,
   });
 
+  const [isFetching, setIsFetching] = useState(false);
+
+  const {status, code, message, data} = useRequest(urlParams.url, isFetching);
+
+  console.log('status', status);
+
   const {storedKey, route, query, url} = urlParams;
+
+  useEffect(() => {
+    if (status === 'error' || status === 'success') {
+      setIsFetching(false);
+    }
+  }, [status]);
+
+  // function handleFetch(urlParams) {
+  //   const {status, code, message, data} = useRequest({urlParams});
+  // }
 
   function buildUrl(urlParams) {
     const {route, storedKey, query} = urlParams;
@@ -34,31 +56,20 @@ function UrlExplorer() {
 
   function handleInput(e) {
     const newParams = {...urlParams, [e.target.name]: e.target.value};
+    // here
+    // console.log('just input', e.target.value);
+    // setApiKey(e.target.value);
     setUrlParams({...newParams, url: buildUrl(newParams)});
   }
 
-  console.log('url', url);
+  // console.log('url', url);
 
   function handleStoreKeySave(e) {
     e.preventDefault();
-    localStorage.setItem('apiKey', storedKey);
+    // console.log('just input', e.target.value);
+    setApiKey(storedKey);
+    // localStorage.setItem('apiKey', storedKey);
   }
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`${url}`);
-      console.log('RESPONSE:', response);
-      let jsonParsed = JSON.stringify(response.data, null, 4);
-      setData(jsonParsed);
-    } catch (error) {
-      console.log('ERROR', error.response);
-    }
-  };
-
-  // event handlers on link
-  // setRoute toggle /synths /manufacturers
-  // setQuery toggle add/(remove)
-  // setQuery = query + linkQuery
 
   function handleSuggestion(suggestionParams) {
     const newParams = {...urlParams, ...suggestionParams};
@@ -66,15 +77,13 @@ function UrlExplorer() {
       ...newParams,
       url: buildUrl(newParams),
     });
-
-    // handleInput(e.target.value);
   }
 
   function copyToClipboard(e) {
     textAreaRef.current.select();
     document.execCommand('copy');
     e.target.focus();
-    setCopySuccess(`${urlParams.url} copied to clipboard`);
+    setCopySuccess(`URL copied to clipboard: ${urlParams.url} `);
     setStateAlert(true);
   }
 
@@ -82,13 +91,11 @@ function UrlExplorer() {
     if (stateAlert === true) {
       window.setTimeout(() => {
         setStateAlert(false);
-      }, 2000);
+      }, 4000);
     }
   }, [stateAlert]);
 
-  console.log('stateAlert', stateAlert);
-
-  function onShowAlert() {}
+  console.log('data', data);
 
   return (
     <>
@@ -144,23 +151,21 @@ function UrlExplorer() {
             </Row>
             <Row>
               <Col md={{offset: 3, span: 3}}>
-                <Button className='btn-block' onClick={fetchData}>
+                <Button
+                  className='btn-block'
+                  onClick={() => setIsFetching(true)}
+                  disabled={isFetching}
+                >
                   Search
                 </Button>
-                {/* <button type="button" className="btn btn-primary" onClick={()=>{this.onShowAlert()}} >show Alert</button> */}
-                {/* <Alert color='info' isOpen={this.state.visible}>
-                I am an alert and I will disappear in 2sec.!
-              </Alert> */}
               </Col>
-              {/* <Col md={{offset: 2, span: 2}}> */}
               <Col md={{offset: 0, span: 3}}>
                 <Button className='btn-block' onClick={copyToClipboard}>
                   Clipboard
                 </Button>
-                {/* </Col> */}
               </Col>
             </Row>
-            <Row className='row-alert'>
+            <Row className='row-alert alert-copy'>
               <Alert
                 show={stateAlert}
                 className='alert-success'
@@ -200,7 +205,27 @@ function UrlExplorer() {
             <Row>
               <Col className='col-3'>
                 <Form.Text className='text-inputs-urlExplorer'>
-                  Try /synth or /manufacturers.
+                  Try{' '}
+                  {
+                    <span
+                      className='suggestion'
+                      onClick={() => handleSuggestion({route: '/synths'})}
+                    >
+                      /synths
+                    </span>
+                  }{' '}
+                  or
+                  {
+                    <span
+                      className='suggestion'
+                      onClick={() =>
+                        handleSuggestion({query: '', route: '/manufacturers'})
+                      }
+                    >
+                      /manufacturers
+                    </span>
+                  }
+                  . To get a specific use the following format{' '}
                   {
                     <span
                       className='suggestion'
@@ -210,23 +235,37 @@ function UrlExplorer() {
                     >
                       /synths/1
                     </span>
+                  }{' '}
+                  or
+                  {
+                    <span
+                      className='suggestion'
+                      onClick={() =>
+                        handleSuggestion({
+                          query: '',
+                          route: '/synths/Jupiter-8',
+                        })
+                      }
+                    >
+                      /synths/Jupiter-8
+                    </span>
                   }
+                  .
                 </Form.Text>
               </Col>
               <Col>
                 <Form.Text className='text-inputs-urlExplorer'>
                   You could use{' '}
-                  {
-                    <span
-                      className='suggestion'
-                      onClick={() =>
-                        handleSuggestion({query: '&yearProduced=1980'})
-                      }
-                    >
-                      &yearProduced=1980
-                    </span>
-                  }
-                  ,
+                  <span
+                    className='suggestion'
+                    onClick={() =>
+                      handleSuggestion({query: '&yearProduced=1980'})
+                    }
+                  >
+                    &yearProduced=1980
+                  </span>{' '}
+                  to get synths produced in that year. Or get synths from a
+                  manufacturer:{' '}
                   <span
                     className='suggestion'
                     onClick={() =>
@@ -235,8 +274,17 @@ function UrlExplorer() {
                   >
                     &manufacturer=Roland
                   </span>
-                  , &limit=20, &offset=0 . Chain the queries with '&'. For more
-                  exploration read the doc's! 'polyphony',
+                  . You can also change default pagination options{' '}
+                  <span
+                    className='suggestion'
+                    onClick={() =>
+                      handleSuggestion({query: '&limit=20&offset=0'})
+                    }
+                  >
+                    &limit=20&offset=0
+                  </span>
+                  . Chain queries together with '&'. For more API exploration,
+                  read the doc's!
                 </Form.Text>
               </Col>
             </Row>
@@ -244,15 +292,20 @@ function UrlExplorer() {
           <Form.Group>
             <Form.Label>JSON</Form.Label>
             <Form.Text className='text-inputs-urlExplorer'>
-              Conside exploring the JSON LINK in browser LINK to.
+              Consider exploring the JSON LINK in browser LINK to.
             </Form.Text>
-            <Form.Control
-              as='textarea'
-              className='textareaExample'
-              rows={8}
-              value={data}
-              readOnly
-            />
+            {status === 'loading' && <Loading message={message} />}
+            {status === 'error' && <Error message={message} />}
+            {status === 'success' && <Success message={message} />}
+            <Row>
+              <Form.Control
+                as='textarea'
+                id='textareaExample'
+                rows='32'
+                value={data != null || undefined ? data : message}
+                readOnly
+              />
+            </Row>
           </Form.Group>
         </Form>
       </Container>

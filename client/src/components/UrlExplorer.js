@@ -16,9 +16,7 @@ import useRequest from '../hooks/useRequest';
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
-function UrlExplorer(props) {
-  console.log('props from urlExp', props);
-  const {setApiKey} = props;
+function UrlExplorer() {
   const keyStore = useContext(AuthContext);
   // const [stateAlert, setStateAlert] = useState('visible');
   const [stateAlert, setStateAlert] = useState(false);
@@ -67,7 +65,7 @@ function UrlExplorer(props) {
   function handleStoreKeySave(e) {
     e.preventDefault();
     // console.log('just input', e.target.value);
-    setApiKey(storedKey);
+    keyStore.setApiKey(storedKey);
     // localStorage.setItem('apiKey', storedKey);
   }
 

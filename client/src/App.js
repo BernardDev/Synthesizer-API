@@ -14,14 +14,14 @@ function App() {
   // console.log('apiKey WITH CALLBACK PROP', apiKey);
 
   return (
-    <AuthContext.Provider value={{apiKey: apiKey}}>
+    <AuthContext.Provider value={{apiKey: apiKey, setApiKey: setApiKey}}>
       <Router>
         <div className='App'>
           {/* <Container fluid> */}
           <Navigation />
           <Switch>
             <Route path='/' exact>
-              <Home setApiKey={setApiKey} />
+              <Home />
             </Route>
             <Route path='/About' component={About} />
             <Route path='/Documentation' component={Documentation} />

@@ -1,6 +1,6 @@
 import './App.scss';
 import React, {useState} from 'react';
-import AuthContext from './context/AuthContext';
+import {AuthProvider} from './context/AuthContext';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -10,11 +10,8 @@ import Footer from './components/Footer';
 import Navigation from './components/Navigation';
 
 function App() {
-  const [apiKey, setApiKey] = useState(null);
-  // console.log('apiKey WITH CALLBACK PROP', apiKey);
-
   return (
-    <AuthContext.Provider value={{apiKey: apiKey, setApiKey: setApiKey}}>
+    <AuthProvider>
       <Router>
         <div className='App'>
           {/* <Container fluid> */}
@@ -31,7 +28,7 @@ function App() {
           {/* </Container> */}
         </div>
       </Router>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
 

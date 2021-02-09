@@ -1,6 +1,6 @@
 import './UrlExplorer.scss';
 import React, {useState, useEffect, useRef, useContext} from 'react';
-import AuthContext from '../context/AuthContext';
+import {AuthContext} from '../context/AuthContext';
 
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';

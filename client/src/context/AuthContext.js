@@ -1,5 +1,13 @@
-import {createContext} from 'react';
+import {createContext, useState} from 'react';
 
-const AuthContext = createContext({});
+export const AuthContext = createContext({});
 
-export default AuthContext;
+export function AuthProvider(props) {
+  const [apiKey, setApiKey] = useState(null); // move it to a dedicated component
+
+  return (
+    <AuthContext.Provider value={{apiKey: apiKey, setApiKey: setApiKey}}>
+      {props.children}
+    </AuthContext.Provider>
+  );
+}

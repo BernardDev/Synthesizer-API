@@ -15,27 +15,22 @@ import Success from './Success';
 import useRequest from '../hooks/useRequest';
 
 const BASE_URL = process.env.REACT_APP_API_URL;
+const INITIAL_ROUTE = '/synths';
 
 function UrlExplorer() {
-  const keyStore = useContext(AuthContext);
-  // const [stateAlert, setStateAlert] = useState('visible');
   const [stateAlert, setStateAlert] = useState(false);
   const [copySuccess, setCopySuccess] = useState('');
-  const textAreaRef = useRef(null);
-  const [urlParams, setUrlParams] = useState({
-    storedKey: localStorage.getItem('apiKey') ?? '',
-    route: '',
-    query: '',
-    url: `${BASE_URL}/api`,
-  });
-
   const [isFetching, setIsFetching] = useState(false);
+  const {apiKey, setApiKey, saveKey} = useContext(AuthContext);
+  const textAreaRef = useRef(null);
 
-  const {status, code, message, data} = useRequest(urlParams.url, isFetching);
-
-  console.log('status', status);
-
-  const {storedKey, route, query, url} = urlParams;
+  const [urlParams, setUrlParams] = useState({
+    route: INITIAL_ROUTE,
+    query: '',
+    url: buildUrl({route: INITIAL_ROUTE, query: ''}, apiKey),
+  });
+  const {route, query, url} = urlParams;
+  const {status, code, message, data} = useRequest(url, isFetching);
 
   useEffect(() => {
     if (status === 'error' || status === 'success') {
@@ -43,37 +38,35 @@ function UrlExplorer() {
     }
   }, [status]);
 
-  // function handleFetch(urlParams) {
-  //   const {status, code, message, data} = useRequest({urlParams});
-  // }
-
-  function buildUrl(urlParams) {
-    const {route, storedKey, query} = urlParams;
-    return `${BASE_URL}/api${route}?key=${storedKey}${query}`;
-  }
+  // making a seperate component
+  useEffect(() => {
+    if (stateAlert === true) {
+      window.setTimeout(() => {
+        setStateAlert(false);
+      }, 4000);
+    }
+  }, [stateAlert]);
 
   function handleInput(e) {
     const newParams = {...urlParams, [e.target.name]: e.target.value};
-    // here
-    // console.log('just input', e.target.value);
-    // setApiKey(e.target.value);
-    setUrlParams({...newParams, url: buildUrl(newParams)});
+    setUrlParams({...newParams, url: buildUrl(newParams, apiKey)});
   }
 
-  // console.log('url', url);
+  function handleKeyInput(e) {
+    setApiKey(e.target.value);
+    setUrlParams({...urlParams, url: buildUrl(urlParams, e.target.value)});
+  }
 
-  function handleStoreKeySave(e) {
-    e.preventDefault();
-    // console.log('just input', e.target.value);
-    keyStore.setApiKey(storedKey);
-    // localStorage.setItem('apiKey', storedKey);
+  function buildUrl(urlParams, key) {
+    const {route, query} = urlParams;
+    return `${BASE_URL}/api${route}?key=${key}${query}`;
   }
 
   function handleSuggestion(suggestionParams) {
     const newParams = {...urlParams, ...suggestionParams};
     setUrlParams({
       ...newParams,
-      url: buildUrl(newParams),
+      url: buildUrl(newParams, apiKey),
     });
   }
 
@@ -84,16 +77,6 @@ function UrlExplorer() {
     setCopySuccess(`URL copied to clipboard: ${urlParams.url} `);
     setStateAlert(true);
   }
-
-  useEffect(() => {
-    if (stateAlert === true) {
-      window.setTimeout(() => {
-        setStateAlert(false);
-      }, 4000);
-    }
-  }, [stateAlert]);
-
-  console.log('data', data);
 
   return (
     <>
@@ -115,13 +98,13 @@ function UrlExplorer() {
                   type='text'
                   placeholder='Paste your API key...'
                   name='storedKey'
-                  onChange={handleInput}
-                  value={storedKey}
+                  onChange={handleKeyInput}
+                  value={apiKey || ''}
                 />
                 <Button
                   className=''
                   variant='primary'
-                  onClick={handleStoreKeySave}
+                  onClick={() => saveKey(apiKey)}
                 >
                   Save
                 </Button>
@@ -143,7 +126,9 @@ function UrlExplorer() {
               <Form.Control
                 ref={textAreaRef}
                 type='text'
-                value={url}
+                value={
+                  url === `${BASE_URL}/api` ? `${BASE_URL}/api/synths` : url
+                }
                 readOnly
               ></Form.Control>
             </Row>
@@ -187,7 +172,7 @@ function UrlExplorer() {
                   name='route'
                   placeholder='/synths...'
                   onChange={handleInput}
-                  value={route}
+                  value={route || '/synths'}
                 />
               </Col>
               <Col className=''>
@@ -300,7 +285,7 @@ function UrlExplorer() {
                 as='textarea'
                 id='textareaExample'
                 rows='32'
-                value={data != null || undefined ? data : message}
+                value={data}
                 readOnly
               />
             </Row>

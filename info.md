@@ -1,6 +1,49 @@
+### new markdown!
+
+- [ ] move image folder to server (temporarily), so we can access images
+- [ ] write a small script that does the following:
+
+  - [ ] get one record from the test database (findOne)
+  - [ ] grab the imageUrl from the record
+  - [ ] strip the filename from the url (.split('/'))
+  - [ ] check if the filename exists in our images folder (fs.readDir)
+  - [ ] if not -> stop and log: image not found or name does not match, time for Bernard to use the GUI?
+  - [ ] if yes
+  - [ ] grab the name of the synth
+  - [ ] turn the name of the synth into a `public_id` for cloudinary (replaces spaces with `*` for example)
+    - [ ] example: Casio Big fuckin' keyboard -> `Casio_Big_fuckin'_keyboard`
+    - [ ] maybe use `EncodeUriComponent` -> ` ` -> `%20`
+  - [ ] Upload to cloudinary
+    - [ ] if success
+    - [ ] update the url of the Synth in the database to the cloudinary url
+    - [ ] failure
+    - [ ] log failure, check what went wrong
+
+### Complete cleanup list:
+
+-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+
+- [x] save or not to save... that is the question -> onClick/save or onChange/input
+- [x] interaction of local storage and the store:
+  - [x] if handleStoreKeySave:localStorage.setItem('apiKey', keyStore.apiKey)
+  - [x] if key is in local storage, dupe this inside the keyStore.apiKey
+- [x] components where store's data is useful:
+  - [ ] PopUp
+    - [ ] remove popup if apiKey (saved)
+  - [ ] Authorization
+    - [ ] notify user about present apiKey, on every request
+  - [ ] UrlExplorer > API key input field - [ ] display currently (saved) API key - [ ]
+        -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+
+-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+
 ### useContext (superb way)
 
+- [x] seperate the Provider from App js with React children
+
 ### useContext (nice way)
+
+- [x] pass the setter in the store instead of as callback prop
 
 ### useContext (simple way)
 

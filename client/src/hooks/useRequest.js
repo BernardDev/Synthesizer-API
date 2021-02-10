@@ -5,12 +5,16 @@ const initialState = {
   status: 'loading',
   code: null,
   message: 'Loading',
-  data: null,
+  data: '',
 };
 
 function useRequest(url, isFetching) {
   const [data, setData] = useState(initialState);
   useEffect(() => {
+    if (!isFetching) {
+      return;
+      // prevent fetching on load, wait until user puts in meaningful url
+    }
     const fetchData = async () => {
       setData(initialState);
       try {

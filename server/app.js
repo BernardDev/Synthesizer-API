@@ -23,13 +23,17 @@ app.post(
     'body'
   ),
   async (req, res) => {
+    console.log('hai');
     try {
       const {email} = req.validatedBody;
       const APIkey = uuidAPIKey.create().apiKey;
       const isNewUser = await postUser({email: email, key: APIkey});
       if (isNewUser) {
         const response = sendEmailWithAPIkey(APIkey, email);
-        res.status(201).send(response);
+        // res.status(201).send(response);
+        res
+          .status(201)
+          .send({message: `Your API key has been sent to ${email}`});
       } else {
         res.send({errors: ['You already have a key!'], message: 'nope!'});
       }

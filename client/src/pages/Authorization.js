@@ -1,14 +1,13 @@
 import './Authorization.scss';
-import React, {useState, useEffect} from 'react';
-import {Form, Button} from 'react-bootstrap';
+import './utility.scss';
+import React, {useState} from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 import {useForm} from 'react-hook-form';
 import {ErrorMessage} from '@hookform/error-message';
 import {yupResolver} from '@hookform/resolvers/yup';
 import axios from 'axios';
 import * as yup from 'yup';
-
-// controlled component hebben we
-// post request
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -32,68 +31,60 @@ function InputWithFeedback({name, type, register, errors, humanReadbleName}) {
 }
 
 const baseUrl = process.env.REACT_APP_API_URL;
+console.log('baseUrl', baseUrl);
 
 function Authorization() {
+  const [response, setResponse] = useState({});
+
   const {register, handleSubmit, errors} = useForm({
     resolver: yupResolver(schema),
   });
 
   async function onSubmit(data) {
+    console.log('data.email', data.email);
     if (data) {
       try {
-        const post = await axios.post(`${baseUrl}/apikey?email=${data.email}`);
-        console.log('post', post.data);
+        const response = await axios.post(`${baseUrl}/apikey`, {
+          email: data.email,
+        });
+        setResponse({
+          message: response.message,
+          errors: response.errors,
+          code: response.status,
+          text: response.statusText,
+        });
       } catch (error) {
         console.error(error);
       }
     }
   }
-  // const onSubmit = (data) => console.log('VALUES:', data.email);
 
-  // function handleSendEmail() {
-  //   if (data) {
-  //   }
-  // }
+  console.log('response', response);
 
-  // onSubmit:
-  // post with axios:
+  // if resopnse.status === 201: An email has been sent to you with your API key
+  // if resopnse.status === anything other than that: ...
 
-  // const postData = async () => {console.log('DATA', data)}
-  // try {}catch(error){console.error(error)}
-  // await axios.post(`${baseUrl}/apikey?email=${data.email}`)
-
-  // const fetchData = async () => {
-  //   console.log('ÚRL', url);
-  //   try {
-  //     const response = await axios.get(`${baseUrl}/api/${url}?key=${key}`);
-  //     console.log('RESPONSE:', response);
-  //     setData(response.data);
-  //   } catch (error) {
-  //     console.log('ERROR', error);
-  //   }
-  // };
-
-  console.log('FROM ERRORS', errors);
   return (
-    <>
-      <Form
-        noValidate
-        validated={false}
-        // class="was-validated"
-        onSubmit={handleSubmit(onSubmit)}
-      >
-        <InputWithFeedback
-          humanReadbleName='Email'
-          name='email'
-          type='email'
-          errors={errors}
-          register={register}
-        />
-        <Button variant='primary' type='submit'>
-          Submit
-        </Button>
-      </Form>
-    </>
+    <div className='authorization-bg'>
+      <div className='wrapper'>
+        {response.code === 201 ? (
+          response.message
+        ) : (
+          <Form noValidate validated={false} onSubmit={handleSubmit(onSubmit)}>
+            <InputWithFeedback
+              humanReadbleName='Email'
+              name='email'
+              type='email'
+              errors={errors}
+              register={register}
+            />
+            <Button variant='primary' type='submit'>
+              Submit
+            </Button>
+          </Form>
+        )}
+      </div>
+    </div>
   );
 }
 

@@ -1,17 +1,17 @@
 import './Header.scss';
 import React from 'react';
-import {Jumbotron} from 'react-bootstrap';
+import Jumbotron from 'react-bootstrap/Jumbotron';
 
 function Header() {
   return (
     <Jumbotron>
-      <div>
-        <h1 className='title'>Hello, world!</h1>
-        <p className='slogan'>
-          This is a simple hero unit, a simple jumbotron-style component for
-          calling extra attention to featured content or information.
-        </p>
-      </div>
+      <h1 className='title display-linebreak'>
+        {'The RESTful Synthesizer API'}
+      </h1>
+      <p className='slogan'>
+        Connecting you to your synth needs. Get data from over{' '}
+        {<span>800 </span>}synthesizers!
+      </p>
     </Jumbotron>
   );
 }

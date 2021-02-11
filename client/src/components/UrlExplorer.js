@@ -30,7 +30,7 @@ function UrlExplorer() {
     url: buildUrl({route: INITIAL_ROUTE, query: ''}, apiKey),
   });
   const {route, query, url} = urlParams;
-  const {status, code, message, data} = useRequest(url, isFetching);
+  const {status, message, data} = useRequest(url, isFetching);
 
   useEffect(() => {
     if (status === 'error' || status === 'success') {

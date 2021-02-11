@@ -7,7 +7,7 @@ const {Synth} = require('../models');
 const folder = '../data/img';
 
 async function addImageToRecord() {
-  const synths = await Synth.findAll({limit: 3});
+  const synths = await Synth.findAll();
   for (const synth of synths) {
     const image = synth.img;
     const name = synth.name;

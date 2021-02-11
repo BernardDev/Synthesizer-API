@@ -28,8 +28,8 @@
   - [x] if handleStoreKeySave:localStorage.setItem('apiKey', keyStore.apiKey)
   - [x] if key is in local storage, dupe this inside the keyStore.apiKey
 - [x] components where store's data is useful:
-  - [ ] PopUp
-    - [ ] remove popup if apiKey (saved)
+  - [x] PopUp
+    - [x] remove popup if apiKey (saved)
   - [ ] Authorization
     - [ ] notify user about present apiKey, on every request
   - [ ] UrlExplorer > API key input field - [ ] display currently (saved) API key - [ ]

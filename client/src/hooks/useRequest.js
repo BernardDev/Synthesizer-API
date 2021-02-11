@@ -31,16 +31,17 @@ function useRequest(url, isFetching) {
         // }
       } catch (error) {
         console.log('ERROR', error.response);
-        let message = '';
-        switch (error.response?.status) {
-          case 404:
-            message = 'Not found, does this record exist?';
-            break;
+        // let message = '';
 
-          default:
-            message = 'Something went wrong, try to refresh';
-            break;
-        }
+        // switch (error.response?.status) {
+        //   case 404:
+        //     message = 'Not found, does this record exist?';
+        //     break;
+
+        //   default:
+        //     message = 'Something went wrong, try to refresh';
+        //     break;
+        // }
         setData({
           status: 'error',
           code: error.response?.status,
@@ -51,7 +52,7 @@ function useRequest(url, isFetching) {
     };
 
     fetchData();
-  }, [isFetching]);
+  }, [isFetching, url]);
 
   return data;
 }

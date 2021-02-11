@@ -1,40 +1,35 @@
 import './App.scss';
+import React from 'react';
+import {AuthProvider} from './context/AuthContext';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {Container} from 'react-bootstrap';
 import Home from './pages/Home';
 import About from './pages/About';
 import Documentation from './pages/Documentation';
 import Authorization from './pages/Authorization';
-import LayerJumbotron from './pages/backgroundLayers/LayerJumbotron';
-import Col from 'react-bootstrap/Col';
-
+import Footer from './components/Footer';
 import Navigation from './components/Navigation';
 
 function App() {
   return (
-    <Router>
-      <div className='App'>
-        <Navigation />
-        <Container fluid>
+    <AuthProvider>
+      <Router>
+        <div className='App'>
+          {/* <Container fluid> */}
+          <Navigation />
           <Switch>
             <Route path='/' exact>
-              <Col md={{span: 8, offset: 2}}>
-                <LayerJumbotron />
-                <Home />
-              </Col>
+              <Home />
             </Route>
             <Route path='/About' component={About} />
             <Route path='/Documentation' component={Documentation} />
             <Route path='/Authorization' component={Authorization} />
           </Switch>
-        </Container>
-      </div>
-    </Router>
+          <Footer />
+          {/* </Container> */}
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 
 export default App;
-
-// Nalink active variant bootstrap?
-// Nesting create components inside bootstrap components and vise versa?
-// overwriting using bootstrap classes not working? full with for pop-up, justify content for nav link items...

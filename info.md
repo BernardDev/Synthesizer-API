@@ -1,4 +1,154 @@
+### new markdown!
+
+- [ ] move image folder to server (temporarily), so we can access images
+- [ ] write a small script that does the following:
+
+  - [x] get one record from the test database (findOne)
+  - [x] grab the imageUrl from the record
+  - [x] strip the filename from the url (.split('/'))
+  - [x] check if the filename exists in our images folder (fs.readDir)
+  - [ ] if not -> stop and log: image not found or name does not match, time for Bernard to use the GUI?
+  - [ ] if yes
+  - [x] grab the name of the synth
+  - [x] turn the name of the synth into a `public_id` for cloudinary (replaces spaces with `*` for example)
+    - [x] example: Casio Big fuckin' keyboard -> `Casio_Big_fuckin'_keyboard`
+    - [ ] maybe use `EncodeUriComponent` -> ` ` -> `%20`
+  - [] Upload to cloudinary
+    - [ ] if success
+    - [ ] update the url of the Synth in the database to the cloudinary url
+    - [ ] failure
+    - [ ] log failure, check what went wrong
+
+### Complete cleanup list:
+
+-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+
+- [x] save or not to save... that is the question -> onClick/save or onChange/input
+- [x] interaction of local storage and the store:
+  - [x] if handleStoreKeySave:localStorage.setItem('apiKey', keyStore.apiKey)
+  - [x] if key is in local storage, dupe this inside the keyStore.apiKey
+- [x] components where store's data is useful:
+  - [x] PopUp
+    - [x] remove popup if apiKey (saved)
+  - [ ] Authorization
+    - [ ] notify user about present apiKey, on every request
+  - [ ] UrlExplorer > API key input field - [ ] display currently (saved) API key - [ ]
+        -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+
+-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+
+### useContext (superb way)
+
+- [x] seperate the Provider from App js with React children
+
+### useContext (nice way)
+
+- [x] pass the setter in the store instead of as callback prop
+
+### useContext (simple way)
+
+- [x] createContext
+- [x] consider where you get data you want to have inside the context?
+  - [x] UrlExplorer
+- [x] consider where you want to use the context
+  - [x] Toast, Autorization
+- [x] wrap everything from App inside AuthContext.Provider (work with React children)
+- [x] in App (parent), import and create a useState for the data you want to be in the context
+- [x] in App (parent), pass the component that is responsible for updating the state a callback prop (pass it through even deeper if needed)
+- [x] use the callback prop to change state in App
+- [x] pass the state ass value
+- [x] in App, pass -> NameContext.Provider value={state} <-
+- [x] test it out in different components with useContext
+- [x] get what you want out of the state useContext name.apiKey
+
+---
+
+if (authInfo) {
+not display toast
+}
+
+---
+
+- [ ] it did not work onChange !!!
+
+### Todo before presentation
+
+- [x] display data in json viewer
+- [x] remove draggsizing
+- [x] rescale textarea
+- [x] not visible only after succesful retrieval
+- [x] edit scrollbar to always show
+- [ ] edit scrollbar to not have a border
+
+- [x] copy url to clipboard
+- [x] notify the user about copy
+- [x] notification disappears after a few seconds
+- [x] notification disappears after 4 seconds
+
+- [x] display content op link in field
+- [x] anchor tags that update the state of route or query field, and also url
+- [ ] in case of &queries it is a addition on top of current state
+
+- [ ] user notification messages
+
+<!-- what is the current situation of backend error handling -->
+
+- [ ] you do not seed bad request on mount of page
+- [ ] should give a general error in notification
+- [ ] should give more detailed error inside the json viewer
+
+---
+
+- [ ] &manufacturer=Pietje should give message: no records found, error: no records found
+- [ ] &yearProduced=4000 should give message: no record found, error: no records found
+- [ ] &yearProduced=chesse should give a message: bad request, error: yearProduced must be... type
+- [ ] &offset=0&limit=cheese should give message: bad request , errors: offset must be... type
+
+---
+
+- [ ] /snits should give a message: this route does not exist
+- [ ] /
+- [ ]
+
+- [ ] validation when no record has been found (404)
+- [ ] validation when bad request has been made (400)
+- [ ] validation when error on server side (500)
+- [ ] validation anything else
+- [ ] get all messages from server instead of client
+
+- [ ] validate when email is already in the db (?)
+- [ ] validation when error on server side (500)
+
+- [ ] if storedKey/something in key input close toast
+
+<!-- extra -->
+
+- [ ] add a home route in the navigation
+- [ ] design: color scheme, change
+- [ ] refactor: urlExplorer, authorization
+- [ ] add documentation page
+- [ ] add about page
+
 ### Todo
+
+<!-- validation and testing -->
+
+- [x] send succes message
+- [x] send succes message from server
+- [x] display feedback: request succeeds, request fails (get out of server)
+- [x] hide/disable button and inputfield (no double requests)
+
+- [x] inputfield for api key explorer, save the key in local storage
+- [x] make explorer url read only
+
+- [x] when app starts check local storage for key and load it if there
+- [x] if there load it into url
+- [ ] make a request and display json
+
+- [x] input field: route
+- [x] input field: query
+- [x] when user edits route or query update the url
+- [x] auto add key to explorer url
 
 #### As a developer I want my api users to send an api key with each request, so I can identify who is using my api
 

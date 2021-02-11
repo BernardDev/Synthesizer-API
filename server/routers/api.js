@@ -82,6 +82,7 @@ apiRoutes.get(
       }
       if (result.length === 0) {
         res.status(404);
+        // .json({message: 'Record not found', errors: error.errors});
       }
       res.json(result);
     } catch (error) {
@@ -129,6 +130,7 @@ apiRoutes.get(
       );
       if (result.rows.length === 0) {
         res.status(404);
+        // .json({message: 'Record not found', errors: error.errors});
       }
       res.json({count: result.count, synths: result.rows});
     } catch (error) {
@@ -169,6 +171,10 @@ apiRoutes.get(
         result = await synthByPk(id);
       } else {
         result = await synthByName(name);
+      }
+      if (result.length === 0) {
+        res.status(404);
+        // .json({message: 'Record not found', errors: error.errors});
       }
       res.json(result);
     } catch (error) {

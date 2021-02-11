@@ -6,7 +6,9 @@ async function apiKeyMiddleware(req, res, next) {
   delete req.query.key;
   const isValid = await checkApiKey(keyApi);
   if (!isValid) {
-    return res.status(403).json({errors: ['This key does not exist']});
+    return res
+      .status(403)
+      .json({errors: ['This key does not exist'], message: 'Invalid API key'});
   } else {
     return next();
   }

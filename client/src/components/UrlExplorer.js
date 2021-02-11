@@ -1,100 +1,297 @@
 import './UrlExplorer.scss';
-import React, {useState, useEffect} from 'react';
-import {Form, Col, InputGroup, Button, FormControl} from 'react-bootstrap';
-import exampleJson from '../exampleJson.json';
-import axios from 'axios';
+import React, {useState, useEffect, useRef, useContext} from 'react';
+import {AuthContext} from '../context/AuthContext';
 
-let jsonParsed = JSON.stringify(exampleJson, null, 4);
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import InputGroup from 'react-bootstrap/InputGroup';
+import Alert from 'react-bootstrap/Alert';
+import Loading from '../components/Loading';
+import Error from '../components/Error';
+import Success from './Success';
+import useRequest from '../hooks/useRequest';
 
-// console.log('jsonParsed', jsonParsed);
-
-// render: function() {
-//     var json = this.getStateFromFlux().json;
-//     return (
-//       <div>
-//         <JsonSubmitter onSubmit={this.onSubmit} />
-//         { JSON.stringify(json, null, 2) }
-//       </div>
-//     );
-//   },
-
-const baseUrl = process.env.REACT_APP_API_URL;
-console.log('process.env', process.env);
-
-// synths?key=
-
-const key = 'BV0B0QX-X8Y4JEK-GYZRXSZ-7NKSKP6';
+const BASE_URL = process.env.REACT_APP_API_URL;
+const INITIAL_ROUTE = '/synths';
 
 function UrlExplorer() {
-  const [data, setData] = useState({hits: []});
-  const [url, setUrl] = useState('bla');
+  const [stateAlert, setStateAlert] = useState(false);
+  const [copySuccess, setCopySuccess] = useState('');
+  const [isFetching, setIsFetching] = useState(false);
+  const {apiKey, setApiKey, saveKey} = useContext(AuthContext);
+  const textAreaRef = useRef(null);
 
-  console.log('url', url);
+  const [urlParams, setUrlParams] = useState({
+    route: INITIAL_ROUTE,
+    query: '',
+    url: buildUrl({route: INITIAL_ROUTE, query: ''}, apiKey),
+  });
+  const {route, query, url} = urlParams;
+  const {status, message, data} = useRequest(url, isFetching);
 
-  // console.log('data', data);
-
-  // change it to read from the input field instead of hardcoded path
-  // useEffect(() => {
-  const fetchData = async () => {
-    console.log('ÚRL', url);
-    try {
-      const response = await axios.get(`${baseUrl}/api/${url}?key=${key}`);
-      console.log('RESPONSE:', response);
-      setData(response.data);
-    } catch (error) {
-      console.log('ERROR', error);
+  useEffect(() => {
+    if (status === 'error' || status === 'success') {
+      setIsFetching(false);
     }
-  };
-  // fetchData();
-  // }, [url]);
+  }, [status]);
+
+  // making a seperate component
+  useEffect(() => {
+    if (stateAlert === true) {
+      window.setTimeout(() => {
+        setStateAlert(false);
+      }, 4000);
+    }
+  }, [stateAlert]);
+
+  function handleInput(e) {
+    const newParams = {...urlParams, [e.target.name]: e.target.value};
+    setUrlParams({...newParams, url: buildUrl(newParams, apiKey)});
+  }
+
+  function handleKeyInput(e) {
+    setApiKey(e.target.value);
+    setUrlParams({...urlParams, url: buildUrl(urlParams, e.target.value)});
+  }
+
+  function buildUrl(urlParams, key) {
+    const {route, query} = urlParams;
+    return `${BASE_URL}/api${route}?key=${key}${query}`;
+  }
+
+  function handleSuggestion(suggestionParams) {
+    const newParams = {...urlParams, ...suggestionParams};
+    setUrlParams({
+      ...newParams,
+      url: buildUrl(newParams, apiKey),
+    });
+  }
+
+  function copyToClipboard(e) {
+    textAreaRef.current.select();
+    document.execCommand('copy');
+    e.target.focus();
+    setCopySuccess(`URL copied to clipboard: ${urlParams.url} `);
+    setStateAlert(true);
+  }
+
   return (
     <>
-      <p>
-        There will be text here explaining a tiny bit about the API. And also
-        explaining what you can and can't do with the API eplorer below
-      </p>
-      <Form>
-        <Form.Row className='groupURLexample d-flex justify-content-center align-items-center'>
-          <Col xs='auto column1'>
-            <Form.Label htmlFor='inlineFormInputGroup' srOnly>
-              Username
-            </Form.Label>
-            <InputGroup className='d-flex align-items-center'>
-              <InputGroup.Prepend>
-                <InputGroup.Text className='staticURLexample'>
-                  https://synthesizer-api.herokuapp.com/api/
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl
-                id='inputURLexample'
-                placeholder='synths'
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
+      <Container>
+        <Form>
+          <Form.Group>
+            <Row>
+              <Form.Label>API key</Form.Label>
+            </Row>
+            <Row>
+              <Form.Text className='text-inputs-urlExplorer'>
+                Paste your API key in here. We will add this to your URL to
+                search our database. It is also possible to save your key!
+              </Form.Text>
+            </Row>
+            <Row>
+              <InputGroup>
+                <Form.Control
+                  type='text'
+                  placeholder='Paste your API key...'
+                  name='storedKey'
+                  onChange={handleKeyInput}
+                  value={apiKey || ''}
+                />
+                <Button
+                  className=''
+                  variant='primary'
+                  onClick={() => saveKey(apiKey)}
+                >
+                  Save
+                </Button>
+              </InputGroup>
+            </Row>
+          </Form.Group>
+          <Form.Group>
+            <Row>
+              <Form.Label htmlFor='inlineFormInputGroup'>API Url</Form.Label>
+            </Row>
+            <Row>
+              <Form.Text className='text-inputs-urlExplorer'>
+                Build the URL you want to explore with the dedicated fields seen
+                below and hit search to explore it. Want to explore the routes
+                in browser? Just copy the URL to clipboard and do that instead.
+              </Form.Text>
+            </Row>
+            <Row>
+              <Form.Control
+                ref={textAreaRef}
+                type='text'
+                value={
+                  url === `${BASE_URL}/api` ? `${BASE_URL}/api/synths` : url
+                }
+                readOnly
+              ></Form.Control>
+            </Row>
+            <Row>
+              <Col md={{offset: 3, span: 3}}>
+                <Button
+                  className='btn-block'
+                  onClick={() => setIsFetching(true)}
+                  disabled={isFetching}
+                >
+                  Search
+                </Button>
+              </Col>
+              <Col md={{offset: 0, span: 3}}>
+                <Button className='btn-block' onClick={copyToClipboard}>
+                  Clipboard
+                </Button>
+              </Col>
+            </Row>
+            <Row className='row-alert alert-copy'>
+              <Alert
+                show={stateAlert}
+                className='alert-success'
+                variant='success'
+              >
+                {copySuccess}
+              </Alert>
+            </Row>
+            <Row>
+              <Col className='col-3'>
+                <Form.Label>Route</Form.Label>
+              </Col>
+              <Col>
+                <Form.Label>Query</Form.Label>
+              </Col>
+            </Row>
+            <Row>
+              <Col className='col-3'>
+                <Form.Control
+                  type='text'
+                  name='route'
+                  placeholder='/synths...'
+                  onChange={handleInput}
+                  value={route || '/synths'}
+                />
+              </Col>
+              <Col className=''>
+                <Form.Control
+                  type='text'
+                  name='query'
+                  placeholder='&yearProduced=1980...'
+                  onChange={handleInput}
+                  value={query}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col className='col-3'>
+                <Form.Text className='text-inputs-urlExplorer'>
+                  Try{' '}
+                  {
+                    <span
+                      className='suggestion'
+                      onClick={() => handleSuggestion({route: '/synths'})}
+                    >
+                      /synths
+                    </span>
+                  }{' '}
+                  or
+                  {
+                    <span
+                      className='suggestion'
+                      onClick={() =>
+                        handleSuggestion({query: '', route: '/manufacturers'})
+                      }
+                    >
+                      /manufacturers
+                    </span>
+                  }
+                  . To get a specific use the following format{' '}
+                  {
+                    <span
+                      className='suggestion'
+                      onClick={() =>
+                        handleSuggestion({query: '', route: '/synths/1'})
+                      }
+                    >
+                      /synths/1
+                    </span>
+                  }{' '}
+                  or
+                  {
+                    <span
+                      className='suggestion'
+                      onClick={() =>
+                        handleSuggestion({
+                          query: '',
+                          route: '/synths/Jupiter-8',
+                        })
+                      }
+                    >
+                      /synths/Jupiter-8
+                    </span>
+                  }
+                  .
+                </Form.Text>
+              </Col>
+              <Col>
+                <Form.Text className='text-inputs-urlExplorer'>
+                  You could use{' '}
+                  <span
+                    className='suggestion'
+                    onClick={() =>
+                      handleSuggestion({query: '&yearProduced=1980'})
+                    }
+                  >
+                    &yearProduced=1980
+                  </span>{' '}
+                  to get synths produced in that year. Or get synths from a
+                  manufacturer:{' '}
+                  <span
+                    className='suggestion'
+                    onClick={() =>
+                      handleSuggestion({query: '&manufacturer=Roland'})
+                    }
+                  >
+                    &manufacturer=Roland
+                  </span>
+                  . You can also change default pagination options{' '}
+                  <span
+                    className='suggestion'
+                    onClick={() =>
+                      handleSuggestion({query: '&limit=20&offset=0'})
+                    }
+                  >
+                    &limit=20&offset=0
+                  </span>
+                  . Chain queries together with '&'. For more API exploration,
+                  read the doc's!
+                </Form.Text>
+              </Col>
+            </Row>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>JSON</Form.Label>
+            <Form.Text className='text-inputs-urlExplorer'>
+              Consider exploring the JSON LINK in browser LINK to.
+            </Form.Text>
+            {status === 'loading' && <Loading message={message} />}
+            {status === 'error' && <Error message={message} />}
+            {status === 'success' && <Success message={message} />}
+            <Row>
+              <Form.Control
+                as='textarea'
+                id='textareaExample'
+                rows='32'
+                value={data}
+                readOnly
               />
-            </InputGroup>
-          </Col>
-          <Col xs='auto column2'>
-            <Button className='submitUrl' onClick={fetchData}>
-              Submit
-            </Button>
-          </Col>
-        </Form.Row>
-      </Form>
-      <Form>
-        <Form.Group
-          controlId='exampleForm.ControlTextarea1'
-          className='resJSON'
-        >
-          <Form.Label></Form.Label>
-          <Form.Control
-            as='textarea'
-            className='textareaExample'
-            rows={8}
-            value={jsonParsed}
-            readOnly
-          />
-        </Form.Group>
-      </Form>
+            </Row>
+          </Form.Group>
+        </Form>
+      </Container>
     </>
   );
 }

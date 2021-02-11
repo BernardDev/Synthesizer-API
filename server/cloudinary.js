@@ -1,5 +1,8 @@
-var cloudinary = require('cloudinary').v2;
-require('dotenv').config();
+let cloudinary = require('cloudinary').v2;
+// require('dotenv').config();
+
+require('dotenv').config({path: '../.env'});
+// require('dotenv').config();
 
 // console.log('process.env', process.env);
 
@@ -20,7 +23,7 @@ function cloudinaryUpload(filePath, fileName) {
       filePath,
       {public_id: fileName},
       function (error, result) {
-        console.log(result, error);
+        // console.log(result, error);
         if (error) {
           reject(error);
         } else {
@@ -34,14 +37,17 @@ function cloudinaryUpload(filePath, fileName) {
 
 async function testing() {
   try {
-    const result = await cloudinaryUpload('./test7.jpg', 'cuteDog');
+    const result = await cloudinaryUpload(path, fileName);
+    // const result = await cloudinaryUpload('./test7.jpg', 'cuteDog');
     console.log('result', result);
   } catch (error) {
     console.log('error', error);
   }
 }
 
-testing();
+// testing();
+
+module.exports = cloudinaryUpload;
 
 // sh-101 | http/asdyuibsfe/sh101 ()
 // sh-101 | sh101 (select)

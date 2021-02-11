@@ -3,17 +3,17 @@
 - [ ] move image folder to server (temporarily), so we can access images
 - [ ] write a small script that does the following:
 
-  - [ ] get one record from the test database (findOne)
-  - [ ] grab the imageUrl from the record
-  - [ ] strip the filename from the url (.split('/'))
-  - [ ] check if the filename exists in our images folder (fs.readDir)
+  - [x] get one record from the test database (findOne)
+  - [x] grab the imageUrl from the record
+  - [x] strip the filename from the url (.split('/'))
+  - [x] check if the filename exists in our images folder (fs.readDir)
   - [ ] if not -> stop and log: image not found or name does not match, time for Bernard to use the GUI?
   - [ ] if yes
-  - [ ] grab the name of the synth
-  - [ ] turn the name of the synth into a `public_id` for cloudinary (replaces spaces with `*` for example)
-    - [ ] example: Casio Big fuckin' keyboard -> `Casio_Big_fuckin'_keyboard`
+  - [x] grab the name of the synth
+  - [x] turn the name of the synth into a `public_id` for cloudinary (replaces spaces with `*` for example)
+    - [x] example: Casio Big fuckin' keyboard -> `Casio_Big_fuckin'_keyboard`
     - [ ] maybe use `EncodeUriComponent` -> ` ` -> `%20`
-  - [ ] Upload to cloudinary
+  - [] Upload to cloudinary
     - [ ] if success
     - [ ] update the url of the Synth in the database to the cloudinary url
     - [ ] failure

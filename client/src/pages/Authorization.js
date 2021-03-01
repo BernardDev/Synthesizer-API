@@ -31,7 +31,7 @@ function InputWithFeedback({name, type, register, errors, humanReadbleName}) {
 }
 
 const baseUrl = process.env.REACT_APP_API_URL;
-console.log('baseUrl', baseUrl);
+// console.log('baseUrl', baseUrl);
 
 function Authorization() {
   const [response, setResponse] = useState({});
@@ -41,7 +41,7 @@ function Authorization() {
   });
 
   async function onSubmit(data) {
-    console.log('data.email', data.email);
+    // console.log('data.email', data.email);
     if (data) {
       try {
         const response = await axios.post(`${baseUrl}/apikey`, {
@@ -59,10 +59,11 @@ function Authorization() {
     }
   }
 
-  console.log('response', response);
-
   // if resopnse.status === 201: An email has been sent to you with your API key
   // if resopnse.status === anything other than that: ...
+
+  console.log('this is response', response);
+  // console.log('this is data', data);
 
   return (
     <div className='authorization-bg'>

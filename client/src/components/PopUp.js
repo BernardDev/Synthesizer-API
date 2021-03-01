@@ -6,7 +6,7 @@ import {AuthContext} from '../context/AuthContext';
 
 function PopUp() {
   const authInfo = useContext(AuthContext);
-  console.log('authInfo from popUp', authInfo);
+  // console.log('authInfo from popUp', authInfo);
 
   const [toastToggle, setToastToggle] = useState(true);
   const toggleShowToast = () => setToastToggle(!toastToggle);

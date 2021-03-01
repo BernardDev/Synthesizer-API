@@ -1,23 +1,84 @@
+### Release 1.0:
+
+- [ ] add a [home page](###development) in the menu
+- [ ] fix [mobile compatibility](###Mobile-compatibility)of api explorer
+- [ ] add proper [status code responses](###Error-handling) from back end and frontend
+- [ ] add images [that failed upload](###Image-uploads) manually
+- [ ] simple [cleanup code base](###Cleanup-codebase) : what do I want to show?
+- [ ] finish readme (usage side)
+- [ ] do [simple refactor](###refactor)
+
+### Error handling
+
+- [ ] Status: Loading
+- [ ] Status: Idle
+- [ ] Status: Okay!
+- [ ] Server: status code 400
+- [ ] Client: status code 400
+- [ ] Server: status code 404
+- [ ] Client: status code 404
+- [ ] Server: status code 500
+- [ ] Client: status code 500
+- [ ] Server: status code 200
+- [ ] Client: status code 200
+- [ ] Server: status code 409 record already exists
+- [ ] Client: status code 409
+- [ ] Implement for GET routes
+- [ ] Implement for POST routes
+- [ ] notify user about present apiKey, on every request
+- [ ] display notification after email has been send
+
+### Image uploads
+
+- [ ]
+- [ ]
+- [ ]
+
+### Cleanup codebase
+
+- [ ] Show only the commit's I want to show
+- [ ] Rewrite commits if needed
+- [ ] Show only the PR I want to show
+- [ ] Rewrite commits if needed
+- [ ] Rewrite projectboard
+- [ ] Write user stories
+
+### Refactor
+
+- [ ] create custom hook for the useContext component
+- [ ]
+- [ ]
+- [ ]
+
+### Development
+
+- [ ] adding a home page in navbar
+- [ ] do not display 'loading' notification on startup
+- [ ] redeploy!
+
+-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
+
 ### new markdown!
 
-- [ ] move image folder to server (temporarily), so we can access images
-- [ ] write a small script that does the following:
+- [x] move image folder to server (temporarily), so we can access images
+- [x] write a small script that does the following:
 
   - [x] get one record from the test database (findOne)
   - [x] grab the imageUrl from the record
   - [x] strip the filename from the url (.split('/'))
   - [x] check if the filename exists in our images folder (fs.readDir)
-  - [ ] if not -> stop and log: image not found or name does not match, time for Bernard to use the GUI?
-  - [ ] if yes
+  - [x] if not -> stop and log: image not found or name does not match, time for Bernard to use the GUI?
+  - [x] if yes
   - [x] grab the name of the synth
   - [x] turn the name of the synth into a `public_id` for cloudinary (replaces spaces with `*` for example)
     - [x] example: Casio Big fuckin' keyboard -> `Casio_Big_fuckin'_keyboard`
-    - [ ] maybe use `EncodeUriComponent` -> ` ` -> `%20`
-  - [] Upload to cloudinary
-    - [ ] if success
-    - [ ] update the url of the Synth in the database to the cloudinary url
-    - [ ] failure
-    - [ ] log failure, check what went wrong
+    - [x] maybe use `EncodeUriComponent` -> ` ` -> `%20`
+  - [x] Upload to cloudinary
+    - [x] if success
+    - [x] update the url of the Synth in the database to the cloudinary url
+    - [x] failure
+    - [x] log failure, check what went wrong
 
 ### Complete cleanup list:
 
@@ -30,9 +91,9 @@
 - [x] components where store's data is useful:
   - [x] PopUp
     - [x] remove popup if apiKey (saved)
-  - [ ] Authorization
-    - [ ] notify user about present apiKey, on every request
-  - [ ] UrlExplorer > API key input field - [ ] display currently (saved) API key - [ ]
+  - [x] Authorization
+    - [x] notify user about present apiKey, on every request
+  - [x] UrlExplorer > API key input field - [ ] display currently (saved) API key - [ ]
         -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
 
 -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.
@@ -60,16 +121,6 @@
 - [x] in App, pass -> NameContext.Provider value={state} <-
 - [x] test it out in different components with useContext
 - [x] get what you want out of the state useContext name.apiKey
-
----
-
-if (authInfo) {
-not display toast
-}
-
----
-
-- [ ] it did not work onChange !!!
 
 ### Todo before presentation
 

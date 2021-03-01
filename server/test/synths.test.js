@@ -6,11 +6,11 @@ const request = require('supertest');
 
 const server = request(app);
 
-describe.only('GET /', () => {
+describe.skip('GET /', () => {
   afterAll(async () => {
     await db.sequelize.close();
   });
-  describe.only('End to End', () => {
+  describe('End to End', () => {
     afterAll(async () => {
       await db.Manufacturer.destroy({truncate: true, cascade: true});
       await db.Synth.destroy({truncate: true, cascade: true});
@@ -57,7 +57,7 @@ describe.only('GET /', () => {
       done();
     });
 
-    test.only('should provide meningfull message when query is malformed', async (done) => {
+    test('should provide meningfull message when query is malformed', async (done) => {
       const res = await server.get(
         '/api/synths?key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DEdfggdfg'
       );

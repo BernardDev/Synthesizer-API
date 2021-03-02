@@ -6,9 +6,8 @@ function sendEmailWithAPIkey(APIkey, email) {
   const msg = {
     to: `${email}`, // Change to your recipient
     from: 'synthesizer.api@gmail.com', // Change to your verified sender
-    subject: 'Synthesizer API": here is your API key!',
-    // text: `here is your api-key: ${APIkey} text`,
-    html: `Your API key is: ${APIkey} <br>
+    subject: 'Synthesizer API: here is your API key!',
+    html: `Your API key is: <b>${APIkey}</b> <br>
     Happy Exploring and thanks for supporting Synthesizer API!`,
   };
   sgMail

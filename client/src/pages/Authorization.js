@@ -82,8 +82,8 @@ function Authorization() {
       <div className='wrapper-test'>
         <Form noValidate validated={false} onSubmit={handleSubmit(onSubmit)}>
           <Form.Text className=''>
-            Register with you email address to access the API with the API key
-            we sent to it!
+            Register with your email to access the API with the API key we sent
+            to it!
           </Form.Text>
           <InputWithFeedback
             humanReadbleName='Email'

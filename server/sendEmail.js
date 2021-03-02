@@ -8,7 +8,7 @@ function sendEmailWithAPIkey(APIkey, email) {
     from: 'synthesizer.api@gmail.com', // Change to your verified sender
     subject: 'Synthesizer API: here is your API key!',
     html: `Your API key is: <b>${APIkey}</b> <br>
-    Happy Exploring and thanks for supporting Synthesizer API!`,
+    Happy exploring and thanks for supporting Synthesizer API!`,
   };
   sgMail
     .send(msg)

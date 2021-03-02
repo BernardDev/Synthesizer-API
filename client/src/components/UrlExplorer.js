@@ -90,8 +90,9 @@ function UrlExplorer() {
             </Row>
             <Row>
               <Form.Text className='back text-inputs-urlExplorer'>
-                Paste your API key in here. We will add this to your URL to
-                search our database. It is also possible to save your key!
+                Paste your API key in here. We will add this to your URL you can
+                use to search our database. It is also possible to store your
+                key across sessions.
               </Form.Text>
             </Row>
             <Row>
@@ -120,8 +121,9 @@ function UrlExplorer() {
             <Row>
               <Form.Text className='back text-inputs-urlExplorer'>
                 Build the URL you want to explore with the dedicated fields seen
-                below and hit search to explore it. Want to explore the routes
-                in browser? Just copy the URL to clipboard and do that instead.
+                below. Hit search to explore it. Do you want to explore the
+                routes in browser? Just copy the URL to clipboard and do that
+                instead.
               </Form.Text>
             </Row>
             <Row>
@@ -276,9 +278,6 @@ function UrlExplorer() {
           </Form.Group>
           <Form.Group>
             <Form.Label>JSON</Form.Label>
-            <Form.Text className='text-inputs-urlExplorer'>
-              Consider exploring the JSON LINK in browser LINK to.
-            </Form.Text>
             {status === 'loading' && <Loading message={message} />}
             {status === 'error' && <Error message={message} />}
             {status === 'success' && <Success message={message} />}

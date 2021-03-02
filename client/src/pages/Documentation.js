@@ -1,6 +1,6 @@
 import React from 'react';
 import './Documentation.scss';
-import './utility.scss';
+import '../utility.scss';
 
 function Documentation() {
   return (

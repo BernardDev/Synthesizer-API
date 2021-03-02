@@ -17,20 +17,6 @@ function formatSynthQuery(query) {
     'effects',
   ];
 
-  // let optionsArray = [
-  //   paginationOptions,
-  //   manufacturerOptions,
-  //   specificationOptions,
-  // ];
-
-  // let queryArray = [paginationQuery, manufacturerQuery, specificationQuery];
-
-  // for (const option of routeOptions) {
-  //   if (query.hasOwnProperty(option)) {
-  //     routeQuery[option] = query[option];
-  //   }
-  // }
-
   for (const option of specificationOptions) {
     if (query.hasOwnProperty(option)) {
       specificationQuery[option] = query[option];

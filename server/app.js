@@ -41,7 +41,7 @@ app.post(
       }
     } catch (error) {
       res.status(500).send({
-        errors: ['Oopsy, server error!'],
+        errors: ['Internal server error'],
         message: 'Oopsy, server error!',
       });
       console.log('error', error);

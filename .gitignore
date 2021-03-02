@@ -1,6 +1,13 @@
 node_modules
-scraper/node_modules
-server/node_modules
+/scraper/node_modules
+/server/node_modules
+/client/node_modules
 .env
+/server/.env
+/client/.env
 info.md
+/info.md
+/scraper/data
+/scraper/info.txt
+README.md
 

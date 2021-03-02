@@ -82,7 +82,6 @@ apiRoutes.get(
       }
       if (result.length === 0) {
         res.status(404);
-        // .json({message: 'Record not found', errors: error.errors});
       }
       res.json(result);
     } catch (error) {
@@ -93,7 +92,6 @@ apiRoutes.get(
 );
 
 // --------------------------------------------------------------------------------
-// replaces GET /manufacturers/:idOrName/synths/detailed'
 apiRoutes.get(
   '/synths',
   validate(
@@ -130,7 +128,6 @@ apiRoutes.get(
       );
       if (result.rows.length === 0) {
         res.status(404);
-        // .json({message: 'Record not found', errors: error.errors});
       }
       res.json({count: result.count, synths: result.rows});
     } catch (error) {
@@ -140,9 +137,6 @@ apiRoutes.get(
   }
 );
 // ------------------------------------------------------------
-
-// add yup validation
-// use validatedParams from yup
 const idOrNameSchema = yup
   .object()
   .shape({
@@ -174,7 +168,6 @@ apiRoutes.get(
       }
       if (result.length === 0) {
         res.status(404);
-        // .json({message: 'Record not found', errors: error.errors});
       }
       res.json(result);
     } catch (error) {

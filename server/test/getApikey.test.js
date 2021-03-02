@@ -60,15 +60,4 @@ describe('request new apikey', () => {
     expect(res.status).toBe(400);
     done();
   });
-
-  // test.todo(
-  //   'Should give warning if api key has already been sent to this email'
-  // );
-
-  //   test('should refuse API request with an invalid API key in query string', async (done) => {
-  //     const res = await server.get('/api/manufacturers?key=bla');
-  //     expect(res.status).toBe();
-  //     expect(res.body.errors).toEqual(['This key does not exist']);
-  //     done();
-  //   });
 });

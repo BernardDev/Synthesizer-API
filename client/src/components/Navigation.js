@@ -1,5 +1,6 @@
 import './Navigation.scss';
-import '../pages/utility.scss';
+import '../utility.scss';
+
 import React from 'react';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -26,9 +27,6 @@ function Navigation() {
               <Nav.Link as={NavLink} to='/' exact>
                 Home
               </Nav.Link>
-              {/* <Nav.Link as={NavLink} to='/About'>
-                About
-              </Nav.Link> */}
               <Nav.Link as={NavLink} to='/Documentation'>
                 Documentation
               </Nav.Link>

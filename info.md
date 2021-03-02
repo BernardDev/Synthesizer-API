@@ -1,6 +1,3 @@
-api does not work in dev local?
-status messaging
-
 ### Release 1.0:
 
 - [x] add a [home page](###development) in the menu
@@ -9,7 +6,7 @@ status messaging
 - [x] add images [that failed upload](###Image-uploads) manually
 - [ ] simple [cleanup code base](###Cleanup-codebase) : what do I want to show?
 - [ ] finish readme (usage side)
-- [ ] do [simple refactor](###refactor)
+- [x] do [simple refactor](###refactor)
 
 ### Error handling
 

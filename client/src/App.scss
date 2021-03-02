@@ -1,12 +1,6 @@
-* {
-  // background-color: pink;
-}
 .app {
   position: relative;
 }
-// .resJSON {
-//   resize: none;
-// }
 
 $theme-colors: (
   'primary': #4c617f,
@@ -27,12 +21,6 @@ $theme-colors: (
 
 $bg-dark: #2e3138;
 
-// $enable-rounded: true;
-// $body-bg: black;
-// $body-color: white;
-// $link-decoration: none;
-// $border-radius: 1rem;
-// $link-color: teal;
 @import '~bootstrap/scss/bootstrap';
 
 @import url('https://fonts.googleapis.com/css2?family=Sintony&family=Source+Sans+Pro:wght@900&display=swap');
@@ -60,10 +48,3 @@ h6,
   margin-bottom: 1rem;
   font-size: 0.9rem;
 }
-
-// * {
-//   background-color: #2e3138;
-// }
-
-// this kind of thing: below?? 😂
-// $link-color: theme-colors("primary");

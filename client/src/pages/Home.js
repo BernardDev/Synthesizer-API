@@ -1,6 +1,7 @@
-import React from 'react';
 import './Home.scss';
-import './utility.scss';
+import '../utility.scss';
+
+import React from 'react';
 import PopUp from '../components/PopUp';
 import UrlExplorer from '../components/UrlExplorer';
 import Header from '../components/Header';

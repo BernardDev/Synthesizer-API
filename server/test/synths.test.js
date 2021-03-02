@@ -61,8 +61,6 @@ describe('GET /', () => {
       const res = await server.get(
         '/api/synths?key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DEdfggdfg'
       );
-      // expect(res.body).toBe(null)
-      // This key does not exist
       expect(res.body.message).toBe('You used an invalid API key');
       expect(res.body.errors).toEqual(['Forbidden']);
       done();
@@ -90,8 +88,6 @@ describe('GET /', () => {
     // ----------------------------------------------------------------------------------
     // tests start synths
     // ----------------------------------------------------------------------------------
-    // rename rows to synhts
-
     test('should give all synths (with default limit / offset)', async (done) => {
       const res = await server.get(
         '/api/synths?key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DE'

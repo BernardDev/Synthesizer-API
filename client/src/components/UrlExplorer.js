@@ -1,4 +1,5 @@
 import './UrlExplorer.scss';
+import '../pages/utility.scss';
 import React, {useState, useEffect, useRef, useContext} from 'react';
 import {AuthContext} from '../context/AuthContext';
 
@@ -87,7 +88,7 @@ function UrlExplorer() {
               <Form.Label>API key</Form.Label>
             </Row>
             <Row>
-              <Form.Text className='text-inputs-urlExplorer'>
+              <Form.Text className='back text-inputs-urlExplorer'>
                 Paste your API key in here. We will add this to your URL to
                 search our database. It is also possible to save your key!
               </Form.Text>
@@ -116,7 +117,7 @@ function UrlExplorer() {
               <Form.Label htmlFor='inlineFormInputGroup'>API Url</Form.Label>
             </Row>
             <Row>
-              <Form.Text className='text-inputs-urlExplorer'>
+              <Form.Text className='back text-inputs-urlExplorer'>
                 Build the URL you want to explore with the dedicated fields seen
                 below and hit search to explore it. Want to explore the routes
                 in browser? Just copy the URL to clipboard and do that instead.
@@ -148,7 +149,7 @@ function UrlExplorer() {
                 </Button>
               </Col>
             </Row>
-            <Row className='row-alert alert-copy'>
+            <Row className='front row-alert alert-copy'>
               <Alert
                 show={stateAlert}
                 className='alert-success'

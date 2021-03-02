@@ -87,13 +87,11 @@ function Authorization() {
   return (
     <div className='authorization-bg'>
       <div className='wrapper-test'>
-        <div className='mini-wrap'>
-          <Message
-            variant={renderSwitch(response.code)}
-            message={response.message}
-          />
-        </div>
         <Form noValidate validated={false} onSubmit={handleSubmit(onSubmit)}>
+          <Form.Text className=''>
+            Register with you email address to access the API with the API key
+            we sent to it!
+          </Form.Text>
           <InputWithFeedback
             humanReadbleName='Email'
             name='email'
@@ -105,6 +103,12 @@ function Authorization() {
             Submit
           </Button>
         </Form>
+        <div className='mini-wrap'>
+          <Message
+            variant={renderSwitch(response.code)}
+            message={response.message}
+          />
+        </div>
       </div>
     </div>
   );

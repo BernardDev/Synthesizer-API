@@ -4,6 +4,10 @@
 //   padding: 0 !important;
 // }
 
+.alert-success {
+  z-index: 99;
+}
+
 .form-control {
   display: inline;
   margin-bottom: 10px;
@@ -19,9 +23,6 @@
 .test {
   color: green;
 }
-// .input-group {
-//   flex-wrap: nowrap;
-// }
 
 .textareaExample {
   width: 100% !important;
@@ -30,7 +31,7 @@
 .alert-copy {
   position: fixed;
   bottom: 0;
-  right: 0;
+  right: 2%;
 }
 
 .suggestion {
@@ -60,6 +61,11 @@
   background-color: #8e8e8e;
 
   // -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.form-text {
+  margin: 0;
+  padding-top: 1rem;
 }
 
 // .row-alert {

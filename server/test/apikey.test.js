@@ -32,7 +32,8 @@ describe('apikeys', () => {
   test('should refuse API request with an invalid API key in query string', async (done) => {
     const res = await server.get('/api/manufacturers?key=bla');
     expect(res.status).toBe(403);
-    expect(res.body.errors).toEqual(['This key does not exist']);
+    expect(res.body.errors).toEqual(['Forbidden']);
+    expect(res.body.message).toEqual('You used an invalid API key');
     done();
   });
 

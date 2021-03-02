@@ -3,9 +3,9 @@ status messaging
 
 ### Release 1.0:
 
-- [ ] add a [home page](###development) in the menu
-- [ ] fix [mobile compatibility](###Mobile-compatibility)of api explorer
-- [ ] add proper [status code responses](###Error-handling) from back end and frontend
+- [x] add a [home page](###development) in the menu
+- [x] fix [mobile compatibility](###Mobile-compatibility)of api explorer
+- [x] add proper [status code responses](###Error-handling) from back end and frontend
 - [ ] add images [that failed upload](###Image-uploads) manually
 - [ ] simple [cleanup code base](###Cleanup-codebase) : what do I want to show?
 - [ ] finish readme (usage side)

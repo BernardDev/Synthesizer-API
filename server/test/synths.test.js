@@ -50,7 +50,7 @@ describe('GET /', () => {
       const res = await server.get(
         '/api/manufacturers?limit=2&offset=cheese&key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DE'
       );
-      expect(res.body.message).toBe('Validation error');
+      expect(res.body.message).toBe('Bad request');
       expect(res.body.errors).toEqual([
         'offset must be a `number` type, but the final value was: `NaN` (cast from the value `"cheese"`).',
       ]);
@@ -63,8 +63,8 @@ describe('GET /', () => {
       );
       // expect(res.body).toBe(null)
       // This key does not exist
-      expect(res.body.message).toBe('Invalid API key');
-      expect(res.body.errors).toEqual(['This key does not exist']);
+      expect(res.body.message).toBe('You used an invalid API key');
+      expect(res.body.errors).toEqual(['Forbidden']);
       done();
     });
 

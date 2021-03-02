@@ -23,9 +23,12 @@ function Navigation() {
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto'>
-              <Nav.Link as={NavLink} to='/About'>
-                About
+              <Nav.Link as={NavLink} to='/' exact>
+                Home
               </Nav.Link>
+              {/* <Nav.Link as={NavLink} to='/About'>
+                About
+              </Nav.Link> */}
               <Nav.Link as={NavLink} to='/Documentation'>
                 Documentation
               </Nav.Link>

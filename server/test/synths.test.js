@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const server = request(app);
 
-describe.skip('GET /', () => {
+describe('GET /', () => {
   afterAll(async () => {
     await db.sequelize.close();
   });

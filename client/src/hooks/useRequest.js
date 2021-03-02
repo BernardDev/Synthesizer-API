@@ -23,7 +23,7 @@ function useRequest(url, isFetching) {
         setData({
           status: 'success',
           code: data.status,
-          message: 'view the JSON below.',
+          message: 'View the JSON below',
           data: JSON.stringify(data.data, null, 4),
         });
         // } else {

@@ -230,11 +230,11 @@ function UrlExplorer() {
                       onClick={() =>
                         handleSuggestion({
                           query: '',
-                          route: '/synths/Jupiter-8',
+                          route: '/synths/Roland Jupiter-8',
                         })
                       }
                     >
-                      /synths/Jupiter-8
+                      /synths/Roland Jupiter-8
                     </span>
                   }
                   .

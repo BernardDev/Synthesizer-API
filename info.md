@@ -6,7 +6,7 @@ status messaging
 - [x] add a [home page](###development) in the menu
 - [x] fix [mobile compatibility](###Mobile-compatibility)of api explorer
 - [x] add proper [status code responses](###Error-handling) from back end and frontend
-- [ ] add images [that failed upload](###Image-uploads) manually
+- [x] add images [that failed upload](###Image-uploads) manually
 - [ ] simple [cleanup code base](###Cleanup-codebase) : what do I want to show?
 - [ ] finish readme (usage side)
 - [ ] do [simple refactor](###refactor)

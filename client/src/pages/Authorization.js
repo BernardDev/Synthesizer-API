@@ -86,11 +86,13 @@ function Authorization() {
 
   return (
     <div className='authorization-bg'>
-      <div className='wrapper'>
-        <Message
-          variant={renderSwitch(response.code)}
-          message={response.message}
-        />
+      <div className='wrapper-test'>
+        <div className='mini-wrap'>
+          <Message
+            variant={renderSwitch(response.code)}
+            message={response.message}
+          />
+        </div>
         <Form noValidate validated={false} onSubmit={handleSubmit(onSubmit)}>
           <InputWithFeedback
             humanReadbleName='Email'

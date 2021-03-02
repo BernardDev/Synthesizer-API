@@ -30,7 +30,6 @@ app.post(
       const isNewUser = await postUser({email: email, key: APIkey});
       if (isNewUser) {
         const response = sendEmailWithAPIkey(APIkey, email);
-        // res.status(201).send(response);
         res
           .status(201)
           .send({message: `Your API key has been sent to ${email}`});
@@ -57,7 +56,6 @@ app.use((req, res) => {
   res.status(404).json({
     errors: ['Not found'],
     message: 'You used an unavailable route',
-    // errors: [Route ${req.path} does not exist!],
   });
 });
 

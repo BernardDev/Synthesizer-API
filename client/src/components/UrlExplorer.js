@@ -212,6 +212,7 @@ function UrlExplorer() {
                       /manufacturers
                     </span>
                   }
+                  . To get a specific use the following format{' '}
                   {
                     <span
                       className='suggestion'
@@ -277,9 +278,6 @@ function UrlExplorer() {
           </Form.Group>
           <Form.Group>
             <Form.Label>JSON</Form.Label>
-            <Form.Text className='text-inputs-urlExplorer'>
-              Consider exploring the JSON LINK in browser LINK to.
-            </Form.Text>
             {status === 'loading' && <Loading message={message} />}
             {status === 'error' && <Error message={message} />}
             {status === 'success' && <Success message={message} />}

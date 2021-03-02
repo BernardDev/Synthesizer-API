@@ -1,9 +1,26 @@
 .authorization-bg {
   width: 100%;
   background-color: #8e8e8e;
+  padding-bottom: 1rem;
+}
+.wrapper-test {
+  margin: 0 auto;
+  max-width: 60vw;
+}
+
+.mini-wrap {
+  margin-top: 1rem;
 }
 
 .form-label {
+  margin-top: 1rem;
+  text-transform: uppercase;
+  color: #3d4d66;
+  font-size: 1.2rem;
+}
+
+.form-control {
+  border-radius: 0.1rem;
 }
 
 .submitEmail {

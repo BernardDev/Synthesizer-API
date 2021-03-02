@@ -97,26 +97,6 @@ async function synthByName(name) {
   }
 }
 
-// Lookup one random synth ()
-// GET /synth/getRandom
-
-// ...
-
-// Lookup all synths by synth type
-// GET /synths/synthType/:name
-
-// ...
-
-// Lookup all synths by interface feature
-// GET /synths/interfaceFeature/:name
-
-// ...
-
-// Lookup all synths by format
-// GET /synths/format/:name
-
-// ...
-
 module.exports = {
   checkApiKey,
   postUser,

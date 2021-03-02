@@ -4,6 +4,10 @@
 //   padding: 0 !important;
 // }
 
+.alert-success {
+  z-index: 99;
+}
+
 .form-control {
   display: inline;
   margin-bottom: 10px;
@@ -19,9 +23,6 @@
 .test {
   color: green;
 }
-// .input-group {
-//   flex-wrap: nowrap;
-// }
 
 .textareaExample {
   width: 100% !important;
@@ -30,7 +31,7 @@
 .alert-copy {
   position: fixed;
   bottom: 0;
-  right: 0;
+  right: 2%;
 }
 
 .suggestion {
@@ -53,45 +54,13 @@
   -webkit-appearance: none;
   width: 12px;
   background-color: #fff;
-  // border-color: rgba(0, 0, 0, 0);
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
   background-color: #8e8e8e;
-
-  // -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
 }
 
-// .row-alert {
-//   position: relative;
-// }
-
-// .groupURLexample {
-//   flex: 40% auto;
-// }
-
-// .col-auto {
-//   flex: 0 0 auto !important;
-//   width: 20%;
-//   max-width: 100% !important;
-// }
-
-// .groupURLexample {
-//   height: 100%;
-// }
-
-// .column1 {
-//   width: 80%;
-// }
-
-// .column2 {
-//   display: flex;
-//   align-self: center;
-//   text-align: center;
-//   width: 20%;
-// }
-
-// .submitUrl {
-//   height: 100%;
-//   width: 100%;
-// }
+.form-text {
+  margin: 0;
+  padding-top: 1rem;
+}

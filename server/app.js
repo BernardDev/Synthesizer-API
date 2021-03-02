@@ -30,16 +30,18 @@ app.post(
       const isNewUser = await postUser({email: email, key: APIkey});
       if (isNewUser) {
         const response = sendEmailWithAPIkey(APIkey, email);
-        // res.status(201).send(response);
         res
           .status(201)
           .send({message: `Your API key has been sent to ${email}`});
       } else {
-        res.send({errors: ['You already have a key!'], message: 'nope!'});
+        res.status(409).send({
+          message: 'You already have a key!',
+          errors: ['record already exists'],
+        });
       }
     } catch (error) {
       res.status(500).send({
-        errors: ['Oopsy, server error!'],
+        errors: ['Internal server error'],
         message: 'Oopsy, server error!',
       });
       console.log('error', error);
@@ -48,5 +50,13 @@ app.post(
 );
 
 app.use('/api', apiRoutes);
+
+app.use((req, res) => {
+  console.log('Req', req.path);
+  res.status(404).json({
+    errors: ['Not found'],
+    message: 'You used an unavailable route',
+  });
+});
 
 module.exports = app;

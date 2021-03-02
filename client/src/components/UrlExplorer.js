@@ -1,7 +1,7 @@
 import './UrlExplorer.scss';
-import React, {useState, useEffect, useRef, useContext} from 'react';
-import {AuthContext} from '../context/AuthContext';
+import '../utility.scss';
 
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import Form from 'react-bootstrap/Form';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,10 +9,12 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Alert from 'react-bootstrap/Alert';
-import Loading from '../components/Loading';
-import Error from '../components/Error';
-import Success from './Success';
+import Loading from './messages/Loading';
+import Error from './messages/Error';
+import Success from './messages/Success';
 import useRequest from '../hooks/useRequest';
+
+import {AuthContext} from '../context/AuthContext';
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 const INITIAL_ROUTE = '/synths';
@@ -87,7 +89,7 @@ function UrlExplorer() {
               <Form.Label>API key</Form.Label>
             </Row>
             <Row>
-              <Form.Text className='text-inputs-urlExplorer'>
+              <Form.Text className='back text-inputs-urlExplorer'>
                 Paste your API key in here. We will add this to your URL to
                 search our database. It is also possible to save your key!
               </Form.Text>
@@ -116,7 +118,7 @@ function UrlExplorer() {
               <Form.Label htmlFor='inlineFormInputGroup'>API Url</Form.Label>
             </Row>
             <Row>
-              <Form.Text className='text-inputs-urlExplorer'>
+              <Form.Text className='back text-inputs-urlExplorer'>
                 Build the URL you want to explore with the dedicated fields seen
                 below and hit search to explore it. Want to explore the routes
                 in browser? Just copy the URL to clipboard and do that instead.
@@ -148,7 +150,7 @@ function UrlExplorer() {
                 </Button>
               </Col>
             </Row>
-            <Row className='row-alert alert-copy'>
+            <Row className='front row-alert alert-copy'>
               <Alert
                 show={stateAlert}
                 className='alert-success'

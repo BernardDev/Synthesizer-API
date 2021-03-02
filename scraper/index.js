@@ -4,7 +4,9 @@ const axios = require('axios');
 const {JSDOM} = jsdom;
 const download = require('image-downloader');
 const synths = require('./data/store_dateInt.json');
+
 // const synth = require('../server/models/synth');
+
 // const manufacturers = require('./data/manufacturers.json');
 
 // ----------------------------------------------------------------------------------
@@ -48,61 +50,11 @@ let testObject = [
 ];
 
 testObject.map((synth) => {
-  // const mappi = {};
   for (let key in synth.specs) {
     const test = key.toLowerCase();
     console.log(test);
   }
 });
-/*
-polyphony
-keyboard
-control
-yearProduced
-memory
-oscillators
-filter
-lfo
-effects
-
-let testObject = [
-  {
-    title: 'Access Virus A',
-    specs: {
-      polyphony: '12 voices',
-      oscillators:
-        '2 Osc per voice plus 1 Sub-Osc: Sine, tri, saw, variable width pulse, oscillator sync. 1 FM Mode: 64 digital FM spectral waveforms.',
-      lfo:
-        '2 per voice with tri, saw down, square, sample/hold, sample/glide and more',
-      filter:
-        '2 independent resonant filters; lowpass, hipass, bandpass, band reject, parallel, split & 2 serial modes with up to 36dB/voice (6-poles), overdrive/saturation.',
-      effects:
-        'Up to 22 simultaneous effects: 4 Chorus effects, Global Reverb/Delay, Vocoder',
-      keyboard: 'None',
-      memory: '256 ROM patches, 256 RAM patches, 128 multi RAM patches',
-      control: 'MIDI (16 multitimbral parts)',
-      yearProduced: '1997 - 1999',
-    },
-    image:
-      'http://www.vintagesynth.com/sites/default/files/2017-05/access_virus.jpg',
-    manufacturer: 'Acces',
-  },
-];
-
-
-*/
-
-// return synth with updated
-
-// SNIPPET
-// const idMapManufacturers = {};
-
-// manufacturers.forEach((manufacturer) => {
-//   idMapManufacturers[manufacturer.name] = manufacturer.id;
-// });
-
-// SNIPPET
-// Object.keys()
 
 // ----------------------------------------------------------------------
 // MAPPING OVER KEYS IN OBJECTS, MAPPING OVER NESTED KEYS IN OBJECTS

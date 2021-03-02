@@ -17,9 +17,9 @@ module.exports = (sequelize, DataTypes) => {
 
       img: {type: DataTypes.STRING, allowNull: true},
 
-      ManufacturerId: {type: DataTypes.INTEGER, allowNull: true},
+      ManufacturerId: {type: DataTypes.INTEGER},
 
-      SpecificationId: {type: DataTypes.INTEGER, allowNull: true},
+      SpecificationId: {type: DataTypes.INTEGER},
 
       synthType: {
         type: DataTypes.ENUM(

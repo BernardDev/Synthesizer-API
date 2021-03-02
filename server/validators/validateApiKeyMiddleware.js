@@ -8,7 +8,7 @@ async function apiKeyMiddleware(req, res, next) {
   if (!isValid) {
     return res
       .status(403)
-      .json({errors: ['This key does not exist'], message: 'Invalid API key'});
+      .json({errors: ['Forbidden'], message: 'You used an invalid API key'});
   } else {
     return next();
   }

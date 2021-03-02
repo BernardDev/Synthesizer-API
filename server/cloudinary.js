@@ -1,10 +1,6 @@
 let cloudinary = require('cloudinary').v2;
-// require('dotenv').config();
 
 require('dotenv').config({path: '../.env'});
-// require('dotenv').config();
-
-// console.log('process.env', process.env);
 
 const CLOUDI_API_KEY = process.env.CLOUDINARY_API_KEY;
 const CLOUDI_API_SECRET = process.env.CLOUDINARY_API_SECRET;
@@ -23,7 +19,6 @@ function cloudinaryUpload(filePath, fileName) {
       filePath,
       {public_id: fileName},
       function (error, result) {
-        // console.log(result, error);
         if (error) {
           reject(error);
         } else {
@@ -38,7 +33,6 @@ function cloudinaryUpload(filePath, fileName) {
 async function testing() {
   try {
     const result = await cloudinaryUpload(path, fileName);
-    // const result = await cloudinaryUpload('./test7.jpg', 'cuteDog');
     console.log('result', result);
   } catch (error) {
     console.log('error', error);
@@ -48,17 +42,3 @@ async function testing() {
 // testing();
 
 module.exports = cloudinaryUpload;
-
-// sh-101 | http/asdyuibsfe/sh101 ()
-// sh-101 | sh101 (select)
-// sh-101 | sh-101 (rename)
-// sh-101 | http/cloudinary/sh101 (upload)
-
-// -----
-// {use_filename: true}
-// {public_id: `${name}`}
-
-// { use_filename: true }
-
-// script dat all images upload
-// nu hebben de image een random name

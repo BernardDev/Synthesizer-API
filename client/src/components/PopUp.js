@@ -1,4 +1,5 @@
 import './PopUp.scss';
+
 import React, {useState, useContext} from 'react';
 import Toast from 'react-bootstrap/Toast';
 import {NavLink} from 'react-router-dom';
@@ -6,7 +7,6 @@ import {AuthContext} from '../context/AuthContext';
 
 function PopUp() {
   const authInfo = useContext(AuthContext);
-  console.log('authInfo from popUp', authInfo);
 
   const [toastToggle, setToastToggle] = useState(true);
   const toggleShowToast = () => setToastToggle(!toastToggle);

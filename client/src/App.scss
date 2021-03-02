@@ -51,9 +51,19 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.form-label {
   font-family: 'Source Sans Pro', sans-serif;
 }
+
+.form-text {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+// * {
+//   background-color: #2e3138;
+// }
 
 // this kind of thing: below?? 😂
 // $link-color: theme-colors("primary");

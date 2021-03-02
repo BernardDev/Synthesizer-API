@@ -1,3 +1,6 @@
+api does not work in dev local?
+status messaging
+
 ### Release 1.0:
 
 - [ ] add a [home page](###development) in the menu

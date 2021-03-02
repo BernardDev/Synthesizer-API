@@ -35,12 +35,10 @@ app.post(
           .status(201)
           .send({message: `Your API key has been sent to ${email}`});
       } else {
-        res
-          .status(409)
-          .send({
-            message: 'You already have a key!',
-            errors: ['record already exists'],
-          });
+        res.status(409).send({
+          message: 'You already have a key!',
+          errors: ['record already exists'],
+        });
       }
     } catch (error) {
       res.status(500).send({
@@ -52,6 +50,8 @@ app.post(
   }
 );
 
+app.use('/api', apiRoutes);
+
 app.use((req, res) => {
   console.log('Req', req.path);
   res.status(404).json({
@@ -59,7 +59,5 @@ app.use((req, res) => {
     // errors: [Route ${req.path} does not exist!],
   });
 });
-
-app.use('/api', apiRoutes);
 
 module.exports = app;

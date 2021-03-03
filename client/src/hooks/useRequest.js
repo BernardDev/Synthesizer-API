@@ -1,11 +1,11 @@
-import {useState, useEffect} from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const initialState = {
-  status: 'idle',
+  status: "idle",
   code: null,
-  message: 'Loading...',
-  data: '',
+  message: "Loading...",
+  data: "",
 };
 
 function useRequest(url, isFetching) {
@@ -15,19 +15,20 @@ function useRequest(url, isFetching) {
       return;
     }
     const fetchData = async () => {
-      setData({...initialState, status: 'loading'});
+      setData({ ...initialState, status: "loading" });
       try {
         const data = await axios.get(`${url}`);
         setData({
-          status: 'success',
+          status: "success",
           code: data.status,
-          message: 'View the JSON below',
+          message: "View the JSON below",
           data: JSON.stringify(data.data, null, 4),
         });
       } catch (error) {
-        console.log('ERROR', error.response);
+        // Remove log
+        console.log("ERROR", error.response);
         setData({
-          status: 'error',
+          status: "error",
           code: error.response?.status,
           message: error.response?.data.message,
           data: JSON.stringify(error.response?.data, null, 4),

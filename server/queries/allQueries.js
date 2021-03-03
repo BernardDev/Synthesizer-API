@@ -1,22 +1,27 @@
-const {Synth, Manufacturer, Specification, User} = require('../models');
+// I would probably split this file into 3
+// userQueries
+// manufacturerQueries
+// synthQueries
+
+const { Synth, Manufacturer, Specification, User } = require("../models");
 
 async function checkApiKey(key) {
   try {
-    const foundUser = await User.findOne({where: {key}});
+    const foundUser = await User.findOne({ where: { key } });
     if (foundUser) {
-      return foundUser.update({count: foundUser.count + 1});
+      return foundUser.update({ count: foundUser.count + 1 });
     } else {
       return null;
     }
   } catch (error) {
-    console.error('error', error);
+    console.error("error", error);
     return false;
   }
 }
 
 async function postUser(user) {
   const [dbUser, created] = await User.findOrCreate({
-    where: {email: user.email},
+    where: { email: user.email },
     defaults: {
       key: user.key,
     },
@@ -25,7 +30,7 @@ async function postUser(user) {
 }
 
 async function manufacturersAll(limit, offset) {
-  const manufacturers = await Manufacturer.findAndCountAll({limit, offset});
+  const manufacturers = await Manufacturer.findAndCountAll({ limit, offset });
   return manufacturers;
 }
 
@@ -36,7 +41,7 @@ async function manufacturerByPk(id) {
 
 async function manufacturerByName(name) {
   const manufacturer = await Manufacturer.findOne({
-    where: {manufacturer: name},
+    where: { manufacturer: name },
   });
   return manufacturer;
 }
@@ -46,18 +51,18 @@ async function manufacturerByName(name) {
 async function synthsAll(
   specificationQuery,
   manufacturerQuery,
-  pagination = {limit: 20, offset: 0}
+  pagination = { limit: 20, offset: 0 }
 ) {
   const synths = await Synth.findAndCountAll({
     ...pagination,
     include: [
       {
         model: Specification,
-        where: {...specificationQuery},
+        where: { ...specificationQuery },
       },
       {
         model: Manufacturer,
-        where: {...manufacturerQuery},
+        where: { ...manufacturerQuery },
       },
     ],
   });
@@ -80,7 +85,7 @@ async function synthByPk(id) {
 async function synthByName(name) {
   try {
     const synth = await Synth.findOne({
-      where: {name},
+      where: { name },
       include: [
         {
           model: Specification,
@@ -93,7 +98,7 @@ async function synthByName(name) {
 
     return synth;
   } catch (error) {
-    console.log('error', error);
+    console.log("error", error);
   }
 }
 

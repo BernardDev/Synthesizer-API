@@ -1,9 +1,9 @@
-const express = require('express');
-const validate = require('../validators/requestValidationMiddleware');
-const formatSynthQuery = require('../validators/queryValidators');
-const apiKeyMiddleware = require('../validators/validateApiKeyMiddleware');
+const express = require("express");
+const validate = require("../validators/requestValidationMiddleware");
+const formatSynthQuery = require("../validators/queryValidators");
+const apiKeyMiddleware = require("../validators/validateApiKeyMiddleware");
 
-const yup = require('yup');
+const yup = require("yup");
 
 const {
   manufacturersAll,
@@ -12,18 +12,18 @@ const {
   synthsAll,
   synthByPk,
   synthByName,
-} = require('../queries/allQueries');
+} = require("../queries/allQueries");
 
 const apiRoutes = new express.Router();
 
 apiRoutes.use(
-  validate(yup.object().shape({key: yup.string().required()}), 'query')
+  validate(yup.object().shape({ key: yup.string().required() }), "query")
 );
 
 apiRoutes.use(apiKeyMiddleware);
 
 apiRoutes.get(
-  '/manufacturers',
+  "/manufacturers",
   validate(
     yup
       .object()
@@ -32,19 +32,19 @@ apiRoutes.get(
         offset: yup.number().integer().min(0).default(0),
       })
       .noUnknown(),
-    'query'
+    "query"
   ),
   async (req, res) => {
     try {
-      const {limit, offset} = req.validatedQuery;
+      const { limit, offset } = req.validatedQuery;
       const result = await manufacturersAll(limit, offset);
       if (result.rows.length === 0) {
-        return res.status(404).json({count: result.count, manufacturers: []});
+        return res.status(404).json({ count: result.count, manufacturers: [] });
       }
-      res.json({count: result.count, manufacturers: result.rows});
+      res.json({ count: result.count, manufacturers: result.rows });
     } catch (error) {
-      console.error('ERROR: /manufacturers', error);
-      res.status(400).json({message: 'Bad request', errors: error.errors});
+      console.error("ERROR: /manufacturers", error);
+      res.status(400).json({ message: "Bad request", errors: error.errors });
     }
   }
 );
@@ -55,13 +55,13 @@ const idOrManufacturerSchema = yup
   .object()
   .shape({
     nameOrId: yup.string().required(),
-    id: yup.number().when('nameOrId', function (nameOrId, schema) {
+    id: yup.number().when("nameOrId", function (nameOrId, schema) {
       if (!isNaN(parseInt(nameOrId))) {
         return schema.default(parseInt(nameOrId));
       }
     }),
-    manufacturer: yup.string().when('nameOrId', function (nameOrId, schema) {
-      if (typeof nameOr !== 'number' && isNaN(parseInt(nameOrId))) {
+    manufacturer: yup.string().when("nameOrId", function (nameOrId, schema) {
+      if (typeof nameOr !== "number" && isNaN(parseInt(nameOrId))) {
         return schema.default(nameOrId);
       }
     }),
@@ -69,11 +69,11 @@ const idOrManufacturerSchema = yup
   .noUnknown();
 
 apiRoutes.get(
-  '/manufacturers/:nameOrId',
-  validate(idOrManufacturerSchema, 'params'),
+  "/manufacturers/:nameOrId",
+  validate(idOrManufacturerSchema, "params"),
   async (req, res) => {
     try {
-      const {manufacturer, id} = req.validatedParams;
+      const { manufacturer, id } = req.validatedParams;
       let result;
       if (id) {
         result = await manufacturerByPk(id);
@@ -85,15 +85,15 @@ apiRoutes.get(
       }
       res.json(result);
     } catch (error) {
-      console.log('ERROR: /manufacturers/:nameOrId', error);
-      res.status(400).json({message: 'Bad request', errors: error.errors});
+      console.log("ERROR: /manufacturers/:nameOrId", error);
+      res.status(400).json({ message: "Bad request", errors: error.errors });
     }
   }
 );
 
 // --------------------------------------------------------------------------------
 apiRoutes.get(
-  '/synths',
+  "/synths",
   validate(
     yup
       .object()
@@ -112,7 +112,7 @@ apiRoutes.get(
         manufacturer: yup.string(),
       })
       .noUnknown(),
-    'query'
+    "query"
   ),
   async (req, res) => {
     try {
@@ -129,10 +129,10 @@ apiRoutes.get(
       if (result.rows.length === 0) {
         res.status(404);
       }
-      res.json({count: result.count, synths: result.rows});
+      res.json({ count: result.count, synths: result.rows });
     } catch (error) {
-      console.log('ERROR: /synths/detailed', error);
-      res.status(400).json({message: 'Bad request', errors: error.errors});
+      console.log("ERROR: /synths/detailed", error);
+      res.status(400).json({ message: "Bad request", errors: error.errors });
     }
   }
 );
@@ -141,13 +141,13 @@ const idOrNameSchema = yup
   .object()
   .shape({
     nameOrId: yup.string().required(),
-    id: yup.number().when('nameOrId', function (nameOrId, schema) {
+    id: yup.number().when("nameOrId", function (nameOrId, schema) {
       if (!isNaN(parseInt(nameOrId))) {
         return schema.default(parseInt(nameOrId));
       }
     }),
-    name: yup.string().when('nameOrId', function (nameOrId, schema) {
-      if (typeof nameOr !== 'number' && isNaN(parseInt(nameOrId))) {
+    name: yup.string().when("nameOrId", function (nameOrId, schema) {
+      if (typeof nameOr !== "number" && isNaN(parseInt(nameOrId))) {
         return schema.default(nameOrId);
       }
     }),
@@ -155,11 +155,11 @@ const idOrNameSchema = yup
   .noUnknown();
 
 apiRoutes.get(
-  '/synths/:nameOrId',
-  validate(idOrNameSchema, 'params'),
+  "/synths/:nameOrId",
+  validate(idOrNameSchema, "params"),
   async (req, res) => {
     try {
-      const {name, id} = req.validatedParams;
+      const { name, id } = req.validatedParams;
       let result;
       if (id) {
         result = await synthByPk(id);
@@ -171,8 +171,8 @@ apiRoutes.get(
       }
       res.json(result);
     } catch (error) {
-      console.log('ERROR: /synths/:nameOrId', error);
-      res.status(400).json({message: 'Bad request', errors: error.errors});
+      console.log("ERROR: /synths/:nameOrId", error);
+      res.status(400).json({ message: "Bad request", errors: error.errors });
     }
   }
 );

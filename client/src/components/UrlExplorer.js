@@ -1,41 +1,44 @@
-import './UrlExplorer.scss';
-import '../utility.scss';
+// This component feels pretty big
+// I would take a look at this and see if we could make some subcomponents
 
-import React, {useState, useEffect, useRef, useContext} from 'react';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Alert from 'react-bootstrap/Alert';
-import Loading from './messages/Loading';
-import Error from './messages/Error';
-import Success from './messages/Success';
-import useRequest from '../hooks/useRequest';
+import "./UrlExplorer.scss";
+import "../utility.scss";
 
-import {AuthContext} from '../context/AuthContext';
+import React, { useState, useEffect, useRef, useContext } from "react";
+import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import InputGroup from "react-bootstrap/InputGroup";
+import Alert from "react-bootstrap/Alert";
+import Loading from "./messages/Loading";
+import Error from "./messages/Error";
+import Success from "./messages/Success";
+import useRequest from "../hooks/useRequest";
+
+import { AuthContext } from "../context/AuthContext";
 
 const BASE_URL = process.env.REACT_APP_API_URL;
-const INITIAL_ROUTE = '/synths';
+const INITIAL_ROUTE = "/synths";
 
 function UrlExplorer() {
   const [stateAlert, setStateAlert] = useState(false);
-  const [copySuccess, setCopySuccess] = useState('');
+  const [copySuccess, setCopySuccess] = useState("");
   const [isFetching, setIsFetching] = useState(false);
-  const {apiKey, setApiKey, saveKey} = useContext(AuthContext);
+  const { apiKey, setApiKey, saveKey } = useContext(AuthContext);
   const textAreaRef = useRef(null);
 
   const [urlParams, setUrlParams] = useState({
     route: INITIAL_ROUTE,
-    query: '',
-    url: buildUrl({route: INITIAL_ROUTE, query: ''}, apiKey),
+    query: "",
+    url: buildUrl({ route: INITIAL_ROUTE, query: "" }, apiKey),
   });
-  const {route, query, url} = urlParams;
-  const {status, message, data} = useRequest(url, isFetching);
+  const { route, query, url } = urlParams;
+  const { status, message, data } = useRequest(url, isFetching);
 
   useEffect(() => {
-    if (status === 'error' || status === 'success') {
+    if (status === "error" || status === "success") {
       setIsFetching(false);
     }
   }, [status]);
@@ -50,22 +53,22 @@ function UrlExplorer() {
   }, [stateAlert]);
 
   function handleInput(e) {
-    const newParams = {...urlParams, [e.target.name]: e.target.value};
-    setUrlParams({...newParams, url: buildUrl(newParams, apiKey)});
+    const newParams = { ...urlParams, [e.target.name]: e.target.value };
+    setUrlParams({ ...newParams, url: buildUrl(newParams, apiKey) });
   }
 
   function handleKeyInput(e) {
     setApiKey(e.target.value);
-    setUrlParams({...urlParams, url: buildUrl(urlParams, e.target.value)});
+    setUrlParams({ ...urlParams, url: buildUrl(urlParams, e.target.value) });
   }
 
   function buildUrl(urlParams, key) {
-    const {route, query} = urlParams;
+    const { route, query } = urlParams;
     return `${BASE_URL}/api${route}?key=${key}${query}`;
   }
 
   function handleSuggestion(suggestionParams) {
-    const newParams = {...urlParams, ...suggestionParams};
+    const newParams = { ...urlParams, ...suggestionParams };
     setUrlParams({
       ...newParams,
       url: buildUrl(newParams, apiKey),
@@ -74,7 +77,7 @@ function UrlExplorer() {
 
   function copyToClipboard(e) {
     textAreaRef.current.select();
-    document.execCommand('copy');
+    document.execCommand("copy");
     e.target.focus();
     setCopySuccess(`URL copied to clipboard: ${urlParams.url} `);
     setStateAlert(true);
@@ -89,7 +92,7 @@ function UrlExplorer() {
               <Form.Label>API key</Form.Label>
             </Row>
             <Row>
-              <Form.Text className='back text-inputs-urlExplorer'>
+              <Form.Text className="back text-inputs-urlExplorer">
                 Paste your API key in here. We will add this to your URL you can
                 use to search our database. It is also possible to store your
                 key across sessions.
@@ -98,15 +101,15 @@ function UrlExplorer() {
             <Row>
               <InputGroup>
                 <Form.Control
-                  type='text'
-                  placeholder='Paste your API key...'
-                  name='storedKey'
+                  type="text"
+                  placeholder="Paste your API key..."
+                  name="storedKey"
                   onChange={handleKeyInput}
-                  value={apiKey || ''}
+                  value={apiKey || ""}
                 />
                 <Button
-                  className=''
-                  variant='primary'
+                  className=""
+                  variant="primary"
                   onClick={() => saveKey(apiKey)}
                 >
                   Save
@@ -116,10 +119,10 @@ function UrlExplorer() {
           </Form.Group>
           <Form.Group>
             <Row>
-              <Form.Label htmlFor='inlineFormInputGroup'>API Url</Form.Label>
+              <Form.Label htmlFor="inlineFormInputGroup">API Url</Form.Label>
             </Row>
             <Row>
-              <Form.Text className='back text-inputs-urlExplorer'>
+              <Form.Text className="back text-inputs-urlExplorer">
                 Build the URL you want to explore with the dedicated fields seen
                 below. Hit search to explore it. Do you want to explore the
                 routes in browser? Just copy the URL to clipboard and do that
@@ -129,7 +132,7 @@ function UrlExplorer() {
             <Row>
               <Form.Control
                 ref={textAreaRef}
-                type='text'
+                type="text"
                 value={
                   url === `${BASE_URL}/api` ? `${BASE_URL}/api/synths` : url
                 }
@@ -137,32 +140,32 @@ function UrlExplorer() {
               ></Form.Control>
             </Row>
             <Row>
-              <Col md={{offset: 3, span: 3}}>
+              <Col md={{ offset: 3, span: 3 }}>
                 <Button
-                  className='btn-block'
+                  className="btn-block"
                   onClick={() => setIsFetching(true)}
                   disabled={isFetching}
                 >
                   Search
                 </Button>
               </Col>
-              <Col md={{offset: 0, span: 3}}>
-                <Button className='btn-block' onClick={copyToClipboard}>
+              <Col md={{ offset: 0, span: 3 }}>
+                <Button className="btn-block" onClick={copyToClipboard}>
                   Clipboard
                 </Button>
               </Col>
             </Row>
-            <Row className='front row-alert alert-copy'>
+            <Row className="front row-alert alert-copy">
               <Alert
                 show={stateAlert}
-                className='alert-success'
-                variant='success'
+                className="alert-success"
+                variant="success"
               >
                 {copySuccess}
               </Alert>
             </Row>
             <Row>
-              <Col className='col-3'>
+              <Col className="col-3">
                 <Form.Label>Route</Form.Label>
               </Col>
               <Col>
@@ -170,67 +173,67 @@ function UrlExplorer() {
               </Col>
             </Row>
             <Row>
-              <Col className='col-3'>
+              <Col className="col-3">
                 <Form.Control
-                  type='text'
-                  name='route'
-                  placeholder='/synths...'
+                  type="text"
+                  name="route"
+                  placeholder="/synths..."
                   onChange={handleInput}
-                  value={route || '/synths'}
+                  value={route || "/synths"}
                 />
               </Col>
-              <Col className=''>
+              <Col className="">
                 <Form.Control
-                  type='text'
-                  name='query'
-                  placeholder='&yearProduced=1980...'
+                  type="text"
+                  name="query"
+                  placeholder="&yearProduced=1980..."
                   onChange={handleInput}
                   value={query}
                 />
               </Col>
             </Row>
             <Row>
-              <Col className='col-3'>
-                <Form.Text className='text-inputs-urlExplorer'>
-                  Try{' '}
+              <Col className="col-3">
+                <Form.Text className="text-inputs-urlExplorer">
+                  Try{" "}
                   {
                     <span
-                      className='suggestion'
-                      onClick={() => handleSuggestion({route: '/synths'})}
+                      className="suggestion"
+                      onClick={() => handleSuggestion({ route: "/synths" })}
                     >
                       /synths
                     </span>
-                  }{' '}
+                  }{" "}
                   or
                   {
                     <span
-                      className='suggestion'
+                      className="suggestion"
                       onClick={() =>
-                        handleSuggestion({query: '', route: '/manufacturers'})
+                        handleSuggestion({ query: "", route: "/manufacturers" })
                       }
                     >
                       /manufacturers
                     </span>
                   }
-                  . To get a specific use the following format{' '}
+                  . To get a specific use the following format{" "}
                   {
                     <span
-                      className='suggestion'
+                      className="suggestion"
                       onClick={() =>
-                        handleSuggestion({query: '', route: '/synths/1'})
+                        handleSuggestion({ query: "", route: "/synths/1" })
                       }
                     >
                       /synths/1
                     </span>
-                  }{' '}
+                  }{" "}
                   or
                   {
                     <span
-                      className='suggestion'
+                      className="suggestion"
                       onClick={() =>
                         handleSuggestion({
-                          query: '',
-                          route: '/synths/Roland Jupiter-8',
+                          query: "",
+                          route: "/synths/Roland Jupiter-8",
                         })
                       }
                     >
@@ -241,31 +244,31 @@ function UrlExplorer() {
                 </Form.Text>
               </Col>
               <Col>
-                <Form.Text className='text-inputs-urlExplorer'>
-                  You could use{' '}
+                <Form.Text className="text-inputs-urlExplorer">
+                  You could use{" "}
                   <span
-                    className='suggestion'
+                    className="suggestion"
                     onClick={() =>
-                      handleSuggestion({query: '&yearProduced=1980'})
+                      handleSuggestion({ query: "&yearProduced=1980" })
                     }
                   >
                     &yearProduced=1980
-                  </span>{' '}
+                  </span>{" "}
                   to get synths produced in that year. Or get synths from a
-                  manufacturer:{' '}
+                  manufacturer:{" "}
                   <span
-                    className='suggestion'
+                    className="suggestion"
                     onClick={() =>
-                      handleSuggestion({query: '&manufacturer=Roland'})
+                      handleSuggestion({ query: "&manufacturer=Roland" })
                     }
                   >
                     &manufacturer=Roland
                   </span>
-                  . You can also change default pagination options{' '}
+                  . You can also change default pagination options{" "}
                   <span
-                    className='suggestion'
+                    className="suggestion"
                     onClick={() =>
-                      handleSuggestion({query: '&limit=20&offset=0'})
+                      handleSuggestion({ query: "&limit=20&offset=0" })
                     }
                   >
                     &limit=20&offset=0
@@ -278,14 +281,14 @@ function UrlExplorer() {
           </Form.Group>
           <Form.Group>
             <Form.Label>JSON</Form.Label>
-            {status === 'loading' && <Loading message={message} />}
-            {status === 'error' && <Error message={message} />}
-            {status === 'success' && <Success message={message} />}
+            {status === "loading" && <Loading message={message} />}
+            {status === "error" && <Error message={message} />}
+            {status === "success" && <Success message={message} />}
             <Row>
               <Form.Control
-                as='textarea'
-                id='textareaExample'
-                rows='32'
+                as="textarea"
+                id="textareaExample"
+                rows="32"
                 value={data}
                 readOnly
               />

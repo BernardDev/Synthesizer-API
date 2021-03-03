@@ -1,20 +1,22 @@
+// maybe rename file to: queryFormatters
+
 function formatSynthQuery(query) {
   let manufacturerQuery = {};
   let paginationQuery = {};
   let specificationQuery = {};
 
-  let manufacturerOptions = ['manufacturer'];
-  let paginationOptions = ['limit', 'offset'];
+  let manufacturerOptions = ["manufacturer"];
+  let paginationOptions = ["limit", "offset"];
   let specificationOptions = [
-    'polyphony',
-    'keyboard',
-    'control',
-    'yearProduced',
-    'memory',
-    'oscillators',
-    'filter',
-    'lfo',
-    'effects',
+    "polyphony",
+    "keyboard",
+    "control",
+    "yearProduced",
+    "memory",
+    "oscillators",
+    "filter",
+    "lfo",
+    "effects",
   ];
 
   for (const option of specificationOptions) {

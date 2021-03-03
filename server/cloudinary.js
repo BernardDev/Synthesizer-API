@@ -1,6 +1,8 @@
-let cloudinary = require('cloudinary').v2;
+// Consider moving this to a folder called: services
 
-require('dotenv').config({path: '../.env'});
+let cloudinary = require("cloudinary").v2;
+
+require("dotenv").config({ path: "../.env" });
 
 const CLOUDI_API_KEY = process.env.CLOUDINARY_API_KEY;
 const CLOUDI_API_SECRET = process.env.CLOUDINARY_API_SECRET;
@@ -17,7 +19,7 @@ function cloudinaryUpload(filePath, fileName) {
   const promiseObject = new Promise((resolve, reject) => {
     cloudinary.uploader.upload(
       filePath,
-      {public_id: fileName},
+      { public_id: fileName },
       function (error, result) {
         if (error) {
           reject(error);
@@ -30,12 +32,14 @@ function cloudinaryUpload(filePath, fileName) {
   return promiseObject;
 }
 
+// I think this not used, let's clean it up!
+
 async function testing() {
   try {
     const result = await cloudinaryUpload(path, fileName);
-    console.log('result', result);
+    console.log("result", result);
   } catch (error) {
-    console.log('error', error);
+    console.log("error", error);
   }
 }
 

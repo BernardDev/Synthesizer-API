@@ -1,9 +1,11 @@
-const fs = require('fs');
-const jsdom = require('jsdom');
-const axios = require('axios');
-const {JSDOM} = jsdom;
-const download = require('image-downloader');
-const synths = require('./data/store_dateInt.json');
+// Maybe write some comments here about what this file does generally speaking
+
+const fs = require("fs");
+const jsdom = require("jsdom");
+const axios = require("axios");
+const { JSDOM } = jsdom;
+const download = require("image-downloader");
+const synths = require("./data/store_dateInt.json");
 
 // const synth = require('../server/models/synth');
 
@@ -25,27 +27,27 @@ const synths = require('./data/store_dateInt.json');
 
 let testObject = [
   {
-    title: 'Access Virus A',
+    title: "Access Virus A",
     specs: {
-      Polyphony: '12 voices',
+      Polyphony: "12 voices",
       Oscillators:
-        '2 Osc per voice plus 1 Sub-Osc: Sine, tri, saw, variable width pulse, oscillator sync. 1 FM Mode: 64 digital FM spectral waveforms.',
+        "2 Osc per voice plus 1 Sub-Osc: Sine, tri, saw, variable width pulse, oscillator sync. 1 FM Mode: 64 digital FM spectral waveforms.",
       LFO:
-        '2 per voice with tri, saw down, square, sample/hold, sample/glide and more',
+        "2 per voice with tri, saw down, square, sample/hold, sample/glide and more",
       Filter:
-        '2 independent resonant filters; lowpass, hipass, bandpass, band reject, parallel, split & 2 serial modes with up to 36dB/voice (6-poles), overdrive/saturation.',
-      VCA: '2 ADSTR envelopes per voice',
-      ModMatrix: '3 Sources, 6 Destinations',
+        "2 independent resonant filters; lowpass, hipass, bandpass, band reject, parallel, split & 2 serial modes with up to 36dB/voice (6-poles), overdrive/saturation.",
+      VCA: "2 ADSTR envelopes per voice",
+      ModMatrix: "3 Sources, 6 Destinations",
       Effects:
-        'Up to 22 simultaneous effects: 4 Chorus effects, Global Reverb/Delay, Vocoder',
-      Keyboard: 'None',
-      Memory: '256 ROM patches, 256 RAM patches, 128 multi RAM patches',
-      Control: 'MIDI (16 multitimbral parts)',
-      'Date Produced': '1997 - 1999',
+        "Up to 22 simultaneous effects: 4 Chorus effects, Global Reverb/Delay, Vocoder",
+      Keyboard: "None",
+      Memory: "256 ROM patches, 256 RAM patches, 128 multi RAM patches",
+      Control: "MIDI (16 multitimbral parts)",
+      "Date Produced": "1997 - 1999",
     },
     image:
-      'http://www.vintagesynth.com/sites/default/files/2017-05/access_virus.jpg',
-    manufacturer: 'Acces',
+      "http://www.vintagesynth.com/sites/default/files/2017-05/access_virus.jpg",
+    manufacturer: "Acces",
   },
 ];
 
@@ -55,6 +57,8 @@ testObject.map((synth) => {
     console.log(test);
   }
 });
+
+// Remove commented out code?
 
 // ----------------------------------------------------------------------
 // MAPPING OVER KEYS IN OBJECTS, MAPPING OVER NESTED KEYS IN OBJECTS
@@ -198,7 +202,7 @@ function matchManufacturer(synth) {
   const match = manufacturers.find((m) => {
     return title.includes(m);
   });
-  return {...synth, manufacturer: match};
+  return { ...synth, manufacturer: match };
 }
 
 function insertSynth(synths) {
@@ -226,12 +230,12 @@ function downloadImgFromJson(download, imgUrls) {
     const options = {
       url: url,
       dest:
-        '/Users/Bernard/Desktop/coaching/program/sprint 3 - api/roland-api/scraper/data/img',
+        "/Users/Bernard/Desktop/coaching/program/sprint 3 - api/roland-api/scraper/data/img",
     };
     download
       .image(options)
-      .then(({filename}) => {
-        console.log('Saved to', filename);
+      .then(({ filename }) => {
+        console.log("Saved to", filename);
       })
       .catch((err) => console.error(err));
   });
@@ -304,10 +308,10 @@ function writeToFile(data) {
 
 function getRolandSynthUrls(dom) {
   const elements = Array.from(
-    dom.window.document.querySelectorAll('.views-field-title')
+    dom.window.document.querySelectorAll(".views-field-title")
   );
   const links = elements.map((element) => {
-    return element.querySelector('a').href;
+    return element.querySelector("a").href;
   });
   return links;
 }
@@ -328,21 +332,21 @@ async function director(dom) {
 }
 
 function getTitleSynth(dom) {
-  const title = dom.window.document.querySelector('.vs-synth-title')
+  const title = dom.window.document.querySelector(".vs-synth-title")
     .textContent;
   return title;
 }
 
 function getImageSynth(dom) {
   const image = dom.window.document.querySelector(
-    '.field--name-field-image-er'
+    ".field--name-field-image-er"
   );
-  const url = image.querySelector('img').src;
+  const url = image.querySelector("img").src;
   return `http://www.vintagesynth.com${url}`;
 }
 
 function getSpecValSynth(dom) {
-  const specVal = dom.window.document.querySelectorAll('.specification-value');
+  const specVal = dom.window.document.querySelectorAll(".specification-value");
   const specVal_text = Array.from(specVal).map((spec) => {
     return spec.textContent;
   });
@@ -350,7 +354,7 @@ function getSpecValSynth(dom) {
 }
 
 function getSpecKeySynth(dom) {
-  const specKey = dom.window.document.querySelectorAll('.specification-term');
+  const specKey = dom.window.document.querySelectorAll(".specification-term");
   let specKey_text = Array.from(specKey).map((spec) => {
     return spec.textContent;
   });

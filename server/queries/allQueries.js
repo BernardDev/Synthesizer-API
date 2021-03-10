@@ -1,4 +1,5 @@
 const {Synth, Manufacturer, Specification, User} = require('../models');
+const {Op} = require('sequelize');
 
 async function checkApiKey(key) {
   try {
@@ -46,7 +47,8 @@ async function manufacturerByName(name) {
 async function synthsAll(
   specificationQuery,
   manufacturerQuery,
-  pagination = {limit: 20, offset: 0}
+  pagination = {limit: 20, offset: 0},
+  sortByQuery
 ) {
   const synths = await Synth.findAndCountAll({
     ...pagination,
@@ -60,6 +62,7 @@ async function synthsAll(
         where: {...manufacturerQuery},
       },
     ],
+    order: [[Specification, sortByQuery.sortBy, sortByQuery.sortOrder]],
   });
   return synths;
 }

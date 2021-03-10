@@ -153,5 +153,29 @@ describe('GET /', () => {
       expect(res.body.name).toBe(synth.name);
       done();
     });
+
+    test('should accept sortBy query with value of yearProduced', async (done) => {
+      const res = await server.get(
+        '/api/synths?limit=2&offset=0&sortBy=yearProduced&key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DE'
+      );
+      expect(res.status).toBe(200);
+      expect(res.body.synths[0].name).toBe('Roland JV-2080');
+      expect(res.body.synths[1].name).toBe('Sequential Circuits Prophet 3000');
+      done();
+    });
+
+    test('should accept sortBy and sortOrder query with value of yearProduced', async (done) => {
+      const res = await server.get(
+        '/api/synths?limit=2&offset=0&sortBy=yearProduced&sortOrder=DESC&key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DE'
+      );
+      expect(res.status).toBe(200);
+      expect(res.body.synths[0].name).toBe(
+        'Vermona Dual Analog Filter (DAF-1)'
+      );
+      expect(res.body.synths[res.body.synths.length - 1].name).toBe(
+        'TC|Works Mercury-1'
+      );
+      done();
+    });
   });
 });

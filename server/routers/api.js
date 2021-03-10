@@ -100,6 +100,12 @@ apiRoutes.get(
       .shape({
         limit: yup.number().integer().min(1).default(20),
         offset: yup.number().integer().min(0).default(0),
+        sortBy: yup.string().oneOf(['yearProduced']).default('yearProduced'),
+        sortOrder: yup
+          .string()
+          .uppercase()
+          .oneOf(['ASC', 'DESC'])
+          .default('ASC'),
         polyphony: yup.string(),
         keyboard: yup.string(),
         control: yup.string(),
@@ -120,11 +126,13 @@ apiRoutes.get(
         specificationQuery,
         manufacturerQuery,
         paginationQuery,
+        sortByQuery,
       } = formatSynthQuery(req.validatedQuery);
       const result = await synthsAll(
         specificationQuery,
         manufacturerQuery,
-        paginationQuery
+        paginationQuery,
+        sortByQuery
       );
       if (result.rows.length === 0) {
         res.status(404);

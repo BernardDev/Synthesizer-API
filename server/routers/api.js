@@ -100,7 +100,7 @@ apiRoutes.get(
       .shape({
         limit: yup.number().integer().min(1).default(20),
         offset: yup.number().integer().min(0).default(0),
-        sortBy: yup.string().oneOf(['yearProduced']),
+        sortBy: yup.string().oneOf(['yearProduced']).default('yearProduced'),
         sortOrder: yup
           .string()
           .uppercase()

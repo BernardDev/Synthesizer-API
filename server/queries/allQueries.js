@@ -1,5 +1,5 @@
 const {Synth, Manufacturer, Specification, User} = require('../models');
-const {Op} = require('sequelize');
+// const {Op} = require('sequelize');
 
 async function checkApiKey(key) {
   try {
@@ -14,6 +14,8 @@ async function checkApiKey(key) {
     return false;
   }
 }
+
+let test;
 
 async function postUser(user) {
   const [dbUser, created] = await User.findOrCreate({
@@ -50,6 +52,7 @@ async function synthsAll(
   pagination = {limit: 20, offset: 0},
   sortByQuery
 ) {
+  console.log('sortByQuery', sortByQuery);
   const synths = await Synth.findAndCountAll({
     ...pagination,
     include: [

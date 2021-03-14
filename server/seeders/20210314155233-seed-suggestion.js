@@ -1,5 +1,7 @@
 'use strict';
 
+const {Suggestion} = require('../models');
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert(

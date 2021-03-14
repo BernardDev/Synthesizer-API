@@ -63,7 +63,7 @@ app.post(
       // polyphony: yup.string(),
       // keyboard: yup.string(),
       // control: yup.string(),
-      // yearProduced: yup.number().required(),
+      yearProduced: yup.number().required(),
       // memory: yup.string(),
       // oscillators: yup.string(),
       // filter: yup.string(),
@@ -87,7 +87,7 @@ app.post(
         // polyphony,
         // keyboard,
         // control,
-        // yearProduced,
+        yearProduced,
         // memory,
         // oscillators,
         // filter,
@@ -102,7 +102,7 @@ app.post(
         // polyphony: polyphony,
         // keyboard: keyboard,
         // control: control,
-        // yearProduced: yearProduced,
+        yearProduced: yearProduced,
         // memory: memory,
         // oscillators: oscillators,
         // filter: filter,
@@ -113,7 +113,7 @@ app.post(
         image: image,
       });
       res.status(201).send({message: 'Thank you for supporting'});
-      console.log('res good', res);
+      // console.log('res good', res);
       // the version with findOrCreate
       // if (isNewSynth) {
       //   res.status(201).send({message: 'Thank you for supporting'});
@@ -124,7 +124,7 @@ app.post(
       //   });
       // }
     } catch (error) {
-      console.log('res bad', res);
+      // console.log('res bad', res);
       res.status(500).send({
         message: 'Oopsy, server error!',
         errors: ['Internal server error'],

@@ -1,4 +1,11 @@
-const {Synth, Manufacturer, Specification, User} = require('../models');
+const {
+  Synth,
+  Manufacturer,
+  Specification,
+  User,
+  Suggestion,
+} = require('../models');
+// console.log('Suggestion', Suggestion);
 // const {Op} = require('sequelize');
 
 async function checkApiKey(key) {
@@ -28,12 +35,13 @@ async function postUser(user) {
 // somehow gives server error when not wrapping in try catch
 
 async function postSuggestion(suggestion) {
+  // console.log('suggestion', suggestion);
   try {
-    const newSuggestion = await Suggestion.Create({
+    const newSuggestion = await Suggestion.create({
       // polyphony: suggestion.polyphony,
       // keyboard: suggestion.keyboard,
       // control: suggestion.control,
-      // yearProduced: suggestion.yearProduced,
+      yearProduced: suggestion.yearProduced,
       // memory: suggestion.memory,
       // oscillators: suggestion.oscillators,
       // filter: suggestion.filter,
@@ -43,6 +51,7 @@ async function postSuggestion(suggestion) {
       // manufacturer: suggestion.manufacturer,
       image: suggestion.image,
     });
+    console.log('newSuggestion', newSuggestion);
     return newSuggestion;
   } catch (error) {
     console.log('error', error);

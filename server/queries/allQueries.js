@@ -15,8 +15,6 @@ async function checkApiKey(key) {
   }
 }
 
-let test;
-
 async function postUser(user) {
   const [dbUser, created] = await User.findOrCreate({
     where: {email: user.email},
@@ -26,6 +24,42 @@ async function postUser(user) {
   });
   return created;
 }
+
+// somehow gives server error when not wrapping in try catch
+
+async function postSuggestion(suggestion) {
+  try {
+    const newSuggestion = await Suggestion.Create({
+      // polyphony: suggestion.polyphony,
+      // keyboard: suggestion.keyboard,
+      // control: suggestion.control,
+      // yearProduced: suggestion.yearProduced,
+      // memory: suggestion.memory,
+      // oscillators: suggestion.oscillators,
+      // filter: suggestion.filter,
+      // lfo: suggestion.lfo,
+      // effects: suggestion.effects,
+      name: suggestion.name,
+      // manufacturer: suggestion.manufacturer,
+      image: suggestion.image,
+    });
+    return newSuggestion;
+  } catch (error) {
+    console.log('error', error);
+    return;
+  }
+}
+
+// the version with findOrCreate
+// async function postSuggestion(suggestion) {
+//   const [dbSuggestion, created] = await Suggestion.findOrCreate({
+//     where: {name: suggestion.name},
+//     defaults: {
+// ......
+//     },
+//   });
+//   return created;
+// }
 
 async function manufacturersAll(limit, offset) {
   const manufacturers = await Manufacturer.findAndCountAll({limit, offset});
@@ -52,7 +86,6 @@ async function synthsAll(
   pagination = {limit: 20, offset: 0},
   sortByQuery
 ) {
-  console.log('sortByQuery', sortByQuery);
   const synths = await Synth.findAndCountAll({
     ...pagination,
     include: [
@@ -106,6 +139,7 @@ async function synthByName(name) {
 module.exports = {
   checkApiKey,
   postUser,
+  postSuggestion,
   manufacturersAll,
   manufacturerByPk,
   manufacturerByName,

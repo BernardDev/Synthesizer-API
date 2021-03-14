@@ -12,7 +12,7 @@ const request = require('supertest');
 
 const server = request(app);
 
-describe('request new apikey', () => {
+describe.skip('request new apikey', () => {
   afterEach(async () => {
     await db.User.destroy({truncate: true, cascade: true});
   });

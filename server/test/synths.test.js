@@ -27,7 +27,7 @@ describe('GET /', () => {
     // ----------------------------------------------------------------------------------
     // tests start manufacturers
     // ----------------------------------------------------------------------------------
-    test('should give all manufacturers with default limit / offset', async (done) => {
+    test.skip('should give all manufacturers with default limit / offset', async (done) => {
       const res = await server.get(
         '/api/manufacturers?key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DE'
       );

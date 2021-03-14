@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const server = request(app);
 
-describe('apikeys', () => {
+describe.skip('apikeys', () => {
   afterAll(async () => {
     await db.Manufacturer.destroy({truncate: true, cascade: true});
     await db.Synth.destroy({truncate: true, cascade: true});

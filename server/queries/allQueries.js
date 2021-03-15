@@ -5,8 +5,8 @@ const {
   User,
   Suggestion,
 } = require('../models');
-// console.log('Suggestion', Suggestion);
-// const {Op} = require('sequelize');
+
+// const cloudinaryUpload = require('../cloudinary');
 
 async function checkApiKey(key) {
   try {
@@ -32,26 +32,28 @@ async function postUser(user) {
   return created;
 }
 
-// somehow gives server error when not wrapping in try catch
-
 async function postSuggestion(suggestion) {
-  // console.log('suggestion', suggestion);
+  // console.log('cloudinaryImage', cloudinaryImage);
   try {
     const newSuggestion = await Suggestion.create({
-      // polyphony: suggestion.polyphony,
-      // keyboard: suggestion.keyboard,
-      // control: suggestion.control,
+      polyphony: suggestion.polyphony,
+      keyboard: suggestion.keyboard,
+      control: suggestion.control,
       yearProduced: suggestion.yearProduced,
-      // memory: suggestion.memory,
-      // oscillators: suggestion.oscillators,
-      // filter: suggestion.filter,
-      // lfo: suggestion.lfo,
-      // effects: suggestion.effects,
+      memory: suggestion.memory,
+      oscillators: suggestion.oscillators,
+      filter: suggestion.filter,
+      lfo: suggestion.lfo,
+      effects: suggestion.effects,
       name: suggestion.name,
-      // manufacturer: suggestion.manufacturer,
-      image: suggestion.image,
+      manufacturer: suggestion.manufacturer,
+      // image: suggestion.image,
     });
-    console.log('newSuggestion', newSuggestion);
+    // console.log('suggestion.img', suggestion.image);
+    // let filePath;
+    // let fileName;
+    // const newImageSuggestion = await cloudinaryUpload(filePath, fileName);
+    // console.log('newSuggestion', newSuggestion);
     return newSuggestion;
   } catch (error) {
     console.log('error', error);
@@ -86,8 +88,6 @@ async function manufacturerByName(name) {
   });
   return manufacturer;
 }
-
-// -----------------------------------------
 
 async function synthsAll(
   specificationQuery,

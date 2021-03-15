@@ -1,5 +1,6 @@
 function validate(schema, path = 'query') {
   return async function middleware(req, res, next) {
+    // console.log('from validator', req);
     try {
       const validatedObject = await schema.validate(req[path], {
         abortEarly: false,

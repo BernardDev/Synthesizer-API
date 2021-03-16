@@ -30,15 +30,28 @@ app.post(
       lfo: yup.string(),
       effects: yup.string(),
       name: yup.string().required(),
-      manufacturer: yup.string(),
-      image: yup.mixed(),
+      manufacturer: yup.string().required(),
+      // image: yup.mixed().required(),
       // more detailed validation
-      // image: yup.mixed().test('image', 'The file is too large', (value) => {
-      //   if (!value.length) return true; // attachment is optional
-      //   return value[0].size <= 2000000;
-      // }),
+      // image: yup
+      //   .mixed()
+      //   .test('image', 'The file is too large', (value) => {
+      //     if (!value.length) return true; // attachment is optional
+      //     return value[0].size <= 2000000;
+      //   })
+      //   .required(),
     }),
     'body'
+  ),
+  validate(
+    yup.object().shape({
+      path: yup.string().url().required('image is a required field'),
+      size: yup
+        .number()
+        .max(3000000, 'file size must be less than of equal to 3MB')
+        .required(),
+    }),
+    'file'
   ),
   async (req, res) => {
     try {
@@ -56,8 +69,7 @@ app.post(
         manufacturer,
         // image,
       } = req.validatedBody;
-      console.log('req.file', req.file);
-
+      console.log(`req.validatedFile`, req.validatedFile);
       const isNewSynth = await postSuggestion({
         polyphony: polyphony,
         keyboard: keyboard,
@@ -70,7 +82,7 @@ app.post(
         effects: effects,
         name: name,
         manufacturer: manufacturer,
-        // image: image,
+        image: req.validatedFile.path,
       });
       res.status(201).send({
         message: 'Thank you for supporting',

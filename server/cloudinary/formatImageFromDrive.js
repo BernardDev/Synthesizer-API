@@ -1,17 +1,6 @@
 let cloudinary = require('cloudinary').v2;
-
 require('dotenv').config({path: '../.env'});
-
-const CLOUDI_API_KEY = process.env.CLOUDINARY_API_KEY;
-const CLOUDI_API_SECRET = process.env.CLOUDINARY_API_SECRET;
-const CLOUDI_NAME = process.env.CLOUDINARY_NAME;
-
-cloudinary.config({
-  cloud_name: CLOUDI_NAME,
-  api_key: CLOUDI_API_KEY,
-  api_secret: CLOUDI_API_SECRET,
-  use_filename: true,
-});
+const config = require('../config/cloudinaryConfig');
 
 function cloudinaryUpload(filePath, fileName) {
   const promiseObject = new Promise((resolve, reject) => {

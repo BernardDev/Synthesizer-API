@@ -1,7 +1,7 @@
 const multer = require('multer');
 const Datauri = require('datauri');
 const path = require('path');
-console.log(`path`, path);
+// console.log(`path`, path);
 
 const storage = multer.memoryStorage();
 const multerUploads = multer({storage}).single('image');

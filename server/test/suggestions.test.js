@@ -18,7 +18,6 @@ describe.only('End to end post', () => {
   test.only('Should', async (done) => {
     const res = await server
       .post('/suggestions')
-      // .send({name: 'john'});
       .set('Content-Type', 'multipart/form-data')
       .field('polyphony', '2')
       .field('keyboard', '49 toetsen')
@@ -31,15 +30,16 @@ describe.only('End to end post', () => {
       .field('effects', 'Delay')
       .field('name', 'Super Synth XD808')
       .field('manufacturer', 'Roland')
-      .attach('image', `${__dirname}/moog_prodigy.jpg`);
+      .attach('image', `${__dirname}/testGif.gif`);
     // expect(res.status).toBe(201);
-    // expect(res.body).toEqual(null);
+    // console.log(`res`, res);
+    expect(res.body).toEqual(null);
     const savedSuggestion = await db.Suggestion.findOne({
       where: {name: 'Super Synth XD808'},
     });
     expect(savedSuggestion).not.toBe(null);
     // all were passing
-    // expect(savedSuggestion).toBe(null);
+    expect(savedSuggestion).toBe(null);
     done();
   });
 });

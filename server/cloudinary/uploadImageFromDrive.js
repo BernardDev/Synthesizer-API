@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const cloudinaryUpload = require('../cloudinary');
+const cloudinaryUpload = require('./formatImageFromDrive');
 const {Sequelize} = require('../models');
 const {Synth} = require('../models');
 
@@ -43,4 +43,4 @@ async function findOneRandomSynth() {
   }
 }
 
-addImageToRecord();
+// addImageToRecord();

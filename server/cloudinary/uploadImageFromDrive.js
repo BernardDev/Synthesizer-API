@@ -1,6 +1,5 @@
-const fs = require('fs');
-
 const cloudinaryUpload = require('./formatImageFromDrive');
+const fs = require('fs');
 const {Sequelize} = require('../models');
 const {Synth} = require('../models');
 
@@ -27,7 +26,7 @@ async function addImageToRecord() {
       );
       await synth.update({img: response.secure_url});
     } catch (error) {
-      console.log('error cloudinaryUpload', error, fileName, name);
+      console.error(error);
     }
   }
 }

@@ -1,6 +1,8 @@
 let cloudinary = require('cloudinary').v2;
 require('dotenv').config({path: '../.env'});
-const config = require('../config/cloudinaryConfig');
+const config = require('../config/configCloudinary');
+
+config;
 
 function cloudinaryUpload(filePath, fileName) {
   const promiseObject = new Promise((resolve, reject) => {
@@ -22,7 +24,6 @@ function cloudinaryUpload(filePath, fileName) {
 async function testing() {
   try {
     const result = await cloudinaryUpload(path, fileName);
-    console.log('result', result);
   } catch (error) {
     console.log('error', error);
   }

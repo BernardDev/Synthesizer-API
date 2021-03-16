@@ -2,10 +2,9 @@ const cloudinary = require('cloudinary').v2;
 require('dotenv').config();
 const {CloudinaryStorage} = require('multer-storage-cloudinary');
 const multer = require('multer');
-const config = require('../config/cloudinaryConfig');
+const config = require('../config/configCloudinary');
 
 config;
-console.log(`configCloudinary`, config);
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,

@@ -6,8 +6,6 @@ const {
   Suggestion,
 } = require('../models');
 
-// const cloudinaryUpload = require('../cloudinary');
-
 async function checkApiKey(key) {
   try {
     const foundUser = await User.findOne({where: {key}});
@@ -33,7 +31,6 @@ async function postUser(user) {
 }
 
 async function postSuggestion(suggestion) {
-  // console.log('cloudinaryImage', cloudinaryImage);
   try {
     const newSuggestion = await Suggestion.create({
       polyphony: suggestion.polyphony,
@@ -49,11 +46,6 @@ async function postSuggestion(suggestion) {
       manufacturer: suggestion.manufacturer,
       // image: suggestion.image,
     });
-    // console.log('suggestion.img', suggestion.image);
-    // let filePath;
-    // let fileName;
-    // const newImageSuggestion = await cloudinaryUpload(filePath, fileName);
-    // console.log('newSuggestion', newSuggestion);
     return newSuggestion;
   } catch (error) {
     console.log('error', error);

@@ -30,15 +30,13 @@ describe.only('End to end post', () => {
       .field('effects', 'Delay')
       .field('name', 'Super Synth XD808')
       .field('manufacturer', 'Roland')
-      .attach('image', `${__dirname}/testGif.gif`);
+      .attach('image', `${__dirname}/moog_prodigy.jpg`);
     // expect(res.status).toBe(201);
-    // console.log(`res`, res);
     expect(res.body).toEqual(null);
     const savedSuggestion = await db.Suggestion.findOne({
       where: {name: 'Super Synth XD808'},
     });
     expect(savedSuggestion).not.toBe(null);
-    // all were passing
     expect(savedSuggestion).toBe(null);
     done();
   });

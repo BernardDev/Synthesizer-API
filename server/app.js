@@ -41,7 +41,6 @@ app.post(
     'body'
   ),
   async (req, res) => {
-    console.log('hallo');
     try {
       const {
         polyphony,
@@ -96,7 +95,6 @@ app.post(
     'body'
   ),
   async (req, res) => {
-    console.log('hai');
     try {
       const {email} = req.validatedBody;
       const APIkey = uuidAPIKey.create().apiKey;
@@ -125,19 +123,10 @@ app.post(
 app.use('/api', apiRoutes);
 
 app.use((req, res) => {
-  console.log('Req', req.path);
   res.status(404).json({
     errors: ['Not found'],
     message: 'You used an unavailable route',
   });
 });
-
-// console.log('req files...', req.file);
-// let nameFile = req.file.originalname;
-// console.log('nameFile', nameFile);
-// let cloudinaryImage = {
-//   fileName: nameFile,
-//   filePath: 'desktop',
-// };
 
 module.exports = app;

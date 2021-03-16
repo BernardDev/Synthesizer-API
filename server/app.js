@@ -16,7 +16,7 @@ app.use(cors());
 // --------------
 
 app.post(
-  '/suggestions',
+  '/contribute',
   parser.single('image'),
   validate(
     yup.object().shape({

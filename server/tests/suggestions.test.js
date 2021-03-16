@@ -17,7 +17,7 @@ describe.only('End to end post', () => {
 
   test('Should upload fields to elephant db and attachment to cloudinary db', async (done) => {
     const res = await server
-      .post('/suggestions')
+      .post('/contribute')
       .set('Content-Type', 'multipart/form-data')
       .field('polyphony', '2')
       .field('keyboard', '49 toetsen')
@@ -44,7 +44,7 @@ describe.only('End to end post', () => {
 
   test('Should give an error naming manufacturer is a required field', async (done) => {
     const res = await server
-      .post('/suggestions')
+      .post('/contribute')
       .set('Content-Type', 'multipart/form-data')
       .field('yearProduced', 1970)
       .field('name', 'Super Synth XD808');
@@ -58,7 +58,7 @@ describe.only('End to end post', () => {
 
   test('Should give an error naming image is a required field', async (done) => {
     const res = await server
-      .post('/suggestions')
+      .post('/contribute')
       .set('Content-Type', 'multipart/form-data')
       .field('yearProduced', 1970)
       .field('name', 'Super Synth XD808')
@@ -73,7 +73,7 @@ describe.only('End to end post', () => {
 
   test.only('Should give an error saying the file is to big', async (done) => {
     const res = await server
-      .post('/suggestions')
+      .post('/contribute')
       .set('Content-Type', 'multipart/form-data')
       .field('yearProduced', 1970)
       .field('name', 'Super Synth XD808')

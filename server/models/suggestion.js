@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
       lfo: {type: DataTypes.STRING, allowNull: true},
       effects: {type: DataTypes.STRING, allowNull: true},
       name: {type: DataTypes.STRING, allowNull: false, unique: true},
-      manufacturer: DataTypes.STRING,
+      manufacturer: {type: DataTypes.STRING, allowNull: false},
+      image: {type: DataTypes.STRING, allowNull: false},
     },
     {
       sequelize,

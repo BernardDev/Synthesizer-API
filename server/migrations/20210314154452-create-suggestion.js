@@ -51,7 +51,11 @@ module.exports = {
       },
       manufacturer: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
+      },
+      image: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
     });
   },

@@ -38,7 +38,7 @@ describe.only('End to end post', () => {
       where: {name: 'Super Synth XD808'},
     });
     expect(savedSuggestion).not.toBe(null);
-    console.log(`savedSuggestion`, savedSuggestion.dataValues);
+    // console.log(`savedSuggestion`, savedSuggestion.dataValues);
     done();
   });
 
@@ -71,17 +71,20 @@ describe.only('End to end post', () => {
     done();
   });
 
-  test.only('Should give an error saying the file is to big', async (done) => {
+  test('Should give an error saying the file is to big', async (done) => {
     const res = await server
       .post('/contribute')
       .set('Content-Type', 'multipart/form-data')
       .field('yearProduced', 1970)
       .field('name', 'Super Synth XD808')
       .field('manufacturer', 'Roland')
-      .attach('image', `${__dirname}/moog_prodigy.jpg`);
+      .attach('image', `${__dirname}/testBigFile.jpg`);
     // console.log(`res`, res);
-    // expect(res.status).toBe(400);
-    expect(res.body).toEqual(null);
+    expect(res.status).toBe(400);
+    expect(res.body).toEqual({
+      errors: ['File too large'],
+      message: 'File too large',
+    });
     done();
-  });
+  }, 30000);
 });

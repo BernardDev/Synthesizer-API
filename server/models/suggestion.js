@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       effects: {type: DataTypes.STRING, allowNull: true},
       name: {type: DataTypes.STRING, allowNull: false, unique: true},
       manufacturer: {type: DataTypes.STRING, allowNull: false},
-      image: {type: DataTypes.STRING, allowNull: false},
+      image: {type: DataTypes.STRING, allowNull: true},
     },
     {
       sequelize,

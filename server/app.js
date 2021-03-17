@@ -15,6 +15,11 @@ app.use(cors());
 
 // --------------
 
+function errorHandlerExpress(error, req, res, next) {
+  console.log(`error middleware`, error);
+  res.status(400).json({errors: [error.message], message: error.message});
+}
+
 app.post(
   '/contribute',
   parser.single('image'),
@@ -31,15 +36,6 @@ app.post(
       effects: yup.string(),
       name: yup.string().required(),
       manufacturer: yup.string().required(),
-      // image: yup.mixed().required(),
-      // more detailed validation
-      // image: yup
-      //   .mixed()
-      //   .test('image', 'The file is too large', (value) => {
-      //     if (!value.length) return true; // attachment is optional
-      //     return value[0].size <= 2000000;
-      //   })
-      //   .required(),
     }),
     'body'
   ),
@@ -48,8 +44,7 @@ app.post(
       path: yup.string().url().required('image is a required field'),
       size: yup
         .number()
-        .max(3000000, 'file size must be less than of equal to 3MB')
-        .required(),
+        .max(3000000, 'file size must be less than of equal to 3MB'),
     }),
     'file'
   ),
@@ -67,9 +62,8 @@ app.post(
         effects,
         name,
         manufacturer,
-        // image,
+        image,
       } = req.validatedBody;
-      console.log(`req.validatedFile`, req.validatedFile);
       const isNewSynth = await postSuggestion({
         polyphony: polyphony,
         keyboard: keyboard,
@@ -95,7 +89,8 @@ app.post(
         errors: ['Internal server error'],
       });
     }
-  }
+  },
+  errorHandlerExpress
 );
 
 app.post(

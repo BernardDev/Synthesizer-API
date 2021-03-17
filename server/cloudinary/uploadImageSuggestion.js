@@ -18,6 +18,6 @@ const storage = new CloudinaryStorage({
   },
 });
 
-const parser = multer({storage: storage});
+const parser = multer({storage: storage, limits: {fileSize: 3000000}});
 
 module.exports = parser;

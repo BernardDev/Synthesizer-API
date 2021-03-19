@@ -47,6 +47,8 @@ apiRoutes.get(
   }
 );
 
+// --------------------------------------------------------------------------------
+
 const idOrManufacturerSchema = yup
   .object()
   .shape({
@@ -87,6 +89,7 @@ apiRoutes.get(
   }
 );
 
+// --------------------------------------------------------------------------------
 apiRoutes.get(
   '/synths',
   validate(
@@ -139,6 +142,7 @@ apiRoutes.get(
     }
   }
 );
+// ------------------------------------------------------------
 const idOrNameSchema = yup
   .object()
   .shape({

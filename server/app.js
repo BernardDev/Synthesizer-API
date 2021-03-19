@@ -6,8 +6,10 @@ const uuidAPIKey = require('uuid-apikey');
 const sendEmailWithAPIkey = require('./sendEmail');
 const yup = require('yup');
 const apiRoutes = require('./routers/api');
+// const adminRoutes = require('./routers/admin');
 const {postUser, postSuggestion} = require('./queries/allQueries');
 const parser = require('./cloudinary/uploadImageSuggestion');
+const {suggestionsAll} = require('./queries/suggestionQueries');
 
 const app = express();
 
@@ -19,6 +21,89 @@ function errorHandlerExpress(error, req, res, next) {
   console.log(`error middleware`, error);
   res.status(400).json({errors: [error.message], message: error.message});
 }
+
+// app.use('/admin', adminRoutes);
+
+app.get(
+  '/admin',
+  validate(
+    yup
+      .object()
+      .shape({
+        limit: yup.number().integer().min(1).default(20),
+        offset: yup.number().integer().min(0).default(0),
+      })
+      .noUnknown(),
+    'query'
+  ),
+  async (req, res) => {
+    try {
+      const {limit, offset} = req.validatedQuery;
+      const result = await suggestionsAll(limit, offset);
+      console.log(`result`, result);
+      if (result.rows.length === 0) {
+        return res.status(404).json({count: result.count, suggestions: []});
+      }
+      res.status(200).json({count: result.count, suggestions: result.rows});
+    } catch (error) {
+      console.error('ERROR: /admin', error);
+      res.status(400).json({message: 'Bad request', errors: error.errors});
+    }
+  }
+);
+
+// apiRoutes.get(
+//   '/synths',
+//   validate(
+//     yup
+//       .object()
+//       .shape({
+//         limit: yup.number().integer().min(1).default(20),
+//         offset: yup.number().integer().min(0).default(0),
+//         sortBy: yup.string().oneOf(['yearProduced']).default('yearProduced'),
+//         sortOrder: yup
+//           .string()
+//           .uppercase()
+//           .oneOf(['ASC', 'DESC'])
+//           .default('ASC'),
+//         polyphony: yup.string(),
+//         keyboard: yup.string(),
+//         control: yup.string(),
+//         yearProduced: yup.number().integer(),
+//         memory: yup.string(),
+//         oscillators: yup.string(),
+//         filter: yup.string(),
+//         lfo: yup.string(),
+//         effects: yup.string(),
+//         manufacturer: yup.string(),
+//       })
+//       .noUnknown(),
+//     'query'
+//   ),
+//   async (req, res) => {
+//     try {
+//       const {
+//         specificationQuery,
+//         manufacturerQuery,
+//         paginationQuery,
+//         sortByQuery,
+//       } = formatSynthQuery(req.validatedQuery);
+//       const result = await synthsAll(
+//         specificationQuery,
+//         manufacturerQuery,
+//         paginationQuery,
+//         sortByQuery
+//       );
+//       if (result.rows.length === 0) {
+//         res.status(404);
+//       }
+//       res.json({count: result.count, synths: result.rows});
+//     } catch (error) {
+//       console.log('ERROR: /synths/detailed', error);
+//       res.status(400).json({message: 'Bad request', errors: error.errors});
+//     }
+//   }
+// );
 
 app.post(
   '/contribute',

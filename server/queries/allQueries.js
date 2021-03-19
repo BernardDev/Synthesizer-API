@@ -44,16 +44,17 @@ async function postSuggestion(suggestion) {
       effects: suggestion.effects,
       name: suggestion.name,
       manufacturer: suggestion.manufacturer,
-      // image: suggestion.image,
+      image: suggestion.image,
     });
     return newSuggestion;
   } catch (error) {
-    console.log('error', error);
+    // @todo: return response error
     return;
   }
 }
 
-// the version with findOrCreate
+// the version with findOrCreate:
+
 // async function postSuggestion(suggestion) {
 //   const [dbSuggestion, created] = await Suggestion.findOrCreate({
 //     where: {name: suggestion.name},

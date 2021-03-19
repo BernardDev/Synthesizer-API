@@ -78,6 +78,7 @@ app.post(
         manufacturer: manufacturer,
         image: req.validatedFile.path,
       });
+      // @todo: handle 400
       res.status(201).send({
         message: 'Thank you for supporting',
         data: isNewSynth,
@@ -85,7 +86,7 @@ app.post(
     } catch (error) {
       console.log('error', error);
       res.status(500).send({
-        message: 'Oopsy, server error!',
+        message: 'Something went wrong, please try to submit again!',
         errors: ['Internal server error'],
       });
     }

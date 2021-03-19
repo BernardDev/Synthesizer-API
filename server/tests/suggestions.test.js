@@ -38,6 +38,9 @@ describe.only('End to end post', () => {
       where: {name: 'Super Synth XD808'},
     });
     expect(savedSuggestion).not.toBe(null);
+    expect(savedSuggestion.manufacturer).toBe('Roland');
+    expect(savedSuggestion.image).not.toBe(null);
+    expect(savedSuggestion.name).toBe('Super Synth XD808');
     // console.log(`savedSuggestion`, savedSuggestion.dataValues);
     done();
   });

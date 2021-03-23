@@ -53,17 +53,89 @@ async function postSuggestion(suggestion) {
   }
 }
 
-// the version with findOrCreate:
+async function acceptSynth(id) {
+  try {
+    const suggestion = await Suggestion.findByPk(id);
+    if (!suggestion) {
+      return {
+        data: null,
+        message: 'No suggestion found',
+        errors: ['Not found'],
+      };
+    }
+    const synth = await Synth.findOne({
+      where: {name: suggestion.name},
+    });
+    if (synth) {
+      return {
+        data: null,
+        message: 'There already is a synth named like that',
+        errors: ['Not found'],
+      };
+    }
 
-// async function postSuggestion(suggestion) {
-//   const [dbSuggestion, created] = await Suggestion.findOrCreate({
-//     where: {name: suggestion.name},
-//     defaults: {
-// ......
-//     },
-//   });
-//   return created;
-// }
+    const manufacturer = await Manufacturer.findOne({
+      where: {manufacturer: suggestion.manufacturer},
+    });
+
+    if (!manufacturer) {
+      const synth = await Synth.findOne({
+        where: {name: suggestion.name},
+      });
+
+      const created = await Synth.create(
+        {
+          name: suggestion.name,
+          img: suggestion.image,
+          Specification: {
+            polyphony: suggestion.polyphony,
+            oscillators: suggestion.oscillators,
+            lfo: suggestion.lfo,
+            filter: suggestion.filter,
+            control: suggestion.control,
+            effects: suggestion.effects,
+            memory: suggestion.memory,
+            keyboard: suggestion.keyboard,
+            yearProduced: suggestion.yearProduced,
+          },
+          Manufacturer: {
+            manufacturer: suggestion.manufacturer,
+          },
+        },
+        {include: [Specification, Manufacturer]}
+      );
+      return created;
+    } else {
+      const referenced = await Synth.create(
+        {
+          name: suggestion.name,
+          img: suggestion.image,
+          Specification: {
+            polyphony: suggestion.polyphony,
+            oscillators: suggestion.oscillators,
+            lfo: suggestion.lfo,
+            filter: suggestion.filter,
+            control: suggestion.control,
+            effects: suggestion.effects,
+            memory: suggestion.memory,
+            keyboard: suggestion.keyboard,
+            yearProduced: suggestion.yearProduced,
+          },
+          ManufacturerId: manufacturer.id,
+        },
+        {include: [Specification]}
+      );
+      return referenced;
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      data: null,
+      message: 'No suggestion found',
+      errors: ['Not found'],
+    };
+  }
+}
 
 async function manufacturersAll(limit, offset) {
   const manufacturers = await Manufacturer.findAndCountAll({limit, offset});
@@ -148,4 +220,5 @@ module.exports = {
   synthsAll,
   synthByPk,
   synthByName,
+  acceptSynth,
 };

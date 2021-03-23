@@ -5,7 +5,7 @@ const request = require('supertest');
 
 const server = request(app);
 
-describe.only('End to end post', () => {
+describe.skip('End to end post', () => {
   afterAll(async () => {
     await db.Suggestion.destroy({truncate: true, cascade: true});
     await db.sequelize.close();
@@ -31,8 +31,6 @@ describe.only('End to end post', () => {
       .field('name', 'Super Synth XD808')
       .field('manufacturer', 'Roland')
       .attach('image', `${__dirname}/moog_prodigy.jpg`);
-    // expect(res.status).toBe(201);
-    // expect(res.body).toBe(null);
     expect(res.body).not.toEqual(null);
     const savedSuggestion = await db.Suggestion.findOne({
       where: {name: 'Super Synth XD808'},
@@ -41,7 +39,6 @@ describe.only('End to end post', () => {
     expect(savedSuggestion.manufacturer).toBe('Roland');
     expect(savedSuggestion.image).not.toBe(null);
     expect(savedSuggestion.name).toBe('Super Synth XD808');
-    // console.log(`savedSuggestion`, savedSuggestion.dataValues);
     done();
   });
 
@@ -82,7 +79,6 @@ describe.only('End to end post', () => {
       .field('name', 'Super Synth XD808')
       .field('manufacturer', 'Roland')
       .attach('image', `${__dirname}/testBigFile.jpg`);
-    // console.log(`res`, res);
     expect(res.status).toBe(400);
     expect(res.body).toEqual({
       errors: ['File too large'],
@@ -90,4 +86,131 @@ describe.only('End to end post', () => {
     });
     done();
   }, 30000);
+});
+
+describe.only('patch suggestions/id/accept', () => {
+  afterAll(async () => {
+    await db.Suggestion.destroy({truncate: true, cascade: true});
+    await db.Synth.destroy({truncate: true, cascade: true});
+    await db.Specification.destroy({truncate: true, cascade: true});
+    await db.Manufacturer.destroy({truncate: true, cascade: true});
+    await db.sequelize.close();
+  });
+
+  beforeAll(async () => {
+    await db.Suggestion.destroy({truncate: true, cascade: true});
+    await db.Synth.destroy({truncate: true, cascade: true});
+    await db.Specification.destroy({truncate: true, cascade: true});
+    await db.Manufacturer.destroy({truncate: true, cascade: true});
+  });
+
+  beforeEach(async () => {
+    await db.Suggestion.destroy({truncate: true, cascade: true});
+    await db.Synth.destroy({truncate: true, cascade: true});
+    await db.Specification.destroy({truncate: true, cascade: true});
+    await db.Manufacturer.destroy({truncate: true, cascade: true});
+  });
+
+  test('should move data from Suggestion to Synth, Specification & Manufacturer tables', async (done) => {
+    const suggestion = await db.Suggestion.create({
+      name: 'Synthesizer',
+      manufacturer: 'Roland',
+      yearProduced: 2000,
+      image: 'url',
+    });
+    const res = await server.patch(`/admin/${suggestion.id}/accept`);
+    expect(res.status).not.toBe(404);
+    expect(res.status).toBe(201);
+    const synthesizerAccepted = await db.Synth.findOne({
+      where: {name: 'Synthesizer'},
+      include: [db.Specification, db.Manufacturer],
+    });
+    expect(synthesizerAccepted.Specification.yearProduced).toBe(2000);
+    expect(synthesizerAccepted.img).toBe('url');
+    expect(synthesizerAccepted.Manufacturer.manufacturer).toBe('Roland');
+    done();
+  });
+
+  test('should give error that there is no record found (on param)', async (done) => {
+    const suggestion = await db.Suggestion.create({
+      name: 'Synthesizer',
+      manufacturer: 'Roland',
+      yearProduced: 2000,
+      image: 'url',
+    });
+    const res = await server.patch(`/admin/2/accept`);
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({
+      data: null,
+      errors: ['Not found'],
+      message: 'No suggestion found',
+    });
+    done();
+  });
+
+  test('should accept suggestion when manufacturer exists ', async (done) => {
+    const suggestion = await db.Suggestion.create({
+      name: 'Synthesizer',
+      manufacturer: 'Roland',
+      yearProduced: 2000,
+      image: 'url',
+    });
+    const manufacturer = await db.Manufacturer.create({
+      manufacturer: 'Roland',
+    });
+    const res = await server.patch(`/admin/${suggestion.id}/accept`);
+    expect(res.status).not.toBe(404);
+    expect(res.status).toBe(201);
+    const synthesizerAccepted = await db.Synth.findOne({
+      where: {name: 'Synthesizer'},
+      include: [db.Specification, db.Manufacturer],
+    });
+    expect(synthesizerAccepted.Specification.yearProduced).toBe(2000);
+    expect(synthesizerAccepted.img).toBe('url');
+    expect(synthesizerAccepted.Manufacturer.manufacturer).toBe('Roland');
+    done();
+  });
+
+  test('should accept suggestion when manufacturer is non existing', async (done) => {
+    const suggestion = await db.Suggestion.create({
+      name: 'Synthesizer',
+      manufacturer: 'Roland',
+      yearProduced: 2000,
+      image: 'url',
+    });
+    const manufacturer = await db.Manufacturer.create({
+      manufacturer: 'Korg',
+    });
+    const res = await server.patch(`/admin/${suggestion.id}/accept`);
+    expect(res.status).not.toBe(404);
+    expect(res.status).toBe(201);
+    const synthesizerAccepted = await db.Synth.findOne({
+      where: {name: 'Synthesizer'},
+      include: [db.Specification, db.Manufacturer],
+    });
+    expect(synthesizerAccepted.Specification.yearProduced).toBe(2000);
+    expect(synthesizerAccepted.img).toBe('url');
+    expect(synthesizerAccepted.Manufacturer.manufacturer).toBe('Roland');
+    done();
+  });
+
+  test('should not create record when name is already in synthesizer db, should display this as error message', async (done) => {
+    const suggestion = await db.Suggestion.create({
+      name: 'notAllowed',
+      manufacturer: 'Roland',
+      yearProduced: 2000,
+      image: 'url',
+    });
+    const synth = await db.Synth.create({
+      name: 'notAllowed',
+    });
+    const res = await server.patch(`/admin/${suggestion.id}/accept`);
+    expect(res.status).toBe(404);
+    expect(res.body).toEqual({
+      data: null,
+      message: 'There already is a synth named like that',
+      errors: ['Not found'],
+    });
+    done();
+  });
 });

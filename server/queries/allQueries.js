@@ -53,6 +53,32 @@ async function postSuggestion(suggestion) {
   }
 }
 
+async function declineSynth(id) {
+  try {
+    const suggestionToDelete = await Suggestion.findByPk(id);
+    if (!suggestionToDelete) {
+      return {
+        data: null,
+        message: 'No suggestion found',
+        errors: ['Not found'],
+      };
+    }
+    await suggestionToDelete.destroy();
+    return {
+      data: null,
+      message: 'Suggestion deleted',
+      errors: [],
+    };
+  } catch (error) {
+    console.log(`error`, error);
+    return {
+      data: null,
+      message: 'No suggestion found',
+      errors: ['Not found'],
+    };
+  }
+}
+
 async function acceptSynth(id) {
   try {
     const suggestion = await Suggestion.findByPk(id);
@@ -104,6 +130,7 @@ async function acceptSynth(id) {
         },
         {include: [Specification, Manufacturer]}
       );
+      await suggestion.destroy();
       return created;
     } else {
       const referenced = await Synth.create(
@@ -221,4 +248,5 @@ module.exports = {
   synthByPk,
   synthByName,
   acceptSynth,
+  declineSynth,
 };

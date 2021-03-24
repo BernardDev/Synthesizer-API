@@ -6,7 +6,12 @@ const uuidAPIKey = require('uuid-apikey');
 const sendEmailWithAPIkey = require('./sendEmail');
 const yup = require('yup');
 const apiRoutes = require('./routers/api');
-const {postUser, postSuggestion, acceptSynth} = require('./queries/allQueries');
+const {
+  postUser,
+  postSuggestion,
+  acceptSynth,
+  declineSynth,
+} = require('./queries/allQueries');
 const parser = require('./cloudinary/uploadImageSuggestion');
 const {suggestionsAll} = require('./queries/suggestionQueries');
 
@@ -64,6 +69,28 @@ app.patch('/admin/:id/accept', async (req, res) => {
         message: 'Synthesizer accepted',
         data: result,
       });
+    }
+  } catch (error) {
+    console.log('error from outside', error);
+    res.status(500).send({
+      message: 'Something went wrong, please try to submit again!',
+      errors: ['Internal server error'],
+    });
+  }
+});
+
+app.delete('/admin/:id/decline', async (req, res) => {
+  let id = req.params.id;
+  try {
+    const result = await declineSynth(id);
+    if (result.message !== 'Suggestion deleted') {
+      return res.status(404).json({
+        data: null,
+        message: result.message,
+        errors: result.errors,
+      });
+    } else {
+      res.status(200).send(result);
     }
   } catch (error) {
     console.log('error from outside', error);

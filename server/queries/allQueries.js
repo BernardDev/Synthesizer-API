@@ -4,7 +4,21 @@ const {
   Specification,
   User,
   Suggestion,
+  Admin,
 } = require('../models');
+
+// async function registerAdmin() {
+// try {
+//   const createdAdmin = await Admin.create({
+//     email:
+//   })
+
+// } catch (error) {
+//   console.log(error)
+// }
+
+//   console.log(`do it get run?`);
+// }
 
 async function checkApiKey(key) {
   try {

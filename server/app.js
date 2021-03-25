@@ -1,3 +1,5 @@
+const {Admin} = require('./models');
+
 const express = require('express');
 const cors = require('cors');
 
@@ -11,13 +13,19 @@ const {
   postSuggestion,
   acceptSynth,
   declineSynth,
+  registerAdmin,
 } = require('./queries/allQueries');
 const parser = require('./cloudinary/uploadImageSuggestion');
 const {suggestionsAll} = require('./queries/suggestionQueries');
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 const app = express();
 
 app.use(cors());
+
+app.use(express.json());
 
 // --------------
 
@@ -25,6 +33,37 @@ function errorHandlerExpress(error, req, res, next) {
   console.log(`error middleware`, error);
   res.status(400).json({errors: [error.message], message: error.message});
 }
+
+app.post(
+  '/admins',
+  // validate(
+  //   yup
+  //     .object()
+  //     .shape({
+  //       email: yup.string().email().required('Email is a required field'),
+  //       password: yup.string().required('Password is a required field'),
+  //     })
+  //     .noUnknown(),
+  //   'query'
+  // ),
+  async (req, res) => {
+    try {
+      console.log(`req.body`, req.body);
+      const passwordHash = await bcrypt.hash(req.body.password, saltRounds);
+      console.log(`passwordHas`, passwordHash);
+      const newAdmin = await Admin.create({
+        email: req.body.email,
+        password: passwordHash,
+      });
+      res.status(201).json({message: 'Admin created but not yet approved'});
+      // const {email, password} = req.validatedQuery;
+      // console.log(`email`, email, password);
+      // const result = await registerAdmin(email, password);
+    } catch (error) {
+      console.log(`errors`, errors);
+    }
+  }
+);
 
 app.get(
   '/admin',

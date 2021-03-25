@@ -23,13 +23,17 @@ describe('admins', () => {
     });
 
     test('should store user data in Admin table', async (done) => {
-      const res = await server.post(
-        `/admins?email=bernardwittgen@htomail.com&password=abcd1234`
-      );
-      expect(res.body).toBe();
+      const res = await server
+        .post(`/admins`)
+        .send({email: 'bernardwittgen@hotmail.com', password: 'abcd1234'});
+      expect(res.status).not.toBe(404);
+      expect(res.status).toBe(201);
+      expect(res.body).toEqual({message: 'Admin created but not yet approved'});
       const foundRegistration = await db.Admin.findOne({
-        where: {email: 'bernardwittgen@htomail.com'},
+        where: {email: 'bernardwittgen@hotmail.com'},
       });
+      expect(foundRegistration).not.toBe(null);
+      expect(foundRegistration.password).not.toBe('abcd1234');
       console.log(`foundRegistration`, foundRegistration);
       // const admin = await db.Admin.create({
       //   email: 'bernardwittgen@htomail.com',

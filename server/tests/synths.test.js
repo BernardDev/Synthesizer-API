@@ -6,7 +6,7 @@ const request = require('supertest');
 
 const server = request(app);
 
-describe.skip('GET /', () => {
+describe('GET /', () => {
   afterAll(async () => {
     await db.sequelize.close();
   });
@@ -27,7 +27,7 @@ describe.skip('GET /', () => {
     // ----------------------------------------------------------------------------------
     // tests start manufacturers
     // ----------------------------------------------------------------------------------
-    test.skip('should give all manufacturers with default limit / offset', async (done) => {
+    test('should give all manufacturers with default limit / offset', async (done) => {
       const res = await server.get(
         '/api/manufacturers?key=GVMVW12-1XK4W8E-HEND0CT-DVDB4DE'
       );

@@ -36,41 +36,34 @@ function errorHandlerExpress(error, req, res, next) {
   res.status(400).json({errors: [error.message], message: error.message});
 }
 
-// async function checkUser(username, password) {
-//   //... fetch user from a db etc.
-
-//   const match = await bcrypt.compare(password, user.passwordHash);
-
-//   if(match) {
-//       //login
-//   }
-
-//   //...
-// }
-
 app.post('/login', async (req, res) => {
-  // console.log(`sent email`, req.body.email);
-  const result = await Admin.findOne({
-    where: {email: req.body.email, isAdmin: true},
-  });
-  // console.log(`sent password`, req.body.password);
-  // console.log(`hash inside database`, result.password);
   try {
+    const result = await Admin.findOne({
+      where: {email: req.body.email},
+    });
+    if (!result)
+      return res.status(404).json({
+        errors: ['No record found'],
+        message: 'This email is not registered',
+      });
+    if (result.isAdmin === false)
+      return res.status(401).json({
+        errors: ['Unauthorized'],
+        message: 'First wait until approval for admin use by the moderator',
+      });
     const match = await bcrypt.compare(req.body.password, result.password);
-    // console.log(`is it a match`, match);
     const payload = {adminId: result.id};
-    // console.log(`payload`, payload);
     if (match && result.isAdmin === true) {
       const token = jwt.sign(payload, process.env.PRIVATE_KEY, {
         expiresIn: '4h',
       });
-      // console.log('json webtoken', token);
       res
         .status(200)
         .json({token: token, message: "You've got a token! Great dude"});
     } else {
-      res.status(400).json({
-        message: 'Your password dit not match the encrypted save password',
+      res.status(401).json({
+        errors: ['Something'],
+        message: 'You entered the wrong password',
       });
     }
   } catch (error) {

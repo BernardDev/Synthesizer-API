@@ -53,5 +53,61 @@ describe.only('/login', () => {
       //   decrypt token, check with adminId
       done();
     });
+
+    test('should not send token when password does not match', async (done) => {
+      const passwordHash = await bcrypt.hash('abcd1234', saltRounds);
+      const admin = await db.Admin.create({
+        email: 'bernardwittgen@hotmail.com',
+        password: passwordHash,
+        isAdmin: true,
+      });
+      const res = await server
+        .post(`/login`)
+        .send({email: 'bernardwittgen@hotmail.com', password: 'hallohallo'});
+      expect(res.status).toBe(401);
+      expect(res.body).toEqual({
+        message: 'You entered the wrong password',
+      });
+      expect(res.body.token).not.toBeDefined();
+      done();
+    });
+
+    test('should not send token when email is not found in db', async (done) => {
+      const passwordHash = await bcrypt.hash('abcd1234', saltRounds);
+      const admin = await db.Admin.create({
+        email: 'bernardwittgen@hotmail.com',
+        password: passwordHash,
+        isAdmin: true,
+      });
+      const res = await server
+        .post(`/login`)
+        .send({email: 'henkwittgen@hotmail.com', password: 'abcd1234'});
+      expect(res.status).toBe(404);
+      expect(res.body).toEqual({
+        errors: ['No record found'],
+        message: 'This email is not registered',
+      });
+      expect(res.body.token).not.toBeDefined();
+      done();
+    });
+
+    test('should not send token when the user is not an approved admin', async (done) => {
+      const passwordHash = await bcrypt.hash('abcd1234', saltRounds);
+      const admin = await db.Admin.create({
+        email: 'bernardwittgen@hotmail.com',
+        password: passwordHash,
+        isAdmin: false,
+      });
+      const res = await server
+        .post(`/login`)
+        .send({email: 'bernardwittgen@hotmail.com', password: 'abcd1234'});
+      expect(res.body).toEqual({
+        errors: ['Unauthorized'],
+        message: 'First wait until approval for admin use by the moderator',
+      });
+      expect(res.status).toBe(401);
+      expect(res.body.token).not.toBeDefined();
+      done();
+    });
   });
 });

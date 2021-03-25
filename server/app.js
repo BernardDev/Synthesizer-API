@@ -36,31 +36,40 @@ function errorHandlerExpress(error, req, res, next) {
 
 app.post(
   '/admins',
-  // validate(
-  //   yup
-  //     .object()
-  //     .shape({
-  //       email: yup.string().email().required('Email is a required field'),
-  //       password: yup.string().required('Password is a required field'),
-  //     })
-  //     .noUnknown(),
-  //   'query'
-  // ),
+  validate(
+    yup
+      .object()
+      .shape({
+        email: yup.string().email().required('Email is a required field'),
+        password: yup.string().required('Password is a required field'),
+      })
+      .noUnknown(),
+    'body'
+  ),
   async (req, res) => {
     try {
-      console.log(`req.body`, req.body);
-      const passwordHash = await bcrypt.hash(req.body.password, saltRounds);
+      const {email, password} = req.validatedBody;
+      const passwordHash = await bcrypt.hash(password, saltRounds);
       console.log(`passwordHas`, passwordHash);
       const newAdmin = await Admin.create({
-        email: req.body.email,
+        email: email,
         password: passwordHash,
       });
       res.status(201).json({message: 'Admin created but not yet approved'});
-      // const {email, password} = req.validatedQuery;
-      // console.log(`email`, email, password);
-      // const result = await registerAdmin(email, password);
     } catch (error) {
-      console.log(`errors`, errors);
+      console.log(`error.type`, error.name);
+      if (error.name === 'SequelizeUniqueConstraintError') {
+        res.status(409).json({
+          message:
+            'This email has already been registered, please wait to be approved',
+        });
+      } else {
+        res.status(500).send({
+          errors: ['Internal server error'],
+          message: 'Oopsy, server error!',
+        });
+        console.log('error', error);
+      }
     }
   }
 );

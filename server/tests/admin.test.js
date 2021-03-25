@@ -34,12 +34,52 @@ describe('admins', () => {
       });
       expect(foundRegistration).not.toBe(null);
       expect(foundRegistration.password).not.toBe('abcd1234');
-      console.log(`foundRegistration`, foundRegistration);
-      // const admin = await db.Admin.create({
-      //   email: 'bernardwittgen@htomail.com',
-      //   password: 'abcd1234',
-      // //   isAdmin: true,
-      // });
+      expect(foundRegistration.isAdmin).toBe(false);
+      done();
+    });
+
+    test("should not accept non email email's", async (done) => {
+      const res = await server
+        .post(`/admins`)
+        .send({email: 'bla', password: 'abcd1234'});
+      expect(res.status).toBe(400);
+      expect(res.body).toEqual({
+        errors: ['email must be a valid email'],
+        message: 'Bad request',
+      });
+      done();
+    });
+
+    test('should not set isAdmin to true even when it is part of the request', async (done) => {
+      const res = await server.post(`/admins`).send({
+        email: 'bernardwittgen@hotmail.com',
+        password: 'abcd1234',
+        isAdmin: true,
+      });
+      expect(res.status).toBe(201);
+      expect(res.body).toEqual({message: 'Admin created but not yet approved'});
+      const foundRegistration = await db.Admin.findOne({
+        where: {email: 'bernardwittgen@hotmail.com'},
+      });
+      expect(foundRegistration).not.toBe(null);
+      expect(foundRegistration.isAdmin).toBe(false);
+      done();
+    });
+
+    test('should not set isAdmin to true even when it is part of the request', async (done) => {
+      const admin = await db.Admin.create({
+        email: 'bernardwittgen@hotmail.com',
+        password: 'abcd1234',
+      });
+      const res = await server.post(`/admins`).send({
+        email: 'bernardwittgen@hotmail.com',
+        password: 'abcd1234',
+      });
+      expect(res.status).toBe(409);
+      expect(res.body).toEqual({
+        message:
+          'This email has already been registered, please wait to be approved',
+      });
       done();
     });
   });

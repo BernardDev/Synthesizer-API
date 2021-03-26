@@ -131,12 +131,13 @@ describe('suggestions', () => {
     });
   });
 
-  describe('patch suggestions/id/accept', () => {
+  describe(' GET /suggestions', () => {
     afterAll(async () => {
       await db.Suggestion.destroy({truncate: true, cascade: true});
       await db.Synth.destroy({truncate: true, cascade: true});
       await db.Specification.destroy({truncate: true, cascade: true});
       await db.Manufacturer.destroy({truncate: true, cascade: true});
+      await db.Admin.destroy({truncate: true, cascade: true});
     });
 
     beforeAll(async () => {
@@ -144,6 +145,7 @@ describe('suggestions', () => {
       await db.Synth.destroy({truncate: true, cascade: true});
       await db.Specification.destroy({truncate: true, cascade: true});
       await db.Manufacturer.destroy({truncate: true, cascade: true});
+      await db.Admin.destroy({truncate: true, cascade: true});
     });
 
     beforeEach(async () => {
@@ -151,6 +153,87 @@ describe('suggestions', () => {
       await db.Synth.destroy({truncate: true, cascade: true});
       await db.Specification.destroy({truncate: true, cascade: true});
       await db.Manufacturer.destroy({truncate: true, cascade: true});
+      await db.Admin.destroy({truncate: true, cascade: true});
+    });
+
+    test('should respond with a list of synthesizer suggestion when token is sent', async (done) => {
+      const suggestion = await db.Suggestion.create({
+        name: 'Synthesizer',
+        manufacturer: 'Roland',
+        yearProduced: 2000,
+        image: 'url',
+      });
+      const admin = await db.Admin.create({
+        email: 'bernard@bernard.com',
+        password: 'blablabla',
+        isAdmin: true,
+      });
+      const token = admin.createToken();
+      console.log(`token`, token);
+      const res = await server
+        .get(`/suggestions`)
+        .set('Authorization', `Bearer ${token}`);
+      expect(res.status).not.toBe(404);
+      expect(res.status).toBe(200);
+      expect(res.body.suggestions.length).toBe(1);
+
+      done();
+    });
+
+    test('should deny request without a token', async (done) => {
+      const suggestion = await db.Suggestion.create({
+        name: 'Synthesizer',
+        manufacturer: 'Roland',
+        yearProduced: 2000,
+        image: 'url',
+      });
+      const res = await server.get(`/suggestions`);
+      expect(res.status).toBe(401);
+      expect(res.body.message).toBe('Please send a token');
+      done();
+    });
+
+    test('should deny request with malformed token', async (done) => {
+      const suggestion = await db.Suggestion.create({
+        name: 'Synthesizer',
+        manufacturer: 'Roland',
+        yearProduced: 2000,
+        image: 'url',
+      });
+      const res = await server
+        .get(`/suggestions`)
+        .set('Authorization', `Bearer puppy`);
+      // catch
+      // console.log(`res.headers.authorization`, res.headers.authorization);
+      expect(res.status).toBe(401);
+      expect(res.body.message).toBe('Token invalid');
+      done();
+    });
+  });
+
+  describe('patch suggestions/id/accept', () => {
+    afterAll(async () => {
+      await db.Suggestion.destroy({truncate: true, cascade: true});
+      await db.Synth.destroy({truncate: true, cascade: true});
+      await db.Specification.destroy({truncate: true, cascade: true});
+      await db.Manufacturer.destroy({truncate: true, cascade: true});
+      await db.Admin.destroy({truncate: true, cascade: true});
+    });
+
+    beforeAll(async () => {
+      await db.Suggestion.destroy({truncate: true, cascade: true});
+      await db.Synth.destroy({truncate: true, cascade: true});
+      await db.Specification.destroy({truncate: true, cascade: true});
+      await db.Manufacturer.destroy({truncate: true, cascade: true});
+      await db.Admin.destroy({truncate: true, cascade: true});
+    });
+
+    beforeEach(async () => {
+      await db.Suggestion.destroy({truncate: true, cascade: true});
+      await db.Synth.destroy({truncate: true, cascade: true});
+      await db.Specification.destroy({truncate: true, cascade: true});
+      await db.Manufacturer.destroy({truncate: true, cascade: true});
+      await db.Admin.destroy({truncate: true, cascade: true});
     });
 
     test('should move data from Suggestion to Synth, Specification & Manufacturer tables and delete the Suggestion instance', async (done) => {
@@ -160,8 +243,18 @@ describe('suggestions', () => {
         yearProduced: 2000,
         image: 'url',
       });
-      const res = await server.patch(`/suggestions/${suggestion.id}/accept`);
+      const admin = await db.Admin.create({
+        email: 'bernard@bernard.com',
+        password: 'blablabla',
+        isAdmin: true,
+      });
+      const token = admin.createToken();
+      console.log(`token`, token);
+      const res = await server
+        .patch(`/suggestions/${suggestion.id}/accept`)
+        .set('Authorization', `Bearer ${token}`);
       expect(res.status).not.toBe(404);
+
       expect(res.status).toBe(201);
       const synthesizerAccepted = await db.Synth.findOne({
         where: {name: 'Synthesizer'},

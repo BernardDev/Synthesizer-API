@@ -7,6 +7,8 @@ const {
   Suggestion,
 } = require('./models');
 
+// const {toJWT, toData} = require('./auth/jwt');
+
 const express = require('express');
 const cors = require('cors');
 
@@ -20,7 +22,6 @@ const {
   postSuggestion,
   acceptSynth,
   declineSynth,
-  registerAdmin,
   createAdmin,
 } = require('./queries/allQueries');
 const parser = require('./cloudinary/uploadImageSuggestion');
@@ -103,27 +104,68 @@ app.post(
 
 app.get(
   '/suggestions',
-  validate(
-    yup
-      .object()
-      .shape({
-        limit: yup.number().integer().min(1).default(20),
-        offset: yup.number().integer().min(0).default(0),
-      })
-      .noUnknown(),
-    'query'
-  ),
+  // validate(
+  //   yup
+  //     .object()
+  //     .shape({
+  //       limit: yup.number().integer().min(1).default(20),
+  //       offset: yup.number().integer().min(0).default(0),
+  //     })
+  //     .noUnknown(),
+  //   'query'
+  // ),
   async (req, res) => {
     try {
-      const {limit, offset} = req.validatedQuery;
-      const result = await suggestionsAll(limit, offset);
-      console.log(`result`, result);
-      if (result.rows.length === 0) {
-        return res.status(404).json({count: result.count, suggestions: []});
+      const authFull = req.headers.authorization;
+      console.log(`authFull first`, authFull);
+      if (!authFull) {
+        return res.status(401).json({message: 'Please send a token'});
       }
-      res.status(200).json({count: result.count, suggestions: result.rows});
+      const authSplit = authFull.split(' ');
+      console.log(`authSplit`, authSplit);
+      if (authSplit[0] !== 'Bearer') {
+        return res.status(401).json({message: 'Please send a Bearer token'});
+      }
+      if (!authSplit[1]) {
+        return res.status(401).json({message: 'Please send a token part 2'});
+      }
+      const data = jwt.verify(authSplit[1], process.env.PRIVATE_KEY);
+      // console.log(`data`, data);
+      if (!data) {
+        return res.status(401).json({message: 'Please send a valid token'});
+      }
+      const admin = await Admin.findOne({
+        where: {id: data.adminId, isAdmin: true},
+      });
+
+      if (!admin) {
+        return res
+          .status(401)
+          .json({message: 'You might have forged a token, dick'});
+      }
+      // res.status(200).json({message: 'Your token is valid, continue'}); // here it stops
+      const suggestions = await Suggestion.findAndCountAll(
+        req.query.limit,
+        req.query.offset
+      );
+      // console.log(`suggestions`, suggestions);
+      // const suggestions = await suggestionsAll(limit, offset);
+      if (suggestions.rows.length === 0) {
+        return res
+          .status(404)
+          .json({count: suggestions.count, suggestions: []});
+      }
+      res
+        .status(200)
+        .json({count: suggestions.count, suggestions: suggestions.rows});
+      // console.log(`admin`, admin);
+
+      // const {limit, offset} = req.validatedQuery;
     } catch (error) {
       console.error('ERROR: /admin', error);
+      if (error.message === 'jwt malformed') {
+        return res.status(401).json({message: 'Token invalid'});
+      }
       res.status(400).json({message: 'Bad request', errors: error.errors});
     }
   }

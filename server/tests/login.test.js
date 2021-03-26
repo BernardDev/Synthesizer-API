@@ -26,19 +26,10 @@ describe.only('/login', () => {
       await db.Admin.destroy({truncate: true, cascade: true});
     });
 
-    // send post with body: email, password request
-    // backend uses request to search for user in the db
-    // checks compares password with hash
-    // checks if isAdmin
-    // creates token
-    // sends token as response
-
     test('should post login data to server, should get response if found', async (done) => {
-      const passwordHash = await bcrypt.hash('abcd1234', saltRounds);
-      console.log(`passwordHash`, passwordHash);
       const admin = await db.Admin.create({
         email: 'bernardwittgen@hotmail.com',
-        password: passwordHash,
+        password: 'abcd1234',
         isAdmin: true,
       });
       const res = await server
@@ -49,16 +40,13 @@ describe.only('/login', () => {
       expect(res.body.token).toBeDefined();
       let decoded = jwt.verify(res.body.token, process.env.PRIVATE_KEY);
       expect(decoded.adminId).toBe(admin.id);
-      console.log(`decoded`, decoded);
-      //   decrypt token, check with adminId
       done();
     });
 
     test('should not send token when password does not match', async (done) => {
-      const passwordHash = await bcrypt.hash('abcd1234', saltRounds);
       const admin = await db.Admin.create({
         email: 'bernardwittgen@hotmail.com',
-        password: passwordHash,
+        password: 'abcd1234',
         isAdmin: true,
       });
       const res = await server
@@ -66,6 +54,7 @@ describe.only('/login', () => {
         .send({email: 'bernardwittgen@hotmail.com', password: 'hallohallo'});
       expect(res.status).toBe(401);
       expect(res.body).toEqual({
+        errors: ['Unauthorized'],
         message: 'You entered the wrong password',
       });
       expect(res.body.token).not.toBeDefined();
@@ -73,10 +62,9 @@ describe.only('/login', () => {
     });
 
     test('should not send token when email is not found in db', async (done) => {
-      const passwordHash = await bcrypt.hash('abcd1234', saltRounds);
       const admin = await db.Admin.create({
         email: 'bernardwittgen@hotmail.com',
-        password: passwordHash,
+        password: 'abcd1234',
         isAdmin: true,
       });
       const res = await server
@@ -92,10 +80,9 @@ describe.only('/login', () => {
     });
 
     test('should not send token when the user is not an approved admin', async (done) => {
-      const passwordHash = await bcrypt.hash('abcd1234', saltRounds);
       const admin = await db.Admin.create({
         email: 'bernardwittgen@hotmail.com',
-        password: passwordHash,
+        password: 'abcd1234',
         isAdmin: false,
       });
       const res = await server

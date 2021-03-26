@@ -38,34 +38,19 @@ function errorHandlerExpress(error, req, res, next) {
 
 app.post('/login', async (req, res) => {
   try {
-    const result = await Admin.findOne({
-      where: {email: req.body.email},
-    });
-    if (!result)
-      return res.status(404).json({
-        errors: ['No record found'],
-        message: 'This email is not registered',
-      });
-    if (result.isAdmin === false)
-      return res.status(401).json({
-        errors: ['Unauthorized'],
-        message: 'First wait until approval for admin use by the moderator',
-      });
-    const match = await bcrypt.compare(req.body.password, result.password);
-    const payload = {adminId: result.id};
-    if (match && result.isAdmin === true) {
-      const token = jwt.sign(payload, process.env.PRIVATE_KEY, {
-        expiresIn: '4h',
-      });
-      res
-        .status(200)
-        .json({token: token, message: "You've got a token! Great dude"});
-    } else {
-      res.status(401).json({
-        errors: ['Something'],
-        message: 'You entered the wrong password',
-      });
+    const [error, admin] = await Admin.authenticate(
+      req.body.email,
+      req.body.password
+    );
+    if (error) {
+      return res
+        .status(error.status)
+        .json({errors: error.errors, message: error.message});
     }
+    const token = admin.createToken();
+    res
+      .status(200)
+      .json({token: token, message: "You've got a token! Great dude"});
   } catch (error) {
     res.status(500).send({
       errors: ['Internal server error'],
@@ -92,11 +77,11 @@ app.post(
   async (req, res) => {
     try {
       const {email, password} = req.validatedBody;
-      const passwordHash = await bcrypt.hash(password, saltRounds);
+      // const passwordHash = await bcrypt.hash(password, saltRounds);
       // console.log(`passwordHas`, passwordHash);
       const newAdmin = await Admin.create({
         email: email,
-        password: passwordHash,
+        password: password,
       });
       res.status(201).json({message: 'Admin created but not yet approved'});
     } catch (error) {
@@ -155,12 +140,11 @@ app.patch('/admin/:id/accept', async (req, res) => {
         message: result.message,
         errors: result.errors,
       });
-    } else {
-      res.status(201).send({
-        message: 'Synthesizer accepted',
-        data: result,
-      });
     }
+    res.status(201).send({
+      message: 'Synthesizer accepted',
+      data: result,
+    });
   } catch (error) {
     console.log('error from outside', error);
     res.status(500).send({

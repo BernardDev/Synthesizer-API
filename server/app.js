@@ -81,32 +81,23 @@ app.post(
     'body'
   ),
   async (req, res) => {
-    try {
-      const {email, password} = req.validatedBody;
-      const [error, admin] = await createAdmin(email, password);
-      if (error) {
-        if (error.name === 'SequelizeUniqueConstraintError') {
-          return res.status(409).json({
-            message:
-              'This email has already been registered, please wait to be approved',
-          });
-        } else {
-          console.log(`error`, error);
-          return res.status(500).send({
-            errors: ['Internal server error'],
-            message: 'Oopsy, server error!',
-          });
-        }
+    const {email, password} = req.validatedBody;
+    const [error, admin] = await createAdmin(email, password);
+    if (error) {
+      if (error.name === 'SequelizeUniqueConstraintError') {
+        return res.status(409).json({
+          message:
+            'This email has already been registered, please wait to be approved',
+        });
+      } else {
+        console.log(`error`, error);
+        return res.status(500).send({
+          errors: ['Internal server error'],
+          message: 'Oopsy, server error!',
+        });
       }
-      res.status(201).json({message: 'Admin created but not yet approved'});
-    } catch (error) {
-      console.log(`error.type`, error.name);
-      res.status(500).send({
-        errors: ['Internal server error'],
-        message: 'Oopsy, server error!',
-      });
-      console.log('error', error);
     }
+    res.status(201).json({message: 'Admin created but not yet approved'});
   }
 );
 

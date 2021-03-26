@@ -7,18 +7,18 @@ const {
   Admin,
 } = require('../models');
 
-// async function registerAdmin() {
-// try {
-//   const createdAdmin = await Admin.create({
-//     email:
-//   })
-
-// } catch (error) {
-//   console.log(error)
-// }
-
-//   console.log(`do it get run?`);
-// }
+async function createAdmin(email, password) {
+  try {
+    const newAdmin = await Admin.create({
+      email: email,
+      password: password,
+    });
+    return [null, newAdmin];
+  } catch (error) {
+    // console.error('error', error);
+    return [error, null];
+  }
+}
 
 async function checkApiKey(key) {
   try {
@@ -263,4 +263,5 @@ module.exports = {
   synthByName,
   acceptSynth,
   declineSynth,
+  createAdmin,
 };

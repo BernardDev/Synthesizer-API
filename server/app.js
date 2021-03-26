@@ -1,4 +1,11 @@
-const {Admin} = require('./models');
+const {
+  Admin,
+  Synth,
+  Manufacturer,
+  Specification,
+  User,
+  Suggestion,
+} = require('./models');
 
 const express = require('express');
 const cors = require('cors');
@@ -14,6 +21,7 @@ const {
   acceptSynth,
   declineSynth,
   registerAdmin,
+  createAdmin,
 } = require('./queries/allQueries');
 const parser = require('./cloudinary/uploadImageSuggestion');
 const {suggestionsAll} = require('./queries/suggestionQueries');
@@ -60,8 +68,6 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// Het past nu. Zal ik zelf verder gaan? Ik kan niet zo 1,2,3 unhappy paths bedenken hiervoor. Zal ik verder gaan met
-
 app.post(
   '/admins',
   validate(
@@ -77,33 +83,35 @@ app.post(
   async (req, res) => {
     try {
       const {email, password} = req.validatedBody;
-      // const passwordHash = await bcrypt.hash(password, saltRounds);
-      // console.log(`passwordHas`, passwordHash);
-      const newAdmin = await Admin.create({
-        email: email,
-        password: password,
-      });
+      const [error, admin] = await createAdmin(email, password);
+      if (error) {
+        if (error.name === 'SequelizeUniqueConstraintError') {
+          return res.status(409).json({
+            message:
+              'This email has already been registered, please wait to be approved',
+          });
+        } else {
+          console.log(`error`, error);
+          return res.status(500).send({
+            errors: ['Internal server error'],
+            message: 'Oopsy, server error!',
+          });
+        }
+      }
       res.status(201).json({message: 'Admin created but not yet approved'});
     } catch (error) {
       console.log(`error.type`, error.name);
-      if (error.name === 'SequelizeUniqueConstraintError') {
-        res.status(409).json({
-          message:
-            'This email has already been registered, please wait to be approved',
-        });
-      } else {
-        res.status(500).send({
-          errors: ['Internal server error'],
-          message: 'Oopsy, server error!',
-        });
-        console.log('error', error);
-      }
+      res.status(500).send({
+        errors: ['Internal server error'],
+        message: 'Oopsy, server error!',
+      });
+      console.log('error', error);
     }
   }
 );
 
 app.get(
-  '/admin',
+  '/suggestions',
   validate(
     yup
       .object()
@@ -130,7 +138,7 @@ app.get(
   }
 );
 
-app.patch('/admin/:id/accept', async (req, res) => {
+app.patch('/suggestions/:id/accept', async (req, res) => {
   let id = req.params.id;
   try {
     const result = await acceptSynth(id);
@@ -154,7 +162,7 @@ app.patch('/admin/:id/accept', async (req, res) => {
   }
 });
 
-app.delete('/admin/:id/decline', async (req, res) => {
+app.delete('/suggestions/:id/decline', async (req, res) => {
   let id = req.params.id;
   try {
     const result = await declineSynth(id);

@@ -120,7 +120,7 @@ describe('suggestions', () => {
         yearProduced: 2000,
         image: 'url',
       });
-      const res = await server.delete(`/admin/${suggestion.id}/decline`);
+      const res = await server.delete(`/suggestions/${suggestion.id}/decline`);
       expect(res.status).not.toBe(404);
       expect(res.status).toBe(200);
       const suggestionDeleted = await db.Suggestion.findOne({
@@ -160,7 +160,7 @@ describe('suggestions', () => {
         yearProduced: 2000,
         image: 'url',
       });
-      const res = await server.patch(`/admin/${suggestion.id}/accept`);
+      const res = await server.patch(`/suggestions/${suggestion.id}/accept`);
       expect(res.status).not.toBe(404);
       expect(res.status).toBe(201);
       const synthesizerAccepted = await db.Synth.findOne({
@@ -184,7 +184,7 @@ describe('suggestions', () => {
         yearProduced: 2000,
         image: 'url',
       });
-      const res = await server.patch(`/admin/2/accept`);
+      const res = await server.patch(`/suggestions/2/accept`);
       expect(res.status).toBe(404);
       expect(res.body).toEqual({
         data: null,
@@ -204,7 +204,7 @@ describe('suggestions', () => {
       const manufacturer = await db.Manufacturer.create({
         manufacturer: 'Roland',
       });
-      const res = await server.patch(`/admin/${suggestion.id}/accept`);
+      const res = await server.patch(`/suggestions/${suggestion.id}/accept`);
       expect(res.status).not.toBe(404);
       expect(res.status).toBe(201);
       const synthesizerAccepted = await db.Synth.findOne({
@@ -227,7 +227,7 @@ describe('suggestions', () => {
       const manufacturer = await db.Manufacturer.create({
         manufacturer: 'Korg',
       });
-      const res = await server.patch(`/admin/${suggestion.id}/accept`);
+      const res = await server.patch(`/suggestions/${suggestion.id}/accept`);
       expect(res.status).not.toBe(404);
       expect(res.status).toBe(201);
       const synthesizerAccepted = await db.Synth.findOne({
@@ -250,7 +250,7 @@ describe('suggestions', () => {
       const synth = await db.Synth.create({
         name: 'notAllowed',
       });
-      const res = await server.patch(`/admin/${suggestion.id}/accept`);
+      const res = await server.patch(`/suggestions/${suggestion.id}/accept`);
       expect(res.status).toBe(404);
       expect(res.body).toEqual({
         data: null,

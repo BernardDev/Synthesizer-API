@@ -104,17 +104,20 @@ app.post(
 
 app.get(
   '/suggestions',
-  // validate(
-  //   yup
-  //     .object()
-  //     .shape({
-  //       limit: yup.number().integer().min(1).default(20),
-  //       offset: yup.number().integer().min(0).default(0),
-  //     })
-  //     .noUnknown(),
-  //   'query'
-  // ),
+  validate(
+    yup
+      .object()
+      .shape({
+        limit: yup.number().integer().min(1).default(20),
+        offset: yup.number().integer().min(0).default(0),
+      })
+      .noUnknown(),
+    'query'
+  ),
   async (req, res) => {
+    console.log(`validatedQuery`, req.validatedQuery);
+
+    const {limit, offset} = req.validatedQuery;
     try {
       const authFull = req.headers.authorization;
       console.log(`authFull first`, authFull);
@@ -130,42 +133,31 @@ app.get(
         return res.status(401).json({message: 'Please send a token part 2'});
       }
       const data = jwt.verify(authSplit[1], process.env.PRIVATE_KEY);
-      // console.log(`data`, data);
-      if (!data) {
-        return res.status(401).json({message: 'Please send a valid token'});
-      }
       const admin = await Admin.findOne({
         where: {id: data.adminId, isAdmin: true},
       });
-
       if (!admin) {
-        return res
-          .status(401)
-          .json({message: 'You might have forged a token, dick'});
+        return res.status(403).json({message: 'You have no admin rights yet'});
       }
-      // res.status(200).json({message: 'Your token is valid, continue'}); // here it stops
-      const suggestions = await Suggestion.findAndCountAll(
-        req.query.limit,
-        req.query.offset
-      );
-      // console.log(`suggestions`, suggestions);
-      // const suggestions = await suggestionsAll(limit, offset);
-      if (suggestions.rows.length === 0) {
+      const [error, suggestions] = await suggestionsAll(limit, offset);
+      if (error) {
+        console.log(`error`, error);
         return res
-          .status(404)
-          .json({count: suggestions.count, suggestions: []});
+          .status(error.status)
+          .json({errors: error.errors, message: error.message});
+      }
+      if (suggestions.rows.length === 0) {
+        return res.status(404).json({message: 'No suggestions found'});
       }
       res
         .status(200)
         .json({count: suggestions.count, suggestions: suggestions.rows});
-      // console.log(`admin`, admin);
-
-      // const {limit, offset} = req.validatedQuery;
     } catch (error) {
       console.error('ERROR: /admin', error);
       if (error.message === 'jwt malformed') {
         return res.status(401).json({message: 'Token invalid'});
       }
+      console.log(`error`, error);
       res.status(400).json({message: 'Bad request', errors: error.errors});
     }
   }

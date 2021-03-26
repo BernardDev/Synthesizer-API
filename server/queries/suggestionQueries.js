@@ -3,9 +3,22 @@ const {Suggestion} = require('../models');
 async function suggestionsAll(limit, offset) {
   try {
     const suggestions = await Suggestion.findAndCountAll({limit, offset});
-    return suggestions;
+    return [null, suggestions];
   } catch (error) {
-    return error;
+    return [error, null];
+  }
+}
+
+async function createAdmin(email, password) {
+  try {
+    const newAdmin = await Admin.create({
+      email: email,
+      password: password,
+    });
+    return [null, newAdmin];
+  } catch (error) {
+    // console.error('error', error);
+    return [error, null];
   }
 }
 

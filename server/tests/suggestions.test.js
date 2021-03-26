@@ -156,7 +156,7 @@ describe('suggestions', () => {
       await db.Admin.destroy({truncate: true, cascade: true});
     });
 
-    test('should respond with a list of synthesizer suggestion when token is sent', async (done) => {
+    test.only('should respond with a list of synthesizer suggestion when token is sent', async (done) => {
       const suggestion = await db.Suggestion.create({
         name: 'Synthesizer',
         manufacturer: 'Roland',
@@ -203,10 +203,30 @@ describe('suggestions', () => {
       const res = await server
         .get(`/suggestions`)
         .set('Authorization', `Bearer puppy`);
-      // catch
-      // console.log(`res.headers.authorization`, res.headers.authorization);
       expect(res.status).toBe(401);
       expect(res.body.message).toBe('Token invalid');
+      done();
+    });
+
+    test('should deny request of unconfirmed admins', async (done) => {
+      const suggestion = await db.Suggestion.create({
+        name: 'Synthesizer',
+        manufacturer: 'Roland',
+        yearProduced: 2000,
+        image: 'url',
+      });
+      const admin = await db.Admin.create({
+        email: 'bernard@bernard.com',
+        password: 'blablabla',
+        isAdmin: false,
+      });
+      const token = admin.createToken();
+      console.log(`token`, token);
+      const res = await server
+        .get(`/suggestions`)
+        .set('Authorization', `Bearer ${token}`);
+      expect(res.status).toBe(403);
+      expect(res.body).toEqual({message: 'You have no admin rights yet'});
       done();
     });
   });

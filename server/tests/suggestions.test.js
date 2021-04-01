@@ -5,7 +5,7 @@ const request = require('supertest');
 
 const server = request(app);
 
-describe('suggestions', () => {
+describe.only('suggestions', () => {
   afterAll(async () => {
     await db.sequelize.close();
   });
@@ -113,14 +113,22 @@ describe('suggestions', () => {
       await db.Manufacturer.destroy({truncate: true, cascade: true});
     });
 
-    test('should delete Suggestion stance from db when it is declined', async (done) => {
+    test('should delete Suggestion instance from db when it is declined', async (done) => {
       const suggestion = await db.Suggestion.create({
         name: 'Synthesizer',
         manufacturer: 'Roland',
         yearProduced: 2000,
         image: 'url',
       });
-      const res = await server.delete(`/suggestions/${suggestion.id}/decline`);
+      const admin = await db.Admin.create({
+        email: 'bernard@bernard.com',
+        password: 'blablabla',
+        isAdmin: true,
+      });
+      const token = admin.createToken();
+      const res = await server
+        .delete(`/suggestions/${suggestion.id}/decline`)
+        .set('Authorization', `Bearer ${token}`);
       expect(res.status).not.toBe(404);
       expect(res.status).toBe(200);
       const suggestionDeleted = await db.Suggestion.findOne({
@@ -156,7 +164,7 @@ describe('suggestions', () => {
       await db.Admin.destroy({truncate: true, cascade: true});
     });
 
-    test.only('should respond with a list of synthesizer suggestion when token is sent', async (done) => {
+    test('should respond with a list of synthesizer suggestion when token is sent', async (done) => {
       const suggestion = await db.Suggestion.create({
         name: 'Synthesizer',
         manufacturer: 'Roland',
@@ -297,7 +305,15 @@ describe('suggestions', () => {
         yearProduced: 2000,
         image: 'url',
       });
-      const res = await server.patch(`/suggestions/2/accept`);
+      const admin = await db.Admin.create({
+        email: 'bernard@bernard.com',
+        password: 'blablabla',
+        isAdmin: true,
+      });
+      const token = admin.createToken();
+      const res = await server
+        .patch(`/suggestions/2/accept`)
+        .set('Authorization', `Bearer ${token}`);
       expect(res.status).toBe(404);
       expect(res.body).toEqual({
         data: null,
@@ -317,7 +333,15 @@ describe('suggestions', () => {
       const manufacturer = await db.Manufacturer.create({
         manufacturer: 'Roland',
       });
-      const res = await server.patch(`/suggestions/${suggestion.id}/accept`);
+      const admin = await db.Admin.create({
+        email: 'bernard@bernard.com',
+        password: 'blablabla',
+        isAdmin: true,
+      });
+      const token = admin.createToken();
+      const res = await server
+        .patch(`/suggestions/${suggestion.id}/accept`)
+        .set('Authorization', `Bearer ${token}`);
       expect(res.status).not.toBe(404);
       expect(res.status).toBe(201);
       const synthesizerAccepted = await db.Synth.findOne({
@@ -340,7 +364,16 @@ describe('suggestions', () => {
       const manufacturer = await db.Manufacturer.create({
         manufacturer: 'Korg',
       });
-      const res = await server.patch(`/suggestions/${suggestion.id}/accept`);
+      const admin = await db.Admin.create({
+        email: 'bernard@bernard.com',
+        password: 'blablabla',
+        isAdmin: true,
+      });
+      const token = admin.createToken();
+
+      const res = await server
+        .patch(`/suggestions/${suggestion.id}/accept`)
+        .set('Authorization', `Bearer ${token}`);
       expect(res.status).not.toBe(404);
       expect(res.status).toBe(201);
       const synthesizerAccepted = await db.Synth.findOne({
@@ -363,7 +396,15 @@ describe('suggestions', () => {
       const synth = await db.Synth.create({
         name: 'notAllowed',
       });
-      const res = await server.patch(`/suggestions/${suggestion.id}/accept`);
+      const admin = await db.Admin.create({
+        email: 'bernard@bernard.com',
+        password: 'blablabla',
+        isAdmin: true,
+      });
+      const token = admin.createToken();
+      const res = await server
+        .patch(`/suggestions/${suggestion.id}/accept`)
+        .set('Authorization', `Bearer ${token}`);
       expect(res.status).toBe(404);
       expect(res.body).toEqual({
         data: null,

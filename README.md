@@ -27,40 +27,6 @@ For all you gearslutz out there! :musical_keyboard: This free API is the only co
 :heavy_minus_sign: [Git Version Control](#git-version-control) :speech_balloon:
 <br>
 
-## Goals for this project :dart:
-
-...
-
-## Used Technologies and Concepts :crystal_ball:
-
-...
-
-## User Stories :bust_in_silhouette:
-
-...
-
-## Project Board :memo:
-
-...
-
-## Wireframe :house:
-
-...
-
-## Datamodel :floppy_disk:
-
-...
-
-## Git Version Control :speech_balloon:
-
----
-
-<br>
-
-## Usage :bulb:
-
-<br>
-
 ### API key
 
 For each request send, you have to send your API key with it. It can be obtained through registering your email at [API explorer](https://60253856f22fd91ddd33781e--zen-brattain-86e1ab.netlify.app/Authorization).
@@ -226,7 +192,7 @@ This API is a work in process. Future work aims to improve querying, removing an
 
 <br>
 
-## Goals for this project :dart:
+## My goals for this project :dart:
 
 ...
 

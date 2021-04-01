@@ -1,13 +1,6 @@
-const {
-  Admin,
-  Synth,
-  Manufacturer,
-  Specification,
-  User,
-  Suggestion,
-} = require('./models');
-
 // const {toJWT, toData} = require('./auth/jwt');
+
+const {Admin} = require('./models');
 
 const express = require('express');
 const cors = require('cors');
@@ -23,12 +16,12 @@ const {
   acceptSynth,
   declineSynth,
   createAdmin,
+  adminLogin,
 } = require('./queries/allQueries');
 const parser = require('./cloudinary/uploadImageSuggestion');
 const {suggestionsAll} = require('./queries/suggestionQueries');
 
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+const {verifyToken} = require('./auth/jwt');
 
 const jwt = require('jsonwebtoken');
 
@@ -45,29 +38,43 @@ function errorHandlerExpress(error, req, res, next) {
   res.status(400).json({errors: [error.message], message: error.message});
 }
 
-app.post('/login', async (req, res) => {
-  try {
-    const [error, admin] = await Admin.authenticate(
-      req.body.email,
-      req.body.password
-    );
-    if (error) {
-      return res
-        .status(error.status)
-        .json({errors: error.errors, message: error.message});
+app.post(
+  '/login',
+  validate(
+    yup
+      .object()
+      .shape({
+        email: yup.string().email().required('Email is a required field'),
+        password: yup.string().required('Password is a required field'),
+      })
+      .noUnknown(),
+    'body'
+  ),
+  async (req, res) => {
+    const {email, password} = req.validatedBody;
+    try {
+      const [error, admin] = await Admin.authenticate(email, password);
+      console.log(`admin`, admin);
+      // console.log(`admin`, admin);
+      if (error) {
+        console.log(`error`, error);
+        return res
+          .status(error.status)
+          .json({errors: error.errors, message: error.message});
+      }
+      const token = admin.createToken();
+      res
+        .status(200)
+        .json({token: token, message: "You've got a token! Great dude"});
+    } catch (error) {
+      res.status(500).send({
+        errors: ['Internal server error'],
+        message: 'Oopsy, server error!',
+      });
+      console.log('error', error);
     }
-    const token = admin.createToken();
-    res
-      .status(200)
-      .json({token: token, message: "You've got a token! Great dude"});
-  } catch (error) {
-    res.status(500).send({
-      errors: ['Internal server error'],
-      message: 'Oopsy, server error!',
-    });
-    console.log('error', error);
   }
-});
+);
 
 app.post(
   '/admins',
@@ -114,31 +121,12 @@ app.get(
       .noUnknown(),
     'query'
   ),
+  verifyToken,
   async (req, res) => {
     console.log(`validatedQuery`, req.validatedQuery);
 
     const {limit, offset} = req.validatedQuery;
     try {
-      const authFull = req.headers.authorization;
-      console.log(`authFull first`, authFull);
-      if (!authFull) {
-        return res.status(401).json({message: 'Please send a token'});
-      }
-      const authSplit = authFull.split(' ');
-      console.log(`authSplit`, authSplit);
-      if (authSplit[0] !== 'Bearer') {
-        return res.status(401).json({message: 'Please send a Bearer token'});
-      }
-      if (!authSplit[1]) {
-        return res.status(401).json({message: 'Please send a token part 2'});
-      }
-      const data = jwt.verify(authSplit[1], process.env.PRIVATE_KEY);
-      const admin = await Admin.findOne({
-        where: {id: data.adminId, isAdmin: true},
-      });
-      if (!admin) {
-        return res.status(403).json({message: 'You have no admin rights yet'});
-      }
       const [error, suggestions] = await suggestionsAll(limit, offset);
       if (error) {
         console.log(`error`, error);
@@ -163,7 +151,7 @@ app.get(
   }
 );
 
-app.patch('/suggestions/:id/accept', async (req, res) => {
+app.patch('/suggestions/:id/accept', verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     const result = await acceptSynth(id);
@@ -187,7 +175,7 @@ app.patch('/suggestions/:id/accept', async (req, res) => {
   }
 });
 
-app.delete('/suggestions/:id/decline', async (req, res) => {
+app.delete('/suggestions/:id/decline', verifyToken, async (req, res) => {
   let id = req.params.id;
   try {
     const result = await declineSynth(id);

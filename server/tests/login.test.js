@@ -9,7 +9,7 @@ const saltRounds = 10;
 
 const server = request(app);
 
-describe.only('/login', () => {
+describe('/login', () => {
   afterAll(async () => {
     await db.sequelize.close();
   });

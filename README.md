@@ -117,6 +117,7 @@ To be able to control the flow of user suggested synthesizers I implemented a ad
 | Heroku                           | JSDOM                            | Yup :star:                           | Express                          |
 | Cloudinary (db) :star:           | Sendgrid :star:                  | Jest                                 | Supertest :star:                 |
 | Sequelize ORM                    | ElephantSQL                      | SQL                                  | JWT                              |
+| custom Promises                  |                                  |                                      |                                  |
 
 <br>
 <br>

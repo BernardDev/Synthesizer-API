@@ -1,8 +1,9 @@
-# :musical_keyboard: Synthesizer API :musical_keyboard:
+# Synthesizer API :musical_keyboard:
 
 :fire:[Go to API explorer!](https://synthesizer-api.netlify.app/):fire:
 <br>
 :fire:[Synthesizer Directory](https://synthesizer-directory.netlify.app/):fire:
+:fire:[Synthesizer Directory repo](https://github.com/BernardDev/Synthesizer-directory):fire:
 
 For all you gearslutz out there! This free API is the only one out there (since I checked). Explore over 800 synthesizers from past and present. Get insight in their manufacturers and specifications. The API builds upon the data available on the vintagesynthexplorer website. Future work will be aimed to broaden querying options and let you fellow synth lovers contribute to the collection.
 

@@ -273,6 +273,13 @@ In the frontend I tried out the Playwright (Puppeteer-like) library.
 
 <br>
 
+> [React for UI building](https://github.com/BernardDev/Synthesizer-API/server) <br>
+
+All end-point have been thoroughly tested. The tests formed the basis of development moving form happy paths to un-happy paths for check if correct responses were given. Testing was done with
+In the frontend I tried out the Playwright (Puppeteer-like) library.
+
+<br>
+
 Things I've done in the backend
 | | | | |
 |-------------------|---------------------|-------------------------|------------------------|

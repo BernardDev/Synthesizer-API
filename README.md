@@ -66,7 +66,8 @@ This folder is the heart of the project. It contains the server ([with database]
 
 > [CLIENT](https://github.com/BernardDev/Synthesizer-API/client) <br>
 
-Here you can find the [API explorer](https://github.com/BernardDev/Synthesizer-API/tree/development/client) repo, done with ReactApp. Through the explorer an [apikey](https://github.com/BernardDev/Synthesizer-API/tree/development/server/sendEmail.js) can be sent to your email. It utilizes [frontend validation](https://github.com/BernardDev/Synthesizer-API/tree/development/client/src/pages/Autorization.js)(with React Hook Form) and some [storage concepts](https://github.com/BernardDev/Synthesizer-API/tree/development/client/src/context/AuthContext.js)(useContext) for the apikey. :fire: You can visit the API explorer [here](https://synthesizer-api.netlify.app/).:fire:
+Here you can find the [API explorer](https://github.com/BernardDev/Synthesizer-API/tree/development/client) repo, done with ReactApp. Through the explorer an [apikey](https://github.com/BernardDev/Synthesizer-API/tree/development/server/sendEmail.js) can be sent to your email. It utilizes [frontend validation](https://github.com/BernardDev/Synthesizer-API/tree/development/client/src/pages/Autorization.js)(with React Hook Form) and some [storage concepts](https://github.com/BernardDev/Synthesizer-API/tree/development/client/src/context/AuthContext.js)(useContext) for the apikey. 
+:fire:[Go to API explorer!](https://synthesizer-api.netlify.app/):fire:
 
 <br>
 

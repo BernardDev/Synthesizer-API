@@ -47,7 +47,8 @@ The goal of this project is to build an public REST API :dart: and thereby apply
 Although this project aimed at making a public API, I obviously tried it out myself! Therefore I made a [frontend](https://github.com/BernardDev/Synthesizer-directory/tree/development/) that uses it. In development some features where added to the backend as well. Such as a route to suggest synthesizer and an admin login system.
 
 <br>
-:fire:Be sure to visit it the deployed Synthesizer Directory at: https://synthesizer-directory.netlify.app :fire:
+
+Be sure to visit it the deployed :fire:[Synthesizer Directory](https://synthesizer-directory.netlify.app/):fire:
 
 <br>
 <br>

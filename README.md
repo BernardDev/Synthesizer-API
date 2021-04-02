@@ -17,10 +17,10 @@ For all you gearslutz out there! This free API is the only one out there (since 
 - [Project Board](#project-board) :memo:
   <br>
 
-- [Wireframe](#wireframe) :house:
+- [Wireframes API Explorer](#wireframes-api-explorer) :house:
   <br>
 
-- [Datamodel](#datamodel) :floppy:
+- [Datamodel](#datamodel) :floppy_disk:
   <br>
 
 - [Git Version Control](#git-version-control) :octocat:

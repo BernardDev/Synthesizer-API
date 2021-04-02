@@ -238,13 +238,13 @@ The goal of this project is to build an public REST API and hereby exploring new
 
 ## Used Technologies and Concepts
 
-- [React for UI building](https://github.com/BernardDev/repo/Synthesizer-directory)
+- [React for UI building](https://github.com/BernardDev/Synthesizer-directory)
 - [useContext for state management](https://github.com/BernardDev/repo/Synthesizer-directory) :star:
-- [Authentication](https://github.com/BernardDev/repo/Synthesizer-API)
-- [Express a server](https://github.com/BernardDev/repo/Synthesizer-API)
-- [Sequelize as ORM](https://github.com/BernardDev/repo/Synthesizer-API)
-- [Styled Components](https://github.com/BernardDev/repo/Synthesizer-API) :star:
-- [Lazy Loading (Intersection Observer)](https://github.com/user/repo/Synthesizer-API) :star:
+- [Authentication](https://github.com/BernardDev/Synthesizer-API)
+- [Express a server](https://github.com/BernardDev/Synthesizer-API)
+- [Sequelize as ORM](https://github.com/BernardDev/Synthesizer-API)
+- [Styled Components](https://github.com/BernardDev/Synthesizer-API) :star:
+- [Lazy Loading (Intersection Observer)](https://github.com/BernardDev/Synthesizer-API) :star:
 
 :star:_New technologies learned in this project_
 <br>

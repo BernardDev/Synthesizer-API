@@ -48,7 +48,6 @@ function Authorization() {
         const response = await axios.post(`${baseUrl}/apikey`, {
           email: data.email,
         });
-        console.log('response', response);
         setResponse({
           message: response.data.message,
           errors: response.data.errors,

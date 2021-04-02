@@ -2,9 +2,7 @@ const express = require('express');
 const validate = require('../validators/requestValidationMiddleware');
 const formatSynthQuery = require('../validators/queryValidators');
 const apiKeyMiddleware = require('../validators/validateApiKeyMiddleware');
-
 const yup = require('yup');
-
 const {
   manufacturersAll,
   manufacturerByPk,

@@ -1,30 +1,48 @@
-# Synthesizer API
+# :musical_keyboard: Synthesizer API :musical_keyboard:
 
 [Go to API explorer!](https://60253856f22fd91ddd33781e--zen-brattain-86e1ab.netlify.app)
 
-For all you gearslutz out there! :musical_keyboard: This free API is the only collection of synthesizers out there. Explore over 800 synthesizers from past and present. Get insight in their manufacturers and specifications. The API builds upon the data available on the vintagesynthexplorer website. Future work will be aimed to broaden querying options and let you fellow synth lovers contribute to the collection.
+For all you gearslutz out there! This free API is the only collection of synthesizers out there. Explore over 800 synthesizers from past and present. Get insight in their manufacturers and specifications. The API builds upon the data available on the vintagesynthexplorer website. Future work will be aimed to broaden querying options and let you fellow synth lovers contribute to the collection.
 
 ---
 
 ## Project's content
 
-:heavy_minus_sign: [Usage](#usage) :bulb:
+- [Usage](#usage) :zap:
+  <br>
+
+- [Future Work](#future-work) :fire:
+  <br>
+
+---
+
+- [Developer Project Goals](#developer-project-goals) :dart:
+  <br>
+
+- [Used Technologies and Concepts](#used-technologies-and-concepts) :rocket:
+  <br>
+
+- [User Stories](#user-stories) :bust_in_silhouette:
+  <br>
+
+- [Project Board](#project-board) :memo:
+  <br>
+
+- [Wireframe](#wireframe) :house:
+  <br>
+
+- [Datamodel](#datamodel) :floppy:
+  <br>
+
+- [Git Version Control](#git-version-control) :octocat:
+  <br>
+
+---
+
 <br>
-:heavy_minus_sign: [Future Work](#future-work) :fire:
-<br>
-:heavy_minus_sign: [Goals for this project](#goals-for-this-project) :dart:
-<br>
-:heavy_minus_sign: [Used Technologies and Concepts](#used-technologies-and-concepts) :crystal_ball:
-<br>
-:heavy_minus_sign: [User Stories](#user-stories) :bust_in_silhouette:
-<br>
-:heavy_minus_sign: [Project Board](#project-board) :memo:
-<br>
-:heavy_minus_sign: [Wireframe](#wireframe) :house:
-<br>
-:heavy_minus_sign: [Datamodel](#datamodel) :floppy_disk:
-<br>
-:heavy_minus_sign: [Git Version Control](#git-version-control) :speech_balloon:
+
+## Usage
+
 <br>
 
 ### API key
@@ -151,7 +169,7 @@ Get one manufacturer resource, by either giving it's ID or exact name.
 
 <br>
 
-## Future Work :fire:
+## Future Work
 
 <br>
 
@@ -176,7 +194,7 @@ This API is a work in process. Future work aims to improve querying, removing an
 
 <br>
 
-## Updates :mailbox:
+## Updates
 
 <br>
 
@@ -192,30 +210,74 @@ This API is a work in process. Future work aims to improve querying, removing an
 
 <br>
 
-## My goals for this project :dart:
+## Developer Project Goals
+
+<br>
+The repo is divided in three parts. 
+<br>
+<br>
+
+> SCRAPER
+> <br>
+
+The scraper folder contains DOM oriented programming used to get data and images from a source on the web. After scraping the data if is normalized to fit the database models.
+
+> SERVER
+> <br>
+
+This folder is the biggest. It containers servers and database models. You will find endpoint making use of validation and authorization middlewares. The development was mostly done with end-to-end test, you will also find in this folder.
+
+> CLIENT
+> <br>
+
+Here you can find the API explorer done with ReactApp. Through the explorer an API-key can be sent to your email. The explorer is made for developers who want to test the data they can get. The explorer also utilizes front-end validation and some storage concepts for the key.
 
 ...
 
-## Used Technologies and Concepts :crystal_ball:
+The goal of this project is to build an public REST API and hereby exploring new terrains (named above). This was done independently by reading its documentation, consulting forums like StackExchange and watching online videos.
+
+## Used Technologies and Concepts
+
+- [React for UI building](https://github.com/user/repo/Synthesizer-directory)
+- [useContext for state management](https://github.com/user/repo/Synthesizer-directory) :star:
+- [Authentication](https://github.com/user/repo/Synthesizer-API)
+- [Express a server](https://github.com/user/repo/Synthesizer-API)
+- [Sequelize as ORM](https://github.com/user/repo/Synthesizer-API)
+- [Styled Components](https://github.com/user/repo/Synthesizer-API) :star:
+- [Lazy Loading (Intersection Observer)](https://github.com/user/repo/Synthesizer-API) :star:
+
+:star:_New technologies learned in this project_
+<br>
+...
+
+## User Stories
+
+- As a User I want to be able to fetch synthesizers and manufacturers
+- As a User I want to be able to see visualize the synthesizers I'm fetching
+- As a User I want to be able to sort the synthesizers by the year they are produced first
+- As a User I want to be able to define how many synthesizers I fetch and view them on different pages
+- As a User I want to be able to request an API key
+- As a User I want to be able to contribute to the API by suggesting new synthesizers
+
+  ...
+
+## Project Board
 
 ...
 
-## User Stories :bust_in_silhouette:
+## Wireframes API Explorer
 
+<p align="center"><img src="./img/wifreframe_home1.png" alt="wireframe-home" width="640"/> </p>
+<p align="center"><img src="./img/wireframe_about1.png" alt="wireframe-about" width="640"/> </p>
+<p align="center"><img src="./img/wireframe_docs1.png" alt="wireframe-docs" width="640"/> </p>
+<p align="center"><img src="./img/wireframe_key1.png" alt="wireframe-apikey" width="640"/> </p>
 ...
 
-## Project Board :memo:
+## Datamodel
 
+<p align="center"><img src="./img/datamodel.png" alt="datamodel" width="640"/> </p>
 ...
 
-## Wireframe :house:
-
-...
-
-## Datamodel :floppy_disk:
-
-...
-
-## Git Version Control :speech_balloon:
+## Git Version Control
 
 ...

@@ -1,6 +1,6 @@
 # :musical_keyboard: Synthesizer API :musical_keyboard:
 
-:fire:[Go to API explorer!](https://60253856f22fd91ddd33781e--zen-brattain-86e1ab.netlify.app):fire:
+:fire:[Go to API explorer!](https://synthesizer-api.netlify.app/):fire:
 
 For all you gearslutz out there! This free API is the only collection of synthesizers out there. Explore over 800 synthesizers from past and present. Get insight in their manufacturers and specifications. The API builds upon the data available on the vintagesynthexplorer website. Future work will be aimed to broaden querying options and let you fellow synth lovers contribute to the collection.
 

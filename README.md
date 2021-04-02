@@ -107,14 +107,14 @@ To be able to control the flow of user suggested synthesizers I implemented a ad
 
 |                                  |                                  |                                      |                                  |
 | -------------------------------- | -------------------------------- | ------------------------------------ | -------------------------------- |
-| DOM manipulation                 | :star: downloading images :star: | managing multiple dsb’s              | normalizing data                 |
-| generating tables                | relating tables                  | :star: mocking seed data :star:      | :star: using environments :star: |
-| managing secrets                 | deploying                        | writing npm scripts                  | :star: big O notation :star:     |
-| :star: end-to-end testing :star: | pagination                       | validation                           | :star: sending emails :star:     |
-| writing middlewares              | routing middlewares              | :star: continuous Integration :star: | error handling                   |
+| DOM manipulation                 | downloading images :star:        | managing multiple dsb’s              | normalizing data                 |
+| generating tables                | relating tables                  | mocking seed data :star:             | using environments :star:        |
+| managing secrets                 | deploying                        | writing npm scripts                  | big O notation :star:            |
+| end-to-end testing :star:        | pagination                       | validation                           | sending emails :star:            |
+| writing middlewares              | routing middlewares              | continuous Integration :star:        | error handling                   |
 | CORS                             | handling FormData                | HTTP methods (all)                   | Netlify                          |
-| Heroku                           | JSDOM                            | :star: Yup :star:                    | Express                          |
-| :star: Cloudinary (db) :star:    | Sendgrid                         | Jest                                 | :star: Supertest :star:          |
+| Heroku                           | JSDOM                            | Yup :star:                           | Express                          |
+| Cloudinary (db) :star:           | Sendgrid :star:                  | Jest                                 | Supertest :star:                 |
 | Sequelize ORM                    | ElephantSQL                      | SQL                                  | JWT                              |
 
 <br>
@@ -124,13 +124,13 @@ To be able to control the flow of user suggested synthesizers I implemented a ad
 
 |                              |                         |                          |                       |
 | ---------------------------- | ----------------------- | ------------------------ | --------------------- |
-| React DOM routing            | :star: Bootstrap :star: | Sass                     | :star: caching :star: |
-| copy to clipboard            | custom Hooks            | :star: UseContext :star: | local storage         |
-| :star: React children :star: | validation              | error handling           | fetching data         |
+| React DOM routing            | Bootstrap :star:        | Sass                     | caching :star:        |
+| copy to clipboard            | custom Hooks            | UseContext :star:        | local storage         |
+| React children :star:        | validation              | error handling           | fetching data         |
 
 <br>
 
-:star:_New technologies learned in this project_
+:star: _New technologies learned in this project_
 
 <br>
 

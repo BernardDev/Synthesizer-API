@@ -213,33 +213,91 @@ This API is a work in process. Future work aims to improve querying, removing an
 ## Developer Project Goals
 
 <br>
-The repo is divided in three parts. 
+
+The goal of this project is to build an public REST API and thereby applying existing knowledge and explore new terrains. This was done independently by reading its documentation, watching online videos, consulting StackExchange & sometime my coach.
+
+<br>
+The repo contains three main folders: 
 <br>
 <br>
 
-> SCRAPER
-> <br>
+> [SCRAPER](https://github.com/BernardDev/Synthesizer-API/scraper) <br>
 
-The scraper folder contains DOM oriented programming used to get data and images from a source on the web. After scraping the data if is normalized to fit the database models.
+The scraper folder contains DOM oriented programming. Before I could my database with synthesizers, manufacturers & specification I needed to [scrape data](https://github.com/BernardDev/Synthesizer-API/scraper/index). My source also had images, therefore I needed to [download images](https://github.com/BernardDev/Synthesizer-API/scraper/index) from their URL's. After scraping the data it needed to be [normalized](https://github.com/BernardDev/Synthesizer-API/scraper/index) to fit the database structure. For this, some object/string manipulation was used.
 
-> SERVER
-> <br>
+> [SERVER](https://github.com/BernardDev/Synthesizer-API/server) <br>
 
-This folder is the biggest. It containers servers and database models. You will find endpoint making use of validation and authorization middlewares. The development was mostly done with end-to-end test, you will also find in this folder.
+This folder is the heart of the project. It contains the server and [database models](https://github.com/BernardDev/Synthesizer-API/server/models/). You will find [endpoints](https://github.com/BernardDev/Synthesizer-API/server/app.js) making use of [validation](https://github.com/BernardDev/Synthesizer-API/server/validators/) with Yup. There is also [authorization](https://github.com/BernardDev/Synthesizer-API/server/auth/jwt.js) done through Express middlewares with JWT tokens. The development was mostly fuelled by [end-to-end testing](https://github.com/BernardDev/Synthesizer-API/server/tests/). Another thing that needed to be done was [migrating images](https://github.com/BernardDev/Synthesizer-API/server/cloudinary/) to Cloudinary db and save the image URL's to the main SQL database.
 
-> CLIENT
-> <br>
+> [CLIENT](https://github.com/BernardDev/Synthesizer-API/client) <br>
 
-Here you can find the API explorer done with ReactApp. Through the explorer an API-key can be sent to your email. The explorer is made for developers who want to test the data they can get. The explorer also utilizes front-end validation and some storage concepts for the key.
+Here you can find the [API explorer](https://github.com/BernardDev/Synthesizer-API/client) repo, done with ReactApp. Through the explorer an [apikey](https://github.com/BernardDev/Synthesizer-API/client) can be sent to your email. It utilizes front-end validation and some storage concepts for the key. You can visit the API explorer [here](https://synthesizer-api.netlify.app/).
+
+<br>
+
+Although this project was aimed on making an API available for others. I obviously tried it out myself! In the the development process of the [frontend](https://github.com/BernardDev/Synthesizer-directory) repo I built upon this API. Be sure to visit it the deployed [Synthesizer Directory](https://synthesizer-directory.netlify.app/) version as well!
+
+<br>
 
 ...
 
-The goal of this project is to build an public REST API and hereby exploring new terrains (named above). This was done independently by reading its documentation, consulting forums like StackExchange and watching online videos.
+<br>
+Leading topics:
+<br>
+<br>
 
-## Used Technologies and Concepts
+> [ENVIRONMENTS](https://github.com/BernardDev/Synthesizer-API/server) <br>
+
+Throughout the project we have used the development, testing and production environments. Switching in/out sources and storing key's and secret's in .env.
+
+<br>
+
+> [END-TO-END TESTING](https://github.com/BernardDev/Synthesizer-API/server) <br>
+
+All end-point have been thoroughly tested. The tests formed the basis of development moving form happy paths to un-happy paths for check if correct responses were given. Testing was done with
+In the frontend I tried out the Playwright (Puppeteer-like) library.
+
+<br>
+
+> [VALIDATION](https://github.com/BernardDev/Synthesizer-API/server) <br>
+
+All end-point have been thoroughly tested. The tests formed the basis of development moving form happy paths to un-happy paths for check if correct responses were given. Testing was done with
+In the frontend I tried out the Playwright (Puppeteer-like) library.
+
+<br>
+
+> [ERROR HANDLING](https://github.com/BernardDev/Synthesizer-API/server) <br>
+
+All end-point have been thoroughly tested. The tests formed the basis of development moving form happy paths to un-happy paths for check if correct responses were given. Testing was done with
+In the frontend I tried out the Playwright (Puppeteer-like) library.
+
+<br>
+
+Things I've done in the backend
+| | | | |
+|-------------------|---------------------|-------------------------|------------------------|
+| DOM manipulation | downloading images | managing multiple dsb’s | normalizing data |
+| generating tables | relating tables | mocking seed data | using environments |
+| managing secrets | deploying | writing npm scripts | big O notation |
+| end-to-end testing | pagination | validation | sending emails |
+| writing middlewares | routing middlewares | continuous Integration | error handling |
+| CORS | handling FormData | HTTP methods (all) | Netlify |
+| Heroku | JSDOM | Yup | Express |
+| Cloudinary (db) | Sendgrid | Jest | Supertest |
+| Sequelize | ElephantSQL |
+
+<br>
+<br>
+
+Things I've done in the frontend
+| | | | |
+|-------------------|-------------------------|------------|----------------|
+| React DOM routing | Bootstrap | Sass | caching |
+| copy to clipboard | custom Hooks | [UseContext](https://github.com/BernardDev/repo/Synthesizer-directory) | local storage |
+| React children | validation | error handling | fetching data |
+<br>
 
 - [React for UI building](https://github.com/BernardDev/Synthesizer-directory)
-- [useContext for state management](https://github.com/BernardDev/repo/Synthesizer-directory) :star:
 - [Authentication](https://github.com/BernardDev/Synthesizer-API)
 - [Express a server](https://github.com/BernardDev/Synthesizer-API)
 - [Sequelize as ORM](https://github.com/BernardDev/Synthesizer-API)
@@ -267,15 +325,13 @@ The goal of this project is to build an public REST API and hereby exploring new
 
 ## Wireframes API Explorer
 
-<p align="center"><img src="./img/wifreframe_home1.png" alt="wireframe-home" width="640"/> </p>
-<p align="center"><img src="./img/wireframe_about1.png" alt="wireframe-about" width="640"/> </p>
-<p align="center"><img src="./img/wireframe_docs1.png" alt="wireframe-docs" width="640"/> </p>
-<p align="center"><img src="./img/wireframe_key1.png" alt="wireframe-apikey" width="640"/> </p>
+Checkout the wireframes made for the [API Explorer](https://github.com/BernardDev/Synthesizer-API/img/wireframe-api-explorer.png)
+
 ...
 
 ## Datamodel
 
-<p align="center"><img src="./img/datamodel.png" alt="datamodel" width="640"/> </p>
+Checkout the [datamodel](https://github.com/BernardDev/Synthesizer-API/img/datamodel.png) used to base the table on
 ...
 
 ## Git Version Control

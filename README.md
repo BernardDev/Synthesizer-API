@@ -138,49 +138,36 @@ To be able to control the flow of user suggested synthesizers I implemented a ad
 
 ### User Stories
 
-- As a Developer that uses this API I want to be able to fetch manufacturers and synthesizer with their specifications
-...so, I can use the API where it is meant for
+- As a Developer that uses this API I want to be able to fetch manufacturers and synthesizer with their specifications,
+so I can use the API where it is meant for
 
-- As a Developer that uses this API I want to be able to fetch images of the synthesizers,
-...so, I can make something visual I my frontend
+- As a Developer that uses this API I want to be able to fetch images of the synthesizers, so I can make something visual I my frontend
 
-- As a Developer that uses this API I want to be able to know what mistakes I made when I did something wrong in fetching the data,
-...so, I can adjust my query and still find the data I'm looking for
+- As a Developer that uses this API I want to be able to know what mistakes I made when I did something wrong in fetching the data,so I can adjust my query and still find the data I'm looking for
 
-- As a Developer that uses this API I want to be able to paginate and limit the results I'm getting
-...so, I can easily built this in my frontend
+- As a Developer that uses this API I want to be able to paginate and limit the results I'm getting, so I can easily built this in my frontend
 
-- As a Developer that uses this API I want to be able to query a specific synthesizer either by id or by name
-...so, I'm not restricted to using two endpoint that share one purpose
+- As a Developer that uses this API I want to be able to query a specific synthesizer either by id or by name, so I'm not restricted to using two endpoint that share one purpose
 
-- As a Developer that uses this API I want to get the results sorted by year that the synthesizers where produced
-...so, I can easily implement this behaviour when building the frontend
+- As a Developer that uses this API I want to get the results sorted by year that the synthesizers where produced, so I can easily implement this behaviour when building the frontend
 
-- As a Developer that uses this API Explorer I want to be able to request apikey through email
-...so, I can explore this API
+- As a Developer that uses this API Explorer I want to be able to request apikey through email, so I can explore this API
 
-- As a Developer that uses this API Explorer I want to be able to view the JSON data retrieve from the URL
-...so, I will see the data that is available
+- As a Developer that uses this API Explorer I want to be able to view the JSON data retrieve from the URL, so I will see the data that is available
 
-- As a Developer that uses this API Explorer I want to be able to easily create the URL with route, params and query
-...so, I will find the data that is available
+- As a Developer that uses this API Explorer I want to be able to easily create the URL with route, params and query, so I will find the data that is available
 
-- As a Developer that uses this API Explorer I want to get suggestions of the endpoint, params and queries I'm aloud to enter 
-...so, I know what routes, params and queries are available
+- As a Developer that uses this API Explorer I want to get suggestions of the endpoint, params and queries I'm aloud to enter, so I know what routes, params and queries are available
 
-- As a Developer that uses this API Explorer I want to be able to store the apikey across sessions,
-...so, I don't have to bother checking my email to find it
+- As a Developer that uses this API Explorer I want to be able to store the apikey across sessions, so I don't have to bother checking my email to find it
 
-- As a Developer that uses this API Explorer I want to copy the explorer URL to my clipboard
-...so, I can quickly use it outside of the Synthesizer API Explorer
+- As a Developer that uses this API Explorer I want to copy the explorer URL to my clipboard so, I can quickly use it outside of the Synthesizer API Explorer
 
 _the following stories are derived form the Synthesizer Deirectory frontend build upon this API at later stage_
 
-- As a User of the Synthesizer Directory I want to be able to suggest new synthesizers
-...so, I can contribute to the collection
+- As a User of the Synthesizer Directory I want to be able to suggest new synthesizers, so I can contribute to the collection
 
-- As Myself I want to be able to judge the suggested synthesizer
-...so, I can decide which one's will be added to the collection
+- As Myself I want to be able to judge the suggested synthesizer, so I can decide which one's will be added to the collection
 
 
 <br>

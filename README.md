@@ -63,11 +63,11 @@ The scraper folder contains DOM oriented programming. Before I could fill the da
 
 > [SERVER](https://github.com/BernardDev/Synthesizer-API/server) <br>
 
-This folder is the heart of the project. It contains the server ([with database](https://github.com/BernardDev/Synthesizer-API/tree/development/server/models/)). You will find [endpoints](https://github.com/BernardDev/Synthesizer-API/tree/development/server/app.js) ([& queries](https://github.com/BernardDev/Synthesizer-API/tree/development/server/queries)) making use of [validation middlewares](https://github.com/BernardDev/Synthesizer-API/tree/development/server/validators/) ([& Yup](https://github.com/BernardDev/Synthesizer-API/tree/development/server/app.js)). People are able to suggest synths that can get approved through an admin login-system. Look around in [authorization](https://github.com/BernardDev/Synthesizer-API/tree/development/server/auth/jwt.js) ([& authorization in model](https://github.com/BernardDev/Synthesizer-API/tree/development/server/models/admin.js)) done through Express middlewares with JWT tokens, to see more of it. The development was mostly fuelled by [end-to-end testing](https://github.com/BernardDev/Synthesizer-API/tree/development/server/tests/). Another thing that needed to be done was [migrating images](https://github.com/BernardDev/Synthesizer-API/tree/development/server/cloudinary/) to Cloudinary db and save the image URL's to the main SQL database.
+This folder is the heart of the project. It contains the server ([with database](https://github.com/BernardDev/Synthesizer-API/tree/development/server/models/)). You will find [endpoints](https://github.com/BernardDev/Synthesizer-API/tree/development/server/app.js) ([& queries](https://github.com/BernardDev/Synthesizer-API/tree/development/server/queries)) making use of [validation middlewares](https://github.com/BernardDev/Synthesizer-API/tree/development/server/validators/) ([& Yup](https://github.com/BernardDev/Synthesizer-API/tree/development/server/app.js)). People are able to suggest synths that can get approved through an admin login-system. Look around in [authorization](https://github.com/BernardDev/Synthesizer-API/tree/development/server/auth/jwt.js) ([& authorization in model](https://github.com/BernardDev/Synthesizer-API/tree/development/server/models/admin.js)) done through Express middlewares with JWT tokens. The development was mostly fuelled by [end-to-end testing](https://github.com/BernardDev/Synthesizer-API/tree/development/server/tests/). Another thing that needed to be done was [migrating images](https://github.com/BernardDev/Synthesizer-API/tree/development/server/cloudinary/) to Cloudinary db and save the image URL's to the main SQL database.
 
 > [CLIENT](https://github.com/BernardDev/Synthesizer-API/client) <br>
 
-Here you can find the [API explorer](https://github.com/BernardDev/Synthesizer-API/tree/development/client) repo, done with ReactApp. Through the explorer an [apikey](https://github.com/BernardDev/Synthesizer-API/tree/development/server/sendEmail.js) can be sent to your email. It utilizes [frontend validation](https://github.com/BernardDev/Synthesizer-API/tree/development/client/src/pages/Autorization.js)(with React Hook Form) and some [storage concepts](https://github.com/BernardDev/Synthesizer-API/tree/development/client/src/context/AuthContext.js)(useContext) for the apikey. 
+Here you can find the [Synthesizer API explorer](https://github.com/BernardDev/Synthesizer-API/tree/development/client) repo, done with ReactApp. Through the explorer an [apikey](https://github.com/BernardDev/Synthesizer-API/tree/development/server/sendEmail.js) can be sent to your email. It utilizes [frontend validation](https://github.com/BernardDev/Synthesizer-API/tree/development/client/src/pages/Autorization.js)(with React Hook Form) and some [storage concepts](https://github.com/BernardDev/Synthesizer-API/tree/development/client/src/context/AuthContext.js)(useContext) for the apikey. 
 :fire:[Go to API explorer!](https://synthesizer-api.netlify.app/):fire:
 
 <br>
@@ -80,14 +80,14 @@ Here you can find the [API explorer](https://github.com/BernardDev/Synthesizer-A
 
 > [ENVIRONMENTS](https://github.com/BernardDev/Synthesizer-API/tree/development/server/config/config.js) <br>
 
-Throughout the project we have used the development, testing and production environments. Switching in/out sources and storing key's and secret's in .env and hosts.
-Wrapping my head around it was challenging at first. Now I feel comfortable to use this in real projects.
+Throughout the project we have used: development, testing and production environments. Switching in/out sources and storing key's and secret's in .env and hosts.
+Wrapping my head around it was challenging at first. Now I feel comfortable to apply this in real world situations.
 
 <br>
 
 > [END-TO-END TESTING](https://github.com/BernardDev/Synthesizer-API/tree/development/server/tests) <br>
 
-All end-point have been thoroughly tested. The [testing](https://github.com/BernardDev/Synthesizer-API/tree/development/server/tests/) formed the basis of development in the project. Checking if correct responses were given & testing the possible 'un-happy' paths. This made me feel safe to refactor some code. Jest and Supertest were used in de backend, Jest & Playwright (like Puppeteer) in the frontend.
+All end-point have been thoroughly tested. The [testing](https://github.com/BernardDev/Synthesizer-API/tree/development/server/tests/) formed the basis of development Checking if correct responses were sent & testing all possible 'un-happy' paths was an endevour. But it pays out by making me feel safe to refactor code. Jest and Supertest were used in de backend, Jest & Playwright (like Puppeteer) in the frontend.
 
 <br>
 
@@ -100,7 +100,7 @@ Also validated in the backend: multipart/form-data & attachments.
 
 > [AUTHENTIFICATION & PASSWORD HASHING](https://github.com/BernardDev/Synthesizer-API/tree/development/server/app.js) <br>
 
-To be able to control the flow of user suggested synthesizers I implemented a admin login-system with JWT token. Although this was not my first encounter with this, it was the first time that I implemented it inside of my [model](https://github.com/BernardDev/Synthesizer-API/tree/development/server/models/admin.js) and validated expiration of the token. Hashing/comparing of the user's password is also done in the model directly.
+To be able to control the flow of user suggested synthesizers I implemented a admin login-system with JWT token. Although this was not my first encounter with this, it was the first time that I implemented it inside of my [model](https://github.com/BernardDev/Synthesizer-API/tree/development/server/models/admin.js) and validated the expiration of the token. Hashing/comparing of the user's password was another thing that was done, also inside the model directly.
 
 <br>
 
@@ -117,7 +117,7 @@ To be able to control the flow of user suggested synthesizers I implemented a ad
 | Heroku                           | JSDOM                            | Yup :star:                           | Express                          |
 | Cloudinary (db) :star:           | Sendgrid :star:                  | Jest                                 | Supertest :star:                 |
 | Sequelize ORM                    | ElephantSQL                      | SQL                                  | JWT                              |
-| custom Promises                  |                                  |                                      |                                  |
+| custom Promises                  |                                  | Express                              | Node.js                          |
 
 <br>
 <br>
@@ -138,12 +138,50 @@ To be able to control the flow of user suggested synthesizers I implemented a ad
 
 ### User Stories
 
-- As a User I want to be able to fetch synthesizers and manufacturers
-- As a User I want to be able to see visualize the synthesizers I'm fetching
-- As a User I want to be able to sort the synthesizers by the year they are produced first
-- As a User I want to be able to define how many synthesizers I fetch and view them on different pages
-- As a User I want to be able to request an API key
-- As a User I want to be able to contribute to the API by suggesting new synthesizers
+- As a Developer that uses this API I want to be able to fetch manufacturers and synthesizer with their specifications
+...so, I can use the API where it is meant for
+
+- As a Developer that uses this API I want to be able to fetch images of the synthesizers,
+...so, I can make something visual I my frontend
+
+- As a Developer that uses this API I want to be able to know what mistakes I made when I did something wrong in fetching the data,
+...so, I can adjust my query and still find the data I'm looking for
+
+- As a Developer that uses this API I want to be able to paginate and limit the results I'm getting
+...so, I can easily built this in my frontend
+
+- As a Developer that uses this API I want to be able to query a specific synthesizer either by id or by name
+...so, I'm not restricted to using two endpoint that share one purpose
+
+- As a Developer that uses this API I want to get the results sorted by year that the synthesizers where produced
+...so, I can easily implement this behaviour when building the frontend
+
+- As a Developer that uses this API Explorer I want to be able to request apikey through email
+...so, I can explore this API
+
+- As a Developer that uses this API Explorer I want to be able to view the JSON data retrieve from the URL
+...so, I will see the data that is available
+
+- As a Developer that uses this API Explorer I want to be able to easily create the URL with route, params and query
+...so, I will find the data that is available
+
+- As a Developer that uses this API Explorer I want to get suggestions of the endpoint, params and queries I'm aloud to enter 
+...so, I know what routes, params and queries are available
+
+- As a Developer that uses this API Explorer I want to be able to store the apikey across sessions,
+...so, I don't have to bother checking my email to find it
+
+- As a Developer that uses this API Explorer I want to copy the explorer URL to my clipboard
+...so, I can quickly use it outside of the Synthesizer API Explorer
+
+_the following stories are derived form the Synthesizer Deirectory frontend build upon this API at later stage_
+
+- As a User of the Synthesizer Directory I want to be able to suggest new synthesizers
+...so, I can contribute to the collection
+
+- As Myself I want to be able to judge the suggested synthesizer
+...so, I can decide which one's will be added to the collection
+
 
 <br>
 

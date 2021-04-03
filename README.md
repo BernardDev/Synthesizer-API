@@ -43,7 +43,7 @@ For all you gearslutz out there! This free API is the only one out there (since 
 
 <br>
 
-The goal of this project is to build an public REST API :dart: and thereby applying existing knowledge and explore new terrains. This was done independently by reading its documentation, watching online videos, consulting StackExchange & sometime my coach.
+The goal of this project is to build an public REST API :dart: and thereby applying existing knowledge and explore new terrains. This was done independently by reading documentation, watching online videos, consulting StackExchange & sometime my coach.
 
 Although this project aimed at making a public API, I obviously tried it out myself! Therefore I made a [frontend](https://github.com/BernardDev/Synthesizer-directory/tree/development/) that uses it. In development some features where added to the backend as well. Such as a route to suggest synthesizer and an admin login system.
 

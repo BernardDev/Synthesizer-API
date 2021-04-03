@@ -1,6 +1,6 @@
 # Synthesizer API :musical_keyboard:
 
-:fire:[Go to API explorer!](https://synthesizer-api.netlify.app/):fire:
+:fire:[Synthesizer API Explorer!](https://synthesizer-api.netlify.app/):fire:
 <br>
 :fire:[Synthesizer Directory](https://synthesizer-directory.netlify.app/):fire:
 :fire:[Synthesizer Directory repo](https://github.com/BernardDev/Synthesizer-directory):fire:

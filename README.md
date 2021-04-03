@@ -49,7 +49,7 @@ Although this project aimed at making a public API, I obviously tried it out mys
 
 <br>
 
-Be sure to visit the :fire:[Synthesizer Directory](https://synthesizer-directory.netlify.app/):fire: as well.
+Be sure to visit the deployed version :fire:[Synthesizer Directory](https://synthesizer-directory.netlify.app/):fire: as well.
 <br>
 <br>
 

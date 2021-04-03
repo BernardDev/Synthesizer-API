@@ -174,7 +174,7 @@ _the following stories are derived form the Synthesizer Deirectory frontend buil
 
 ### Project Board
 
-- You can find it [here](https://github.com/BernardDev/Synthesizer-API/projects).
+- You can find it [here](https://github.com/BernardDev/Synthesizer-API/projects/1).
 
 <br>
 

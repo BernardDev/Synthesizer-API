@@ -169,7 +169,7 @@ async function acceptSynth(id) {
       return referenced;
     }
   } catch (error) {
-    console.log(error);
+    console.log('error', error);
     return {
       data: null,
       message: 'No suggestion found',

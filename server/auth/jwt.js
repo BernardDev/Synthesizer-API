@@ -9,7 +9,6 @@ const verifyToken = async function (req, res, next) {
       return res.status(401).json({message: 'Please send a token'});
     }
     const authSplit = authFull.split(' ');
-    console.log(`authSplit`, authSplit);
     if (authSplit[0] !== 'Bearer') {
       return res.status(401).json({message: 'Please send a Bearer token'});
     }

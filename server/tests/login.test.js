@@ -51,7 +51,7 @@ describe('/login', () => {
       });
       const res = await server
         .post(`/login`)
-        .send({email: 'bernardwittgen@hotmail.com', password: 'hallohallo'});
+        .send({email: 'bernardwittgen@hotmail.com', password: 'abcd1234'});
       expect(res.status).toBe(401);
       expect(res.body).toEqual({
         errors: ['Unauthorized'],

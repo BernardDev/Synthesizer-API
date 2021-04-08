@@ -34,7 +34,7 @@ app.use(express.json());
 // --------------
 
 function errorHandlerExpress(error, req, res, next) {
-  console.log(`error middleware`, error);
+  console.log(`error`, error);
   res.status(400).json({errors: [error.message], message: error.message});
 }
 
@@ -54,8 +54,6 @@ app.post(
     const {email, password} = req.validatedBody;
     try {
       const [error, admin] = await Admin.authenticate(email, password);
-      console.log(`admin`, admin);
-      // console.log(`admin`, admin);
       if (error) {
         console.log(`error`, error);
         return res
@@ -123,8 +121,6 @@ app.get(
   ),
   verifyToken,
   async (req, res) => {
-    console.log(`validatedQuery`, req.validatedQuery);
-
     const {limit, offset} = req.validatedQuery;
     try {
       const [error, suggestions] = await suggestionsAll(limit, offset);
@@ -167,7 +163,7 @@ app.patch('/suggestions/:id/accept', verifyToken, async (req, res) => {
       data: result,
     });
   } catch (error) {
-    console.log('error from outside', error);
+    console.log('error', error);
     res.status(500).send({
       message: 'Something went wrong, please try to submit again!',
       errors: ['Internal server error'],
@@ -189,7 +185,7 @@ app.delete('/suggestions/:id/decline', verifyToken, async (req, res) => {
       res.status(200).send(result);
     }
   } catch (error) {
-    console.log('error from outside', error);
+    console.log('error', error);
     res.status(500).send({
       message: 'Something went wrong, please try to submit again!',
       errors: ['Internal server error'],

@@ -15,7 +15,7 @@ async function addImageToRecord() {
       return file === fileName;
     });
     if (!match) {
-      console.log('match not found', name, fileName);
+      // console.log('match not found', name, fileName);
     }
 
     const public_id = name.split(' ').join('_');

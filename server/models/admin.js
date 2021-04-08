@@ -27,8 +27,6 @@ module.exports = (sequelize, DataTypes) => {
       const admin = await this.findOne({
         where: {email},
       });
-      // console.log(`admin`, admin);
-
       if (!admin) {
         return [
           {

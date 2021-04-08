@@ -177,7 +177,6 @@ describe.only('suggestions', () => {
         isAdmin: true,
       });
       const token = admin.createToken();
-      console.log(`token`, token);
       const res = await server
         .get(`/suggestions`)
         .set('Authorization', `Bearer ${token}`);
@@ -197,6 +196,7 @@ describe.only('suggestions', () => {
       });
       const res = await server.get(`/suggestions`);
       expect(res.status).toBe(401);
+      // expect(res.body).toBe(null);
       expect(res.body.message).toBe('Please send a token');
       done();
     });
@@ -229,7 +229,6 @@ describe.only('suggestions', () => {
         isAdmin: false,
       });
       const token = admin.createToken();
-      console.log(`token`, token);
       const res = await server
         .get(`/suggestions`)
         .set('Authorization', `Bearer ${token}`);
@@ -277,7 +276,6 @@ describe.only('suggestions', () => {
         isAdmin: true,
       });
       const token = admin.createToken();
-      console.log(`token`, token);
       const res = await server
         .patch(`/suggestions/${suggestion.id}/accept`)
         .set('Authorization', `Bearer ${token}`);

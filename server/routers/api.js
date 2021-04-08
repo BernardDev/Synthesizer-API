@@ -2,9 +2,7 @@ const express = require('express');
 const validate = require('../validators/requestValidationMiddleware');
 const formatSynthQuery = require('../validators/queryValidators');
 const apiKeyMiddleware = require('../validators/validateApiKeyMiddleware');
-
 const yup = require('yup');
-
 const {
   manufacturersAll,
   manufacturerByPk,
@@ -85,7 +83,7 @@ apiRoutes.get(
       }
       res.json(result);
     } catch (error) {
-      console.log('ERROR: /manufacturers/:nameOrId', error);
+      console.log('error', error);
       res.status(400).json({message: 'Bad request', errors: error.errors});
     }
   }
@@ -139,7 +137,7 @@ apiRoutes.get(
       }
       res.json({count: result.count, synths: result.rows});
     } catch (error) {
-      console.log('ERROR: /synths/detailed', error);
+      console.log('error', error);
       res.status(400).json({message: 'Bad request', errors: error.errors});
     }
   }
@@ -179,7 +177,7 @@ apiRoutes.get(
       }
       res.json(result);
     } catch (error) {
-      console.log('ERROR: /synths/:nameOrId', error);
+      console.log('error', error);
       res.status(400).json({message: 'Bad request', errors: error.errors});
     }
   }

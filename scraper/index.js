@@ -52,7 +52,7 @@ let testObject = [
 testObject.map((synth) => {
   for (let key in synth.specs) {
     const test = key.toLowerCase();
-    console.log(test);
+    // console.log(test);
   }
 });
 

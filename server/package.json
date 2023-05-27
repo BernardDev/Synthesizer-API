@@ -7,10 +7,10 @@
     "test": "npm run test-setup-db && npx jest --detectOpenHandles --runInBand",
     "test-watch": "npm run test-setup-db && npx jest --detectOpenHandles --runInBand --watch",
     "test-setup-db": "NODE_ENV=test npm run undo-migrate && NODE_ENV=test npm run migrate",
-    "migrate": "npx sequelize-cli db:migrate",
-    "undo-migrate": "npx sequelize-cli db:migrate:undo:all",
-    "seed": "npx sequelize-cli db:seed:all",
-    "undo-seed": "npx sequelize-cli db:seed:undo:all",
+    "migrate": "npx sequelize db:migrate",
+    "undo-migrate": "npx sequelize db:migrate:undo:all",
+    "seed": "npx sequelize db:seed:all",
+    "undo-seed": "npx sequelize db:seed:undo:all",
     "reseed": "npm run undo-migrate && npm run migrate && npm run seed",
     "start": "node index.js",
     "dev": "npx nodemon index.js",
@@ -34,9 +34,11 @@
     "multer-storage-cloudinary": "^4.0.0",
     "pg": "^8.5.1",
     "sequelize": "^6.3.5",
-    "sequelize-cli": "^6.2.0",
     "supertest": "^6.1.1",
     "uuid-apikey": "^1.5.1",
     "yup": "^0.32.8"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.6.0"
   }
 }

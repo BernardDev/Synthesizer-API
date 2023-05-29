@@ -17,9 +17,11 @@ import useRequest from '../hooks/useRequest';
 import {AuthContext} from '../context/AuthContext';
 
 const BASE_URL = process.env.REACT_APP_API_URL;
+const DUMMY_API_KEY = process.env.REACT_APP_API_SYNTH_KEY;
 const INITIAL_ROUTE = '/synths';
 
 function UrlExplorer() {
+  // TODO: rework sendgrid api to make sending api's possible again
   const [stateAlert, setStateAlert] = useState(false);
   const [copySuccess, setCopySuccess] = useState('');
   const [isFetching, setIsFetching] = useState(false);
@@ -102,12 +104,12 @@ function UrlExplorer() {
                   placeholder='Paste your API key...'
                   name='storedKey'
                   onChange={handleKeyInput}
-                  value={apiKey || ''}
+                  value={DUMMY_API_KEY || ''}
                 />
                 <Button
                   className=''
                   variant='primary'
-                  onClick={() => saveKey(apiKey)}
+                  onClick={() => saveKey(DUMMY_API_KEY)}
                 >
                   Save
                 </Button>
